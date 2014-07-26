@@ -1,7 +1,3 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
-
 DROP SCHEMA IF EXISTS `eol` ;
 CREATE SCHEMA IF NOT EXISTS `eol` DEFAULT CHARACTER SET latin1 ;
 USE `eol` ;
@@ -32,7 +28,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Subjects` (
   `idSubject` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Subject\'s ID' ,
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Subject\'s name' ,
   `description` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Subject\'s description' ,
-  `fkLanguage` INT(10) UNSIGNED NOT NULL COMMENT 'Main language\'s ID' ,
+  `fkLanguage` INT(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'Main language\'s ID' ,
   PRIMARY KEY (`idSubject`) ,
   INDEX `fk_Subjects_Language_idx` (`fkLanguage` ASC) ,
   CONSTRAINT `fk_Subjects_Language`
@@ -55,8 +51,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Topics` (
   `idTopic` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Topic\'s ID' ,
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Topic\'s name' ,
   `description` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Topic\'s description' ,
-  `active` CHAR(1) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL DEFAULT 'y' COMMENT 'Check if topic is active' ,
-  `fkSubject` INT(10) UNSIGNED NOT NULL COMMENT 'Subject\'s ID' ,
+  `fkSubject` INT(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'Subject\'s ID' ,
   PRIMARY KEY (`idTopic`) ,
   INDEX `fk_Topics_Subjects_idx` (`fkSubject` ASC) ,
   CONSTRAINT `fk_Topics_Subjects`
@@ -129,7 +124,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`TestSettings` (
   `questions` SMALLINT(5) UNSIGNED NOT NULL COMMENT 'Test setting\'s question\'s number' ,
   `scoreType` VARCHAR(2) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL DEFAULT '' COMMENT 'Test setting\'s score type' ,
   `scoreMin` VARCHAR(2) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL DEFAULT '' COMMENT 'Test setting\'s minimum score' ,
-  `scale` DOUBLE DEFAULT '1' COMMENT 'Test setting''s score factor scale',
+  `scale` DOUBLE NOT NULL DEFAULT '1' COMMENT 'Test setting''s score factor scale',
   `bonus` DOUBLE NULL DEFAULT '0' COMMENT 'Test setting\'s bonus' ,
   `duration` INT(10) UNSIGNED NOT NULL COMMENT 'Test setting\'s duration time in mins' ,
   `numEasy` INT(10) NOT NULL COMMENT 'Test setting\'s easy questions' ,
@@ -158,7 +153,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Exams` (
   `idExam` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Exam\'s ID' ,
   `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Exam\'s name' ,
   `datetime` DATETIME NOT NULL COMMENT 'Exam\'s day and time' ,
-  `desc` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Exam\'s description' ,
+  `description` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Exam\'s description' ,
   `regStart` DATETIME NULL DEFAULT NULL COMMENT 'Exam\'s registration start time' ,
   `regEnd` DATETIME NULL DEFAULT NULL COMMENT 'Exam\'s registration end time' ,
   `password` VARCHAR(20) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Exam\'s password' ,
@@ -236,8 +231,8 @@ COMMENT = 'Clients allowed to execute a specific exams';
 DROP TABLE IF EXISTS `eol`.`Questions_TestSettings` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`Questions_TestSettings` (
-  `fkQuestion` INT(10) UNSIGNED NOT NULL ,
-  `fkTestSetting` INT(10) UNSIGNED NOT NULL ,
+  `fkQuestion` INT(10) UNSIGNED NOT NULL COMMENT 'Question\'s ID' ,
+  `fkTestSetting` INT(10) UNSIGNED NOT NULL COMMENT 'Test Setting\'s ID',
   PRIMARY KEY (`fkQuestion`, `fkTestSetting`) ,
   INDEX `fk_Questions_TestSettings_TestSetting` (`fkTestSetting` ASC) ,
   CONSTRAINT `fk_Questions_TestSettings_Question`
@@ -345,7 +340,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Tests` (
   `scoreFinal` DOUBLE DEFAULT NULL COMMENT 'Final score',
   `status` CHAR(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'w' COMMENT 'Test''s status (w->waiting, s->started, e->ended, a->archived, b->blocked)',
   `fkExam` INT(10) UNSIGNED DEFAULT NULL COMMENT 'Test exam''s ID',
-  `fkUser` INT(10) UNSIGNED DEFAULT NULL,
+  `fkUser` INT(10) UNSIGNED DEFAULT NULL COMMENT 'Test student\'s ID',
   `fkSet` INT(10) UNSIGNED DEFAULT NULL COMMENT 'Test''s set',
   PRIMARY KEY (`idTest`) KEY_BLOCK_SIZE=16,
   KEY `fk_Tests_Exam_idx` (`fkExam`) KEY_BLOCK_SIZE=16,
@@ -424,12 +419,12 @@ COMMENT = 'Tokens for create account and password lost';
 DROP TABLE IF EXISTS `eol`.`Topics_TestSettings` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`Topics_TestSettings` (
-  `fkTestSetting` INT(10) UNSIGNED NOT NULL ,
-  `fkTopic` INT(10) UNSIGNED NOT NULL ,
-  `numEasy` INT(10) NOT NULL ,
-  `numMedium` INT(10) NOT NULL ,
-  `numHard` INT(10) NOT NULL ,
-  `numQuestions` INT(10) NOT NULL ,
+  `fkTestSetting` INT(10) UNSIGNED NOT NULL COMMENT 'Test Setting\'s ID' ,
+  `fkTopic` INT(10) UNSIGNED NOT NULL COMMENT 'Topic\'s ID' ,
+  `numEasy` INT(10) NOT NULL COMMENT 'Random easy questions' ,
+  `numMedium` INT(10) NOT NULL COMMENT 'Random medium questions' ,
+  `numHard` INT(10) NOT NULL COMMENT 'Random hard questions' ,
+  `numQuestions` INT(10) NOT NULL COMMENT 'Number of topic questions' ,
   PRIMARY KEY (`fkTestSetting`, `fkTopic`) ,
   INDEX `fk_Topics_TestSettings_Topic` (`fkTopic` ASC) ,
   CONSTRAINT `fk_Topics_TestSettings_TestSetting`
@@ -453,7 +448,7 @@ DROP TABLE IF EXISTS `eol`.`TranslationAnswers` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`TranslationAnswers` (
   `fkAnswer` INT(10) UNSIGNED NOT NULL COMMENT 'Answer\'s ID' ,
-  `fkLanguage` INT(10) UNSIGNED NOT NULL COMMENT 'Language\'s ID' ,
+  `fkLanguage` INT(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'Language\'s ID' ,
   `translation` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Answer\'s translation text' ,
   PRIMARY KEY (`fkAnswer`, `fkLanguage`) ,
   INDEX `fk_TranslationAnswers_Answer_idx` (`fkAnswer` ASC) ,
@@ -481,7 +476,7 @@ DROP TABLE IF EXISTS `eol`.`TranslationQuestions` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`TranslationQuestions` (
   `fkQuestion` INT(10) UNSIGNED NOT NULL COMMENT 'Question\'s ID' ,
-  `fkLanguage` INT(10) UNSIGNED NOT NULL COMMENT 'Language\'s ID' ,
+  `fkLanguage` INT(10) UNSIGNED NOT NULL DEFAULT '1' COMMENT 'Language\'s ID' ,
   `translation` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Question\'s translation text' ,
   PRIMARY KEY (`fkLanguage`, `fkQuestion`) ,
   INDEX `fk_TranslationQuestions_Question_idx` (`fkQuestion` ASC) ,
@@ -509,8 +504,8 @@ DROP TABLE IF EXISTS `eol`.`Users_Subjects` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`Users_Subjects` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `fkUser` INT(10) UNSIGNED NULL DEFAULT NULL ,
-  `fkSubject` INT(10) UNSIGNED NOT NULL ,
+  `fkUser` INT(10) UNSIGNED NULL DEFAULT NULL COMMENT 'User\'s ID' ,
+  `fkSubject` INT(10) UNSIGNED NOT NULL COMMENT 'Subject\'s ID',
   PRIMARY KEY (`id`) ,
   INDEX `fk_Teachers_Subjects_Subject_idx` (`fkSubject` ASC) ,
   INDEX `fk_Teachers_Subjects_Teacher_idx` (`fkUser` ASC) ,
@@ -549,54 +544,4 @@ VALUES (2, 'it', 'Italiano');
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
 VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1');
 
--- -----------------------------------------------------
--- function assignSet
--- -----------------------------------------------------
 
-USE `eol`;
-DROP function IF EXISTS `eol`.`assignSet`;
-
-DELIMITER $$
-USE `eol`$$
-CREATE DEFINER=`masterplan`@`localhost` FUNCTION `assignSet`(xExam INT, xStudent INT) RETURNS int(11)
-    DETERMINISTIC
-BEGIN
-
-	DECLARE xTest		 INT;
-	DECLARE xTestId		 INT;
-	DECLARE xTestSet	 INT;
-
-	IF xExam IS NOT NULL THEN
-		IF xStudent IS NOT NULL THEN
-			SELECT idTest FROM Tests WHERE fkUser = xStudent AND fkExam = xExam INTO xTestId;
-			IF xTestId IS NOT NULL THEN
-				SELECT fkSet FROM Tests WHERE idTest = xTestId INTO xTestSet;
-				IF xTestSet IS NULL THEN
-					SELECT idSet FROM Sets WHERE (assigned = 'n' AND fkExam = xExam) LIMIT 1 INTO xTestSet;
-					IF xTestSet IS NOT NULL THEN
-						UPDATE Sets SET assigned = 'y' WHERE idSet = xTestSet;
-						UPDATE Tests SET fkSet = xTestSet WHERE idTest = xTestId;
-						RETURN xTestSet;
-					ELSE
-						RETURN -3;
-					END IF;
-				ELSE
-					RETURN xTestSet;
-				END IF;
-			ELSE
-				RETURN -2;
-			END IF;
-		ELSE
-			RETURN -1;
-		END IF;
-	ELSE
-		RETURN -1;
-	END IF; 
-END$$
-
-DELIMITER ;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
