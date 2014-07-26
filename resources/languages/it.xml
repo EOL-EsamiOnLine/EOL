@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language [
+<!ELEMENT language (info+ , text+)>
+<!ELEMENT info (#PCDATA)>
+<!ELEMENT text (#PCDATA)>
+<!ATTLIST info id ID #IMPLIED>
+<!ATTLIST text id ID #IMPLIED>
+]>
+<!--
+    === Note: ===
+    All ids must start with 'P_' if constant is used by PHP,
+    'J_' if constant is used by Javascript or 'A_' (all) if constant is
+    used by PHP and Javascript; also it's name must start with 'tt'
+    and MUST NOT CONTAINS other '_'.
+    =============
+-->
+<language>
+    <info id="name">Italiano</info>
+    <info id="alias">it</info>
+    <!-- ======================== A ======================== -->
+    <text id="P_ttAccountActivation">Attivazione account</text>
+    <text id="A_ttActive">Attivo</text>
+    <text id="P_ttActivate">Attiva</text>
+    <text id="P_ttAdd">Aggiungi</text>
+    <text id="P_ttAddSelectedStudents">Aggiungi studenti selezionati</text>
+    <text id="P_ttAdministration">Amministrazione</text>
+    <text id="P_ttAdministrator">Amministratore</text>
+    <text id="P_ttAdminWelcome">Benvenuto nel pannello d'amministrazione\nIl sistema include:</text>
+    <text id="P_ttAlias">Codice ISO 639-1</text>
+    <text id="P_ttAndExit"> ed Esci</text>
+    <text id="P_ttAnswer">Risposta</text>
+    <text id="P_ttAnswers">Risposte</text>
+    <text id="P_ttArchive">Archivia</text>
+    <text id="A_ttArchived">Archiviato</text>
+    <text id="P_ttAssignSubject">Assegna Materia</text>
+    <text id="P_ttAutomatic">Automatico</text>
+    <!-- ======================== B ======================== -->
+    <text id="A_ttBlocked">Bloccato</text>
+    <text id="A_ttBlock">Blocca</text>
+    <text id="A_ttUnblock">Sblocca</text>
+    <text id="P_ttBonus">Bonus</text>
+    <!-- ======================== C ======================== -->
+    <text id="A_ttCancel">Annulla</text>
+    <text id="P_ttChangeLanguage">Cambia lingua</text>
+    <text id="P_ttChangeVersion">Cambia versione</text>
+    <text id="J_ttCheck">Verifica...</text>
+    <text id="P_ttClose">Chiudi</text>
+    <text id="P_ttClosed">Chiuso</text>
+    <text id="P_ttCorrect">Correggi</text>
+    <text id="P_ttConfirm">Conferma</text>
+    <text id="P_ttConfirmEmail">Conferma E-mail</text>
+    <text id="P_ttConfirmPassword">Conferma Password</text>
+    <text id="P_ttCreate">Crea</text>
+    <!-- ==================== CONFIRMS ===================== -->
+    <text id="J_ttCArchiveExam">Sei sicuro di voler archiviare l'esame?\nNon sarà possibile consegnare ulteriori test e tutte le domande da correggere dei test consegnati totalizzeranno 0 punti.\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCBlockTest">Sei sicuro di voler bloccare questo test?</text>
+    <text id="J_ttCChangeStatus">Sei sicuro di voler impostare lo stato della domanda a _STATUS_?</text>
+    <text id="J_ttCConfirmTest">Vuoi confermare il punteggio finale?\nQuesto test verrà archiviato! Continuare?</text>
+    <text id="J_ttCDeleteAnswer">Sei sicuro di voler eliminare questa risposta e le sue traduzioni?\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDeleteExam">Sei sicuro di voler eliminare questo esame?\nTutti i test in corso, consegnati e archiviati verranno eliminati.\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDeleteQuestion">Sei sicuro di voler eliminare questa domanda e le sue traduzioni?\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDeleteRoom">Sei sicuro di voler eliminare questa stanza?\nL'operazione non potrà essere annullata!\nContinuare?</text>
+    <text id="J_ttCDeleteSubject">Sei sicuro di voler eliminare questa materia?\nI seguenti elementi verranno PERMANENTEMENTE eliminati:\n - Materia\n - Tutti gli argomenti\n - Tutte le domande e le risposte con le relative traduzioni\n - Tutte le impostazioni d'esame\n - Tutti gli esami e i test attivi e archiviati\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDeleteSettings">Sei sicuro di voler eliminare queste impostazioni d'esame?\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDeleteTopic">Sei sicuro di voler eliminare questo argomento?\nI seguenti elementi verranno PERMANENTEMENTE eliminati:\n - Argomento\n - Tutte le domande con le relative traduzioni\n - Tutte le risposte con le relative traduzioni\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCDiscardEdits">Le modifiche verranno perse.\nUscire?</text>
+    <text id="J_ttCDiscardNew">L'elemento creato verrà perso.\nUscire?</text>
+    <text id="J_ttCRegister">Sei sicuro di volerti registrare a questo esame?</text>
+    <text id="J_ttCRegisterStudents">Sei sicuro di voler registrare gli studenti selezionati all'esame?</text>
+    <text id="J_ttCRenewPassword">La password per l'esame verrà aggiornata.\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCStartExam">Vuoi far partire questo esame?</text>
+    <text id="J_ttCStartTest">Vuoi iniziare l'esame ora?\nTi verrà richiesta la password d'accesso all'esame.</text>
+    <text id="J_ttCStopExam">Vuoi fermare questo esame?</text>
+    <text id="J_ttCSubmitTest">Vuoi consegnare il test?\nL'operazione non potrà essere annullata! Continuare?</text>
+    <text id="J_ttCTest">La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!</text>
+    <text id="J_ttCUnblockTest">Sei sicuro di voler sbloccare questo test?</text>
+    <text id="J_ttCUpdateLanguage">Sei sicuro di voler aggiornare i file di lingua?\nL'operazione non potrà essere annullata. Continuare?</text>
+    <!-- ======================== D ======================== -->
+    <text id="P_ttD1">Facile</text>
+    <text id="P_ttD2">Intermedio</text>
+    <text id="P_ttD3">Difficile</text>
+    <text id="P_ttDistributionP">Proporzionale</text>
+    <text id="P_ttDistributionU">Universale</text>
+    <text id="P_ttDay">Giorno</text>
+    <text id="A_ttDelete">Elimina</text>
+    <text id="A_ttDescription">Descrizione</text>
+    <text id="P_ttDifficulty">Difficoltà</text>
+    <text id="P_ttDifficultyQuestions">Domande per difficoltà</text>
+    <text id="P_ttDistribution">Distribuzione</text>
+    <text id="P_ttDo">Esegui esame</text>
+    <text id="J_ttDTExamInfo">"Visualizzati _TOTAL_ esami in corso"</text>
+    <text id="J_ttDTExamFiltered">"(filtrati da _MAX_ esami in corso totali)"</text>
+    <text id="J_ttDTExamEmpty">"Nessun esame da visualizzare"</text>
+    <text id="J_ttDTQuestionInfo">"Visualizzate _TOTAL_ domande"</text>
+    <text id="J_ttDTQuestionFiltered">"(filtrate da _MAX_ domande totali)</text>
+    <text id="J_ttDTQuestionEmpty">"Nessuna domanda da visualizzare"</text>
+    <text id="J_ttDTRegisteredStudentInfo">"Visualizzati _TOTAL_ studenti registrati"</text>
+    <text id="J_ttDTRegisteredStudentFiltered">"(filtrati da _MAX_ studenti registrati totali)"</text>
+    <text id="J_ttDTRegisteredStudentEmpty">"Nessuno studente registrato da visualizzare"</text>
+    <text id="J_ttDTStudentsInfo">"Visualizzati _TOTAL_ studenti"</text>
+    <text id="J_ttDTStudentsFiltered">"(filtrati da _MAX_ studenti totali)"</text>
+    <text id="J_ttDTStudentsEmpty">"Nessuno studente da visualizzare"</text>
+    <text id="J_ttDTTeacherInfo">Visualizzati _TOTAL_ docenti</text>
+    <text id="J_ttDTTeacherFiltered">(filtrati da _MAX_ docenti totali)</text>
+    <text id="J_ttDTTeacherEmpty">Nessun docente da visualizzare</text>
+    <text id="J_ttDTTestInfo">"Visualizzati _TOTAL_ test"</text>
+    <text id="J_ttDTTestFiltered">"(filtrati da _MAX_ test totali)"</text>
+    <text id="J_ttDTTestEmpty">"Nessun test da visualizzare"</text>
+    <text id="P_ttDone">Esame completato</text>
+    <text id="P_ttDuration">Durata</text>
+    <!-- ======================== E ======================== -->
+    <text id="A_ttEdit">Modifica</text>
+    <text id="A_ttError">Errore</text>
+    <text id="P_ttEmail">E-mail</text>
+    <text id="P_ttEnd">Fine</text>
+    <text id="P_ttEverywhere">Ovunque</text>
+    <text id="P_ttExam">Esame</text>
+    <text id="P_ttExams">Esami</text>
+    <text id="P_ttExit">Uscita</text>
+    <text id="P_ttExamsArchive">Archivia</text>
+    <text id="P_ttExamsInProgress">Esami in corso</text>
+    <!-- ===================== ERRORS ====================== -->
+    <text id="P_ttEActivationFails">Attivazione fallita!</text>
+    <text id="P_ttEAlreadyRegistered">Lo studente è già registrato a questo esame!</text>
+    <text id="P_ttEAnswerInSet">L'operazione non può essere completata. La risposta è usata in alcuni test!</text>
+    <text id="A_ttEAnswerNotFound">Risposta non trovata</text>
+    <text id="P_ttEAnswers">Si è verificato un problema con le risposte.\nContattare il docente o l'amministratore.</text>
+    <text id="A_ttEDatabase">Errore nel database!</text>
+    <text id="J_ttEDates">Date non corrette!</text>
+    <text id="P_ttEEditRoomAll">'All' non pùò essere modificata!</text>
+    <text id="P_ttEEmailAlreadyRegistered">E-mail già registrata!</text>
+    <text id="P_ttEEmailNotRegistered">E-mail non registrata!</text>
+    <text id="J_ttEEmailNotValid">L'email inserita non è valida! Inserisci un'indirizzo email valido</text>
+    <text id="J_ttEEmailsNotMatch">Le due email non corrispondono!</text>
+    <text id="A_ttEEmptyFields">Uno o più campi sono vuoti!</text>
+    <text id="P_ttEExamArchived">L'operazione non può essere completata. L'esame è stato già archiviato!</text>
+    <text id="P_ttEExamNotFound">Esame non trovato!</text>
+    <text id="P_ttEExamNotStarted">Non puoi iniziare il test. L'esame non è ancora stato avviato!</text>
+    <text id="P_ttEExamStarted">L'operazione non può essere completata perché l'esame è già iniziato!</text>
+    <text id="P_ttEExamWaiting">L'operazione non può essere completata perché l'esame non è mai stato avviato!</text>
+    <text id="P_ttEExamsNotArchivedDeleteTopic">L'operazione non può essere completata perché uno o più esami non ancora archiviati contengono domande contenute in questo argomento!</text>
+    <text id="P_ttEExamsNotArchivedEditTestSettings">L'operazione non può essere completata perché queste impostazioni sono utilizzate da almeno un esame non ancora archiviato.\nSarà possibile aggiornare unicamente nome e descrizione. Continuare?</text>
+    <text id="P_ttEExamsNotArchivedDeleteTestSettings">L'operazione non può essere completata perché queste impostazioni sono utilizzate da almeno un esame non ancora archiviato.</text>
+    <text id="J_ttEIncorrectField">Uno o più campi non sono corretti!</text>
+    <text id="J_ttELogin">E-mail e/o Password non sono corretti!</text>
+    <text id="P_ttEMainLanguageEmpty">La lingua principale della materia non può essere vuota!</text>
+    <text id="P_ttEMandatoryQuestion">Questa è una domanda obbligatoria delle impostazioni d'esame '_TESTSETTING_': non è possibile cancellara o modificarne difficoltà e argomento.</text>
+    <text id="P_ttENotAuthorized">Il tuo client non è autorizzato.\nContatta il docente o l'amministratore.</text>
+    <text id="J_ttENoStudentsToRegister">Nessun studente da registrare all'esame!</text>
+    <text id="P_ttEOldPasswordWrong">La vecchia password non corrisponde!</text>
+    <text id="A_ttEPassword">Password errata!</text>
+    <text id="J_ttEPasswordShort">La password è troppo breve. Deve avere una lunghezza minima di 8 caratteri!</text>
+    <text id="J_ttEPasswordsNotMatch">Le due password non corrispondono!</text>
+    <text id="J_ttEQuestAnswPicker">Errore durante il recupero di domande e risposte.\nContattare il docente!</text>
+    <text id="P_ttEQuestionInSet">L'operazione non può essere completata. La domanda è usata in alcuni test!</text>
+    <text id="P_ttEQuestionNotFound">Domanda non trovata!</text>
+    <text id="P_ttEQuestionType">Tipo di domanda non corretto!</text>
+    <text id="P_ttERegFailedQuestions">Registrazione fallita: poche domande! Contattare il docente.</text>
+    <text id="P_ttERoomAllDelete">'Tutte' non può essere eliminata!</text>
+    <text id="P_ttERoomUsed">L'operazione non può essere completata. La stanza è usata in alcuni esami!</text>
+    <text id="J_ttESaveBeforeNew">Prima di creare un nuovo elemento salva o cancella quello appena creato.</text>
+    <text id="J_ttESelectSubject">Selezionare uno dei propri corsi!</text>
+    <text id="J_ttESelectTestSettings">Selezionare una delle impostazioni d'esame!</text>
+    <text id="P_ttESetNotFound">Set di domande non trovato!</text>
+    <text id="P_ttETestBlockedSubmitted">L'operazione non può essere completata. Questo test è stato bloccato o è stato già consegnato!</text>
+    <text id="P_ttETestAlreadyArchived">L'operazione non può essere completata. Questo test è stato già corretto e archiviato!</text>
+    <text id="P_ttETestAlreadySubmitted">L'operazione non può essere completata. Il test è stato già consegnato o archiviato!</text>
+    <text id="P_ttETestNotArchived">L'operazione non può essere completata. Questo test non è stato archiviato!</text>
+    <text id="P_ttETestNotFound">Test non trovato!</text>
+    <text id="P_ttETestSettingDeleteQuestion">L'operazione non può essere completata perché la domanda è obbligatoria nelle seguenti impostazioni d'esame:\n</text>
+    <text id="P_ttETestSettingDeleteTopic">L\'operazione non può essere completata perché alcune domande di questo argomento sono utilizzate nelle seguenti impostazioni d\'esame:\n</text>
+    <text id="P_ttETestsNotArchived">Alcuni test non sono stati archiviati! Correggere prima tutti i test.</text>
+    <text id="P_ttETimeExpired">Il tempo disponibile è finito!</text>
+    <text id="J_ttETranslationExists">La traduzione nella lingua selezionata è già presente!</text>
+    <text id="P_ttEUserNotFound">Utente non trovato!</text>
+    <text id="P_ttEValues">Alcuni valori non sono corretti!</text>
+    <!-- ======================== F ======================== -->
+    <text id="P_ttFalse">Falso</text>
+    <text id="P_ttFinalScore">Punteggio finale</text>
+    <!-- ======================== G ======================== -->
+    <text id="P_ttGeneralInformations">Informazioni Generali</text>
+    <!-- ======================== H ======================== -->
+    <text id="P_ttHours">ore</text>
+    <!-- ======================= HELP ====================== -->
+    <text id="J_ttHQuestLanguagesPanel">Un click per la traduzione\ndella domanda selezionata</text>
+    <text id="J_ttHQuestPanel">Un click per selezionare la domanda e vederne l'anteprima, due click per modificare domanda e risposte</text>
+    <text id="J_ttHQuestPreviewPanel">Le risposte con sfondo arancione non sono tradotte nella lingua richiesta</text>
+    <text id="J_ttHQuestTopicPanel">Un click per filtrare le domande,\ndoppio per modificare l'argomento</text>
+    <!-- ======================== I ======================== -->
+    <text id="A_ttInfo">Informazioni</text>
+    <text id="P_ttIPEnd">IPv4 Fine</text>
+    <text id="P_ttIPStart">IPv4 Inizio</text>
+    <text id="A_ttInactive">Inattivo</text>
+    <!-- ======================== J ======================== -->
+    <text id="P_ttJoin">Iscriviti</text>
+    <!-- ======================== K ======================== -->
+    <!-- ======================== L ======================== -->
+    <text id="P_ttLanguage">Lingua</text>
+    <text id="P_ttLanguages">Lingue</text>
+    <text id="A_ttLogin">Entra</text>
+    <text id="J_ttLoginOk">Login completato!</text>
+    <text id="P_ttLogout">ESCI</text>
+    <!-- ======================== M ======================== -->
+    <text id="P_ttMailLostPassword">Per impostare una nuova password clicca il link seguente:\n\n_LINK_\n\nSe non hai richiesto il reset della password allora ignora questa email.</text>
+    <text id="P_ttMailCredentials">Ciao _USERNAME_,\nDi seguito sono riportate le tue credenziali di accesso:\n\nE-mail : _USEREMAIL_ \n Password : _USERPASSWORD_ </text>
+    <text id="P_ttMailNewTeacher">Benvenuto in _SYSTEMNAME_.\n\nPer attivare il tuo account clicca il link seguente e imposta la tua password personale:</text>
+    <text id="P_ttMainLanguage">Lingua principale</text>
+    <text id="P_ttManage">Gestisci</text>
+    <text id="P_ttMandatory">Fisse</text>
+    <text id="P_ttManual">Manuale</text>
+    <text id="P_ttMinutes">minuti</text>
+    <text id="P_ttMyExams">I miei esami</text>
+    <text id="P_ttMySettings">Le mie impostazioni</text>
+    <text id="P_ttMySubjects">Seleziona un corso</text>
+    <!-- ==================== MESSAGES ===================== -->
+    <text id="J_ttMActivation">Password impostata correttamente.\nVerrai portato alla pagina per il login...</text>
+    <text id="J_ttMAnswerDeleted">Risposta eliminata con successo</text>
+    <text id="J_ttMConfirm">Test confermato e archiviato correttamente</text>
+    <text id="J_ttMUserCreated">Creazione completata: ti è stata inviata una e-mail per completare la registrazione.\nControlla anche nella cartella Spam</text>
+    <text id="J_ttMEdit">Modifiche salvate correttamente</text>
+    <text id="J_ttMExamArchived">Esame archiviato con successo</text>
+    <text id="J_ttMExamDeleted">Esame eliminato con successo</text>
+    <text id="J_ttMExamStarted">Esame avviato con successo</text>
+    <text id="J_ttMExamStopped">Esame fermato con successo</text>
+    <text id="J_ttMLanguageCreated">Traduzione creata con successo</text>
+    <text id="J_ttMLanguageSaved">Traduzione salvata con successo</text>
+    <text id="J_ttMLanguageUpdated">Traduzione aggiornata con successo</text>
+    <text id="J_ttMNewRoom">Stanza creata con successo</text>
+    <text id="J_ttMNewSettings">Impostazioni d'esame create con successo</text>
+    <text id="J_ttMNewSubject">Materia creata con successo</text>
+    <text id="J_ttMNewTopic">Argomento creato con successo</text>
+    <text id="J_ttMPasswordRenewed">Password d'esame rinnovata con successo</text>
+    <text id="J_ttMQuestionDeleted">Domanda eliminata con successo</text>
+    <text id="J_ttMRegistration">Sei stato correttamente registrato all'esame</text>
+    <text id="J_ttMResetConfirmed">Richiesta completata: ti è stata inviata una e-mail per reimpostare la tua password. Controlla anche nella cartella Spam</text>
+    <text id="J_ttMRoomDeleted">Stanza eliminata con successo</text>
+    <text id="P_ttMSelectLanguage">Seleziona la lingua da gestire</text>
+    <text id="J_ttMSettingsDeleted">Impostazioni d'esame eliminate con successso</text>
+    <text id="J_ttMStudentsRegistered">Studenti registrati con successo all'esame</text>
+    <text id="J_ttMSubjectDeleted">Materia eliminata con successo</text>
+    <text id="P_ttMSubjectQuestions">Per gestire gli argomenti e le domande seleziona il corso</text>
+    <text id="P_ttMSubjectSettings">Per gestire le impostazioni d'esame seleziona il corso</text>
+    <text id="J_ttMTestBlocked">Test bloccato con successo</text>
+    <text id="J_ttMTestSubmitted">Test consegnato con successo</text>
+    <text id="J_ttMTestUnblocked">Test sbloccato con successo</text>
+    <text id="J_ttMTopicDeleted">Argomento eliminato con successo</text>
+    <!-- ======================== N ======================== -->
+    <text id="A_ttName">Nome</text>
+    <text id="P_ttNew">Nuovo</text>
+    <text id="A_ttNewAnswer">Nuova risposta</text>
+    <text id="P_ttNewCredentials">Nuove credenziali</text>
+    <text id="P_ttNewLanguage">Nuova lingua</text>
+    <text id="P_ttNewPassword">Nuova password</text>
+    <text id="P_ttNewQuestion">Nuova domanda</text>
+    <text id="P_ttNewRegistration">Nuova registrazione</text>
+    <text id="P_ttNewRoom">Nuova stanza</text>
+    <text id="P_ttNewTeacher">Nuovo docente</text>
+    <text id="A_ttNewTestSettings">Nuove impostazioni</text>
+    <text id="P_ttNewStudent">Nuovo studente</text>
+    <text id="A_ttNewSubject">Nuova materia</text>
+    <text id="P_ttNewTopic">Nuovo argomento</text>
+    <text id="P_ttNewUser">Nuovo utente</text>
+    <text id="P_ttNoAnswers">Nessuna risposta disponibile per questa domanda</text>
+    <text id="P_ttNoExams">Nessun esame disponibile per questa materia</text>
+    <text id="P_ttNoExamInProgress">Nessun esame in corso</text>
+    <text id="P_ttNoInfo">Non ci sono informazioni per questo esame</text>
+    <text id="P_ttNoQuestions">Nessuna domanda disponibile per questo argomento</text>
+    <text id="P_ttNoRooms">Nessuna stanza creata: 'Tutte' è l'unica disponibile</text>
+    <text id="P_ttNoSettings">Nessuna impostazione disponile per questa materia</text>
+    <text id="P_ttNoSubjects">Nessuna materia disponibile</text>
+    <text id="P_ttNoTestToCorrect">Nessun test da correggere</text>
+    <text id="P_ttNoUserRegistered">Nessuno studente registrato a questo esame</text>
+    <!-- ======================== O ======================== -->
+    <text id="P_ttOldPassword">Vecchia Password</text>
+    <text id="P_ttOpenQuestion">Domanda aperta</text>
+    <!-- ======================== P ======================== -->
+    <text id="P_ttPassword">Password</text>
+    <text id="P_ttPasswordLost">Password persa?</text>
+    <text id="P_ttProfile">Profilo</text>
+    <!-- ======================== Q ======================== -->
+    <text id="P_ttQuestion">Domanda</text>
+    <text id="P_ttQuestionPreview">Anteprima della domanda</text>
+    <text id="P_ttQuestions">Domande</text>
+    <text id="P_ttQTMC">Risposta singola</text>
+    <text id="P_ttQTMR">Risposta multipla</text>
+    <text id="P_ttQTOP">Risposta aperta</text>
+    <!-- ======================== R ======================== -->
+    <text id="P_ttRandom">Casuali</text>
+    <text id="P_ttRefresh">Aggiorna</text>
+    <text id="P_ttRegister">Registrati</text>
+    <text id="P_ttRegistrations">Registrazione</text>
+    <text id="P_ttRegEnd">Chiusura registrazione</text>
+    <text id="P_ttRenewPassword">Rinnova Password</text>
+    <text id="P_ttReset">Reimposta</text>
+    <text id="P_ttResetPassword">Reimposta Password</text>
+    <text id="P_ttRole">Ruolo</text>
+    <text id="P_ttRooms">Stanze</text>
+    <!-- ======================== S ======================== -->
+    <text id="A_ttSave">Salva</text>
+    <text id="P_ttSaveAnswerInfo">Salva Informazioni Risposta</text>
+    <text id="P_ttSaveLanguageFiles">Salva file di lingua</text>
+    <text id="P_ttSaveLanguageXML">Salva file XML di lingua</text>
+    <text id="P_ttSaveQuestionInfo">Salva Informazioni Domanda</text>
+    <text id="P_ttScore">Punteggio</text>
+    <text id="P_ttScoreFinal">Punteggio finale</text>
+    <text id="P_ttScoreTest">Punteggio del test</text>
+    <text id="P_ttScoreType">Tipo di punteggio</text>
+    <text id="P_ttScoreMin">Punteggio minimo</text>
+    <text id="P_ttSelectSubject">Seleziona un corso</text>
+    <text id="P_ttSelectSubjectBefore">Selezionare prima un corso</text>
+    <text id="P_ttSet">Imposta</text>
+    <text id="P_ttSetPassword">Imposta la tua password</text>
+    <text id="P_ttShowHide">Mostra/Nascondi</text>
+    <text id="P_ttSettings">Impostazioni</text>
+    <text id="A_ttStart">Inizia</text>
+    <text id="A_ttStarted">Iniziato</text>
+    <text id="A_ttStop">Ferma</text>
+    <text id="A_ttStopped">Fermato</text>
+    <text id="P_ttStartTest">Inizia test</text>
+    <text id="P_ttStatus">Stato</text>
+    <text id="P_ttStats">Statistiche</text>
+    <text id="P_ttStudent">Studente</text>
+    <text id="P_ttStudents">Studenti</text>
+    <text id="P_ttST10">Decimi</text>
+    <text id="P_ttST30">Trentesimi</text>
+    <text id="P_ttST100">Centesimi</text>
+    <text id="P_ttSubject">Materia</text>
+    <text id="P_ttSubjects">Materie</text>
+    <text id="P_ttSubmit">Consegna</text>
+    <text id="P_ttSurname">Cognome</text>
+    <text id="P_ttSystem">Sistema</text>
+    <!-- ======================== T ======================== -->
+    <text id="P_ttTeacher">Docente</text>
+    <text id="P_ttTeachers">Docenti</text>
+    <text id="P_ttTest">Test</text>
+    <text id="P_ttTests">Test</text>
+    <text id="P_ttTestToCorrect">Tests da correggere</text>
+    <text id="P_ttText">Testo</text>
+    <text id="P_ttTime">Ora</text>
+    <text id="P_ttTimeEnd">Ora di fine</text>
+    <text id="P_ttTimeStart">Ora di inizio</text>
+    <text id="P_ttTimeUsed">Tempo usato</text>
+    <text id="P_ttTopic">Argomento</text>
+    <text id="P_ttTopics">Argomenti</text>
+    <text id="P_ttTopicsAndQuestions">Argomenti e Domande</text>
+    <text id="P_ttTopicsQuestions">Domande per argomenti</text>
+    <text id="P_ttTranslations">Traduzioni</text>
+    <text id="P_ttTrue">Vero</text>
+    <text id="P_ttType">Tipo</text>
+    <!-- ======================== U ======================== -->
+    <text id="P_ttUsers">Utenti</text>
+    <!-- ======================== V ======================== -->
+    <text id="P_ttView">Vedi</text>
+    <!-- ======================== W ======================== -->
+    <text id="P_ttWelcome">Benvenuto</text>
+    <text id="A_ttWaiting">Attesa</text>
+    <text id="J_ttWarning">Attenzione</text>
+    <!-- ======================== X ======================== -->
+    <!-- ======================== Y ======================== -->
+    <!-- ======================== Z ======================== -->
+</language>
