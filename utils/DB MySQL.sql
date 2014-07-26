@@ -517,7 +517,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Users_Subjects` (
   CONSTRAINT `fk_Users_Subjects_User`
     FOREIGN KEY (`fkUser` )
     REFERENCES `eol`.`Users` (`idUser` )
-    ON DELETE SET NULL
+    ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
