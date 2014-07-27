@@ -477,7 +477,7 @@ class AdminController extends Controller{
                 if(($db->qNewUser($_POST['name'], $_POST['surname'], $_POST['email'], null, 's', sha1($password))) & ($student = $db->nextRowEnum())){
                     $message = str_replace('_USERNAME_', $_POST['name'], ttMailCredentials);
                     $message = str_replace('_USEREMAIL_', $_POST['email'], $message);
-                    $message = str_replace('_USERPASSWORD_', $_POST['password'], $message);
+                    $message = str_replace('_USERPASSWORD_', $password, $message);
                     $message = str_replace('\n', "\n", $message);
                     mail($_POST['email'], ttAccountActivation, $message,'From: '.$config['systemTitle'].' <'.$config['systemEmail'].'>','-f '.$config['systemEmail']);
 

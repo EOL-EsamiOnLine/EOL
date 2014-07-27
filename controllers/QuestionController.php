@@ -379,7 +379,8 @@ class QuestionController extends Controller{
                 if($db->qGetEditAndDeleteConstraints('create', 'answer2', array($questionID))){
                     if($db->numResultRows() > 0){
                         if($db->qDuplicateQuestion($questionID, $updateMandatory)){
-                            $questionID = $db->nextRowEnum()[0];
+                            $resultSet = $db->nextRowEnum();
+                            $questionID = $resultSet[0];
                         }else{
                             die($db->getError());
                         }
@@ -389,7 +390,9 @@ class QuestionController extends Controller{
                 }
 
                 if($db->qNewAnswer($questionID, $_POST['score'], $translationsA)){
-                    echo 'ACK'.$ajaxSeparator.$questionID.$ajaxSeparator.$db->nextRowEnum()[0];
+                    $resultSet = $db->nextRowEnum();
+                    $answerID = $resultSet[0];
+                    echo 'ACK'.$ajaxSeparator.$questionID.$ajaxSeparator.$answerID;
                 }else{
                     die($db->getError());
                 }

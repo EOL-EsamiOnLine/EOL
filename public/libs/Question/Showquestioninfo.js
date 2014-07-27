@@ -336,8 +336,8 @@ function closeQuestionInfo(askConfirmation){
 }
 
 /**
- *  @name   resetCKEditorInstances
- *  @descr  Reset text, Undo/Redo and Dirty state of CKEditor instances
+ *  @name   createCKEditorInstance
+ *  @descr  Creates CKEditor instance with specified ID
  *  @param  instance        String      Instance ID
  */
 function createCKEditorInstance(instance){

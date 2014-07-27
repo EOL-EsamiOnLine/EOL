@@ -213,7 +213,7 @@
     <text id="P_ttMySettings">My Settings</text>
     <text id="P_ttMySubjects">Select subject</text>
     <!-- ==================== MESSAGES ===================== -->
-    <text id="J_ttMActivation">Password successfully setted.\nYou will be redirect to Login page...</text>
+    <text id="J_ttMActivation">Password successfully setted.\nYou will be redirect to your Homepage</text>
     <text id="J_ttMAnswerDeleted">Answer successfully deleted</text>
     <text id="J_ttMConfirm">Test successfully confirmed and archived</text>
     <text id="J_ttMUserCreated">Creation completed: an email has been sent to you to complete the registration.\nAlso check in spam folder too</text>

@@ -59,10 +59,7 @@ if(($db->qExamsAvailable($_POST['idSubject'], $user->id)) && ($exams = $db->getR
         }else{
             $regEnd = '';
         }
-        if($examInfo['description'] != ''){
-            $info = $examInfo['description'];
-        }
-        $info = ttNoInfo;
+        $info = ($examInfo['description'] != '') ? $examInfo['description'] : ttNoInfo;
         $action = '<img name="action" src="'.$config['themeImagesDir'].'register.png" onclick="register(new Array(true, this));" title="'.ttRegister.'">';
         if(($db->qCheckRegistration($idExam, $user->id)) && ($db->numResultRows() > 0) && ($testInfo = $db->nextRowAssoc())){
             switch($testInfo['status']){
@@ -72,7 +69,7 @@ if(($db->qExamsAvailable($_POST['idSubject'], $user->id)) && ($exams = $db->getR
                            break;
                 // status = e || status = a  =>  test completed
                 case 'e' :
-                case 'a' : $action = '<img name="action" src="'.$config['themeImagesDir'].'true.png" title="'.ttDone.'">';
+                case 'a' : $action = '<img name="action" src="'.$config['themeImagesDir'].'done.png" title="'.ttDone.'">';
                            break;
                 // status = b                =>  test blocked
                 default : $action = '<img name="action" src="'.$config['themeImagesDir'].'block.png" title="'.ttBlocked.'">';
