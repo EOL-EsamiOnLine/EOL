@@ -94,7 +94,7 @@ if(isset($_POST['idExam'])){
                                 <?php if($statusID != 'a') echo '<img name="action" src="'.$config['themeImagesDir'].$statuses[$exam['status']][1].'.png" title="'.constant('tt'.$statuses[$exam['status']][1]).'" onclick="changeExamStatus(new Array(true, this));">'; ?>
                             </span>
                             <span class="manageButton archive">
-                                <?php if($statusID != 'a') echo '<img name="archvie" src="'.$config['themeImagesDir'].'archive.png" title="'.ttArchive.'" onclick="archiveExam(new Array(true, this));">'; ?>
+                                <?php if($statusID != 'a') echo '<img name="archive" src="'.$config['themeImagesDir'].'Archive.png" title="'.ttArchive.'" onclick="archiveExam(new Array(true, this));">'; ?>
                             </span>
                             <span class="manageButton delete">
                                 <img name="delete" src="<?= $config['themeImagesDir'] ?>delete.png" title="<?= ttDelete ?>" onclick="deleteExam(new Array(true, this));">

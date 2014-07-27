@@ -202,7 +202,7 @@ function archiveExam(askConfirmationAndExamToArchive){
                     examsTable.cell(examsTable.row(examRowEdit).index(), etci.status).data(
                         '<img alt="'+ttArchived+'"' +
                         '     title="'+ttArchived+'"' +
-                        '     src="'+imageDir+'archive.png">');
+                        '     src="'+imageDir+'Archive.png">');
                     examsTable.cell(examsTable.row(examRowEdit).index(), etci.statusID).data('a');
                     examRowEdit.find("span.manageButton.action img").remove();
                     examRowEdit.find("span.manageButton.archive img").remove();

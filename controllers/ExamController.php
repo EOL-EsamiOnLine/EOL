@@ -189,7 +189,7 @@ class ExamController extends Controller{
                                <img name="action" src="'.$config['themeImagesDir'].$statuses[$examInfo['status']][1].'.png" title="'.constant('tt'.$statuses[$examInfo['status']][1]).'" onclick="changeExamStatus(new Array(true, this));">
                            </span>
                            <span class="manageButton archive">
-                               <img name="archive" src="'.$config['themeImagesDir'].'archive.png" title="'.ttArchive.'" onclick="archiveExam(new Array(true, this));">
+                               <img name="archive" src="'.$config['themeImagesDir'].'Archive.png" title="'.ttArchive.'" onclick="archiveExam(new Array(true, this));">
                            </span>
                            <span class="manageButton delete">
                                <img name="delete" src="'.$config['themeImagesDir'].'delete.png" title="'.ttDelete.'" onclick="deleteExam(new Array(true, this));">
