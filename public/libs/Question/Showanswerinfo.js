@@ -108,12 +108,7 @@ function deleteAnswer(askConfirmation){
 //                    alert(data);
                     $(answerRowSelected).parent().remove();
                     answerRowSelected = null;
-                    var langAlias = "";
-                    for(var indexLang = 0; indexLang < allLangs.length; indexLang++){
-                        langAlias = allLangs[indexLang]["alias"].toUpperCase();
-                        CKEDITOR.instances["at"+langAlias].setData("");
-                        CKEDITOR.instances["at"+langAlias].resetUndo();
-                    }
+                    resetCKEditorInstances('at', true, true);
                     $("#answerOptions").html("");
                     $("#saveAnswer, #saveAnswerAndExit, #deleteAnswer").addClass("invisible");
                     showSuccessMessage(ttMAnswerDeleted);

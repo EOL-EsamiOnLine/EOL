@@ -114,7 +114,7 @@ function showSettingsInfo(selectedSettingsAndConfirmation){
                 action          :   "show",
                 idTestSetting   :   $(".selected").attr('value')
             },
-            success : function (data, status) {
+            success : function (data) {
 //                alert($(".selected").attr('value'));
                 if(data == "NACK"){
 //                    alert(data);
