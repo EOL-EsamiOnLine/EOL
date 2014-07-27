@@ -213,7 +213,7 @@
     <text id="P_ttMySettings">Le mie impostazioni</text>
     <text id="P_ttMySubjects">Seleziona un corso</text>
     <!-- ==================== MESSAGES ===================== -->
-    <text id="J_ttMActivation">Password impostata correttamente.\nVerrai portato alla pagina per il login...</text>
+    <text id="J_ttMActivation">Password impostata correttamente.\nVerrai portato alla tua Homepage</text>
     <text id="J_ttMAnswerDeleted">Risposta eliminata con successo</text>
     <text id="J_ttMConfirm">Test confermato e archiviato correttamente</text>
     <text id="J_ttMUserCreated">Creazione completata: ti è stata inviata una e-mail per completare la registrazione.\nControlla anche nella cartella Spam</text>
