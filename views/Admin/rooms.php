@@ -17,14 +17,8 @@
         $db = new sqlDB();
         if($db->qSelect('Rooms')){
             echo '<div class="list"><ul>';
-            if($db->numResultRows() > 1){                   // Exclude 'All' in list
-                while($room = $db->nextRowAssoc()){
-                    if($room['name'] != 'All'){             // Exclude 'All' in list
-                        echo '<li><a class="showInfo" value="'.$room['idRoom'].'">'.$room['name'].'</a></li>';
-                    }
-                }
-            }else{
-                echo '<li><a class="showInfo">'.ttNoRooms.'</a></li>';
+            while($room = $db->nextRowAssoc()){
+                echo '<li><a class="showInfo" value="'.$room['idRoom'].'">'.$room['name'].'</a></li>';
             }
             echo '</ul></div>';
         }else{
