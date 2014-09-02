@@ -67,6 +67,7 @@ var ttESaveBeforeNew = "Prima di creare un nuovo elemento salva o cancella quell
 var ttESelectSubject = "Selezionare uno dei propri corsi!";
 var ttESelectTestSettings = "Selezionare una delle impostazioni d'esame!";
 var ttENoStudentsToRegister = "Nessun studente da registrare all'esame!";
+var ttETimeExpired = "Il tempo disponibile è finito!";
 var ttETranslationExists = "La traduzione nella lingua selezionata è già presente!";
 var ttHQuestLanguagesPanel = "Un click per la traduzione<br/>della domanda selezionata";
 var ttHQuestPanel = "Un click per selezionare la domanda e vederne l'anteprima, due click per modificare domanda e risposte";

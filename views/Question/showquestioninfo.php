@@ -35,7 +35,7 @@ if(($db->qSelect('Languages')) & ($allLangs = $db->getResultAssoc('idLanguage'))
     }
 }
 
-openBox(ttQuestion." ".ttInfo, 'normal-80%', 'questionInfo');
+openBox(ttQuestion, 'normal-900px', 'questionInfo');
 
 if($questionMandatory != ''){
     echo '<div class="mandatoryNotice">'.str_replace('_TESTSETTING_', $questionMandatory, ttEMandatoryQuestion).'</div>';
@@ -53,11 +53,12 @@ if($questionMandatory != ''){
         </ul>
         <div id="question-tab">
             <?php
+
             $ulElement = '<li>
                               <a href="#qt'.strtoupper($allLangs[$subjectInfo['fkLanguage']]['alias']).'div">
                               <img title="'.$allLangs[$subjectInfo['fkLanguage']]['description'].'" class="flag"
                                    src="'.$config['themeFlagsDir'].$allLangs[$subjectInfo['fkLanguage']]['alias'].'.gif">
-                                   '.$allLangs[$subjectInfo['fkLanguage']]['description'].'</a></li>';
+                                   '.strtoupper($allLangs[$subjectInfo['fkLanguage']]['alias']).'</a></li>';
             $divsElement = createQuestionDiv($questionTranslations, $subjectInfo['fkLanguage'], $allLangs);
             $CKEDITORScript = 'var mainLang = "'.$allLangs[$subjectInfo['fkLanguage']]['idLanguage'].'";
                                var userLang = "'.$user->lang.'";
@@ -69,17 +70,37 @@ if($questionMandatory != ''){
                                        <a href="#qt'.strtoupper($language['alias']).'div">
                                        <img title="'.$language['description'].'" class="flag"
                                             src="'.$config['themeFlagsDir'].$language['alias'].'.gif">
-                                            '.$language['description'].'</a></li>';
+                                            '.strtoupper($language['alias']).'</a></li>';
                     $divsElement .= createQuestionDiv($questionTranslations, $idLanguage, $allLangs);
                     $CKEDITORScript .= 'createCKEditorInstance("qt'.strtoupper($language['alias']).'");';
                 }
 
             ?>
+
             <ul> <?= $ulElement ?> </ul>
             <?= $divsElement ?>
             <script>
                 <?= $CKEDITORScript ?>
             </script>
+
+            <?php
+            openBox(ttExtra, "right", "questionExtra");
+
+            $extras = getQuestionExtras();
+            $checked = "";
+            echo '<div class="list"><ul>';
+            foreach($extras as $extra){
+                if($_POST['action'] == 'show')
+                    $checked = strpos($questionInfo['extra'], $extra) === false ? '' : 'checked';
+                echo '<li>
+                          <input type="checkbox" value="'.$extra.'" name="extra" '.$checked.'>
+                          <a class="questionExtra">'.constant('ttQE'.$extra).'</a>
+                      </li>';
+            }
+            echo '</ul></div>';
+            closeBox();
+            ?>
+
             <div class="clearer bSpace"></div>
 
             <?php
@@ -200,7 +221,7 @@ if($questionMandatory != ''){
                 switch($questionInfo['type']){
                     case 'MC' :
                     case 'MR' :
-                        openBox(ttAnswers, "left-190px", "answersList", array('new-newAnswer'));
+                        openBox(ttAnswers, "left", "answersList", array('new-newAnswer'));
                         if($db->qAnswerSet($idQuestion, null, $subjectInfo['idSubject'])){
                             echo '<div class="list">
                         <ul>';
@@ -221,7 +242,7 @@ if($questionMandatory != ''){
                                           <a href="#at'.strtoupper($allLangs[$subjectInfo['fkLanguage']]['alias']).'div">
                                           <img title="'.$allLangs[$subjectInfo['fkLanguage']]['description'].'" class="flag"
                                                src="'.$config['themeFlagsDir'].$allLangs[$subjectInfo['fkLanguage']]['alias'].'.gif">
-                                               '.$allLangs[$subjectInfo['fkLanguage']]['description'].'</a></li>';
+                                               '.strtoupper($allLangs[$subjectInfo['fkLanguage']]['alias']).'</a></li>';
                             $divsElement = createAnswerDiv($subjectInfo['fkLanguage'], $allLangs);
                             $CKEDITORScript = 'createCKEditorInstance("at'.strtoupper($allLangs[$subjectInfo['fkLanguage']]['alias']).'");';
 
@@ -231,7 +252,7 @@ if($questionMandatory != ''){
                                                    <a href="#at'.strtoupper($language['alias']).'div">
                                                    <img title="'.$language['description'].'" class="flag"
                                                         src="'.$config['themeFlagsDir'].$language['alias'].'.gif">
-                                                        '.$language['description'].'</a></li>';
+                                                        '.strtoupper($language['alias']).'</a></li>';
                                     $divsElement .= createAnswerDiv($idLanguage, $allLangs);
                                     $CKEDITORScript .= 'createCKEditorInstance("at'.strtoupper($language['alias']).'");';
                                 }
@@ -268,7 +289,7 @@ function createQuestionDiv($questionTranslations, $idLanguage, $allLangs){
     $translation = '';
     if(array_key_exists($idLanguage, $questionTranslations))
         $translation = $questionTranslations[$idLanguage]['translation'];
-    $div = '<div class="ui-corner-top" style="height:400px; width:870px; background: white;" id="qt'.strtoupper($allLangs[$idLanguage]['alias']).'div">
+    $div = '<div class="ui-corner-top" style="height:400px; width:600px; border: 1px solid rgb(104, 104, 104); margin-top: 7px;" id="qt'.strtoupper($allLangs[$idLanguage]['alias']).'div">
                 <textarea class="ckeditor" name="qt'.strtoupper($allLangs[$idLanguage]['alias']).'" id="qt'.strtoupper($allLangs[$idLanguage]['alias']).'">'.$translation.'</textarea>
              </div>';
 
@@ -276,7 +297,7 @@ function createQuestionDiv($questionTranslations, $idLanguage, $allLangs){
 }
 
 function createAnswerDiv($idLanguage, $allLangs){
-    $div = '<div class="ui-corner-top" style="height:400px; width:674px; background: white;" id="at'.strtoupper($allLangs[$idLanguage]['alias']).'div">
+    $div = '<div class="ui-corner-top" style="height:400px; width:600px; border: 1px solid rgb(104, 104, 104); margin-top: 7px;" id="at'.strtoupper($allLangs[$idLanguage]['alias']).'div">
                 <textarea class="ckeditor" name="at'.strtoupper($allLangs[$idLanguage]['alias']).'" id="at'.strtoupper($allLangs[$idLanguage]['alias']).'"></textarea>
              </div>';
 

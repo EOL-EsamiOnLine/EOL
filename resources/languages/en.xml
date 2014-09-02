@@ -117,6 +117,7 @@
     <text id="P_ttExam">Exam</text>
     <text id="P_ttExams">Exams</text>
     <text id="P_ttExit">Exit</text>
+    <text id="P_ttExtra">Extra</text>
     <text id="P_ttExamsArchive">Archive</text>
     <text id="P_ttExamsInProgress">Exams in progress</text>
     <!-- ===================== ERRORS ====================== -->
@@ -170,7 +171,7 @@
     <text id="P_ttETestsNotArchived">Some tests have not been archived! Please correct all the tests before.</text>
     <text id="P_ttETestSettingDeleteQuestion">The operation can not be completed. This question is mandatory in the following test's settings:\n</text>
     <text id="P_ttETestSettingDeleteTopic">The operation can not ben completed. Some questions of this topic are used in the following test's settings:\n</text>
-    <text id="P_ttETimeExpired">The available time is expired!</text>
+    <text id="A_ttETimeExpired">The available time is expired!</text>
     <text id="J_ttETranslationExists">The translation of the selected language already exists!</text>
     <text id="P_ttEUserNotFound">User not found!</text>
     <text id="P_ttEValues">Some values are not correct!</text>
@@ -281,6 +282,8 @@
     <text id="P_ttQuestion">Question</text>
     <text id="P_ttQuestionPreview">Question Preview</text>
     <text id="P_ttQuestions">Questions</text>
+    <text id="P_ttQEc">Calculator</text>
+    <text id="P_ttQEp">Periodic Table</text>
     <text id="P_ttQTMC">Multiple Choice</text>
     <text id="P_ttQTMR">Multiple Response</text>
     <text id="P_ttQTOP">Open Answer</text>

@@ -7,7 +7,12 @@
  * Desc: Shows test page
  */
 
-global $user, $log;
+global $user, $log, $config;
+
+$extras = array(
+    'calculator' => false,
+    'periodiocTable' => false
+);
 
 ?>
 
@@ -93,15 +98,50 @@ global $user, $log;
 
                 ?>
                 <div class="questionTest" value="<?= $idQuestion ?>" type="<?= $question['type'] ?>">
-                    <div class="questionText"><?= $question['translation'] ?></div>
+                    <div class="questionText">
+                        <?php
+                        echo $question['translation'];
+
+                        if(strpos($question['extra'], 'c') !== false){
+                            $extras['calculator'] = true;
+                            echo '<img class="extraIcon calculator" src="'.$config['themeImagesDir'].'QEc.png'.'">';
+                        }
+                        if(strpos($question['extra'], 'p') !== false){
+                            $extras['periodicTable'] = true;
+                            echo '<img class="extraIcon periodicTable" src="'.$config['themeImagesDir'].'QEp.png'.'">';
+                        }
+                        ?>
+                    </div>
                     <div class="questionAnswers"><?= $questionAnswers ?></div>
+                </div>
+
+            <?php
+            }
+            ?>
+
+            <a class="ok button right" id="submitTest" onclick="submitTest(new Array(true));"><?= ttSubmit ?></a>
+            <div class="clearer"></div>
+            <?php
+            closeBox();
+            if($extras['calculator']){
+            ?>
+                <div class="extra" id="calculator" style="display:none">
+                    <span class="extraTitle"><?= ttQEc ?></span>
+                    <span class="extraClose" title="<?= ttClose ?>"></span>
+                    <object width="100%" height="100%" data="<?= $config['systemExtraDir']?>EChem_calc.swf"></object>
+                </div>
+            <?php
+            }
+            if($extras['periodicTable']){
+            ?>
+                <div class="extra" id="periodicTable" style="display:none">
+                    <span class="extraTitle"><?= ttQEp ?></span>
+                    <span class="extraClose" title="<?= ttClose ?>"></span>
+                    <img style="width:100%; height:100%;" src="<?= $config['systemExtraDir']?>T_PERIOD_it_COL.gif"/>
                 </div>
             <?php
             }
             ?>
-                <a class="ok button right" id="submitTest" onclick="submitTest(new Array(true));"><?= ttSubmit ?></a>
-                <div class="clearer"></div>
-            <?php closeBox(); ?>
                 <div class="clearer"></div>
         <?php
         }else{
@@ -110,6 +150,8 @@ global $user, $log;
     }else{
         die(ttEDatabase.' / '.ttETestNotFound);
     }
+
+
     ?>
 
 </div>

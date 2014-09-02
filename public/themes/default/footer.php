@@ -18,7 +18,7 @@ global $config;
 <div id="modalSuccess" class="hidden"><p></p></div>
 <div id="modalError" class="hidden">
     <p></p>
-    <span class="lbmClose"></span>
+    <span class="lbmClose" title="<?= ttClose ?>"></span>
 </div>
 <!--/div-->
 </body>

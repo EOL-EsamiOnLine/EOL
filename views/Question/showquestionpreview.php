@@ -4,8 +4,10 @@
  * User: Masterplan
  * Date: 17/05/14
  * Time: 16:30
- * Desc: Your description HERE
+ * Desc: Shows a preview of requested question in a specific translation
  */
+
+global $config;
 
 $idQuestion = $_POST['idQuestion'];
 $idLanguage = $_POST['idLanguage'];
@@ -45,7 +47,14 @@ if(($db->qQuestionInfo($idQuestion, $idLanguage)) && ($question = $db->nextRowAs
 
     $questionAnswers .= '</div>';
     echo '<div class="questionTest" value="'.$idQuestion.'" type="'.$question['type'].'">';
-    echo '<div class="questionText">'.$question['translation'].'</div>';
+    echo '<div class="questionText">'.$question['translation'];
+
+    if(strpos($question['extra'], 'c') !== false)
+        echo '<img class="extraIcon calculator" src="'.$config['themeImagesDir'].'QEc.png'.'">';
+    if(strpos($question['extra'], 'p') !== false)
+        echo '<img class="extraIcon periodicTable" src="'.$config['themeImagesDir'].'QEp.png'.'">';
+
+    echo '</div>';
     echo $questionAnswers;
     echo '</div>';
 }
