@@ -117,6 +117,7 @@
     <text id="P_ttExam">Esame</text>
     <text id="P_ttExams">Esami</text>
     <text id="P_ttExit">Uscita</text>
+    <text id="P_ttExtra">Extra</text>
     <text id="P_ttExamsArchive">Archivia</text>
     <text id="P_ttExamsInProgress">Esami in corso</text>
     <!-- ===================== ERRORS ====================== -->
@@ -170,7 +171,7 @@
     <text id="P_ttETestSettingDeleteQuestion">L'operazione non può essere completata perché la domanda è obbligatoria nelle seguenti impostazioni d'esame:\n</text>
     <text id="P_ttETestSettingDeleteTopic">L\'operazione non può essere completata perché alcune domande di questo argomento sono utilizzate nelle seguenti impostazioni d\'esame:\n</text>
     <text id="P_ttETestsNotArchived">Alcuni test non sono stati archiviati! Correggere prima tutti i test.</text>
-    <text id="P_ttETimeExpired">Il tempo disponibile è finito!</text>
+    <text id="A_ttETimeExpired">Il tempo disponibile è finito!</text>
     <text id="J_ttETranslationExists">La traduzione nella lingua selezionata è già presente!</text>
     <text id="P_ttEUserNotFound">Utente non trovato!</text>
     <text id="P_ttEValues">Alcuni valori non sono corretti!</text>
@@ -281,6 +282,8 @@
     <text id="P_ttQuestion">Domanda</text>
     <text id="P_ttQuestionPreview">Anteprima della domanda</text>
     <text id="P_ttQuestions">Domande</text>
+    <text id="P_ttQEc">Calcolatrice</text>
+    <text id="P_ttQEp">Tavola Periodica</text>
     <text id="P_ttQTMC">Risposta singola</text>
     <text id="P_ttQTMR">Risposta multipla</text>
     <text id="P_ttQTOP">Risposta aperta</text>

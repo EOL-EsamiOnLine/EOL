@@ -6,10 +6,12 @@
  * Desc: Shows test page
  */
 
-var posX = 20;
+var countdownPosX = 20;
+var calculatorPosX = 200;
+var periodicTablePosX = 200;
 
 function countdownComplete(){
-    alert("looool");
+    alert(ttETimeExpired);
 }
 
 
@@ -20,16 +22,40 @@ $(function(){
      */
     $("#countdown").draggable({
         stop : function(event, ui) {
-            posX = $("#countdown").offset().top - $(window).scrollTop();
+            countdownPosX = $("#countdown").offset().top - $(window).scrollTop();
         }
     });
 
     /**
-     *  @descr  Add srollable function for countdown
+     *  @descr  Add draggable attribute to calculator
+     */
+    $("#calculator").draggable({
+        cancel : 'object',
+        stop : function(event, ui) {
+            calculatorPosX = $("#calculator").offset().top - $(window).scrollTop();
+        }
+    });
+
+    /**
+     *  @descr  Add draggable attribute to periodic table
+     */
+    $("#periodicTable").draggable({
+        cancel : 'img',
+        stop : function(event, ui) {
+            periodicTablePosX = $("#periodicTable").offset().top - $(window).scrollTop();
+        }
+    });
+
+    /**
+     *  @descr  Add srollable function for countdown and extras
      */
     $(window).scroll(function(event) {
-        $('#countdown').css('top', (posX + $(this).scrollTop()) + "px");
+        $('#countdown').css('top', (countdownPosX + $(this).scrollTop()) + "px");
+        $('#calculator').css('top', (calculatorPosX + $(this).scrollTop()) + "px");
+        $('#periodicTable').css('top', (periodicTablePosX + $(this).scrollTop()) + "px");
     });
+
+
 
     /**
      *  @descr  Bind event for checkboxes
@@ -51,6 +77,27 @@ $(function(){
         }else{
             $(this).prev().prop("checked", true);
         }
+    });
+
+    /**
+     *  @descr  Show calculator
+     */
+    $(".questionText img.calculator").on("click", function(event){
+        $("#calculator").show();
+    });
+
+    /**
+     *  @descr  Show periodic table
+     */
+    $(".questionText img.periodicTable").on("click", function(event){
+        $("#periodicTable").show();
+    });
+
+    /**
+     *  @descr  Hide extra
+     */
+    $("span.extraClose").on("click", function(event){
+        $(this).closest(".extra").hide();
     });
 
 });
@@ -111,11 +158,3 @@ function submitTest(askConfirmation){
         }
     }
 }
-
-
-
-
-
-
-
-

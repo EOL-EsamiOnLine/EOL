@@ -29,14 +29,12 @@ $(function(){
     /**
      *  @descr  Function to enable question's translations tabs
      */
-    $("#question-tab").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
-    $("#question-tab li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+    $("#question-tab").tabs().prepend($("#questionExtra"));
 
     /**
      *  @descr  Function to enable answer's translations
      */
-    $("#answers-tab").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
-    $("#answers-tab li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
+    $("#answers-tab").tabs();
 
     /**
     *  @descr  Function to enable question tab's dropdownInfo menu effects
@@ -90,6 +88,7 @@ function saveQuestionInfo(close){
         if(langID == mainLang)
             shortText = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].document.getBody().getText();
     }
+    var extras = $("input[name=extra]").serialize().replace(/extra=/g, "").replace(/&/g, "");
     $.ajax({
         url     : "index.php?page=question/updatequestioninfo",
         type    : "post",
@@ -99,6 +98,7 @@ function saveQuestionInfo(close){
             difficulty      :   difficulty,
             translationsQ   :   JSON.stringify(questionTranslations),
             shortText       :   shortText,
+            extras          :   extras,
             mainLang        :   mainLang
         },
         success : function (data) {
@@ -274,6 +274,7 @@ function createNewQuestion(){
         if(langID == mainLang)
             shortText = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].document.getBody().getText();
     }
+    var extras = $("input[name=extra]").serialize().replace(/extra=/g, "").replace(/&/g, "");
     $.ajax({
         url     : "index.php?page=question/newquestion",
         type    : "post",
@@ -283,6 +284,7 @@ function createNewQuestion(){
             idType          :   questionType,
             translationsQ   :   JSON.stringify(questionTranslations),
             shortText       :   shortText,
+            extras          :   extras,
             mainLang        :   mainLang
         },
         success : function (data) {

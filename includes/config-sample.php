@@ -38,6 +38,7 @@ $config['systemViewsDir'] = '../views/';
 $config['systemLibsDir'] = 'libs/';
 $config['systemLangsDir'] = 'langs/';
 $config['systemLangsXml'] = '../resources/languages/';
+$config['systemExtraDir'] = 'extra/';
 $config['systemModulesDir'] = '../modules/';
 // System log files directory
 $config['logDir'] = '../logs/';

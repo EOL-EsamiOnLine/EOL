@@ -71,6 +71,19 @@ function getScoreTypes(){
 }
 
 /**
+ * @name    getQuestionExtras
+ * @return  Array
+ * @descr   Returns all available question extra
+ */
+function getQuestionExtras(){
+    $extra = array(
+        'c',        // Calculator
+        'p'         // Periodic Table
+    );
+    return $extra;
+}
+
+/**
  * @name    tt
  * @param   $text       String      Constant name
  * @return  $text       String      Constant value

@@ -634,12 +634,13 @@ class sqlDB {
      * @param   $idTopic            String        Topic's ID
      * @param   $type               String        Question's type
      * @param   $difficulty         String        Question's difficulty
-     * @param   $shortText         String        Question's difficulty
+     * @param   $extras             String        Question's extras
+     * @param   $shortText          String        Question's difficulty
      * @param   $translationsQ      Array         Question's translations
      * @return  Boolean
      * @descr   Update all questions details (infos and translations)
      */
-    public function qNewQuestion($idTopic, $type, $difficulty, $shortText, $translationsQ){
+    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ){
         global $log;
         $ack = true;
         $this->result = null;
@@ -647,9 +648,9 @@ class sqlDB {
 
         $queries = array();
         try{
-            $data = $this->prepareData(array($idTopic, $type, $difficulty, $shortText));
-            $query = "INSERT INTO Questions (type, difficulty, shortText, fkTopic)
-                      VALUES ('$data[1]', '$data[2]', '$data[3]', '$data[0]')";
+            $data = $this->prepareData(array($type, $difficulty, $extras, $shortText));
+            $query = "INSERT INTO Questions (type, difficulty, extra, shortText, fkTopic)
+                      VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]','$idTopic')";
             array_push($queries, $query);
             $index = 0;
             $query = "INSERT INTO TranslationQuestions
@@ -710,7 +711,6 @@ class sqlDB {
      * @return  Boolean
      * @descr   Duplicates question and its answers with all translations
      */
-//    public function qDuplicateQuestion($idQuestion, $updateMandatory){
     public function qDuplicateQuestion($idQuestion, $updateMandatory, $idAnswerToEdit=null){
         global $log;
         $ack = true;
@@ -719,8 +719,8 @@ class sqlDB {
 
         $queries = array();
         try{
-            $query = "INSERT INTO Questions (type, difficulty, status, fkTopic, shortText)
-                      SELECT type, difficulty, status, fkTopic, shortText
+            $query = "INSERT INTO Questions (type, difficulty, status, extra, fkTopic, shortText)
+                      SELECT type, difficulty, status, extra, fkTopic, shortText
                       FROM
                           Questions
                       WHERE
@@ -795,12 +795,13 @@ class sqlDB {
      * @param   $idQuestion         String        Question's ID
      * @param   $idTopic            String        Topic's ID
      * @param   $difficulty         String        Question's difficulty
+     * @param   $extras             String        Question's extras
      * @param   $shortText          String        Question's short text
      * @param   $translationsQ      Array         Question's translations
      * @return  Boolean
      * @descr   Update all questions details (infos and translations)
      */
-    public function qUpdateQuestionInfo($idQuestion, $idTopic, $difficulty, $shortText, $translationsQ){
+    public function qUpdateQuestionInfo($idQuestion, $idTopic, $difficulty, $extras, $shortText, $translationsQ){
         global $log;
         $ack = true;
         $this->result = null;
@@ -808,25 +809,26 @@ class sqlDB {
 
         $queries = array();
         try{
-            $data = $this->prepareData(array($idQuestion, $idTopic, $difficulty, $shortText));
+            $data = $this->prepareData(array($difficulty, $extras, $shortText));
             $query = "UPDATE Questions
                       SET
-                          difficulty = '$data[2]',
-                          shortText = '$data[3]',
-                          fkTopic = '$data[1]'
+                          difficulty = '$data[0]',
+                          extra = '$data[1]',
+                          shortText = '$data[2]',
+                          fkTopic = '$idTopic'
                       WHERE
-                          idQuestion = '$data[0]'";
+                          idQuestion = '$idQuestion'";
             array_push($queries, $query);
             $query = "DELETE FROM TranslationQuestions
                           WHERE
-                              fkQuestion = '$data[0]'";
+                              fkQuestion = '$idQuestion'";
             array_push($queries, $query);
             $index = 0;
             while($index < count($translationsQ)){
                 if($translationsQ[$index] != null){
                     $data2 = $this->prepareData(array($translationsQ[$index]));
                     $query = "INSERT INTO TranslationQuestions
-                                  VALUES ('$data[0]', '$index', '$data2[0]')";
+                                  VALUES ('$idQuestion', '$index', '$data2[0]')";
                     array_push($queries, $query);
                 }
                 $index++;
@@ -2466,7 +2468,7 @@ class sqlDB {
                 // Get all the set's questions with student's language
                 // UNION
                 // All questions with default (subject) language NOT IN previuos group
-                $query = "SELECT Q.idQuestion, Q.type, TQ.fkLanguage, TQ.translation, SQ.answer
+                $query = "SELECT Q.idQuestion, Q.type, Q.extra, TQ.fkLanguage, TQ.translation, SQ.answer
                           FROM
                               Questions AS Q
                               JOIN TranslationQuestions AS TQ ON Q.idQuestion = TQ.fkQuestion
@@ -2484,7 +2486,7 @@ class sqlDB {
                               AND
                               SQ.fkSet = '$idSet'
                           UNION
-                          SELECT Q.idQuestion, Q.type, TQ.fkLanguage, TQ.translation, SQ.answer
+                          SELECT Q.idQuestion, Q.type, Q.extra, TQ.fkLanguage, TQ.translation, SQ.answer
                           FROM
                               Questions AS Q
                               JOIN TranslationQuestions AS TQ ON Q.idQuestion = TQ.fkQuestion
@@ -2520,7 +2522,7 @@ class sqlDB {
                           ORDER BY idQuestion";
             }else{
                 // Get all the set's questions with default (subject) language
-                $query = "SELECT Q.idQuestion, Q.type, TQ.translation, SQ.answer
+                $query = "SELECT Q.idQuestion, Q.type, Q.type, TQ.translation, SQ.answer
                           FROM
                               Questions AS Q
                               JOIN TranslationQuestions AS TQ ON Q.idQuestion = TQ.fkQuestion

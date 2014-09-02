@@ -118,7 +118,8 @@ class QuestionController extends Controller{
         global $log;
 
         if((isset($_POST['idQuestion'])) && (isset($_POST['idTopic'])) && (isset($_POST['difficulty'])) &&
-           (isset($_POST['translationsQ'])) && (isset($_POST['shortText'])) && (isset($_POST['mainLang']))){
+           (isset($_POST['translationsQ'])) && (isset($_POST['shortText'])) && (isset($_POST['extras'])) &&
+           (isset($_POST['mainLang']))){
 
             $db = new sqlDB();
             $questionID = $_POST['idQuestion'];
@@ -137,7 +138,7 @@ class QuestionController extends Controller{
             }
             $translationsQ = json_decode($_POST['translationsQ'], true);
             if($translationsQ[$_POST['mainLang']]){
-                if($db->qUpdateQuestionInfo($questionID, $_POST['idTopic'], $_POST['difficulty'], $_POST['shortText'], $translationsQ)){
+                if($db->qUpdateQuestionInfo($questionID, $_POST['idTopic'], $_POST['difficulty'], $_POST['extras'], $_POST['shortText'], $translationsQ)){
                     echo $this->updateQuestionRow($questionID, $_POST['mainLang'], $translationsQ);
                 }
             }else{
@@ -229,12 +230,13 @@ class QuestionController extends Controller{
         global $log, $config, $ajaxSeparator;
 
         if((isset($_POST['idTopic'])) && (isset($_POST['idType'])) && (isset($_POST['idDifficulty'])) &&
-            (isset($_POST['translationsQ'])) && (isset($_POST['shortText'])) && (isset($_POST['mainLang']))){
+           (isset($_POST['translationsQ'])) && (isset($_POST['shortText'])) && (isset($_POST['extras'])) &&
+           (isset($_POST['mainLang']))){
 
             $db = new sqlDB();
             $translationsQ = json_decode($_POST['translationsQ'], true);
             if($translationsQ[$_POST['mainLang']]){
-                if($db->qNewQuestion($_POST['idTopic'], $_POST['idType'], $_POST['idDifficulty'], $_POST['shortText'], $translationsQ)){
+                if($db->qNewQuestion($_POST['idTopic'], $_POST['idType'], $_POST['idDifficulty'], $_POST['extras'], $_POST['shortText'], $translationsQ)){
                     if(($idQuestion = $db->nextRowEnum()) && ($idQuestion = $idQuestion[0])){
                         echo $this->updateQuestionRow($idQuestion, $_POST['mainLang'], $translationsQ);
                     }

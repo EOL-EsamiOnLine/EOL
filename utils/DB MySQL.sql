@@ -75,6 +75,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Questions` (
   `type` CHAR(5) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Question\'s type' ,
   `difficulty` TINYINT(4) UNSIGNED NOT NULL COMMENT 'Question\'s difficulty' ,
   `status` CHAR(1) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL DEFAULT 'i' COMMENT 'Question\'s status (a->active, i->inactive, e->error)' ,
+  `extra` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Question''s extra (c->calculator, p->periodic table, ...)',
   `fkTopic` INT(10) UNSIGNED DEFAULT NULL COMMENT 'Topic\'s ID' ,
   `shortText` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Question\'s short text' ,
   PRIMARY KEY (`idQuestion`) ,

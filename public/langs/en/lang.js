@@ -67,6 +67,7 @@ var ttEQuestAnswPicker = "Error during questions and answers picking.<br/>Please
 var ttESaveBeforeNew = "Before creating a new item please save or cancel the one already created.";
 var ttESelectSubject = "You must select one of your subject!";
 var ttESelectTestSettings = "You must select one of the test settings!";
+var ttETimeExpired = "The available time is expired!";
 var ttETranslationExists = "The translation of the selected language already exists!";
 var ttHQuestLanguagesPanel = "Click to show translation<br/>of selected question";
 var ttHQuestPanel = "Single click to select and view question preview, and double click to edit question and answers info";
