@@ -6,54 +6,61 @@
  * Desc: Shows language edit page
  */
 
+// Translations Table Column Index
+var ttci = {
+    translationID : 0,
+    langFrom : 1,
+    langTo : 2
+};
+
 $(function(){
 
     /**
-     *  @descr  Function for color translations
+     *  @descr  Translation DataTables initialization
      */
-    checkTranslation(null);
+    translationsTable = $("#translationsTable").DataTable({
+        scrollY:        400,
+        scrollCollapse: false,
+        jQueryUI:       true,
+        paging:         false,
+        bSort : false,
+        columns : [
+            { className: "translationID"},
+            { className: "langFrom", width: "45%"},
+            { className: "langTo", width: "45%"}
+        ],
+        language : {
+            info: "",
+            infoFiltered: "",
+            infoEmpty: ""
+        }
+    });
+
+    $("#translationsTable_filter").css("margin-right", "50px")
+        .after($("#newTranslation").parent())
+        .before($("#translationsTable_info"));
+
+//    $("#translationsTableContainer .ui-corner-bl").append(printBoxHelpMessage(ttHTransPanel));
+
+    /**
+     *  @descr  Binded event to create new translation
+     */
+    $("#newTranslation").on("click", function(event){
+        newEmptyTranslation();
+    });
+
+    /**
+     *  @descr  Autoresize all textareas
+     */
+    $("textarea.language").autoresize();
 
     /**
      *  @descr  Bind event for textarea lost focus
      */
     $("textarea.language").on("focusout", function(){ checkTranslation(this) });
-
-    /**
-     *  @descr  Bind autoresize action
-     */
-    $("textarea.language").autoresize();
+    $("textarea.language").on("change", function(){ $(this).parent().find("span").text($(this).val()) });
 
 });
-
-/**
- *  @name   saveLanguageXML
- *  @descr  Saves XML file of requested language
- */
-function saveLanguageXML(){
-    var constants = new Array();
-    var translations = new Array();
-    $("div.language").each(function(index, div){
-        constants.push($(div).attr("id"));
-        translations.push($(div).find("textarea.language").val());
-    });
-    $.ajax({
-        url     : "index.php?page=admin/savelanguage",
-        type    : "post",
-        data    :{
-            action       :   "xml",
-            alias        :   alias,
-            constants    :   JSON.stringify(constants),
-            translations :   JSON.stringify(translations)
-        },
-        success : function (data) {
-            if(data == "ACK")
-                showSuccessMessage(ttMLanguageSaved);
-            else
-                showErrorMessage(data);
-        },
-        error : function (request, status, error) { alert("jQuery AJAX request error:".error); }
-    });
-}
 
 /**
  *  @name   updateLanguageFiles
@@ -61,30 +68,34 @@ function saveLanguageXML(){
  */
 function saveLanguageFiles(){
     confirmDialog(ttWarning, ttCUpdateLanguage, function(){
+        var langAlias = $("#langAlias").val();
         var empty = false;
         var constants = new Array();
         var translations = new Array();
-        $("div.language").each(function(index, div){
-            var text = $(div).find("textarea.language").val();
+
+        translationsTable.rows().eq(0).filter(function(rowIndex){
+            var id = translationsTable.cell(rowIndex, ttci.translationID).data().trim();
+            var text = $(translationsTable.cell(rowIndex, ttci.langTo).node()).find("span").text();
             if(text == "")
                 empty = true;
-            constants.push($(div).attr("id"));
+            constants.push(id);
             translations.push(text);
         });
+
         if(!empty){
             $.ajax({
                 url     : "index.php?page=admin/savelanguage",
                 type    : "post",
                 data    :{
-                    action       :   "files",
-                    alias        :   alias,
+                    alias        :   langAlias,
                     constants    :   JSON.stringify(constants),
                     translations :   JSON.stringify(translations)
                 },
                 success : function (data) {
-                    if(data == "ACKACK")
+                    if(data == "ACK"){
                         showSuccessMessage(ttMLanguageUpdated);
-                    else
+                        setTimeout(function(){window.location = 'index.php?page=admin/selectlanguage'}, 1500);
+                    }else
                         showErrorMessage(data);
                 },
                 error : function (request, status, error){ alert("jQuery AJAX request error:".error); }
@@ -103,10 +114,10 @@ function saveLanguageFiles(){
 function checkTranslation(textarea){
     if(textarea == null){
         $("textarea.language").each(function(index, textarea){
-            if($(textarea).val() != "")
-                $(textarea).switchClass("red", "green");
+            if($(this).val().trim() != "")
+                $(this).switchClass("red", "green");
             else
-                $(textarea).switchClass("green", "red");
+                $(this).switchClass("green", "red");
         });
     }else{
         if($(textarea).val() != "")

@@ -123,35 +123,20 @@ class AdminController extends Controller{
     private function actionSavelanguage(){
         global $log, $config;
 
-        if((isset($_POST['action'])) && (isset($_POST['alias'])) &&
-           (isset($_POST['constants'])) && (isset($_POST['translations']))){
+        if((isset($_POST['alias'])) && (isset($_POST['constants'])) && (isset($_POST['translations']))){
 
-            /**
-             *  @name   save()
-             *  @descr  Common function to save XML language file
-             */
-            function save(){
-                global $log, $config;
-                $xml = new DOMDocument();
-                $xml->load($config['systemLangsXml'].$_POST['alias'].'.xml');
-                $log->append($_POST['constants']);
-                $constants = json_decode($_POST['constants'], true);
-                $translations = json_decode($_POST['translations'], true);
+            global $log, $config;
+            $xml = new DOMDocument();
+            $xml->load($config['systemLangsXml'].$_POST['alias'].'.xml');
 
-                for($index = 0; $index < count($constants); $index++)
-                    $xml->getElementById($constants[$index])->nodeValue = str_replace("\n", '\n', $translations[$index]);
+            $constants = json_decode($_POST['constants'], true);
+            $translations = json_decode($_POST['translations'], true);
 
-                chmod($config['systemLangsXml'].$_POST['alias'].'.xml', 0766);
-                if($xml->save($config['systemLangsXml'].$_POST['alias'].'.xml'))
-                    echo 'ACK';
-                else
-                    echo 'NACK';
-            }
+            for($index = 0; $index < count($constants); $index++)
+                $xml->getElementById($constants[$index])->nodeValue = str_replace("\n", '\n', $translations[$index]);
 
-            if($_POST['action'] == 'xml')
-                save();
-            elseif($_POST['action'] == 'files'){
-                save();
+            chmod($config['systemLangsXml'].$_POST['alias'].'.xml', 0766);
+            if($xml->save($config['systemLangsXml'].$_POST['alias'].'.xml')){
                 $xml = new DOMDocument();
                 $phpText = "<?php\n";
                 $jsText = "\n";
@@ -159,20 +144,17 @@ class AdminController extends Controller{
                 $texts = $xml->getElementsByTagName('text');
 
                 for($index = 0; $index < $texts->length; $index++){
-                    $id = explode('_', $texts->item($index)->getAttribute('id'));
+
+                    $id = $texts->item($index)->getAttribute('id');
+
                     $value = str_replace('\n', '<br/>', $texts->item($index)->nodeValue);
 
-                    if($id[0] == 'P'){
-                        $value = str_replace("'", "\'", $value);
-                        $phpText .= "define('$id[1]' , '$value');\n";
-                    }elseif($id[0] == 'J')
-                        $jsText .= "var $id[1] = \"$value\";\n";
-                    elseif($id[0] ==  'A'){
-                        $jsText .= "var $id[1] = \"$value\";\n";
-                        $value = str_replace("'", "\'", $value);
-                        $phpText .= "define('$id[1]' , '$value');\n";
-                    }
+
+                    $jsText .= "var $id = \"".str_replace('"', '\"', $value)."\";\n";
+
+                    $phpText .= "define('$id' , '".str_replace("'", "\'", $value)."');\n";
                 }
+
 
                 $fP = fopen($config['systemLangsDir'].$_POST['alias'].'/lang.php', "w");
                 chmod($config['systemLangsDir'].$_POST['alias'].'/lang.php', 0766);
@@ -180,7 +162,8 @@ class AdminController extends Controller{
                 chmod($config['systemLangsDir'].$_POST['alias'].'/lang.js', 0766);
 
                 $write = false;
-                $attemps = 3;
+                $attemps = 10;
+
                 while(($attemps > 0) && (!$write)){
                     if((flock($fP, LOCK_EX)) && (flock($fJ, LOCK_EX))){
                         ftruncate($fP, 0);
@@ -194,14 +177,17 @@ class AdminController extends Controller{
                         $write = true;
                     }else{
                         $attemps--;
-                        sleep(2);
+                        sleep(2000);
                     }
                 }
+
                 fclose($fP);
                 fclose($fJ);
 
                 echo 'ACK';
-            }
+            }else
+                echo 'NACK';
+
         }else
             $log->append(__FUNCTION__." : Params not set - ".var_export($_POST));
     }
