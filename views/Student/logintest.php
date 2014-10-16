@@ -14,9 +14,13 @@ if($db->qRoomsExam($_POST['idExam'])){
     // Verify if student's client is authorized
     $ipAddress = $_SERVER['REMOTE_ADDR'] == "::1" ? '127.0.0.1' : $_SERVER['REMOTE_ADDR'];
     $ipAddress = ip2long($ipAddress);
-    $authorized = false;
-    while(($room = $db->nextRowAssoc()) && (!$authorized)){
-        $authorized = checkIP($ipAddress, $room['ipStart'], $room['ipEnd']);
+    if($db->numResultRows() == 0)
+        $authorized = true;
+    else{
+        $authorized = false;
+        while(($room = $db->nextRowAssoc()) && (!$authorized)){
+            $authorized = checkIP($ipAddress, $room['ipStart'], $room['ipEnd']);
+        }
     }
     if($authorized){
         if($db->qCheckRegistration($_POST['idExam'], $user->id)){
