@@ -181,7 +181,7 @@
     <!-- ======================= HELP ====================== -->
     <text id="ttHAnswPanel">Double click to edit selected answer</text>
     <text id="ttHQuestLanguagesPanel">Click to show translation\nof selected question</text>
-    <text id="ttHQuestPanel">Single click to select and view question preview, and double click to edit question and answers info</text>
+    <text id="ttHQuestPanel">Single click to select and view question preview, and double click to edit question and answers info. Double click on flags to activate and deactivate question in test</text>
     <text id="ttHQuestPreviewPanel">The answers with orange background are not translated in requested language</text>
     <text id="ttHQuestTopicPanel">Single click to filter questions and\ndouble click to edit topic info</text>
     <!-- ======================== I ======================== -->
