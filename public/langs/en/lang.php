@@ -160,7 +160,7 @@ define('ttGeneralInformations' , 'General Informations');
 define('ttHours' , 'hours');
 define('ttHAnswPanel' , 'Double click to edit selected answer');
 define('ttHQuestLanguagesPanel' , 'Click to show translation<br/>of selected question');
-define('ttHQuestPanel' , 'Single click to select and view question preview, and double click to edit question and answers info. Double click to left flag to active and deactive question in test');
+define('ttHQuestPanel' , 'Single click to select and view question preview, and double click to edit question and answers info. Double click on flags to activate and deactivate question in test');
 define('ttHQuestPreviewPanel' , 'The answers with orange background are not translated in requested language');
 define('ttHQuestTopicPanel' , 'Single click to filter questions and<br/>double click to edit topic info');
 define('ttInfo' , 'Info');

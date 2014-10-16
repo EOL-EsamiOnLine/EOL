@@ -181,7 +181,7 @@
     <!-- ======================= HELP ====================== -->
     <text id="ttHAnswPanel">Due click per modificare la risposta selezionata</text>
     <text id="ttHQuestLanguagesPanel">Un click per la traduzione\ndella domanda selezionata</text>
-    <text id="ttHQuestPanel">Un click per selezionare la domanda e vederne l'anteprima, due click per modificare domanda e risposte</text>
+    <text id="ttHQuestPanel">Un click per selezionare la domanda e vederne l'anteprima, due click per modificare domanda e risposte. Doppio click sulle bandierine per attivare e disattivare le domande nei test</text>
     <text id="ttHQuestPreviewPanel">Le risposte con sfondo arancione non sono tradotte nella lingua richiesta</text>
     <text id="ttHQuestTopicPanel">Un click per filtrare le domande,\ndoppio per modificare l'argomento</text>
     <!-- ======================== I ======================== -->

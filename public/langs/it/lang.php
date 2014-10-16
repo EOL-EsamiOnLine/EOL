@@ -160,7 +160,7 @@ define('ttGeneralInformations' , 'Informazioni Generali');
 define('ttHours' , 'ore');
 define('ttHAnswPanel' , 'Due click per modificare la risposta selezionata');
 define('ttHQuestLanguagesPanel' , 'Un click per la traduzione<br/>della domanda selezionata');
-define('ttHQuestPanel' , 'Un click per selezionare la domanda e vederne l\'anteprima, due click per modificare domanda e risposte');
+define('ttHQuestPanel' , 'Un click per selezionare la domanda e vederne l\'anteprima, due click per modificare domanda e risposte. Doppio click sulle bandierine per attivare e disattivare le domande nei test');
 define('ttHQuestPreviewPanel' , 'Le risposte con sfondo arancione non sono tradotte nella lingua richiesta');
 define('ttHQuestTopicPanel' , 'Un click per filtrare le domande,<br/>doppio per modificare l\'argomento');
 define('ttInfo' , 'Informazioni');
