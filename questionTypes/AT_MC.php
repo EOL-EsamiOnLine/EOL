@@ -64,4 +64,8 @@ class AT_MC extends Answer {
 
         return array($score[$this->get('score')], $this->get('translation'), $this->get('idAnswer'));
     }
+
+    public function getAnswerScore(){
+        return $this->get('score');
+    }
 }

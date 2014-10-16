@@ -17,11 +17,16 @@ global $user;
     <div>
         <?php openBox(ttSubjects, 'left', 'subjectList');
 
+        $readedSubjects = array();
+
         $db = new sqlDB();
         if($db->qExamsInProgress()){
             echo '<div class="list"><ul>';
             while($subject = $db->nextRowAssoc()){
-                echo '<li><a class="showSubjectInfoAndExams" value="'.$subject['fkSubject'].'" onclick="showSubjectInfoAndExams(this);">'.$subject['subjectName'].'</a></li>';
+                if(! in_array($subject['fkSubject'], $readedSubjects)){
+                    echo '<li><a class="showSubjectInfoAndExams" value="'.$subject['fkSubject'].'" onclick="showSubjectInfoAndExams(this);">'.$subject['subjectName'].'</a></li>';
+                    array_push($readedSubjects, $subject['fkSubject']);
+                }
             }
             echo '</ul></div>';
         }else{

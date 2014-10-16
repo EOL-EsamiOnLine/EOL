@@ -259,6 +259,7 @@
     <text id="ttNewStudent">New Student</text>
     <text id="ttNewTopic">New Topic</text>
     <text id="ttNewUser">New User</text>
+    <text id="ttNo">No</text>
     <text id="ttNoAnswers">No answers available for this question</text>
     <text id="ttNoExams">No exams available for this subject</text>
     <text id="ttNoExamInProgress">No exam in progress</text>
@@ -365,5 +366,6 @@
     <text id="ttWarning">Warning</text>
     <!-- ======================== X ======================== -->
     <!-- ======================== Y ======================== -->
+    <text id="ttYes">Yes</text>
     <!-- ======================== Z ======================== -->
 </language>

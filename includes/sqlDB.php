@@ -930,18 +930,20 @@ class sqlDB {
             $query = "INSERT INTO Answers (score, fkQuestion)
                       VALUES ('$score', '$idQuestion')";
             array_push($queries, $query);
-            $index = 0;
-            $query = "INSERT INTO TranslationAnswers
+            if(count($translationsA) > 0){
+                $index = 0;
+                $query = "INSERT INTO TranslationAnswers
                       VALUES ";
-            while($index < count($translationsA)){
-                if($translationsA[$index] != null){
-                    $data2 = $this->prepareData(array($translationsA[$index]));
-                    $query .= "(LAST_INSERT_ID(), '$index', '$data2[0]'),\n";
+                while($index < count($translationsA)){
+                    if($translationsA[$index] != null){
+                        $data2 = $this->prepareData(array($translationsA[$index]));
+                        $query .= "(LAST_INSERT_ID(), '$index', '$data2[0]'),\n";
+                    }
+                    $index++;
                 }
-                $index++;
+                $query = substr_replace($query , '', -2);       // Remove last coma
+                array_push($queries, $query);
             }
-            $query = substr_replace($query , '', -2);       // Remove last coma
-            array_push($queries, $query);
             $query = "SELECT LAST_INSERT_ID()";
             array_push($queries, $query);
             $this->execTransaction($queries);
@@ -2170,12 +2172,23 @@ class sqlDB {
         try{
             $datetime = date("Y-m-d H:i:s");
             // Get score, with answer's score SUM
-            $query = "SELECT SUM(score)
-                      FROM Answers
-                      WHERE idAnswer IN (".implode(', ', $answers).")";
+            $score = 0;
+            $query = "SELECT idAnswer, type, score
+                      FROM Answers, Questions
+                      WHERE
+                          idAnswer IN (".implode(', ', $answers).")
+                          AND
+                          Answers.fkQuestion = Questions.idQuestion";
             $this->execQuery($query);
-            $score = $this->nextRowEnum();
-			$score = $score[0];
+            while($answerInfo = $this->nextRowAssoc()){
+                if(is_numeric($answerInfo['score'])){
+                    $score += $answerInfo['score'];
+                }else{
+                    $answer = Answer::newAnswer($answerInfo['type'], $answerInfo);
+                    $score += $answer->getAnswerScore();
+                }
+            }
+            $this->mysqli = $this->connect();
             // Get scale from test settings
             $query = "SELECT scale
                       FROM TestSettings AS TS
@@ -2184,8 +2197,11 @@ class sqlDB {
                       WHERE
                           T.fkSet = '$idSet'";
             $this->execQuery($query);
+            $log->append("1");
             $row = $this->nextRowAssoc();
+            $log->append("2");
             $score = round($row['scale'] * $score, 1);
+            $log->append("3");
             // Update test
             $query = "UPDATE Tests
                       SET timeEnd = '$datetime',
@@ -2456,7 +2472,7 @@ class sqlDB {
      * @return  Boolean
      * @descr   Returns true if questions set was successfully readed, false otherwise
      */
-    public function qQuestionSet($idSet, $idLanguage = null, $idSubject){
+    public function qQuestionSet($idSet, $idLanguage=null, $idSubject=null){
         global $log;
         $ack = true;
         $this->result = null;
@@ -2534,10 +2550,11 @@ class sqlDB {
                                                       SQ.fkSet = '$idSet'
                                                   )
                               AND
-                              TQ.fkLanguage = (SELECT fkLanguage FROM Subjects WHERE idSubject = '$idSubject')
-                              AND
-                              SQ.fkSet = '$idSet'
-                          ORDER BY Q.idQuestion";
+                              SQ.fkSet = '$idSet'\n";
+                if($idSubject!=null)
+                    $query .= "AND
+                               TQ.fkLanguage = (SELECT fkLanguage FROM Subjects WHERE idSubject = '$idSubject')\n";
+                $query .= "ORDER BY Q.idQuestion";
             }
             $this->execQuery($query);
         }catch (Exception $ex){
@@ -2872,7 +2889,7 @@ class sqlDB {
     private function execQuery($query){
         global $log;
 // ******************************************************************* //
-//        $log->append($query);
+        $log->append($query);
 // ******************************************************************* //
         if(!($this->result = $this->mysqli->query($query)))
             throw new Exception("Error");
