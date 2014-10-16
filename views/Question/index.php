@@ -7,7 +7,7 @@
  * Desc: Show topics and questions about requested subject
  */
 
-global $config;
+global $config, $user;
 
 ?>
 
@@ -85,10 +85,7 @@ global $config;
         while($question = $db->nextRowAssoc()){
             if($idQuestion == $question['idQuestion']){
                 if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                    if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                        $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                    else
-                        $text = $question['shortText'];
+                    $text = $question['shortText'];
 
                 $languages .= '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                     class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
@@ -100,10 +97,7 @@ global $config;
                                     value="'.$question['status'].'" alt="'.$statuses[$question['status']].'"
                                     src="'.$config['themeImagesDir'].$statuses[$question['status']].'.png">';
                     if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                        if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                            $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                        else
-                            $text = $question['shortText'];
+                        $text = $question['shortText'];
                     $languages = '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                        class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
                                        src="'.$config['themeFlagsDir'].$allLangs[$question['fkLanguage']]['alias'].'.gif">';
@@ -130,10 +124,7 @@ global $config;
                                     value="'.$question['status'].'" alt="'.$statuses[$question['status']].'"
                                     src="'.$config['themeImagesDir'].$statuses[$question['status']].'.png">';
                     if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                        if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                            $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                        else
-                            $text = $question['shortText'];
+                        $text = $question['shortText'];
                     $languages = '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                        class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
                                        src="'.$config['themeFlagsDir'].$allLangs[$question['fkLanguage']]['alias'].'.gif">';
@@ -146,18 +137,20 @@ global $config;
 
             }
         }
-        echo '<tr>
-                  <td>'.$status.'</td>
-                  <td>'.$text.'</td>
-                  <td>'.$languages.'</td>
-                  <td>'.$topic.'</td>
-                  <td>'.$type.'</td>
-                  <td>'.$difficulty.'</td>
-                  <td>'.$idQuestion.'</td>
-                  <td>'.$idTopic.'</td>
-                  <td>'.$typeID.'</td>
-                  <td>'.$languageID.'</td>
-              </tr>';
+        if($idQuestion != 'first'){
+            echo '<tr>
+                      <td>'.$status.'</td>
+                      <td>'.$text.'</td>
+                      <td>'.$languages.'</td>
+                      <td>'.$topic.'</td>
+                      <td>'.$type.'</td>
+                      <td>'.$difficulty.'</td>
+                      <td>'.$idQuestion.'</td>
+                      <td>'.$idTopic.'</td>
+                      <td>'.$typeID.'</td>
+                      <td>'.$languageID.'</td>
+                  </tr>';
+        }
     }
     ?>
             </tbody>
@@ -176,7 +169,43 @@ global $config;
     ?>
     <div class="clearer"></div>
 </div>
+
+<?php
+
+// Create a new hidden panel for New Question action
+
+openBox(ttNewQuestion, 'normal-690px', 'newQuestionTypeSelect');
+$types = getQuestionTypes();
+
+$options = "";
+$descriptions = "";
+foreach ($types as $type){
+    $options .= '<option value="'.$type.'">'.constant('ttQT'.$type).'</option>';
+    $descriptions .= '<div id="QT'.$type.'" class="QTDescription hidden">
+                          <p class="bold underline">'.constant('ttQT'.$type).'</p><br/>'.
+                          constant('ttQT'.$type.'Description').
+                      '</div>';
+}
+
+?>
+
+<select id="newQuestionType" size="2" onChange="updateQuestionTypeDescription();">
+    <?= $options ?>
+</select>
+
+<div class="QTDescription"></div>
+<?= $descriptions ?>
+<div class="clearer"></div>
+
+<a class="button normal left rSpace tSpace" onclick="closeQuestionTypeSelect();"><?= ttCancel ?></a>
+<a class="button blue right tSpace" onclick="newEmptyQuestion();"><?= ttNext ?></a>
+
+<div class="clearer"></div>
+
+<?php closeBox(); ?>
+
 <script>
+    var userLang = "<?= $user->lang ?>";
     var allLangs = new Array();
     <?php
     $index = 0;

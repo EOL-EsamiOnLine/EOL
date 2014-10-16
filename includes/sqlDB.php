@@ -652,15 +652,19 @@ class sqlDB {
             $query = "INSERT INTO Questions (type, difficulty, extra, shortText, fkTopic)
                       VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]','$idTopic')";
             array_push($queries, $query);
-            $index = 0;
+            $query = "UPDATE Questions
+                      SET
+                          fkRootQuestion = LAST_INSERT_ID()
+                      WHERE
+                          idQuestion = LAST_INSERT_ID()";
+            array_push($queries, $query);
             $query = "INSERT INTO TranslationQuestions
                       VALUES ";
-            while($index < count($translationsQ)){
-                if($translationsQ[$index] != null){
-                    $data2 = $this->prepareData(array($translationsQ[$index]));
-                    $query .= "(LAST_INSERT_ID(), '$index', '$data2[0]'),\n";
+            foreach($translationsQ as $idLanguage => $translation){
+                if($translation != null){
+                    $data = $this->prepareData(array($translation));
+                    $query .= "(LAST_INSERT_ID(), '$idLanguage', '$data[0]'),\n";
                 }
-                $index++;
             }
             $query = substr_replace($query , '', -2);       // Remove last coma
             array_push($queries, $query);
@@ -719,8 +723,8 @@ class sqlDB {
 
         $queries = array();
         try{
-            $query = "INSERT INTO Questions (type, difficulty, status, extra, fkTopic, shortText)
-                      SELECT type, difficulty, status, extra, fkTopic, shortText
+            $query = "INSERT INTO Questions (type, difficulty, status, extra, shortText, fkRootQuestion, fkTopic)
+                      SELECT type, difficulty, status, extra, shortText, fkRootQuestion, fkTopic
                       FROM
                           Questions
                       WHERE
@@ -823,15 +827,13 @@ class sqlDB {
                           WHERE
                               fkQuestion = '$idQuestion'";
             array_push($queries, $query);
-            $index = 0;
-            while($index < count($translationsQ)){
-                if($translationsQ[$index] != null){
-                    $data2 = $this->prepareData(array($translationsQ[$index]));
+            foreach($translationsQ as $idLanguage => $translation){
+                if($translation != null){
+                    $data = $this->prepareData(array($translation));
                     $query = "INSERT INTO TranslationQuestions
-                                  VALUES ('$idQuestion', '$index', '$data2[0]')";
+                              VALUES ('$idQuestion', '$idLanguage', '$data[0]')";
                     array_push($queries, $query);
                 }
-                $index++;
             }
             $this->execTransaction($queries);
         }catch(Exception $ex){
@@ -1095,27 +1097,28 @@ class sqlDB {
 
     /**
      * @name    qExamsInProgress
-     * @param   $idTeacher              String          Teachers's ID
+     * @param   $idTeacher              String|null          Teachers's ID
      * @return  Boolean
      * @descr   Get list of available exams for requested teacher
      */
-    public function qExamsInProgress($idTeacher){
+    public function qExamsInProgress($idTeacher=null){
         global $log;
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
 
         try{
-            $query = "SELECT idExam, E.name AS examName, S.name AS subjectName, datetime, status
+            $query = "SELECT idExam, E.name AS examName, S.name AS subjectName, fkSubject, datetime, status
                       FROM Exams AS E
                       JOIN Subjects AS S ON S.idSubject = E.fkSubject
                       WHERE
-                          E.status != 'a'
-                          AND
-                          E.fkSubject IN (SELECT fkSubject
-                                          FROM Users_Subjects
-                                          WHERE
-                                          fkUser = '$idTeacher')";
+                          E.status != 'a' ";
+            if($idTeacher != null)
+                $query .= "AND
+                           E.fkSubject IN (SELECT fkSubject
+                                           FROM Users_Subjects
+                                           WHERE
+                                           fkUser = '$idTeacher')";
             $this->execQuery($query);
         }catch(Exception $ex){
             $ack = false;
@@ -2220,7 +2223,7 @@ class sqlDB {
             if($scoreTest != null){         // The tests has been submitted
                 $query = "SELECT idQuestion, answer, type
                           FROM Sets_Questions AS SQ
-                              JOIN Questions AS Q ON Q.idQuestion = SQ.fkQuestion
+                               JOIN Questions AS Q ON Q.idQuestion = SQ.fkQuestion
                           WHERE
                               fkSet = (SELECT fkSet
                                        FROM Tests
@@ -2228,15 +2231,9 @@ class sqlDB {
                 $this->execQuery($query);
                 $query = "INSERT INTO History(fkTest, fkQuestion, answer, score)
                           VALUES \n";
-                while($question = $this->nextRowAssoc()){
-                    switch($question['type']){
-                        case 'MC' :
-                        case 'MR' : $query .= "('$idTest', '".$question['idQuestion']."', '".$question['answer']."', ''),";break;
-                        case 'OP' : $score = (isset($correctScores[$question['idQuestion']])) ? $correctScores[$question['idQuestion']] : 0;
-                            $query .= "('$idTest', '".$question['idQuestion']."', '".$question['answer']."', '".$score."'),";
-                            break;
-                    }
-                }
+                while($questionInfo = $this->nextRowAssoc())
+                    $query .= "('$idTest', '".$questionInfo['idQuestion']."', '".$questionInfo['answer']."', '".$correctScores[$questionInfo['idQuestion']]."'),";
+
                 $query = substr_replace($query , '', -1);       // Remove last coma
                 array_push($queries, $query);
                 $query = "DELETE
@@ -2351,9 +2348,10 @@ class sqlDB {
                                   AND
                                   difficulty = '$difficulty'
                                   AND
-                                  status = 'a'
-                                  AND
-                                  idQuestion NOT IN (".implode(',', $questionsSelected).")";
+                                  status = 'a' ";
+                    if(count($questionsSelected) > 0)
+                        $query .= "AND
+                                   idQuestion NOT IN (".implode(',', $questionsSelected).")";
                     $this->execQuery($query);
                     $allQuestions[$idTopic][$difficultyName] = $this->getResultAssoc();
 
@@ -2373,7 +2371,7 @@ class sqlDB {
                 }
             }
 //            $log->append('$allQuestions: '.var_export($allQuestions, true));
-            $log->append(var_export($questionsSet, true));
+//            $log->append(var_export($questionsSet, true));
 
             $this->mysqli = $this->connect();
             $queries = array();

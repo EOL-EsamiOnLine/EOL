@@ -66,7 +66,7 @@ function editSubjectInfo(){
     $("#teachersTableContainer").slideDown({
         duration:400,
         complete:function(){
-            teachersTable.draw();
+            teachersTable.columns.adjust();
             $("#teachersTable_filter input").val("");
         }
     });
@@ -164,8 +164,6 @@ function cancelEdit(askConfirmation){
         $("#editPanel").hide();
         $("#createPanel").hide();
         $("#selectPanel").show();
-//        teachersTable.columns(ttci.selected).search("X").draw();
-//        teachersTable.column(ttci.checkbox).visible(false);
         showSubjectInfo(new Array(false, subjectRowEdit));
         $("#teachersTableContainer").slideUp();
     }
@@ -229,8 +227,6 @@ function cancelNew(askConfirmation){
         $("#createPanel").hide();
         $("#selectPanel").show();
         $("#teachersTableContainer").slideUp();
-//        teachersTable.columns(ttci.selected).search("X").draw();
-//        teachersTable.column(ttci.checkbox).visible(false);
         subjectEditing = false;
         subjectNew = false;
         subjectRowEdit =null;

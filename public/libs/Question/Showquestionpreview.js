@@ -8,26 +8,14 @@
 
 $(function(){
 
-    /**
-     *  @descr  Bind event for checkboxes
-     */
+    /** @descr  Bind event for checkboxes */
     $("#questionPreview input[type='checkbox'] + span").on("click", function(event){
-        if($(this).prev().is(":checked")) {
-            $(this).prev().prop("checked", false);
-        }else{
-            $(this).prev().prop("checked", true);
-        }
+        $(this).prev().prop("checked", !($(this).prev().is(":checked")));
     });
 
-    /**
-     *  @descr  Bind event for radiobuttons
-     */
+    /** @descr  Bind event for radiobuttons */
     $("#questionPreview input[type='radio'] + span").on("click", function(event){
-        if($(this).prev().is(":checked")) {
-
-        }else{
-            $(this).prev().prop("checked", true);
-        }
+        $(this).prev().prop("checked", true);
     });
 
 });

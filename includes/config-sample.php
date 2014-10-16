@@ -12,7 +12,7 @@
  *----------------------------------*/
 
 // System version
-$config['systemVersion'] = '0.0.1';
+$config['systemVersion'] = '0.0.2';
 // System title
 $config['systemTitle'] = 'EOL - Esami On Line';
 // System home website (used for emails)
@@ -34,12 +34,13 @@ $config['systemSecure'] = 'session';
 $config['cookieDeadline'] = time()+86400;
 // System directories
 $config['systemControllersDir'] = '../controllers/';
+$config['systemQuestionTypesClassDir'] = '../questionTypes/';
 $config['systemViewsDir'] = '../views/';
 $config['systemLibsDir'] = 'libs/';
 $config['systemLangsDir'] = 'langs/';
+$config['systemQuestionTypesLibDir'] = $config['systemLibsDir'].'questionTypes/';
 $config['systemLangsXml'] = '../resources/languages/';
 $config['systemExtraDir'] = 'extra/';
-$config['systemModulesDir'] = '../modules/';
 // System log files directory
 $config['logDir'] = '../logs/';
 // System log files

@@ -9,9 +9,15 @@
 
 global $user, $log, $config;
 
+$questionTypesLibDir = opendir($config['systemQuestionTypesLibDir']);
+while (($script = readdir($questionTypesLibDir)) !== false)
+    if(substr($script, 0, 2) == 'QT')
+        echo '<script type="text/javascript" src="'.$config['systemQuestionTypesLibDir'].$script.'"></script>';
+closedir($questionTypesLibDir);
+
 $extras = array(
     'calculator' => false,
-    'periodiocTable' => false
+    'periodicTable' => false
 );
 
 ?>
@@ -58,64 +64,15 @@ $extras = array(
             }
             shuffle($questions);
             openBox(ttTest, 'normal', 'test');
-            foreach($questions as $question){
-                $idQuestion = $question['idQuestion'];
-                $answered = json_decode(stripslashes($question['answer']), true);
+            foreach($questions as $questionInfo){
+                $idQuestion = $questionInfo['idQuestion'];
+                $answered = json_decode(stripslashes($questionInfo['answer']), true);
                 if($answered == '')
                     $answered = array('');
 
-                $questionAnswers = '';
-                switch($question['type']){
+                $question = Question::newQuestion($questionInfo['type'], $questionInfo);
+                $extras = $question->printQuestionInTest($subject, $answered, $extras);
 
-                    case 'MC' : if(($db->qAnswerSet($idQuestion, $lang, $subject)) && ($answers = $db->getResultAssoc())){
-                                    shuffle($answers);
-                                    foreach($answers as $answer){
-                                        $checked = (in_array($answer['idAnswer'], $answered)) ? 'checked' : '';
-                                        $questionAnswers .= '
-                                                <div>
-                                                    <input class="hidden" type="radio" name="'.$idQuestion.'" value="'.$answer['idAnswer'].'" '.$checked.'/>
-                                                    <span value="'.$answer['idAnswer'].'"></span>
-                                                    <label>'.$answer['translation'].'</label>
-                                                </div>';
-                                    }
-                                } break;
-                    case 'MR' : if(($db->qAnswerSet($idQuestion, $lang, $subject)) && ($answers = $db->getResultAssoc())){
-                                    shuffle($answers);
-                                    foreach($answers as $answer){
-                                        $checked = (in_array($answer['idAnswer'], $answered)) ? 'checked' : '';
-                                        $questionAnswers .= '
-                                                <div>
-                                                    <input class="hidden" type="checkbox" name="'.$idQuestion.'" value="'.$answer['idAnswer'].'" '.$checked.'/>
-                                                    <span value="'.$answer['idAnswer'].'"></span>
-                                                    <label>'.$answer['translation'].'</label>
-                                                </div>';
-                                    }
-                                } break;
-                    case 'OP' : $questionAnswers .= '<textarea class="textareaTest">'.$answered[0].'</textarea>'; break;
-                    default: die(ttEQuestionType);
-
-                }
-
-                ?>
-                <div class="questionTest" value="<?= $idQuestion ?>" type="<?= $question['type'] ?>">
-                    <div class="questionText">
-                        <?php
-                        echo $question['translation'];
-
-                        if(strpos($question['extra'], 'c') !== false){
-                            $extras['calculator'] = true;
-                            echo '<img class="extraIcon calculator" src="'.$config['themeImagesDir'].'QEc.png'.'">';
-                        }
-                        if(strpos($question['extra'], 'p') !== false){
-                            $extras['periodicTable'] = true;
-                            echo '<img class="extraIcon periodicTable" src="'.$config['themeImagesDir'].'QEp.png'.'">';
-                        }
-                        ?>
-                    </div>
-                    <div class="questionAnswers"><?= $questionAnswers ?></div>
-                </div>
-
-            <?php
             }
             ?>
 
