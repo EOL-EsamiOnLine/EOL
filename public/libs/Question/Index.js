@@ -35,27 +35,31 @@ var topicEditing = false;
 // Anchors for question table
 var questionsTable = null;
 var questionRowSelected = null;
-var questionRowEdit = null;
+var questionEditing = false;
+
+// Anchor for answers list
+var answersTable = null;
+var answerRowSelected = null;
+var answerEditing = false;
 
 // Anchors for languages list
 var languageRowSelected = null;
 
 $(function(){
+    $("#newQuestionTypeSelect").hide();
     $("#questionPreview .boxContent").hide();
     $("#languageList .boxContent").hide();
 
     /**
      *  @descr  Binded event to create new topic
      */
-    $("#newTopic").on("click", function(event){
-        newEmptyTopic();
-    });
+    $("#newTopic").on("click", function(event){ newEmptyTopic(); });
 
     /**
      *  @descr  Binded event to create new question
      */
     $("#newQuestion").on("click", function(event){
-        newEmptyQuestion();
+        newLightbox($("#newQuestionTypeSelect"), {destroyOnClose : false});
     });
 
     /**
@@ -69,7 +73,8 @@ $(function(){
             order: [[ qtci.text, "asc" ]],
             columns : [
                 { className: "qStatus", searchable : false, type: "alt-string", width : "10px" },
-                { className: "qText", width : "650px" },
+                { className: "qText", width : "570px", mRender: function(data){return truncate(data, "600px")} },
+//                { className: "qText", width : "650px" },
                 { className: "qLanguages", searchable : false, type: "alt-string", width : "60px" },
                 { className: "qTopic", width : "100px" },
                 { className: "qType", width : "100px" },
@@ -206,8 +211,8 @@ function showQuestionLanguageAndPreview(selectedQuestion) {
             questionsTable.$("tr.selected").removeClass("selected");
             $(selectedQuestion).addClass("selected");
 
-            var idQuestion = questionsTable.row(selectedQuestion).data()[qtci.questionID];
-            var idLanguage = questionsTable.row(selectedQuestion).data()[qtci.languageID];
+            var idQuestion = questionsTable.row(questionRowSelected).data()[qtci.questionID];
+            var idLanguage = questionsTable.row(questionRowSelected).data()[qtci.languageID];
 
             showQuestionPreview(idQuestion, idLanguage, null);
 
@@ -258,7 +263,8 @@ function showQuestionPreview(idQuestion, idLanguage, selectedLanguage) {
             type    : "post",
             data    : {
                 idQuestion :   idQuestion,
-                idLanguage :   idLanguage
+                idLanguage :   idLanguage,
+                type       :   questionsTable.row(questionRowSelected).data()[qtci.typeID]
             },
             success : function (data) {
                 if(data == "NACK"){
@@ -285,8 +291,10 @@ function showQuestionPreview(idQuestion, idLanguage, selectedLanguage) {
  */
 function showQuestionInfo(selectedQuestion) {
     clearTimeout(timer);
-    questionRowEdit = $(selectedQuestion);
-    var idQuestion = questionsTable.row(selectedQuestion).data()[qtci.questionID];
+    showQuestionLanguageAndPreview(selectedQuestion);
+    questionRowSelected = $(selectedQuestion);
+
+    var idQuestion = questionsTable.row(questionRowSelected).data()[qtci.questionID];
 
     $.ajax({
         url     : "index.php?page=question/showquestioninfo",
@@ -302,12 +310,6 @@ function showQuestionInfo(selectedQuestion) {
 //                alert(data);
                 $("body").append(data);
                 newLightbox($("#questionInfo"), {});
-                $("#answersList ul li a").each(function(){
-                    if($(this).text().length > aMaxLength)
-                        $(this).html($(this).text().substring(0, (aMaxLength - ellipsis.length))+ellipsis);
-                    else
-                        $(this).html($(this).text());
-                });
             }
         },
         error : function (request, status, error) {
@@ -317,30 +319,45 @@ function showQuestionInfo(selectedQuestion) {
 }
 
 /**
+ *  @name   updateQuestionTypeDescription
+ *  @descr  Show correct question type's description
+ */
+function updateQuestionTypeDescription(){
+    $(".QTDescription").hide();
+    $("#QT"+$("#newQuestionType").val()).show();
+}
+
+/**
  *  @name   newEmptyQuestion
  *  @descr  Ajax request for show panel for new question
  */
 function newEmptyQuestion() {
-    $.ajax({
-        url     : "index.php?page=question/showquestioninfo",
-        type    : "post",
-        data    : {
-            action      :   "new",
-            idQuestion  :   "none"
-        },
-        success : function (data) {
-            if(data == "NACK"){
-//                alert(data);
-            }else{
-//                alert(data);
-                $("body").append(data);
-                newLightbox($("#questionInfo"), {});
+    if($("#newQuestionType").val() != null){
+        $("#newQuestionTypeSelect").slideUp();
+        $.ajax({
+            url     : "index.php?page=question/showquestioninfo",
+            type    : "post",
+            data    : {
+                action      :   "new",
+                type        :   $("#newQuestionType").val(),
+                topic       :   $(".filterQuestion.selected").attr("value")
+            },
+            success : function (data) {
+                if(data == "NACK"){
+    //                alert(data);
+                }else{
+    //                alert(data);
+                    $("body").append(data);
+                    newLightbox($("#questionInfo"), {});
+                }
+            },
+            error : function (request, status, error) {
+                alert("jQuery AJAX request error:".error);
             }
-        },
-        error : function (request, status, error) {
-            alert("jQuery AJAX request error:".error);
-        }
-    });
+        });
+    }else{
+        showErrorMessage(ttESelectQuestionType);
+    }
 }
 
 /**
@@ -388,6 +405,41 @@ function changeQuestionStatus(selectedQuestionAndConfirm){
             }
         });
     }
+}
+
+/**
+ *  @name   destroyAllCKEditorInstances
+ *  @descr  Destroy all CKEditor instances in DOM
+ */
+function destroyAllCKEditorInstances(){
+    for(name in CKEDITOR.instances)
+        CKEDITOR.instances[name].destroy();
+    $("textarea.ckeditor").hide();
+}
+
+/**
+ *  @name   createCKEditorInstance
+ *  @descr  Creates CKEditor instance with specified ID
+ *  @param  instance        String      Instance ID
+ */
+function createCKEditorInstance(instance){
+    destroyAllCKEditorInstances();
+    var roxyFileman = '/fileman/index.html';
+    var onchange = null;
+    switch(instance.split("t")[0]){
+        case "q" : onchange = function() { this.updateElement(); questionEditing = true; }; break;
+        case "a" : onchange = function() { this.updateElement(); answerEditing = true; }; break;
+        default : alert("CKEditor creation error");
+    }
+    CKEDITOR.replace(instance, {filebrowserBrowseUrl:roxyFileman,
+        filebrowserUploadUrl:roxyFileman,
+        filebrowserImageBrowseUrl:roxyFileman+'?type=image',
+        filebrowserImageUploadUrl:roxyFileman+'?type=image',
+        on: { change: onchange }});
+}
+
+function closeQuestionTypeSelect(){
+    closeLightbox($('#newQuestionTypeSelect'));
 }
 
 function closeQuestionLanguagePanel(){

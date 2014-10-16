@@ -18,16 +18,16 @@ global $user;
         <?php openBox(ttSubjects, 'left', 'subjectList');
 
         $db = new sqlDB();
-
-        if($db->qSubjects(null, $user->role)){
+        if($db->qExamsInProgress()){
             echo '<div class="list"><ul>';
             while($subject = $db->nextRowAssoc()){
-                echo '<li><a class="showSubjectInfoAndExams" value="'.$subject['idSubject'].'" onclick="showSubjectInfoAndExams(this);">'.$subject['name'].'</a></li>';
+                echo '<li><a class="showSubjectInfoAndExams" value="'.$subject['fkSubject'].'" onclick="showSubjectInfoAndExams(this);">'.$subject['subjectName'].'</a></li>';
             }
             echo '</ul></div>';
         }else{
             die($db->getError());
         }
+
         closeBox();
 
         openBox(ttInfo, 'right', 'subjectInfoAndExams'); ?>

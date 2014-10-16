@@ -111,7 +111,7 @@ openBox(ttExam.' '.ttInfo, 'normal-70.1%', 'examInfo');
         $hidden = 'hidden';
         if($infoExam['regStart'] == ''){
             $infoExam['regStart'] = date('Y-m-d').' '.date('H:i');
-            $infoExam['regEnd'] = date('Y-m-d').' '.date('H:i');
+            $infoExam['regEnd'] = date('Y-m-d', strtotime($infoExam['regStart'] . "+7 days")).' '.date('H:i');
         }else{
             $manualChecked = '';
             $autoChecked = 'checked';

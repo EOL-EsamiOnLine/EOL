@@ -20,6 +20,12 @@ require_once('User.php');
 // Controller class
 require_once('Controller.php');
 
+global $config;
+// Question class
+require_once($config['systemQuestionTypesClassDir'].'Question.php');
+// Answer class
+require_once($config['systemQuestionTypesClassDir'].'Answer.php');
+
 $ajaxSeparator = "_-^SEPARATOR^-_";
 
 /**
@@ -29,9 +35,12 @@ $ajaxSeparator = "_-^SEPARATOR^-_";
  */
 function getQuestionTypes(){
     $types = array(
-        'MC',
-        'MR',
-        'OP'
+        'MC',       # Multiple Choice
+        'MR',       # Multiple Response
+//        'YN',       # Yes/No
+//        'TF',       # True/False
+        'ES'        # Essay
+
     );
     return $types;
 }

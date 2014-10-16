@@ -28,10 +28,8 @@ global $config, $user;
             if($scan[$index] != '.' && $scan[$index] != '..'){
 
                 $file = new DOMDocument();
-//                $xmlFrom->validateOnParse = true;
                 $file->load($config['systemLangsXml'].$scan[$index]);
                 $langFrom = $file->getElementById('name')->nodeValue.' ('.$file->getElementById('alias')->nodeValue.')';
-
 
                 if(file_exists($config['systemLangsDir'].$file->getElementById('alias')->nodeValue.'/')){
                     echo '<li><a class="selectLanguage" value="'.$file->getElementById('alias')->nodeValue.'">'.$file->getElementById('name')->nodeValue.'</a></li>';

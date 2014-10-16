@@ -3,38 +3,27 @@
  * User: Masterplan
  * Date: 19/05/14
  * Time: 11:34
- * Desc: Show question's info with all translations and CKEditors
+ * Desc: Show question's info with all translations
  */
-
-// Anchor for answers list
-var answerRowSelected = null;
-
-// Anchor for question/answer edit
-var questionEditing = false;
-var answerEditing = false;
-var newAnswer = false;
 
 $(function(){
 
     /**
      *  @descr  Function to enable QuestionInfo tabs
      */
-    $("#questionInfoTabs").tabs().css("border", "none")
-                                 .find("ul").css("background", "none")
+    $("#questionInfoTabs").tabs({activate: function(e, ui) {
+                                    questionInfoTabChanged(e, ui);
+                                }}).css("border", "none")
+                                   .find("ul").css("background", "none")
                                             .css("border", "none");
+
     $("#questionInfoTabs > div").css("border", "1px solid #686868")
                                 .css("border-radius", "5px")
                                 .css("margin-top", "7px");
 
-    /**
-     *  @descr  Function to enable question's translations tabs
-     */
-    $("#question-tab").tabs().prepend($("#questionExtra"));
+    $("#qLangsTabs a.tab").on("click", function(){changeCKEditorQuestionLanguage(this)});
 
-    /**
-     *  @descr  Function to enable answer's translations
-     */
-    $("#answers-tab").tabs();
+    $("#question-tab").prepend($("#questionExtra"));
 
     /**
     *  @descr  Function to enable question tab's dropdownInfo menu effects
@@ -51,6 +40,9 @@ $(function(){
                                                               questionEditing = true;
                                                               updateDropdown($(this));
                                                           });
+
+    $("#qDescription, input[name=extra]").on("change", function(){questionEditing = true});
+
     // Close all dropdowns when click out of it
     // Maybe too heavy for system... IMPROVE
     $(document).on('click', function(e) {
@@ -60,59 +52,104 @@ $(function(){
                                     $(".dropdownInfo dt span").removeClass("clicked");
                                 }
                             });
-
-    /**
-     *  @descr  Binded event to create new answer
-     */
-    $("#newAnswer").on("click", function(event){
-        newEmptyAnswer(new Array((answerEditing || checkCKEditorEdits("at"))));
-    });
 });
 
 /**
- *  @name   saveQuestionInfo
- *  @descr  Binded function to save question info
- *  @param  close       Boolean                     Close panel if true
+ *  @name   createNewQuestion
+ *  @descr  Binded event to create a new question
+ *  @param  reopen          Boolean             If true reopen question info panel
  */
-function saveQuestionInfo(close){
-    var idTopic = $("#questionTopic").find("dt span span").text();
-    var difficulty = $("#questionDifficulty").find("dt span span").text();
-    var questionTranslations = new Array();
-    var langAlias = "";
-    var langID = "";
-    var shortText = "";
-    for(var indexLang = 0; indexLang < allLangs.length; indexLang++){
-        langID = allLangs[indexLang]["idLanguage"];
-        langAlias = allLangs[indexLang]["alias"];
-        questionTranslations[langID] = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].getData();
-        if(langID == mainLang)
-            shortText = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].document.getBody().getText();
-    }
+function createNewQuestion(reopen){
+    var idTopic = $("#questionTopic dt span.value").text();
+    var difficulty = $("#questionDifficulty dt span.value").text();
+    var type = $("#questionType").val();
+    var translationsQ = new Array();
+    $("textarea[id^=qt]").each(function(){
+        translationsQ[$(this).attr("id").split("qt")[1]] = $(this).val();
+    });
+    var description = ($("#qDescription").val().trim() == "")? $("<a>"+$("#qt"+mainLang).val()+"</a>").text() : $("#qDescription").val();
     var extras = $("input[name=extra]").serialize().replace(/extra=/g, "").replace(/&/g, "");
+
     $.ajax({
-        url     : "index.php?page=question/updatequestioninfo",
+        url     : "index.php?page=question/newquestion",
         type    : "post",
         data    : {
-            idQuestion      :   questionsTable.row(questionRowEdit).data()[qtci.questionID],
             idTopic         :   idTopic,
             difficulty      :   difficulty,
-            translationsQ   :   JSON.stringify(questionTranslations),
-            shortText       :   shortText,
+            type            :   type,
+            translationsQ   :   JSON.stringify(translationsQ),
+            shortText       :   description,
             extras          :   extras,
             mainLang        :   mainLang
         },
         success : function (data) {
             data = data.trim().split(ajaxSeparator);
             if(data.length > 1){
-                questionsTable.row(questionRowEdit).data(JSON.parse(data[1]));
-                questionsTable.draw();
-                if($(questionRowEdit)[0] == $(questionRowSelected)[0])
-                    showQuestionLanguageAndPreview(questionRowSelected);
+                var questionInfo = JSON.parse(data[1]);
+                questionsTable.row.add(questionInfo).draw();
+                var newQuestionIndex = questionsTable.rows().eq(0).filter(function(rowIndex){
+                    return questionsTable.cell(rowIndex, qtci.questionID).data() == questionInfo[qtci.questionID];
+                });
+                questionRowSelected = questionsTable.row(newQuestionIndex[0]).node();
                 showSuccessMessage(ttMEdit);
                 questionEditing = false;
-                resetCKEditorInstances('qt', false, false);
-                if(close)
-                    closeQuestionInfo(false);
+                closeQuestionInfo(false);
+                scrollToRow(questionsTable, questionRowSelected);
+                if(reopen)
+                    setTimeout(function(){ showQuestionInfo(questionRowSelected) }, 500);       // Auto reopen to create answer set
+            }else{
+//                alert(data);
+                showErrorMessage(data);
+            }
+        },
+        error : function (request, status, error) {
+            alert("jQuery AJAX request error:".error);
+        }
+    });
+}
+
+/**
+ *  @name   saveQuestionInfo
+ *  @descr  Binded function to save question's info
+ *  @param  close       Boolean                     Close panel if true
+ */
+function saveQuestionInfo(close){
+    var idTopic = $("#questionTopic").find("dt span span").text();
+    var difficulty = $("#questionDifficulty").find("dt span span").text();
+    var type = $("#questionType").val();
+    var translationsQ = new Array();
+    $("textarea[id^=qt]").each(function(){
+        translationsQ[$(this).attr("id").split("qt")[1]] = $(this).val();
+    });
+    var description = ($("#qDescription").val().trim() == "")? $("<a>"+$("#qt"+mainLang).val()+"</a>").text() : $("#qDescription").val();
+    var extras = $("input[name=extra]").serialize().replace(/extra=/g, "").replace(/&/g, "");
+    $.ajax({
+        url     : "index.php?page=question/updatequestioninfo",
+        type    : "post",
+        data    : {
+            idQuestion      :   questionsTable.row(questionRowSelected).data()[qtci.questionID],
+            idTopic         :   idTopic,
+            type            :   type,
+            difficulty      :   difficulty,
+            translationsQ   :   JSON.stringify(translationsQ),
+            shortText       :   description,
+            extras          :   extras,
+            mainLang        :   mainLang
+        },
+        success : function (data) {
+            data = data.trim().split(ajaxSeparator);
+            if(data.length > 1){
+                questionsTable.row(questionRowSelected).data(JSON.parse(data[1]));
+                questionsTable.draw();
+                showSuccessMessage(ttMEdit);
+                questionEditing = false;
+                setTimeout(function(){
+                    if(close){
+                        showQuestionLanguageAndPreview(questionRowSelected);
+                        closeQuestionInfo(false);
+                    }
+                }, 1000);
+                scrollToRow(questionsTable, questionRowSelected);
             }else{
 //                alert(data);
                 showErrorMessage(data);
@@ -131,7 +168,7 @@ function saveQuestionInfo(close){
  */
 function deleteQuestion(askConfirmation){
     if((!askConfirmation) || (confirmDialog(ttWarning, ttCDeleteQuestion, deleteQuestion, false))){
-        var idQuestion = questionsTable.row(questionRowEdit).data()[qtci.questionID];
+        var idQuestion = questionsTable.row(questionRowSelected).data()[qtci.questionID];
         $.ajax({
             url     : "index.php?page=question/deletequestion",
             type    : "post",
@@ -140,66 +177,16 @@ function deleteQuestion(askConfirmation){
             },
             success : function (data) {
                 if(data == "ACK"){
-                    questionsTable.row(questionRowEdit).remove().draw();
-                    if($(questionRowEdit)[0] == $(questionRowSelected)[0]){
-                        closeQuestionLanguagePanel();
-                        closeQuestionPreviewPanel();
-                    }
-                    questionRowEdit = null;
-                    closeQuestionInfo(false);
+                    questionsTable.row(questionRowSelected).remove().draw();
+                    questionRowSelected = null;
                     showSuccessMessage(ttMQuestionDeleted);
-                }else{
-//                    alert(data);
-                    showErrorMessage(data);
-                }
-            },
-            error : function (request, status, error) {
-                alert("jQuery AJAX request error:".error);
-            }
-        });
-    }
-}
-
-/**
- *  @name   showAnswerInfo
- *  @descr  Get and display answer informations and translations form database
- *  @param  selectedAnswerAndConfirm        Array       [Selected answer <a>, Confirmation]
- */
-function showAnswerInfo(selectedAnswerAndConfirm){
-    var selectedAnswer = selectedAnswerAndConfirm[0];
-    var askConfirmation = selectedAnswerAndConfirm[1];
-    if((!askConfirmation) || (confirmDialog(ttWarning, ttCDiscardEdits, showAnswerInfo, new Array(selectedAnswer, false)))){
-        if(newAnswer)
-            $("#answersList .boxContent ul li a[value='new']").parent().remove();
-        answerRowSelected = $(selectedAnswer);
-        $(".showAnswerInfo[value]").removeClass("selected");
-        answerRowSelected.addClass("selected");
-        answerEditing = false;
-        $.ajax({
-            url     : "index.php?page=question/showanswerinfo",
-            type    : "post",
-            data    : {
-                action      :   "show",
-                idQuestion  :   questionsTable.row(questionRowEdit).data()[qtci.questionID],
-                idType      :   questionsTable.row(questionRowEdit).data()[qtci.typeID],
-                idAnswer    :   $(answerRowSelected).attr("value")
-            },
-            success : function (data) {
-                if($(data)){
-                    $("#answerOptions").html(data);
-                    var langAlias;
-                    var translation;
-                    for(var indexLang = 0; indexLang < allLangs.length; indexLang++){
-                        langAlias = allLangs[indexLang]["alias"].toUpperCase();
-                        if($("#"+langAlias).length > 0){
-                            translation = $("#"+langAlias).html();
-                            $("#"+langAlias).remove();
-                            CKEDITOR.instances["at"+langAlias].setData(translation);
-                        }else{
-                            CKEDITOR.instances["at"+langAlias].setData("");
+                    setTimeout(function(){
+                        if(close){
+                            closeQuestionLanguagePanel();
+                            closeQuestionPreviewPanel();
+                            closeQuestionInfo(false);
                         }
-                    }
-                    setTimeout(function(){ resetCKEditorInstances("at", false, true); }, 500);
+                    }, 1000);
                 }else{
 //                    alert(data);
                     showErrorMessage(data);
@@ -215,91 +202,25 @@ function showAnswerInfo(selectedAnswerAndConfirm){
 /**
  *  @name   newEmptyAnswer
  *  @descr  Ajax request for show empty interface for define a new answer
+ *  @param  type        String      Question's type
  */
-function newEmptyAnswer(askConfirmation) {
-    if((!askConfirmation[0]) || (confirmDialog(ttWarning, ttCDiscardEdits, newEmptyAnswer, new Array(false)))){
-        if(newAnswer)
-            $("#answersList .boxContent ul li a[value='new']").parent().remove();
-        var idType = questionsTable.row(questionRowEdit).data()[qtci.typeID];
-        $.ajax({
-            url     : "index.php?page=question/showanswerinfo",
-            type    : "post",
-            data    : {
-                action      :   "new",
-                idQuestion  :   questionsTable.row(questionRowEdit).data()[qtci.questionID],
-                idType      :   questionsTable.row(questionRowEdit).data()[qtci.typeID],
-                idAnswer    :   "none"
-            },
-            success : function (data) {
-//                alert(data);
-                if($(data)){
-                    $(".showAnswerInfo[value]").removeClass("selected");
-                    $("#answersList .boxContent ul").append($("<li>" +
-                                               "    <a class=\"showAnswerInfo selected\" value=\"new\"" +
-                                               "    onclick=\"showAnswerInfo(new Array(this, (answerEditing || checkCKEditorEdits('at'))));\">" + ttNewAnswer + "</a>" +
-                                               "</li>"));
-                    $("#answerOptions").html(data);
-                    resetCKEditorInstances('at', true, true);
-                    answerRowSelected = $("#answersList .boxContent ul li a[value='new']");
-                    answerEditing = true;
-                    newAnswer = true;
-                }else{
-//                    alert(data);
-                    showErrorMessage(data);
-                }
-            },
-            error : function (request, status, error) {
-                alert("jQuery AJAX request error:".error);
-            }
-        });
-    }
-}
-
-/**
- *  @name   createNewQuestion
- *  @descr  Binded event to create a new question
- */
-function createNewQuestion(){
-    var questionTopic = $("#questionTopic dt span.value").text();
-    var questionDifficulty = $("#questionDifficulty dt span.value").text();
-    var questionType = $("#questionType dt span.value").text();
-    var questionTranslations = new Array();
-    var langAlias = "";
-    var langID = "";
-    var shortText = "";
-    for(var indexLang = 0; indexLang < allLangs.length; indexLang++){
-        langID = allLangs[indexLang]["idLanguage"];
-        langAlias = allLangs[indexLang]["alias"];
-        questionTranslations[langID] = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].getData();
-        if(langID == mainLang)
-            shortText = CKEDITOR.instances["qt"+(langAlias.toUpperCase())].document.getBody().getText();
-    }
-    var extras = $("input[name=extra]").serialize().replace(/extra=/g, "").replace(/&/g, "");
+function newEmptyAnswer(type) {
     $.ajax({
-        url     : "index.php?page=question/newquestion",
+        url     : "index.php?page=question/showanswerinfo",
         type    : "post",
         data    : {
-            idTopic         :   questionTopic,
-            idDifficulty    :   questionDifficulty,
-            idType          :   questionType,
-            translationsQ   :   JSON.stringify(questionTranslations),
-            shortText       :   shortText,
-            extras          :   extras,
-            mainLang        :   mainLang
+            action      :   "new",
+            idQuestion  :   questionsTable.row(questionRowSelected).data()[qtci.questionID],
+            type        :   type,
+            idAnswer    :   "none",
+            mainLang    :   mainLang
         },
         success : function (data) {
-            data = data.trim().split(ajaxSeparator);
-            if(data.length > 1){
-                var questionInfo = JSON.parse(data[1]);
-                questionsTable.row.add(questionInfo).draw();
-                var newQuestionIndex = questionsTable.rows().eq(0).filter(function(rowIndex){
-                    return questionsTable.cell(rowIndex, qtci.questionID).data() == questionInfo[qtci.questionID];
-                });
-                questionRowEdit = questionsTable.row(newQuestionIndex[0]).node();
-                showSuccessMessage(ttMEdit);
-                questionEditing = false;
-                closeQuestionInfo(false);
-                setTimeout(function(){ showQuestionInfo(questionRowEdit) }, 500);
+//            alert(data);
+            if($(data)){
+                $("body").append(data);
+                $("#questionInfo").slideUp();
+                newLightbox($("#answerInfo"), {});
             }else{
 //                alert(data);
                 showErrorMessage(data);
@@ -312,14 +233,37 @@ function createNewQuestion(){
 }
 
 /**
- *  @name   cancelNewQuestion
- *  @descr  Closes new question's information after confirm dialog
- *  @param  askConfirmation     Boolean     If true display a confirmation dialog
+ *  @name   showAnswerInfo
+ *  @descr  Get and display informations and translations for requested answer
+ *  @param  selectedAnswerConfirmAndType        Array       [Selected answer <tr>, Confirmation, Question's Type]
  */
-function cancelNewQuestion(askConfirmation){
-    if(((!askConfirmation) || (confirmDialog(ttWarning, ttCDiscardNew, cancelNewQuestion, false)))){
-        questionEditing = false;
-        closeQuestionInfo(false);
+function showAnswerInfo(selectedAnswerConfirmAndType){
+    clearTimeout(timer);
+    var selectedAnswer = selectedAnswerConfirmAndType[0];
+    var askConfirmation = selectedAnswerConfirmAndType[1];
+    var type = selectedAnswerConfirmAndType[2];
+    if((!askConfirmation) || (confirmDialog(ttWarning, ttCDiscardEdits, showAnswerInfo, new Array(selectedAnswer, false, type)))){
+        answerRowSelected = $(selectedAnswer);
+        $.ajax({
+            url     : "index.php?page=question/showanswerinfo",
+            type    : "post",
+            data    : {
+                action      :   "show",
+                idQuestion  :   questionsTable.row(questionRowSelected).data()[qtci.questionID],
+                type        :   type,
+                idAnswer    :   answersTable.row(answerRowSelected).data()[atci.answerID],
+                mainLang    :   mainLang
+            },
+            success : function (data) {
+//                alert(data);
+                $("body").append(data);
+                $("#questionInfo").slideUp();
+                newLightbox($("#answerInfo"), {});
+            },
+            error : function (request, status, error) {
+                alert("jQuery AJAX request error:".error);
+            }
+        });
     }
 }
 
@@ -329,60 +273,30 @@ function cancelNewQuestion(askConfirmation){
  *  @param  askConfirmation     Boolean     If true display a confirmation dialog
  */
 function closeQuestionInfo(askConfirmation){
-    if((!askConfirmation) || ((!questionEditing) && (!answerEditing) && (!checkCKEditorEdits('qt')) && (!checkCKEditorEdits('at'))
-        || (confirmDialog(ttWarning, ttCDiscardEdits, closeQuestionInfo, false)))){
-        closeLightbox($('#questionInfo'));
+    if((!askConfirmation) || ((!questionEditing) || (confirmDialog(ttWarning, ttCDiscardEdits, closeQuestionInfo, false)))){
         questionEditing = false;
-        answerEditing = false;
+        destroyAllCKEditorInstances();
+        closeLightbox($('#questionInfo'));
+        closeQuestionTypeSelect();
     }
 }
 
 /**
- *  @name   createCKEditorInstance
- *  @descr  Creates CKEditor instance with specified ID
- *  @param  instance        String      Instance ID
+ *  @name   cancelNewQuestion
+ *  @descr  Closes new question's information after confirm dialog
+ *  @param  askConfirmation     Boolean     If true display a confirmation dialog
  */
-function createCKEditorInstance(instance){
-    var roxyFileman = '/fileman/index.html';
-    CKEDITOR.replace(instance,{filebrowserBrowseUrl:roxyFileman,
-        filebrowserUploadUrl:roxyFileman,
-        filebrowserImageBrowseUrl:roxyFileman+'?type=image',
-        filebrowserImageUploadUrl:roxyFileman+'?type=image'});
-}
-
-/**
- *  @name   resetCKEditorInstances
- *  @descr  Reset text, Undo/Redo and Dirty state of CKEditor instances
- *  @param  prefix          String          CKEditor instance prefix ('at' | 'qt')
- *  @param  resetText       Boolean         If true reset instance content
- *  @param  resetUndo       Boolean         If true reset instance undo/redo
- */
-function resetCKEditorInstances(prefix, resetText, resetUndo){
-    var langAlias = "";
-    for(var indexLang = 0; indexLang < allLangs.length; indexLang++){
-        langAlias = allLangs[indexLang]["alias"].toUpperCase();
-        if(resetText)
-            CKEDITOR.instances[prefix+langAlias].setData("");
-        if(resetUndo)
-            CKEDITOR.instances[prefix+langAlias].resetUndo();
-        CKEDITOR.instances[prefix+langAlias].resetDirty();
+function cancelNewQuestion(askConfirmation){
+    if(((!askConfirmation) || (confirmDialog(ttWarning, ttCDiscardNew, cancelNewQuestion, false)))){
+        questionEditing = false;
+        closeQuestionInfo(false);
+        closeQuestionTypeSelect();
     }
 }
 
-/**
- *  @name   checkCKEditorEdits
- *  @descr  Check if CKEditor instances with prefix are edited
- *  @param  prefix          String          CKEditor instance prefix ('at' | 'qt')
- */
-function checkCKEditorEdits(prefix){
-    var edited = false;
-    var langAlias = "";
-    var indexLang = 0;
-    while((indexLang < allLangs.length) && (!edited)){
-        langAlias = allLangs[indexLang]["alias"].toUpperCase();
-        if(CKEDITOR.instances[prefix+langAlias] != null)
-            edited = CKEDITOR.instances[prefix+langAlias].checkDirty();
-        indexLang++
-    }
-    return edited;
+function changeCKEditorQuestionLanguage(tab){
+    var idLanguage = $(tab).attr("value");
+    createCKEditorInstance("qt"+idLanguage);
+    $("#qLangsTabs a.tab").removeClass("active");
+    $(tab).addClass("active");
 }

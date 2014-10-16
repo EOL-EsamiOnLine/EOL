@@ -45,15 +45,15 @@ $(function(){
  */
 function confirmTest(askConfirmation){
     if((!askConfirmation[0]) || (confirmDialog(ttWarning, ttCConfirmTest, confirmTest, new Array(false)))){
-        var correctScores = new Array();
-        $("div.responseOP").each(function(index, div){
-            correctScores[$(div).attr("value")] = $(div).next().children("dt").find("span.value").text();
+        var correctScores = [];
+        $("div.questionTest").each(function(){
+            correctScores[$(this).attr("value")] = $(this).find(".responseScore").text()
         });
         $.ajax({
             url     : "index.php?page=exam/correct",
             type    : "post",
             data    : {
-                idTest      :   $("#idTest").val(),
+                idTest        :   $("#idTest").val(),
                 correctScores :   JSON.stringify(correctScores),
                 scoreTest     :   $("#scorePre").text(),
                 bonus         :   $(".dropdownBonus dt span.value").text(),
@@ -98,6 +98,8 @@ function updateTestScore(selected){
         }
         if(scorePost > maxScore){
             scorePost = maxScore;
+        }else if(scorePost < 0){
+            scorePost = 0;
         }
         $("#scorePre").text(scorePre.toFixed(1));
         $("#scorePost").text(scorePost.toFixed(0));
@@ -118,6 +120,8 @@ function updateTestScore(selected){
         scorePost = parseFloat($("#scorePre").text()) + bonus;
         if(scorePost > maxScore){
             scorePost = maxScore;
+        }else if(scorePost < 0){
+            scorePost = 0;
         }
         $("#scorePost").text(scorePost.toFixed(0));
     }

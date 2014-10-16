@@ -384,61 +384,6 @@ function showMessage (div, message) {
 }
 
 /**
- *  @descr  Binded function to create NicEdit
- */
-function enableNicEdit(panel, area, id){
-    if( $("#"+panel).html() == ""){
-        editing[id] = new nicEditor({
-                              buttonList : ['bold',
-                                            'italic',
-                                            'underline',
-                                            'strikethrough',
-                                            'left',
-                                            'center',
-                                            'right',
-                                            'justify',
-                                            'ol',
-                                            'ul',
-                                            'subscript',
-                                            'superscript',
-                                            'image',
-                                            'forecolor',
-                                            'link',
-                                            'unlink',
-                                            'xhtml',
-                                            'save'],
-                              onSave : function(content, area, instance) {
-                                           var id = area.substring(4);
-                                           var panel = "NicEditPanel"+id;
-                                           disableNicEdit(id, panel, area, content);
-                                       }
-        });
-        editing[id].setPanel(panel);
-        $("#"+panel).hide().show(300);
-        editing[id].addInstance(area);
-        $("#"+area).css('backgroundColor','rgb(231, 241, 179)');
-        $("#"+area).focus();
-    }
-}
-
-/**
- *  @descr  Binded function to destroy NicEdit
- */
-function disableNicEdit(id, panel, area, content){
-
-    editing[id].removeInstance(area);
-    $("#"+panel).hide({
-                    duration    :   300,
-                    complete    :   function(){
-                                        $("#"+panel).empty();
-                                    }
-                  });
-    $("#"+area).blur();
-    $("#"+area).css('backgroundColor','#ffffff');
-
-}
-
-/**
  *  @descr  Check if typed email addres is valid
  */
 function isValidEmailAddress(emailAddress) {
@@ -446,29 +391,17 @@ function isValidEmailAddress(emailAddress) {
     return pattern.test(emailAddress);
 }
 
-/**
- *  @descr  Function to recolor rows table
- */
-function recolorTable(element, value){
-    $("tr."+element+"[value='"+value+"']")
-        .nextUntil(null, "."+element).each(function(index, tr){
-            if($(tr).hasClass("odd")){
-                $(tr).removeClass("odd");
-                $(tr).addClass("even");
-            }else if($(tr).hasClass("even")){
-                $(tr).removeClass("even");
-                $(tr).addClass("odd");
-            }
-    });
+function truncate(data, width){
+    if(data!=null){
+        return '<div class="ellipsis" style="width :'+width+'; text-overflow:ellipsis;">'+data+'</div>';
+    }else{
+        return '';
+    }
 }
 
-
-
-
-
-
-
-
+function scrollToRow(datatable, row){
+    $(datatable.table().body()).closest("div.dataTables_scrollBody").scrollTo(row);
+}
 
 
 

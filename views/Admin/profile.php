@@ -20,27 +20,27 @@ global $user, $log;
     <form class="infoEdit" onsubmit="return false;">
 
         <label class="b2Space"><?= ttName ?> : </label>
-        <input class="writable" type="text" id="userName" size="75%" value="<?= $user->name ?>">
+        <input class="writable" type="text" id="userName" value="<?= $user->name ?>">
         <div class="clearer"></div>
 
         <label class="b2Space"><?= ttSurname ?> : </label>
-        <input class="writable" type="text" id="userSurname" size="75%" value="<?= $user->surname ?>">
+        <input class="writable" type="text" id="userSurname" value="<?= $user->surname ?>">
         <div class="clearer"></div>
 
         <label class="b2Space"><?= ttEmail ?> : </label>
-        <input class="readonly" type="text" id="userEmail" size="75%" value="<?= $user->email ?>">
+        <input class="readonly" type="text" id="userEmail" value="<?= $user->email ?>">
         <div class="clearer"></div>
 
         <label class="b2Space"><?= ttOldPassword ?> : </label>
-        <input class="writable" type="password" id="oldPassword" size="75%" value="">
+        <input class="writable" type="password" id="oldPassword" value="">
         <div class="clearer"></div>
 
         <label class="b2Space"><?= ttNewPassword ?> : </label>
-        <input class="writable" type="password" id="newPassword" size="75%" value="">
+        <input class="writable" type="password" id="newPassword" value="">
         <div class="clearer"></div>
 
         <label class="b2Space"><?= ttConfirmPassword ?> : </label>
-        <input class="writable" type="password" id="newPassword2" size="75%" value="">
+        <input class="writable" type="password" id="newPassword2" value="">
         <div class="clearer"></div>
 
         <div>

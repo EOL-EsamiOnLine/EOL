@@ -12,7 +12,8 @@ CKEDITOR.editorConfig = function( config ) {
     config.entities_latin = true;
 //    config.forcePasteAsPlainText = true;
     config.resize_enabled = false;
-    config.height = "260px";
+//    config.width = "610px";
+    config.height = "150px";
     config.toolbar = [
         ["Source", "-", "NewPage", "Preview", "Print"],
         ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"],

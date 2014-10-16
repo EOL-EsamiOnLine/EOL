@@ -3,7 +3,7 @@
  * User: Masterplan
  * Date: 5/3/13
  * Time: 12:30 PM
- * Desc: Shows test page
+ * Desc: Shows test function
  */
 
 var countdownPosX = 20;
@@ -14,90 +14,18 @@ function countdownComplete(){
     alert(ttETimeExpired);
 }
 
-
 $(function(){
 
-    /**
-     *  @descr  Add draggable attribute to countdown
-     */
-    $("#countdown").draggable({
-        stop : function(event, ui) {
-            countdownPosX = $("#countdown").offset().top - $(window).scrollTop();
-        }
-    });
+    loadCountdownAndExtra();
 
-    /**
-     *  @descr  Add draggable attribute to calculator
-     */
-    $("#calculator").draggable({
-        cancel : 'object',
-        stop : function(event, ui) {
-            calculatorPosX = $("#calculator").offset().top - $(window).scrollTop();
-        }
-    });
-
-    /**
-     *  @descr  Add draggable attribute to periodic table
-     */
-    $("#periodicTable").draggable({
-        cancel : 'img',
-        stop : function(event, ui) {
-            periodicTablePosX = $("#periodicTable").offset().top - $(window).scrollTop();
-        }
-    });
-
-    /**
-     *  @descr  Add srollable function for countdown and extras
-     */
-    $(window).scroll(function(event) {
-        $('#countdown').css('top', (countdownPosX + $(this).scrollTop()) + "px");
-        $('#calculator').css('top', (calculatorPosX + $(this).scrollTop()) + "px");
-        $('#periodicTable').css('top', (periodicTablePosX + $(this).scrollTop()) + "px");
-    });
-
-
-
-    /**
-     *  @descr  Bind event for checkboxes
-     */
+    /** @descr  Bind event for checkboxes */
     $("input[type='checkbox'] + span").on("click", function(event){
-        if($(this).prev().is(":checked")) {
-            $(this).prev().prop("checked", false);
-        }else{
-            $(this).prev().prop("checked", true);
-        }
+        $(this).prev().prop("checked", !($(this).prev().is(":checked")));
     });
 
-    /**
-     *  @descr  Bind event for radiobuttons
-     */
+    /** @descr  Bind event for radiobuttons */
     $("input[type='radio'] + span").on("click", function(event){
-        if($(this).prev().is(":checked")) {
-
-        }else{
-            $(this).prev().prop("checked", true);
-        }
-    });
-
-    /**
-     *  @descr  Show calculator
-     */
-    $(".questionText img.calculator").on("click", function(event){
-        $("#calculator").show();
-    });
-
-    /**
-     *  @descr  Show periodic table
-     */
-    $(".questionText img.periodicTable").on("click", function(event){
-        $("#periodicTable").show();
-    });
-
-    /**
-     *  @descr  Hide extra
-     */
-    $("span.extraClose").on("click", function(event){
-        $(this).closest(".extra").hide();
+        $(this).prev().prop("checked", true);
     });
 
 });
@@ -109,24 +37,12 @@ $(function(){
  */
 function submitTest(askConfirmation){
     if((!askConfirmation[0]) || (confirmDialog(ttWarning, ttCSubmitTest, submitTest, new Array(false)))){
-        var questionsTest = new Array();
-        var answersTest = new Array();
+        var questionsTest = [];
+        var answersTest = [];
         $(".questionTest").each(function(index, div){
             questionsTest.push($(div).attr("value"));
-            var answers = new Array();
-            switch($(div).attr("type")){
-                case "MC" : $(div).find("input:checked").first().each(function(index, input){
-                                answers.push($(input).attr("value"));
-                            }); break;
-                case "MR" : $(div).find("input:checked").each(function(index, input){
-                                answers.push($(input).attr("value"));
-                            }); break;
-                case "OP" : $(div).find("textarea").first().each(function(index, input){
-                                answers.push($(input).val());
-                            }); break;
-                default: showErrorMessage(ttEAnswerNotFound); return false;
-            }
-            answersTest.push(JSON.stringify(answers));
+            var answer = getGivenAnswer(this);
+            answersTest.push(JSON.stringify(answer));
         });
 //        alert(answersTest);
 //        alert(JSON.stringify(answersTest));
@@ -157,4 +73,75 @@ function submitTest(askConfirmation){
             showErrorMessage(ttEQuestAnswPicker);
         }
     }
+}
+
+
+function getGivenAnswer(questionDiv){
+    var type = $(questionDiv).attr("type");
+    return window["getGivenAnswer_"+type](questionDiv);
+}
+
+function loadCountdownAndExtra(){
+
+// ----------------------------------------------------------- //
+//                          COUNTDOWN                          //
+// ----------------------------------------------------------- //
+
+    /** @descr  Add draggable attribute to countdown */
+    $("#countdown").draggable({
+        stop : function(event, ui) {
+            countdownPosX = $("#countdown").offset().top - $(window).scrollTop();
+        }
+    });
+
+// ----------------------------------------------------------- //
+//                      EXTRA (CALCULATOR)                     //
+// ----------------------------------------------------------- //
+
+    /** @descr  Add draggable attribute to calculator */
+    $("#calculator").draggable({
+        cancel : 'object',
+        stop : function(event, ui) {
+            calculatorPosX = $("#calculator").offset().top - $(window).scrollTop();
+        }
+    });
+
+    /** @descr  Binded function to show calculator */
+    $(".questionText img.calculator").on("click", function(event){
+        $("#calculator").show();
+    });
+
+// ----------------------------------------------------------- //
+//                    EXTRA (PERIODIC TABLE)                   //
+// ----------------------------------------------------------- //
+
+    /** @descr  Add draggable attribute to periodic table */
+    $("#periodicTable").draggable({
+        cancel : 'img',
+        stop : function(event, ui) {
+            periodicTablePosX = $("#periodicTable").offset().top - $(window).scrollTop();
+        }
+    });
+
+    /** @descr  Binded function to show periodic table */
+    $(".questionText img.periodicTable").on("click", function(event){
+        $("#periodicTable").show();
+    });
+
+// ----------------------------------------------------------- //
+//                           COMMON                            //
+// ----------------------------------------------------------- //
+
+
+    /** @descr  Add srollable function for countdown and extras */
+    $(window).scroll(function(event) {
+        $('#countdown').css('top', (countdownPosX + $(this).scrollTop()) + "px");
+        $('#calculator').css('top', (calculatorPosX + $(this).scrollTop()) + "px");
+        $('#periodicTable').css('top', (periodicTablePosX + $(this).scrollTop()) + "px");
+    });
+
+    /** @descr  Hide extra */
+    $("span.extraClose").on("click", function(event){
+        $(this).closest(".extra").hide();
+    });
 }

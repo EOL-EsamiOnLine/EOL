@@ -24,7 +24,8 @@ body.noscroll {
 *              Header                *
 *************************************/
 #container{
-    width       :   1280px;
+    /*width       :   1280px;*/
+    width       :   99%;
     border	    :	0;
     margin      :   0 auto;
 }
@@ -71,9 +72,10 @@ ul.topnav {
     text-align      :   left;
     list-style      :   none;
     float           :   left;
-    width           :   96.9%;
+    width           :   98%;
     margin-top      :   0;
     margin-bottom   :   0;
+    padding-left    :   2%;
     background      :   url(images/topnav_bg.gif) repeat-x;
 }
 ul.topnav li {
@@ -281,6 +283,8 @@ div.ui-datepicker{
     top:2px;
     width:145px;
     z-index: 1000;
+    max-height          :   150px;
+    overflow-y          :   auto;
 }
 .dropdownTranslation dd ol li{
     padding: 1px 1px 1px 3px;
@@ -332,6 +336,8 @@ div.ui-datepicker{
     left:0;
     top:2px;
     z-index: 1000;
+    max-height: 150px;
+    overflow-y: auto;
 }
 .dropdownInfo dd ol li{
     padding: 1px 1px 1px 3px;
@@ -1060,6 +1066,9 @@ img.icon{
 .bold {
     font-weight: bold;
 }
+.underline {
+    text-decoration: underline;
+}
 /*************************************
 *      LightboxMe Modal Message      *
 *************************************/
@@ -1106,9 +1115,15 @@ img.icon{
     font-size           :   12px;
     font-weight         :   bold;
 }
+.infoEdit input[type="text"],
+.infoEdit input[type="password"] {
+    width: 65%;
+    margin-right: 1%;
+}
 .infoEdit textarea{
     width: 65%;
     height: 50px;
+    margin-right: 1%;
 }
 
 /*******************************************************************
@@ -1139,19 +1154,19 @@ img.icon{
 /*************************************
 *             Languages              *
 *************************************/
-div.language.odd{
-    background-color: #efefef;
-}
-div.language.even{
-    background-color: #e2e2e2;
-}
-div.language div:not(.clearer){
-    width: 47.7%;
-    font-size: 14px;
-    padding: 10px;
-}
+/*div.language.odd{*/
+    /*background-color: #efefef;*/
+/*}*/
+/*div.language.even{*/
+    /*background-color: #e2e2e2;*/
+/*}*/
+/*div.language div:not(.clearer){*/
+    /*width: 47.7%;*/
+    /*font-size: 14px;*/
+    /*padding: 10px;*/
+/*}*/
 textarea.language{
-    width: 47.8%;
+    width: 95%;
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
@@ -1191,10 +1206,14 @@ textarea.language.green{
 /*************************************
 *              Homepage              *
 *************************************/
-#examsTableMinContainer,
-#testsTableContainer {
+#examsTableMinContainer {
     width: 48%;
     float: left;
+    font-size: 12px;
+}
+#testsTableContainer {
+    width: 48%;
+    float: right;
     font-size: 12px;
 }
 #subjectsList .boxContent {
@@ -1271,6 +1290,36 @@ textarea.language.green{
 *******************************************************************/
 
 /*************************************
+*        New questions panel         *
+*************************************/
+
+#newQuestionType {
+    float: left;
+    margin-top: 10px;
+    width: 185px;
+    padding: 5px 0 5px 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 290px;
+}
+.QTDescription {
+    float: left;
+    width: 470px;
+    height: 288px;
+    margin-top: 10px;
+    padding-left: 10px;
+    background: #B6B6B6;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid black;
+    border-left-width: 0;
+    font-size: 12px;
+}
+.QTDescription p {
+    font-size: 14px;
+}
+
+/*************************************
 *          Questions table           *
 *************************************/
 #questionsTable .qStatus{
@@ -1302,8 +1351,11 @@ textarea.language.green{
 }
 #question-tab,
 #answers,
-#answers-tab {
+#answerInfoForm {
     background: #c7c7c7;
+}
+#answerInfoForm {
+    padding: 5px 10px;
 }
 #answersList .boxContent {
     height: 250px;
@@ -1322,19 +1374,51 @@ textarea.language.green{
 #question-tab {
     width: 96.5%;
 }
-#answers-tab {
-    width: 635px;
-    border: none;
+#qLangsTabs,
+#aLangsTabs {
+    width: 630px;
+    overflow-x: auto;
+    position: relative;
+    top: 2px;
+    z-index: 1;
 }
-#answersList {
-    width: 190px;
-    top: 6px;
+a.tab {
+    float: left;
+    padding: 7px 15px;
+    border-right: 1px solid #686868;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-width: 0;
+    background: #e6e6e6;
+    cursor: pointer;
+}
+a.tab.active {
+    background: #c7c7c7;
+    border: 1px solid #686868;
+    border-bottom: 1px solid #c7c7c7;
+}
+a.tab:not(.active):hover {
+    border: 1px solid #999999;
+    background: #dadada url(images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x;
+    font-weight: normal;
+    color: #212121;
+    border-bottom-width: 0;
+}
+#qEditor,
+#aEditor {
+    width: 630px;
+    border: 1px solid #686868;
+    border-radius: 7px;
+    position: relative;
+    left: -5px;
+    padding: 10px;
 }
 #questionInfo .dropdownInfo dt{
     height: 19px;
     overflow: hidden;
 }
-#questionInfo label {
+#questionInfo label,
+#answerInfo label {
     padding-top: 3px;
 }
 #questionDifficulty.dropdownInfo dd,
@@ -1344,7 +1428,10 @@ textarea.language.green{
 }
 .dropdownInfo.scoreMC dd,
 .dropdownInfo.scoreMC dt,
-.dropdownInfo.scoreMC ol {
+.dropdownInfo.scoreMC ol,
+.dropdownInfo.scoreMR dd,
+.dropdownInfo.scoreMR dt,
+.dropdownInfo.scoreMR ol {
     width: 90px;
 }
 #questionType.dropdownInfo dd,
@@ -1352,11 +1439,12 @@ textarea.language.green{
 #questionType.dropdownInfo ol {
     width: 150px;
 }
-input.scoreMR {
-    width: 100px;
-}
 div.panel {
     z-index: 10000000;
+}
+div.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 /*******************************************************************
@@ -1657,7 +1745,7 @@ div.answered{
     width               :   40px;
     text-align          :   right;
 }
-div.responseOP{
+div.responseES{
     height              :   100px;
     resize              :   none;
     background-color    :   #e2e2e2;
@@ -1684,7 +1772,7 @@ span.wrongAnswer{
     background-size     :   100%;
 }
 div.emptyQuestion span.responseQuestion{
-    background          :   url('images/help.png') no-repeat;
+    background          :   url('images/mark.png') no-repeat;
     background-size     :   100%;
 }
 div.rightQuestion span.responseQuestion{
@@ -1732,7 +1820,7 @@ img.showhide{
     margin              :   0 19px 0 0;
     padding             :   0;
     font-size           :   14px;
-    width               :   50px;
+    width               :   70px;
 }
 .dropdownBonus dt{
     margin-top          :   1px;
@@ -1775,7 +1863,7 @@ img.showhide{
 .dropdownScore dd ol li{
     padding         :   1px 1px 1px 3px;
     border-bottom   :   1px solid #8a8a8a;
-    text-align      :   right;
+    text-align      :   left;
 }
 .dropdownBonus dd ol li:hover,
 .dropdownScore dd ol li:hover{
@@ -1791,10 +1879,15 @@ img.showhide{
 .dropdownScore dt.readonly{
     background: #f5f5f5;
 }
-#finalScorePanel{
-    width:100%;
-    padding-top: 20px;
+#lastLine{
+    width: 100%;
     border-top: 2px solid #0075ea;
+    text-align: center;
+}
+#finalScorePanel{
+    width:300px;
+    margin: 20px auto;
+    text-align: left;
 }
 #finalScore{
     font-size: 10pt;
@@ -1948,7 +2041,7 @@ img.showhide{
     margin-bottom       :   20px;
 }
 .questionAnswers textarea{
-    width               :   890px;
+    width               :   98%;
     height              :   100px;
     resize              :   none;
 }

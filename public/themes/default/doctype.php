@@ -34,6 +34,8 @@ global $user, $engine, $config;
     <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.lightbox_me.js"></script>
     <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>dataTables.jqueryui.js"></script>
+    <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.scrollTo.min.js"></script>
+
     <script src="ckeditor/ckeditor.js"></script>
 
 </head>

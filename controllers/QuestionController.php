@@ -69,7 +69,7 @@ class QuestionController extends Controller{
     private function actionShowquestionpreview(){
         global $log, $engine;
 
-        if((isset($_POST['idQuestion'])) && (isset($_POST['idLanguage']))){
+        if((isset($_POST['idQuestion'])) && (isset($_POST['idLanguage'])) && (isset($_POST['type']))){
             $engine->loadLibs();
             $engine->renderPage();
         }else{
@@ -101,7 +101,8 @@ class QuestionController extends Controller{
     private function actionShowquestioninfo(){
         global $log, $engine;
 
-        if((isset($_POST['action'])) && (isset($_POST['idQuestion']))){
+        if(((isset($_POST['action'])) && (isset($_POST['idQuestion']))) ||
+            (isset($_POST['action'])) && (isset($_POST['type'])) && (isset($_POST['topic']))){
             $engine->loadLibs();
             $engine->renderPage();
         }else{
@@ -175,10 +176,7 @@ class QuestionController extends Controller{
                                         class="flag" alt="'.$allLangs[$idLanguage]['alias'].'"
                                         src="'.$config['themeFlagsDir'].$allLangs[$idLanguage]['alias'].'.gif">';
             }
-            if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-            else
-                $text = $question['shortText'];
+            $text = $question['shortText'];
             $newQuestion = array(
                 '<img title="'.constant('tt'.$statuses[$question['status']]).'"
                       value="'.$question['status'].'" alt="'.$statuses[$question['status']].'"
@@ -229,20 +227,21 @@ class QuestionController extends Controller{
     private function actionNewquestion(){
         global $log, $config, $ajaxSeparator;
 
-        if((isset($_POST['idTopic'])) && (isset($_POST['idType'])) && (isset($_POST['idDifficulty'])) &&
+        if((isset($_POST['idTopic'])) && (isset($_POST['type'])) && (isset($_POST['difficulty'])) &&
            (isset($_POST['translationsQ'])) && (isset($_POST['shortText'])) && (isset($_POST['extras'])) &&
            (isset($_POST['mainLang']))){
 
             $db = new sqlDB();
             $translationsQ = json_decode($_POST['translationsQ'], true);
             if($translationsQ[$_POST['mainLang']]){
-                if($db->qNewQuestion($_POST['idTopic'], $_POST['idType'], $_POST['idDifficulty'], $_POST['extras'], $_POST['shortText'], $translationsQ)){
-                    if(($idQuestion = $db->nextRowEnum()) && ($idQuestion = $idQuestion[0])){
-                        echo $this->updateQuestionRow($idQuestion, $_POST['mainLang'], $translationsQ);
-                    }
-                }else{
-                    die($db->getError());
-                }
+                $question = Question::newQuestion($_POST['type'], array('idTopic' => $_POST['idTopic'],
+                                                                        'type' => $_POST['type'],
+                                                                        'difficulty' => $_POST['difficulty'],
+                                                                        'extras' => $_POST['extras'],
+                                                                        'shortText' => $_POST['shortText'],
+                                                                        'translationsQ' => $translationsQ));
+                $idQuestion = $question->createNewQuestion();
+                echo $this->updateQuestionRow($idQuestion, $_POST['mainLang'], $translationsQ);
             }else{
                 die(ttEMainLanguageEmpty);
             }
@@ -296,7 +295,7 @@ class QuestionController extends Controller{
         global $engine, $log;
 
         if((isset($_SESSION['idSubject'])) && (isset($_POST['action'])) && (isset($_POST['idQuestion'])) &&
-            (isset($_POST['idType'])) && (isset($_POST['idAnswer']))){
+            (isset($_POST['type'])) && (isset($_POST['idAnswer']))){
             $engine->loadLibs();
             $engine->renderPage();
         }else{
@@ -311,14 +310,14 @@ class QuestionController extends Controller{
     private function actionUpdateanswerinfo(){
         global $log, $ajaxSeparator;
 
-        if((isset($_POST['idQuestion'])) && (isset($_POST['idAnswer'])) &&
+        if((isset($_POST['idQuestion'])) && (isset($_POST['idAnswer'])) && (isset($_POST['type'])) &&
            (isset($_POST['translationsA'])) && (isset($_POST['score'])) && (isset($_POST['mainLang']))){
             $db = new sqlDB();
 
             $translationsA = json_decode($_POST['translationsA'], true);
             if($translationsA[$_POST['mainLang']]){
                 $updateMandatory = false;
-                $questionID = $_POST['idQuestion'];
+                $questionID = $newQuestionID = $_POST['idQuestion'];
                 $answerID = $_POST['idAnswer'];
                 if($db->qGetEditAndDeleteConstraints('edit', 'answer1', array($questionID))){
                     $updateMandatory = ($db->numResultRows() > 0) ? true : false;
@@ -330,7 +329,7 @@ class QuestionController extends Controller{
                     if($db->numResultRows() > 0){
                         if($db->qDuplicateQuestion($questionID, $updateMandatory, $answerID)){
                             if($IDs = $db->nextRowEnum()){
-                                $questionID = $IDs[0];
+                                $newQuestionID = $IDs[0];
                                 $answerID = $IDs[1];
                             }
                         }else{
@@ -345,7 +344,17 @@ class QuestionController extends Controller{
             }
 
             if($db->qUpdateAnswerInfo($answerID, $_POST['score'], $translationsA)){
-                echo 'ACK'.$ajaxSeparator.$questionID.$ajaxSeparator.$answerID;
+                echo 'ACK'.$ajaxSeparator.$newQuestionID;
+                if($questionID != $newQuestionID){                      // Question duplicated, reload answers table
+                    $question = Question::newQuestion($_POST['type']);
+                    echo $ajaxSeparator;
+                    $question->printAnswersTable($newQuestionID, $_SESSION['idSubject']);
+                }else{                                                  // Reprint only edited answer's row
+                    $answer = Answer::newAnswer($_POST['type'], array('score'       =>  $_POST['score'],
+                                                                      'translation' =>  $translationsA[$_POST['mainLang']],
+                                                                      'idAnswer'    =>  $answerID));
+                    echo $ajaxSeparator.str_replace('\\/', '/', json_encode($answer->getAnswerRowInTable()));
+                }
             }else{
                 die($db->getError());
             }
@@ -363,7 +372,7 @@ class QuestionController extends Controller{
     private function actionNewanswer(){
         global $log, $ajaxSeparator;
 
-        if((isset($_POST['idQuestion'])) && (isset($_POST['score'])) &&
+        if((isset($_POST['idQuestion'])) && (isset($_POST['score'])) && (isset($_POST['type'])) &&
            (isset($_POST['translationsA'])) && (isset($_POST['mainLang']))){
             $db = new sqlDB();
 
@@ -371,7 +380,7 @@ class QuestionController extends Controller{
             if($translationsA[$_POST['mainLang']]){
 
                 $updateMandatory = false;
-                $questionID = $_POST['idQuestion'];
+                $questionID = $newQuestionID = $_POST['idQuestion'];
                 if($db->qGetEditAndDeleteConstraints('create', 'answer1', array($questionID))){
                     $updateMandatory = ($db->numResultRows() > 0) ? true : false;
                 }else{
@@ -382,7 +391,7 @@ class QuestionController extends Controller{
                     if($db->numResultRows() > 0){
                         if($db->qDuplicateQuestion($questionID, $updateMandatory)){
                             $resultSet = $db->nextRowEnum();
-                            $questionID = $resultSet[0];
+                            $newQuestionID = $resultSet[0];
                         }else{
                             die($db->getError());
                         }
@@ -391,10 +400,20 @@ class QuestionController extends Controller{
                     die($db->getError());
                 }
 
-                if($db->qNewAnswer($questionID, $_POST['score'], $translationsA)){
+                if($db->qNewAnswer($newQuestionID, $_POST['score'], $translationsA)){
                     $resultSet = $db->nextRowEnum();
                     $answerID = $resultSet[0];
-                    echo 'ACK'.$ajaxSeparator.$questionID.$ajaxSeparator.$answerID;
+                    echo 'ACK'.$ajaxSeparator.$newQuestionID;
+                    if($questionID != $newQuestionID){                      // Question duplicated, reload answers table
+                        $question = Question::newQuestion($_POST['type']);
+                        echo $ajaxSeparator;
+                        $question->printAnswersTable($newQuestionID, $_SESSION['idSubject']);
+                    }else{                                                  // Reprint only edited answer's row
+                        $answer = Answer::newAnswer($_POST['type'], array('score'       =>  $_POST['score'],
+                                                                          'translation' =>  $translationsA[$_POST['mainLang']],
+                                                                          'idAnswer'    =>  $answerID));
+                        echo $ajaxSeparator.str_replace('\\/', '/', json_encode($answer->getAnswerRowInTable()));
+                    }
                 }else{
                     die($db->getError());
                 }
@@ -414,11 +433,11 @@ class QuestionController extends Controller{
     private function actionDeleteanswer(){
         global $log, $ajaxSeparator;
 
-        if((isset($_POST['idQuestion'])) && (isset($_POST['idAnswer']))){
+        if((isset($_POST['idQuestion'])) && (isset($_POST['idAnswer'])) && (isset($_POST['type']))){
             $db = new sqlDB();
 
             $updateMandatory = false;
-            $questionID = $_POST['idQuestion'];
+            $questionID = $newQuestionID = $_POST['idQuestion'];
             $answerID = $_POST['idAnswer'];
             if($db->qGetEditAndDeleteConstraints('delete', 'answer1', array($questionID))){
                 $updateMandatory = ($db->numResultRows() > 0) ? true : false;
@@ -428,10 +447,9 @@ class QuestionController extends Controller{
 
             if($db->qGetEditAndDeleteConstraints('delete', 'answer2', array($questionID))){
                 if($db->numResultRows() > 0){
-                    $log->append(var_export($db->nextRowAssoc()), true);
                     if($db->qDuplicateQuestion($questionID, $updateMandatory, $answerID)){
                         if($IDs = $db->nextRowEnum()){
-                            $questionID = $IDs[0];
+                            $newQuestionID = $IDs[0];
                             $answerID = $IDs[1];
                         }
                     }else{
@@ -443,7 +461,11 @@ class QuestionController extends Controller{
             }
 
             if($db->qDeleteAnswer($answerID)){
-                echo 'ACK'.$ajaxSeparator.$questionID;
+                echo 'ACK'.$ajaxSeparator.$newQuestionID.$ajaxSeparator;
+                if($questionID != $newQuestionID){                      // Question duplicated, reload answers table
+                    $question = Question::newQuestion($_POST['type']);
+                    $question->printAnswersTable($newQuestionID, $_SESSION['idSubject']);
+                }
             }else{
                 die($db->getError());
             }

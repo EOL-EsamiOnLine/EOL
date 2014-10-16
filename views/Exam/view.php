@@ -33,61 +33,23 @@ global $config;
             }
             openBox(ttTest.': '.$studentName.' ('.$scoreFinal.')', 'normal', 'correct', array('showHide'));
             $lastQuestion = '';
-            foreach($questions as $idQuestion => $question){
+            foreach($questions as $idQuestion => $questionInfo){
                 $questionAnswers = '';
                 $questionScore = 0;
 
                 $lastQuestion = (--$numQuestions == 0) ? 'last' : '';
-                $answered = json_decode(stripslashes($question['answer']), true);
+                $answered = json_decode(stripslashes($questionInfo['answer']), true);
                 if($answered == '')
                     $answered = array('');
 
-                switch($question['type']){
-                    case 'MC' :
-                    case 'MR' : if(($db->qAnswerSet($idQuestion, null, $idSubject)) && ($answers = $db->getResultAssoc('idAnswer'))){
-                                    foreach($answers as $idAnswer => $answer){
-                                        $answerdClass = "";
-                                        $right_wrongClass = ($answer['score'] > 0) ? 'response'.$question['type'].' rightAnswer' : 'response'.$question['type'].' wrongAnswer';
-                                        if(in_array($idAnswer, $answered)){
-                                            $questionScore += round(($answer['score'] * $scale), 1);
-                                            $answerdClass = 'answered';
-                                        }
-                                        $questionAnswers .= '<div class="'.$answerdClass.'">
-                                                                             <span value="'.$idAnswer.'" class="'.$right_wrongClass.'"></span>
-                                                                             <label>'.$answer['translation'].'</label>
-                                                                             <label class="score">'.round($answer['score'] * $scale, 1).'</label>
-                                                                         </div>';
-                                    }
-                                    $questionAnswers .= '<label class="questionScore">'.$questionScore.'</label>
-                                                                     <div class="clearer"></div>';
-                                    $questionClass = ($questionScore > 0) ? 'rightQuestion' : 'wrongQuestion';
-                                }else{ die(ttEAnswers); } break;
-                    case 'OP' : $questionAnswers .= '<div class="responseOP" value="'.$idQuestion.'">'.$answered[0].'</div>
-                                                     <dl class="dropdownScore">
-                                                         <dt class="readonly"><span>'.$question['score'].'<span class="value">'.$question['score'].'</span></span></dt>
-                                                     </dl>
-                                                     <label class="score">'.ttScore.' : </label>
-                                                     <div class="clearer"></div>';
-                                $questionScore = $question['score'];
-                                $questionClass = ($questionScore > 0) ? 'rightQuestion' : 'wrongQuestion'; break;
-                    default: die(ttEQuestionType);
-                }
+                $question = Question::newQuestion($questionInfo['type'], $questionInfo);
+                $question->printQuestionInView($idSubject, $answered, $scale, $lastQuestion);
 
-                ?>
-                <div class="questionTest <?= $questionClass ?> <?= $lastQuestion ?>" value="<?= $idQuestion ?>" type="<?= $question['type'] ?>">
-                    <div class="questionText" onclick="showHide(this);">
-                        <span class="responseQuestion"></span>
-                        <?= $question['translation'] ?>
-                        <span class="responseScore"><?= $questionScore ?></span>
-                    </div>
-                    <div class="questionAnswers" style="display:none;"><?= $questionAnswers ?></div>
-                </div>
-            <?php
             }
             ?>
 
-            <div id="finalScorePanel">
-                <div class="right">
+            <div id="lastLine">
+                <div id="finalScorePanel">
                     <table id="finalScore">
                         <tr>
                             <td class="sLabel"><?= ttScoreTest ?></td>
