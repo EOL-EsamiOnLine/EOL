@@ -17,6 +17,11 @@ if(($_POST['action'] == 'show') && ($db->qAnswerInfo($_POST['idAnswer'])) && ($a
 
     $answerInfo = $answerTranslations[$_POST['mainLang']];
 
+}elseif(($_POST['action'] == 'show') && (in_array($_POST['type'], array('YN', 'TF'))) &&
+        ($db->qSelect('Answers', 'idAnswer', $_POST['idAnswer'])) && ($answers = $db->getResultAssoc())){
+
+    $answerInfo = $answers[0];
+
 }elseif($_POST['action'] == 'new'){
     $answerInfo = array('score' => 0,
                         'type'  => $_POST['type'],

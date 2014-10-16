@@ -165,7 +165,7 @@
     <text id="ttETestNotArchived">L'operazione non può essere completata. Questo test non è stato archiviato!</text>
     <text id="ttETestNotFound">Test non trovato!</text>
     <text id="ttETestSettingDeleteQuestion">L'operazione non può essere completata perché la domanda è obbligatoria nelle seguenti impostazioni d'esame:</text>
-    <text id="ttETestSettingDeleteTopic">L\'operazione non può essere completata perché alcune domande di questo argomento sono utilizzate nelle seguenti impostazioni d\'esame:</text>
+    <text id="ttETestSettingDeleteTopic">L'operazione non può essere completata perché alcune domande di questo argomento sono utilizzate nelle seguenti impostazioni d'esame:</text>
     <text id="ttETestsNotArchived">Alcuni test non sono stati archiviati! Correggere prima tutti i test.</text>
     <text id="ttETimeExpired">Il tempo disponibile è finito!</text>
     <text id="ttETranslationExists">La traduzione nella lingua selezionata è già presente!</text>
@@ -259,6 +259,7 @@
     <text id="ttNewSubject">Nuova materia</text>
     <text id="ttNewTopic">Nuovo argomento</text>
     <text id="ttNewUser">Nuovo utente</text>
+    <text id="ttNo">No</text>
     <text id="ttNoAnswers">Nessuna risposta disponibile per questa domanda</text>
     <text id="ttNoExams">Nessun esame disponibile per questa materia</text>
     <text id="ttNoExamInProgress">Nessun esame in corso</text>
@@ -365,5 +366,6 @@
     <text id="ttWarning">Attenzione</text>
     <!-- ======================== X ======================== -->
     <!-- ======================== Y ======================== -->
+    <text id="ttYes">Sì</text>
     <!-- ======================== Z ======================== -->
 </language>

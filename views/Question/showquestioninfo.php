@@ -50,11 +50,9 @@ if($readonly){
         </script>
 
         <?php
-
         $question = Question::newQuestion($questionInfo['type'], $questionInfo);
         $question->set('QTranslations', $questionTranslations);
         $question->printQuestionEditForm($_POST['action'], $readonly);
-
         ?>
 
     </div>

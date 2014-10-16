@@ -219,9 +219,10 @@ abstract class Question {
         if($action == 'show'){ ?>
             <a class="button normal left rSpace tSpace" onclick="closeQuestionInfo(questionEditing);"><?= ttExit ?></a>
             <a class="button blue right lSpace tSpace" onclick="saveQuestionInfo_<?= $this->get('type') ?>(close = true);"><?= ttSave ?></a>
-            <?php if(!$readonly) ?>
+            <?php if(!$readonly){ ?>
                 <a class="button red right tSpace" onclick="deleteQuestion(ask = true);" id="deleteQuestion"><?= ttDelete ?></a>
-        <?php }else{ ?>
+            <?php }
+        }else{ ?>
             <a class="button normal left rSpace tSpace" onclick="cancelNewQuestion(ask = true);"><?= ttCancel ?></a>
             <a class="button blue right lSpace tSpace" onclick="createNewQuestion_<?= $this->get('type') ?>();"><?= ttCreate ?></a>
         <?php

@@ -80,4 +80,9 @@ class AT_MR extends Answer {
     public function getAnswerRowInTable(){
         return array($this->get('score'), $this->get('translation'), $this->get('idAnswer'));
     }
+
+    public function getAnswerScore(){
+        return $this->get('score');
+    }
+
 }

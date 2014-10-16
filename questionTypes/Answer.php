@@ -18,8 +18,8 @@ abstract class Answer {
      * @return  Answer
      */
     public static function newAnswer($aType, $answerInfo){
-
         global $config;
+
         $answerSubClass = 'AT_'.$aType;
         if(file_exists($config['systemQuestionTypesClassDir'].$answerSubClass.'.php')){        // Check if question's type exists
             require_once($config['systemQuestionTypesClassDir'].$answerSubClass.'.php');
@@ -118,5 +118,7 @@ abstract class Answer {
     }
 
     public abstract function getAnswerRowInTable();
+
+    public abstract function getAnswerScore();
 
 }
