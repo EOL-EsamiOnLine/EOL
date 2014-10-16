@@ -16,7 +16,7 @@ global $config, $user;
 </div>
 
 <div id="main">
-    <div id="examsTableMinContainer" class="r2Space">
+    <div id="examsTableMinContainer">
         <?php
         $db = new sqlDB();
         if($db->qExamsInProgress($user->id)){
@@ -61,7 +61,7 @@ global $config, $user;
         }
         ?>
     </div>
-    <div id="testsTableContainer" class="l2Space">
+    <div id="testsTableContainer">
         <?php
         $db = new sqlDB();
         $db2 = new sqlDB();

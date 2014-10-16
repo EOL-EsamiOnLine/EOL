@@ -110,7 +110,7 @@ class ExamController extends Controller{
                                <img name="action" src="'.$config['themeImagesDir'].$statuses[$examInfo['status']][1].'.png" title="'.constant('tt'.$statuses[$examInfo['status']][1]).'" onclick="changeExamStatus(new Array(true, this));">
                            </span>
                            <span class="manageButton archive">
-                               <img name="archive" src="'.$config['themeImagesDir'].'archive.png" title="'.ttArchive.'" onclick="archiveExam();">
+                               <img name="archive" src="'.$config['themeImagesDir'].'Archive.png" title="'.ttArchive.'" onclick="archiveExam();">
                            </span>
                            <span class="manageButton delete">
                                <img name="delete" src="'.$config['themeImagesDir'].'delete.png" title="'.ttDelete.'" onclick="deleteExam(new Array(true, this));">
@@ -298,9 +298,9 @@ class ExamController extends Controller{
                         switch($testInfo['status']){
                             case 'w':
                             case 's':
-                            case 'b': if(!$db->qArchiveTest($idTest, array(), null, '0', '0', $testInfo['status']))
+                            case 'b': if(!$db->qArchiveTest($idTest, $correctScores=array(), $scoreTest=null, $bonus='0', $scoreFinal='0', $status=$testInfo['status']))
                                          die($db->getError()); break;
-                            case 'e': if(!$db->qArchiveTest($idTest, array(), $testInfo['scoreTest'], '0', round($testInfo['scoreTest'])))
+                            case 'e': if(!$db->qArchiveTest($idTest, $correctScores=array(), $testInfo['scoreTest'], $bonus='0', $scoreFinal=round($testInfo['scoreTest'])))
                                          die($db->getError()); break;
                         }
                     }

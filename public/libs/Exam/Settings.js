@@ -34,7 +34,7 @@ $(function(){
     $("#newSettings").on("click", function(){ newSettings(new Array(settingsEditing)); });
 
     questionsTable = $("#questionsTable").DataTable({
-                                scrollY:        294,
+                                scrollY:        120,
                                 scrollCollapse: false,
                                 jQueryUI:       true,
                                 paging:         false,

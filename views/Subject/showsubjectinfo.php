@@ -36,12 +36,12 @@ if($_POST['action'] == 'show'){
 ?>
 
 <label class="b2Space" for="infoName"><?= ttName ?> : </label>
-<input class="<?= $class ?>" type="text" id="infoName" name="subjectName" size="50" value="<?= $subjectName ?>">
+<input class="<?= $class ?>" type="text" id="infoName" name="subjectName" value="<?= $subjectName ?>">
 <a id="infoNameChars" class="charsCounter hidden"><?= strlen($subjectName) ?></a>
 <div class="clearer"></div>
 
 <label for="infoDesc"><?= ttDescription ?> : </label>
-<textarea class="<?= $class ?> b2Space rSpace left" id="infoDesc" name="subjectDesc"><?= $subjectDesc ?></textarea>
+<textarea class="<?= $class ?> b2Space left" id="infoDesc" name="subjectDesc"><?= $subjectDesc ?></textarea>
 <a id="infoDescChars" class="charsCounter hidden"><?= strlen($subjectDesc) ?></a>
 <div class="clearer"></div>
 
