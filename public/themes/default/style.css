@@ -1434,7 +1434,10 @@ a.tab:not(.active):hover {
 .dropdownInfo.scoreMR ol,
 .dropdownInfo.scoreYN dd,
 .dropdownInfo.scoreYN dt,
-.dropdownInfo.scoreYN ol {
+.dropdownInfo.scoreYN ol,
+.dropdownInfo.scoreTF dd,
+.dropdownInfo.scoreTF dt,
+.dropdownInfo.scoreTF ol {
     width: 90px;
 }
 #questionType.dropdownInfo dd,
@@ -1759,7 +1762,8 @@ div.responseES{
 span.responseQuestion,
 span.responseMC,
 span.responseMR,
-span.responseYN {
+span.responseYN,
+span.responseTF {
     margin-left         :   10px;
     display             :   inline-block;
     width               :   16px;

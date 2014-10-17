@@ -223,6 +223,8 @@
     <text id="ttMLanguageCreated">Traduzione creata con successo</text>
     <text id="ttMLanguageSaved">Traduzione salvata con successo</text>
     <text id="ttMLanguageUpdated">Traduzione aggiornata con successo</text>
+    <text id="ttMNewAnswer">Risposta creata con successo</text>
+    <text id="ttMNewQuestion">Domanda creata con successo</text>
     <text id="ttMNewRoom">Stanza creata con successo</text>
     <text id="ttMNewSettings">Impostazioni d'esame create con successo</text>
     <text id="ttMNewSubject">Materia creata con successo</text>

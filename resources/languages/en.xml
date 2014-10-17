@@ -223,6 +223,8 @@
     <text id="ttMLanguageCreated">Translation successfully created</text>
     <text id="ttMLanguageSaved">Translation successfully saved</text>
     <text id="ttMLanguageUpdated">Translation successfully updated</text>
+    <text id="ttMNewAnswer">Answer successfully created</text>
+    <text id="ttMNewQuestion">Question successfully created</text>
     <text id="ttMNewRoom">Room successfully created</text>
     <text id="ttMNewSettings">Test Settings successfully created</text>
     <text id="ttMNewSubject">Subject successfully created</text>

@@ -1,18 +1,18 @@
 <?php
 /**
- * File: QT_YN.php
+ * File: QT_TF.php
  * User: Masterplan
  * Date: 18/09/14
  * Time: 12:41
- * Desc: Class for Yes/No questions
+ * Desc: Class for True/False questions
  */
 
-class QT_YN extends Question {
+class QT_TF extends Question {
 
     public function createNewQuestion(){
         $idQuestion = parent::createNewQuestion();
         $db = new sqlDB();
-        if(!($db->qNewAnswer($idQuestion, 'Y*0', array())) || !($db->qNewAnswer($idQuestion, 'N*0', array()))){
+        if(!($db->qNewAnswer($idQuestion, 'T*0', array())) || !($db->qNewAnswer($idQuestion, 'F*0', array()))){
             die($db->getError());
         }
         return $idQuestion;
@@ -25,7 +25,8 @@ class QT_YN extends Question {
         if(!($db->qSelect('Languages')) || !($this->allLangs = $db->getResultAssoc('idLanguage'))){
             die($db->getError());
         }
-    ?>
+        ?>
+
         <ul xmlns="http://www.w3.org/1999/html">
             <li><a id="questionTab" href="#question-tab"><?= ttQuestion ?></a></li>
             <?php if($action == 'show') echo '<li><a id="answersTab" href="#answers">'.ttAnswers.'</a></li>'; ?>
@@ -41,8 +42,8 @@ class QT_YN extends Question {
 
             <div class="clearer bSpace"></div>
 
-            <!-- Print hidden field for question's type (YN) -->
-            <input type="hidden" id="questionType" value="YN">
+            <!-- Print hidden field for question's type (TF) -->
+            <input type="hidden" id="questionType" value="TF">
 
             <!-- Print all other question's info -->
             <?php $this->printQuestionInfoEditForm($action, $readonly) ?>
@@ -74,7 +75,7 @@ class QT_YN extends Question {
         <?php
         }
         $this->printQuestionTypeLibrary();
-        echo '<script> initialize_YN(); </script>';
+        echo '<script> initialize_TF(); </script>';
     }
 
     public function printAnswersTable($idQuestion, $idSubject){ ?>
@@ -90,12 +91,12 @@ class QT_YN extends Question {
             <tbody>
             <?php
 
-            $translation = array('Y' => ttYes, 'N' => ttNo);
+            $translation = array('T' => ttTrue, 'F' => ttFalse);
 
             $db = new sqlDB();
             if($db->qSelect('Answers', 'fkQuestion', $idQuestion)){
                 while($answer = $db->nextRowAssoc()){
-                    $score = explode('*', $answer['score']);           // e.g. 'Y*0'
+                    $score = explode('*', $answer['score']);           // e.g. 'T*0'
                     echo '<tr>
                               <td>'.$score[1].'</td>
                               <td>'.$translation[$score[0]].'</td>
@@ -113,14 +114,14 @@ class QT_YN extends Question {
     public function printQuestionPreview(){
         global $config;
 
-        $translation = array('Y' => ttYes, 'N' => ttNo);
+        $translation = array('T' => ttTrue, 'F' => ttFalse);
 
         $db = new sqlDB();
         if(($db->qSelect('Answers', 'fkQuestion', $this->get('idQuestion'))) && ($answerSet = $db->getResultAssoc())){
 
             $questionAnswers = '';
             foreach($answerSet as $answer){
-                $score = explode('*', $answer['score']);           // e.g. 'Y*0'
+                $score = explode('*', $answer['score']);           // e.g. 'T*0'
                 $questionAnswers .= '<div>
                                          <input class="hidden" type="radio" name="'.$this->get('idQuestion').'" value="'.$answer['idAnswer'].'"/>
                                          <span value="'.$answer['idAnswer'].'"></span>
@@ -137,7 +138,7 @@ class QT_YN extends Question {
                 $extra .= '<img class="extraIcon periodicTable" src="'.$config['themeImagesDir'].'QEp.png'.'">';
             ?>
 
-            <div class="questionTest" value="<?= $this->get('idQuestion') ?>" type="YN">
+            <div class="questionTest" value="<?= $this->get('idQuestion') ?>" type="TF">
                 <div class="questionText"><?= $this->get('translation').$extra ?></div>
                 <div class="questionAnswers"><?= $questionAnswers ?></div>
             </div>
@@ -148,7 +149,7 @@ class QT_YN extends Question {
     public function printQuestionInTest($idSubject, $answered, $extras){
         global $config;
 
-        $translation = array('Y' => ttYes, 'N' => ttNo);
+        $translation = array('T' => ttTrue, 'F' => ttFalse);
 
         $db = new sqlDB();
         if(($db->qSelect('Answers', 'fkQuestion', $this->get('idQuestion'))) && ($answerSet = $db->getResultAssoc())){
@@ -156,7 +157,7 @@ class QT_YN extends Question {
             $questionAnswers = '';
             shuffle($answerSet);
             foreach($answerSet as $answer){
-                $score = explode('*', $answer['score']);           // e.g. 'Y*0'
+                $score = explode('*', $answer['score']);           // e.g. 'T*0'
                 $checked = (in_array($answer['idAnswer'], $answered)) ? 'checked' : '';
                 $questionAnswers .= '<div>
                                          <input class="hidden" type="radio" name="'.$this->get('idQuestion').'" value="'.$answer['idAnswer'].'" '.$checked.'/>
@@ -178,7 +179,7 @@ class QT_YN extends Question {
             }
             ?>
 
-            <div class="questionTest" value="<?= $this->get('idQuestion') ?>" type="YN">
+            <div class="questionTest" value="<?= $this->get('idQuestion') ?>" type="TF">
                 <div class="questionText"><?= $this->get('translation').$extra ?></div>
                 <div class="questionAnswers"><?= $questionAnswers ?></div>
             </div>
@@ -193,7 +194,7 @@ class QT_YN extends Question {
     public function printQuestionInCorrection($idSubject, $answered, $scale, $lastQuestion){
         global $config;
 
-        $translation = array('Y' => ttYes, 'N' => ttNo);
+        $translation = array('T' => ttTrue, 'F' => ttFalse);
 
         $questionAnswers = '';
         $questionScore = 0;
@@ -205,7 +206,7 @@ class QT_YN extends Question {
             $questionAnswers = '';
             foreach($answerSet as $idAnswer => $answer){
                 $answerdClass = '';
-                $score = explode('*', $answer['score']);           // e.g. 'Y*0'
+                $score = explode('*', $answer['score']);           // e.g. 'T*0'
                 $right_wrongClass = ($score[1] > 0) ? 'rightAnswer' : 'wrongAnswer';
 
                 if(in_array($idAnswer, $answered)){
@@ -214,7 +215,7 @@ class QT_YN extends Question {
                 }
 
                 $questionAnswers .= '<div class="'.$answerdClass.'">
-                                         <span value="'.$idAnswer.'" class="responseYN '.$right_wrongClass.'"></span>
+                                         <span value="'.$idAnswer.'" class="responseTF '.$right_wrongClass.'"></span>
                                          <label>'.$translation[$score[0]].'</label>
                                          <label class="score">'.round($score[1] * $scale, 1).'</label>
                                      </div>';
@@ -227,7 +228,7 @@ class QT_YN extends Question {
 
             ?>
 
-            <div class="questionTest <?= $questionClass.' '.$lastQuestion ?>" value="<?= $this->get('idQuestion') ?>" type="YN">
+            <div class="questionTest <?= $questionClass.' '.$lastQuestion ?>" value="<?= $this->get('idQuestion') ?>" type="TF">
                 <div class="questionText" onclick="showHide(this);">
                     <span class="responseQuestion"></span>
                     <?= $this->get('translation') ?>

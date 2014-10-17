@@ -60,7 +60,7 @@ function createNewAnswer_MR(){
                 }else{
                     answersTable.row.add(JSON.parse(data[2])).draw();
                 }
-                showSuccessMessage(ttMEdit);
+                showSuccessMessage(ttMNewAnswer);
                 setTimeout(function(){
                     if(close){
                         showQuestionLanguageAndPreview(questionRowSelected);

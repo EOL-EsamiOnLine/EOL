@@ -1,20 +1,20 @@
 <?php
 /**
- * File: AT_YN.php
+ * File: AT_TF.php
  * User: Masterplan
  * Date: 18/09/14
  * Time: 12:41
- * Desc: * Desc: Class for answer in Yes/No questions
+ * Desc: * Desc: Class for answer in True/False questions
  */
 
-class AT_YN extends Answer {
+class AT_TF extends Answer {
 
     public function printAnswerEditForm($action){
         global $config, $log;
 
-        $translation = array('Y' => ttYes, 'N' => ttNo);
+        $translation = array('T' => ttTrue, 'F' => ttFalse);
 
-        $score = explode('*', $this->get('score'));             // e.g. 'Y*0'
+        $score = explode('*', $this->get('score'));             // e.g. 'T*0'
 
         ?>
 
@@ -39,10 +39,10 @@ class AT_YN extends Answer {
     public function printAnswerInfoEditForm($action){
         global $log;
 
-        $score = explode('*', $this->get('score'));             // e.g. 'Y*0'
+        $score = explode('*', $this->get('score'));             // e.g. 'T*0'
         ?>
 
-        <dl class="dropdownInfo scoreYN tSpace right" style="margin-right: 80px;" id="answerScore">
+        <dl class="dropdownInfo scoreTF tSpace right" style="margin-right: 80px;" id="answerScore">
             <dt class="tSpace writable">
                 <span><?= $score[1] ?><span class="value"><?= $score[1] ?></span></span>
             </dt>
@@ -62,19 +62,19 @@ class AT_YN extends Answer {
 
     public function printAnswerEditButtons($action){ ?>
         <a class="button normal left rSpace tSpace" onclick="closeAnswerInfo(answerEditing);"><?= ttExit ?></a>
-        <a class="button blue right lSpace tSpace" onclick="saveAnswerInfo_YN(closePanel = true);"><?= ttSave ?></a>
+        <a class="button blue right lSpace tSpace" onclick="saveAnswerInfo_TF(closePanel = true);"><?= ttSave ?></a>
     <?php
     }
 
     public function getAnswerRowInTable(){
-        $translation = array('Y' => ttYes, 'N' => ttNo);
-        $score = explode('*', $this->get('score'));             // e.g. 'Y*0'
+        $translation = array('T' => ttTrue, 'F' => ttFalse);
+        $score = explode('*', $this->get('score'));             // e.g. 'T*0'
 
         return array($score[1], $translation[$score[0]], $this->get('idAnswer'));
     }
 
     public function getAnswerScore(){
-        $score = explode('*', $this->get('score'));             // e.g. 'Y*0'
+        $score = explode('*', $this->get('score'));             // e.g. 'T*0'
         return $score[1];
     }
 }
