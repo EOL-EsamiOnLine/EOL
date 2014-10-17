@@ -38,7 +38,7 @@ function getQuestionTypes(){
         'MC',       # Multiple Choice
         'MR',       # Multiple Response
         'YN',       # Yes/No
-//        'TF',       # True/False
+        'TF',       # True/False
         'ES'        # Essay
 
     );

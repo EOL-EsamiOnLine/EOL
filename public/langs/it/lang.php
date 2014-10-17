@@ -196,6 +196,8 @@ define('ttMExamStopped' , 'Esame fermato con successo');
 define('ttMLanguageCreated' , 'Traduzione creata con successo');
 define('ttMLanguageSaved' , 'Traduzione salvata con successo');
 define('ttMLanguageUpdated' , 'Traduzione aggiornata con successo');
+define('ttMNewAnswer' , 'Risposta creata con successo');
+define('ttMNewQuestion' , 'Domanda creata con successo');
 define('ttMNewRoom' , 'Stanza creata con successo');
 define('ttMNewSettings' , 'Impostazioni d\'esame create con successo');
 define('ttMNewSubject' , 'Materia creata con successo');

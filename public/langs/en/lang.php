@@ -196,6 +196,8 @@ define('ttMExamStopped' , 'Exam successfully stopped');
 define('ttMLanguageCreated' , 'Translation successfully created');
 define('ttMLanguageSaved' , 'Translation successfully saved');
 define('ttMLanguageUpdated' , 'Translation successfully updated');
+define('ttMNewAnswer' , 'Answer successfully created');
+define('ttMNewQuestion' , 'Question successfully created');
 define('ttMNewRoom' , 'Room successfully created');
 define('ttMNewSettings' , 'Test Settings successfully created');
 define('ttMNewSubject' , 'Subject successfully created');

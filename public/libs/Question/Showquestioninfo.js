@@ -91,7 +91,7 @@ function createNewQuestion(reopen){
                     return questionsTable.cell(rowIndex, qtci.questionID).data() == questionInfo[qtci.questionID];
                 });
                 questionRowSelected = questionsTable.row(newQuestionIndex[0]).node();
-                showSuccessMessage(ttMEdit);
+                showSuccessMessage(ttMNewQuestion);
                 questionEditing = false;
                 closeQuestionInfo(false);
                 scrollToRow(questionsTable, questionRowSelected);
