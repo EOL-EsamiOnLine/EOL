@@ -75,7 +75,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Questions` (
   `type` CHAR(5) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL COMMENT 'Question''s type' ,
   `difficulty` TINYINT(4) UNSIGNED NOT NULL COMMENT 'Question''s difficulty' ,
   `status` CHAR(1) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL DEFAULT 'i' COMMENT 'Question''s status (a->active, i->inactive, e->error)' ,
-  `extra` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Question''s extra (c->calculator, p->periodic table, ...)',
+  `extra` varchar(10) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'Question''s extra (c->calculator, p->periodic table, ...)',
   `shortText` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'Question''s description' ,
   `fkRootQuestion` int(10) unsigned DEFAULT '0' COMMENT 'Root question''s ID',
   `fkTopic` INT(10) UNSIGNED DEFAULT NULL COMMENT 'Topic''s ID' ,
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `eol`.`Answers` ;
 
 CREATE  TABLE IF NOT EXISTS `eol`.`Answers` (
   `idAnswer` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Answer''s ID' ,
-  `score` DOUBLE NOT NULL DEFAULT '0' COMMENT 'Answer''s score' ,
+  `score` VARCHAR(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0' COMMENT 'Answer''s score',
   `fkQuestion` INT(10) UNSIGNED NOT NULL COMMENT 'Question''s ID' ,
   PRIMARY KEY (`idAnswer`) ,
   INDEX `fk_Answers_Questions_idx` (`fkQuestion` ASC) ,
