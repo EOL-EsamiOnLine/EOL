@@ -2889,7 +2889,7 @@ class sqlDB {
     private function execQuery($query){
         global $log;
 // ******************************************************************* //
-        $log->append($query);
+//        $log->append($query);
 // ******************************************************************* //
         if(!($this->result = $this->mysqli->query($query)))
             throw new Exception("Error");

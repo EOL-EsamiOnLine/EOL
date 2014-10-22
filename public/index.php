@@ -15,6 +15,8 @@ ini_set('display_errors', 1);
 // Include ALL essential PHP files, classes, functions, ...
 require_once('../includes/essential.php');
 
+global $config;
+
 // Set timezone for system's functions and logs
 date_default_timezone_set($config['systemTimeZone']);
 
