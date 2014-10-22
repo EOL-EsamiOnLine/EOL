@@ -19,10 +19,11 @@ class User {
 
     /**
      * @name    User
-     * @param   $result   All user information recovered from dabatase
+     * @param   $result   Array     User's information recovered from dabatase
      * @descr   Create an User class instance
      */
     public function User($result=null){
+        global $config;
 
         // Initialize class vars
         if($result != null){
@@ -37,7 +38,7 @@ class User {
             $this->name     = '';
             $this->surname  = '';
             $this->email    = '';
-            $this->lang     = 'en';
+            $this->lang     = $config['systemLang'];
             $this->role     = '?';
         }
 
