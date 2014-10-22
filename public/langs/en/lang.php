@@ -126,6 +126,7 @@ define('ttEMainLanguageEmpty' , 'Subject\'s main language can not be empty!');
 define('ttEMandatoryQuestion' , 'This is a mandatory question of \'_TESTSETTING_\' test\'s setting: you can\'t delete it or edit its difficulty or topic.');
 define('ttENotAuthorized' , 'Your client is not authorized.<br/>Please contact the teacher or the admin.');
 define('ttENoStudentsToRegister' , 'No student to register!');
+define('ttENoTopicsForSubject' , 'No topic for this subject!<br/>To create a new question you must first create at least one topic.');
 define('ttEOldPasswordWrong' , 'The old password is not correct!');
 define('ttEPassword' , 'Wrong password!');
 define('ttEPasswordShort' , 'The password is too short. It must be at least 8 characters long!');

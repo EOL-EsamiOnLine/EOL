@@ -143,6 +143,7 @@
     <text id="ttEMandatoryQuestion">Questa è una domanda obbligatoria delle impostazioni d'esame '_TESTSETTING_': non è possibile cancellara o modificarne difficoltà e argomento.</text>
     <text id="ttENotAuthorized">Il tuo client non è autorizzato.\nContatta il docente o l'amministratore.</text>
     <text id="ttENoStudentsToRegister">Nessun studente da registrare all'esame!</text>
+    <text id="ttENoTopicsForSubject">Nessun argomento esistente per questa materia!\nPrima di creare una nuova domanda occorre aver creato almeno un argomento.</text>
     <text id="ttEOldPasswordWrong">La vecchia password non corrisponde!</text>
     <text id="ttEPassword">Password errata!</text>
     <text id="ttEPasswordShort">La password è troppo breve. Deve avere una lunghezza minima di 8 caratteri!</text>

@@ -59,7 +59,10 @@ $(function(){
      *  @descr  Binded event to create new question
      */
     $("#newQuestion").on("click", function(event){
-        newLightbox($("#newQuestionTypeSelect"), {destroyOnClose : false});
+        if($(".filterQuestion").length > 1)
+            newLightbox($("#newQuestionTypeSelect"), {destroyOnClose : false});
+        else
+            showErrorMessage(ttENoTopicsForSubject);
     });
 
     /**

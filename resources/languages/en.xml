@@ -143,6 +143,7 @@
     <text id="ttEMandatoryQuestion">This is a mandatory question of '_TESTSETTING_' test's setting: you can't delete it or edit its difficulty or topic.</text>
     <text id="ttENotAuthorized">Your client is not authorized.\nPlease contact the teacher or the admin.</text>
     <text id="ttENoStudentsToRegister">No student to register!</text>
+    <text id="ttENoTopicsForSubject">No topic for this subject!\nTo create a new question you must first create at least one topic.</text>
     <text id="ttEOldPasswordWrong">The old password is not correct!</text>
     <text id="ttEPassword">Wrong password!</text>
     <text id="ttEPasswordShort">The password is too short. It must be at least 8 characters long!</text>
