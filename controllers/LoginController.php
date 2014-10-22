@@ -59,10 +59,7 @@ class LoginController extends Controller{
             $db = new sqlDB();
             $result = $db->qLogin($_POST['email'], sha1($_POST['password']));
             if($result != null){
-                if($config['systemSecure'] == "session"){
-                    $_SESSION['logged'] = true;
-                }else
-                    setcookie ("logged", true, $config['cookieDeadline'],"/");
+                $_SESSION['logged'] = true;
                 $_SESSION['user'] = serialize(new User($result));
                 echo "ACK";
             }else
@@ -80,11 +77,8 @@ class LoginController extends Controller{
         global $user;
         global $config;
 
-        // Destroy 'logged' session/cookie
-        if($config['systemSecure'] == "session")
-            unset($_SESSION['logged']);
-        else
-            unset($_COOKIE['logged']);
+        // Destroy 'logged' session
+        unset($_SESSION['logged']);
 
         // Destroy User, idSet, idSubject, uploadDir
         $user = new User();

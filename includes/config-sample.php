@@ -28,10 +28,6 @@ $config['controller']['a'] = 'Admin';
 $config['controller']['t'] = 'Teacher';
 $config['controller']['s'] = 'Student';
 $config['controller']['at'] = 'Teacher';
-// Preferred secure type (session | cookie)
-$config['systemSecure'] = 'session';
-// Cookie deadline (For cookie secure type, default one (1) day [86400 secs])
-$config['cookieDeadline'] = time()+86400;
 // System directories
 $config['systemControllersDir'] = '../controllers/';
 $config['systemQuestionTypesClassDir'] = '../questionTypes/';

@@ -470,11 +470,7 @@ class AdminController extends Controller{
                     if($user->role == '?'){
                         if($userInfo = $db->qLogin($_POST['email'], sha1($_POST['password']))){
                             if($userInfo != null){
-                                if($config['systemSecure'] == "session")
-                                    $_SESSION['logged'] = true;
-                                else
-                                    setcookie ("logged", true, $config['cookieDeadline'],"/");
-
+                                $_SESSION['logged'] = true;
                                 $_SESSION['user'] = serialize(new User($userInfo));
                             }
                         }else{
@@ -542,10 +538,7 @@ class AdminController extends Controller{
                 if($user->role == '?'){
                     if($userLog = $db->qLogin($userInfo['email'], sha1($_POST['password']))){
                         if($userLog != null){
-                            if($config['systemSecure'] == "session")
-                                $_SESSION['logged'] = true;
-                            else
-                                setcookie ("logged", true, $config['cookieDeadline'],"/");
+                            $_SESSION['logged'] = true;
                             $_SESSION['user'] = serialize(new User($userLog));
                         }
                     }else{
