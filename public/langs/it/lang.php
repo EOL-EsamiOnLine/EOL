@@ -126,6 +126,7 @@ define('ttEMainLanguageEmpty' , 'La lingua principale della materia non può ess
 define('ttEMandatoryQuestion' , 'Questa è una domanda obbligatoria delle impostazioni d\'esame \'_TESTSETTING_\': non è possibile cancellara o modificarne difficoltà e argomento.');
 define('ttENotAuthorized' , 'Il tuo client non è autorizzato.<br/>Contatta il docente o l\'amministratore.');
 define('ttENoStudentsToRegister' , 'Nessun studente da registrare all\'esame!');
+define('ttENoTopicsForSubject' , 'Nessun argomento esistente per questa materia!<br/>Prima di creare una nuova domanda occorre aver creato almeno un argomento.');
 define('ttEOldPasswordWrong' , 'La vecchia password non corrisponde!');
 define('ttEPassword' , 'Password errata!');
 define('ttEPasswordShort' , 'La password è troppo breve. Deve avere una lunghezza minima di 8 caratteri!');

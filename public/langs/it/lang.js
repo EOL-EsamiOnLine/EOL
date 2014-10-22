@@ -126,6 +126,7 @@ var ttEMainLanguageEmpty = "La lingua principale della materia non può essere v
 var ttEMandatoryQuestion = "Questa è una domanda obbligatoria delle impostazioni d'esame '_TESTSETTING_': non è possibile cancellara o modificarne difficoltà e argomento.";
 var ttENotAuthorized = "Il tuo client non è autorizzato.<br/>Contatta il docente o l'amministratore.";
 var ttENoStudentsToRegister = "Nessun studente da registrare all'esame!";
+var ttENoTopicsForSubject = "Nessun argomento esistente per questa materia!<br/>Prima di creare una nuova domanda occorre aver creato almeno un argomento.";
 var ttEOldPasswordWrong = "La vecchia password non corrisponde!";
 var ttEPassword = "Password errata!";
 var ttEPasswordShort = "La password è troppo breve. Deve avere una lunghezza minima di 8 caratteri!";
