@@ -8,17 +8,17 @@
  */
 
 // Configuration file
-require_once('config.php');
+require_once(__DIR__.'/config.php');
 // Log class
-require_once('Log.php');
+require_once(__DIR__.'/Log.php');
 // Database class
-require_once('sqlDB.php');
+require_once(__DIR__.'/sqlDB.php');
 // Render class
-require_once('Engine.php');
+require_once(__DIR__.'/Engine.php');
 // User class
-require_once('User.php');
+require_once(__DIR__.'/User.php');
 // Controller class
-require_once('Controller.php');
+require_once(__DIR__.'/Controller.php');
 
 global $config;
 // Question class
