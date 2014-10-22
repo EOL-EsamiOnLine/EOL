@@ -19,7 +19,7 @@ URLs:
 	https://github.com/EOL-EsamiOnLine/EOL
 
 Requirements and Install Documentation:
-	/public/install.html
+	/utils/install.html
 
 Source Documentation:
 	Coming Soon at https://github.com/EOL-EsamiOnLine/EOL
