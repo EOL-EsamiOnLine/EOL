@@ -2225,18 +2225,22 @@ class sqlDB {
      * @param   $scoreTest          String      Test's final score
      * @param   $bonus              String      Test's bonus score
      * @param   $scoreFinal         String      Test's final score
+     * @param   $scale              Float       Test Setting's scale
      * @param   $status             String      Test's status (if != 'e')
      * @return  Boolean
      * @descr   Return true if test successfully archived
      */
-    public function qArchiveTest($idTest, $correctScores, $scoreTest, $bonus, $scoreFinal, $status='a'){
+    public function qArchiveTest($idTest, $correctScores, $scoreTest, $bonus, $scoreFinal, $scale=1.0, $status='a'){
         global $log;
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
         try{
+            $submitted = ($scoreTest == null)? false : true;
+            $corrected = (count($correctScores) == 0)? false : true;
             $queries = array();
-            if($scoreTest != null){         // The tests has been submitted
+
+            if($submitted){
                 $query = "SELECT idQuestion, answer, type
                           FROM Sets_Questions AS SQ
                                JOIN Questions AS Q ON Q.idQuestion = SQ.fkQuestion
@@ -2245,21 +2249,24 @@ class sqlDB {
                                        FROM Tests
                                        WHERE idTest = '$idTest')";
                 $this->execQuery($query);
+                $test = $this->getResultAssoc('idQuestion');
+
+                if(!$corrected){         // The test is not been corrected, get scores from given answers
+                    foreach($test as $idQuestion => $questionInfo){
+                        $answer = Answer::newAnswer($questionInfo['type'], array('answer' => $questionInfo['answer'],
+                                                                                 'scale' => $scale));
+                        $correctScores[$idQuestion] = round(($answer->getScoreFromGivenAnswer() * $scale), 1);
+                    }
+                }
+
                 $query = "INSERT INTO History(fkTest, fkQuestion, answer, score)
                           VALUES \n";
-                while($questionInfo = $this->nextRowAssoc())
-                    $query .= "('$idTest', '".$questionInfo['idQuestion']."', '".$questionInfo['answer']."', '".$correctScores[$questionInfo['idQuestion']]."'),";
+                foreach($test as $idQuestion => $questionInfo)
+                    $query .= "('$idTest', '".$idQuestion."', '".$questionInfo['answer']."', '".$correctScores[$idQuestion]."'),";
 
                 $query = substr_replace($query , '', -1);       // Remove last coma
                 array_push($queries, $query);
-                $query = "DELETE
-                          FROM Sets
-                          WHERE
-                              idSet = (SELECT fkSet
-                                       FROM Tests
-                                       WHERE
-                                           idTest = '$idTest')";
-                array_push($queries, $query);
+
                 $query = "UPDATE Tests
                           SET
                               scoreTest = '$scoreTest',
@@ -2272,16 +2279,25 @@ class sqlDB {
             }else{
                 $now = date("Y-m-d H:i:s");
                 $query = "UPDATE Tests
-                          SET
-                              timeEnd = '$now',
-                              scoreTest = '0',
-                              bonus = '0',
-                              scoreFinal = '0',
-                              status = '$status'
-                          WHERE
-                              idTest = '$idTest'";
+                      SET
+                          timeEnd = '$now',
+                          scoreTest = '0',
+                          bonus = '0',
+                          scoreFinal = '0',
+                          status = '$status'
+                      WHERE
+                          idTest = '$idTest'";
                 array_push($queries, $query);
             }
+
+            $query = "DELETE
+                          FROM Sets
+                          WHERE
+                              idSet = (SELECT fkSet
+                                       FROM Tests
+                                       WHERE
+                                           idTest = '$idTest')";
+            array_push($queries, $query);
 
             $this->mysqli = $this->connect();
             $this->execTransaction($queries);
@@ -2710,10 +2726,10 @@ class sqlDB {
 
     /**
      * @name    qSelect
-     * @param   $tableName      String        Table to search
-     * @param   $columnName     String        Field to search
-     * @param   $value          String        Value to search
-     * @param   $order          String        Value to order by
+     * @param   $tableName      String          Table to search
+     * @param   $columnName     String          Field to search
+     * @param   $value          String|Array    Value to search
+     * @param   $order          String          Value to order by
      * @return  Boolean
      * @descr   Search into a table a specific value for a column
      */
@@ -2724,12 +2740,16 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            $data = $this->prepareData(array($tableName, $columnName, $value, $order));
+            $newValue = (is_array($value))? implode(',', $value) : $value;
+
+            $data = $this->prepareData(array($tableName, $columnName, $newValue, $order));
 
             $query = "SELECT * FROM $data[0]";
-            if(($columnName != '') && ($value != '')){
+            if(($columnName != '') && (is_array($value)))
+                $query .= " WHERE $data[1] IN ($data[2])";
+            elseif(($columnName != '') && ($value != ''))
                 $query .= " WHERE $data[1] = '$data[2]'";
-            }
+
             if($order != ''){
                 $query .= " ORDER BY $data[3]";
             }

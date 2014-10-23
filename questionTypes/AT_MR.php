@@ -85,4 +85,23 @@ class AT_MR extends Answer {
         return $this->get('score');
     }
 
+    public function getScoreFromGivenAnswer(){
+        global $log;
+        $score = 0;
+
+        $answer = json_decode(stripslashes($this->get('answer')), true);
+        if(count($answer) > 0){
+            $db = new sqlDB();
+            if($db->qSelect('Answers', 'idAnswer', $answer)){
+                $tempScore = 0;
+                while($result = $db->nextRowAssoc()){
+//                    $tempScore += round(($result['score'] * $this->get('scale')), 1);
+                    $tempScore += $result['score'];
+                }
+                $score = $tempScore;
+            }else die($db->getError());
+        }
+
+        return $score;
+    }
 }

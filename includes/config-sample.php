@@ -12,7 +12,7 @@
  *----------------------------------*/
 
 // System version
-$config['systemVersion'] = '0.0.2';
+$config['systemVersion'] = '0.0.3';
 // System title
 $config['systemTitle'] = 'EOL - Esami On Line';
 // System home website (used for emails)
