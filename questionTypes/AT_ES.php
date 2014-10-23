@@ -9,16 +9,15 @@
 
 class AT_ES extends Answer {
 
-    public function printAnswerEditForm($action){
-    }
+    public function printAnswerEditForm($action){}
 
-    public function printAnswerInfoEditForm($action){
-    }
+    public function printAnswerInfoEditForm($action){}
 
-    public function getAnswerRowInTable(){
-    }
+    public function getAnswerRowInTable(){}
 
-    public function getAnswerScore(){
+    public function getAnswerScore(){}
 
+    public function getScoreFromGivenAnswer(){
+        return 0;
     }
 }

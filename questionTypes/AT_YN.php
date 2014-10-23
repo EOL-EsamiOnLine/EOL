@@ -77,4 +77,20 @@ class AT_YN extends Answer {
         $score = explode('*', $this->get('score'));             // e.g. 'Y*0'
         return $score[1];
     }
+
+    public function getScoreFromGivenAnswer(){
+        $score = 0;
+
+        $answer = json_decode(stripslashes($this->get('answer')), true);
+        if(count($answer) > 0){
+            $db = new sqlDB();
+            if(($db->qSelect('Answers', 'idAnswer', $answer[0])) && ($result = $db->nextRowAssoc())){
+                $scores = explode('*', $result['score']);       // e.g. 'Y*0'
+//                $score = round(($scores[1] * $this->get('scale')), 1);
+                $score = $scores[1];
+            }else die($db->getError());
+        }
+
+        return $score;
+    }
 }

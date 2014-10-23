@@ -68,4 +68,19 @@ class AT_MC extends Answer {
     public function getAnswerScore(){
         return $this->get('score');
     }
+
+    public function getScoreFromGivenAnswer(){
+        $score = 0;
+
+        $answer = json_decode(stripslashes($this->get('answer')), true);
+        if(count($answer) > 0){
+            $db = new sqlDB();
+            if(($db->qSelect('Answers', 'idAnswer', $answer[0])) && ($result = $db->nextRowAssoc())){
+//                $score = round(($result['score'] * $this->get('scale')), 1);
+                $score = $result['score'];
+            }else die($db->getError());
+        }
+
+        return $score;
+    }
 }
