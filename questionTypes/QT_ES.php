@@ -173,4 +173,8 @@ class QT_ES extends Question {
         </div>
         <?php
     }
+
+    public function getScoreFromGivenAnswer(){
+        return 0;
+    }
 }

@@ -246,4 +246,19 @@ class QT_TF extends Question {
     public function printQuestionInView($idSubject, $answered, $scale, $lastQuestion){
         $this->printQuestionInCorrection($idSubject, $answered, $scale, $lastQuestion);
     }
+
+    public function getScoreFromGivenAnswer(){
+        $score = 0;
+
+        $answer = json_decode(stripslashes($this->get('answer')), true);
+        if(count($answer) > 0){
+            $db = new sqlDB();
+            if(($db->qSelect('Answers', 'idAnswer', $answer[0])) && ($result = $db->nextRowAssoc())){
+                $scores = explode('*', $result['score']);       // e.g. 'T*0'
+                $score = $scores[1];
+            }else die($db->getError());
+        }
+
+        return $score;
+    }
 }

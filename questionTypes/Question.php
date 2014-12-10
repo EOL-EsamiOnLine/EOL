@@ -241,6 +241,8 @@ abstract class Question {
 
     public abstract function printQuestionInView($idSubject, $answered, $scale, $lastQuestion);
 
+    public abstract function getScoreFromGivenAnswer();
+
 
 
 }
