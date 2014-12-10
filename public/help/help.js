@@ -8,32 +8,57 @@
 
 $(function(){
 
+    $('#contents, #main').height($(window).height() - 100);             // Contents and main height = window - top
+    $('#contentsList, #help').height($("#contents").height() - 33);     // ContentsList and help height = contents - header
+    $(window).resize(function(){
+        $('#contents, #main').height($(window).height() - 100);
+        $('#contentsList, #help').height($("#contents").height() - 33);
+    });
+
     $.ajax({
         url     : "contents.html",
-        success : function (data) {
-            $("#contentsList").html(data);
-            $("#contentsList a.showHelp").on("click", function(){showHelp($(this))});
-            $("#contentsList li span").html("&nbsp;&nbsp;&nbsp;&nbsp;")
-                                      .on("click", function(){showHideContents($(this))});
+        cache: false,
+        beforeSend: function() {
+            $('#contentsList').html('<div class="loading"><img src="../loading.gif"/></div>');
         },
-        error : function (request, status, error) {
-            alert("jQuery AJAX request error:".error);
-        }
+        success : function (data) {
+            $("#contentsList").html(data).find("link, title, meta").remove();
+            $("#contentsList a.showHelp").on("click", function(event){showHelp($(this), event)});
+            $("#contentsList li span.submenuIcon").html("&nbsp;&nbsp;&nbsp;&nbsp;")
+                                                  .on("click", function(){showHideContents($(this))});
+        },
+        error : function (){ print404(); }
+    });
+
+    $.ajax({
+        url     : "eol.html",
+        cache: false,
+        beforeSend: function() {
+            $("#help").html('<div class="loading"><img src="../loading.gif"/></div>');
+        },
+        success : function (data) {
+            $("#help").html($(data)).find("link, title, meta").remove();
+            $("#help a.showHelp").on("click", function(event){showHelp($(this), event)});
+        },
+        error : function (){ print404(); }
     });
 
 });
 
-function showHelp(content){
-    var helpPage = content.attr("value")+".html";
+function showHelp(content, event){
+    event.preventDefault();
+    var helpPage = content.attr("href");
     $.ajax({
         url     : helpPage,
-        success : function (data) {
-            $("#help").html($(data)).find("link").remove();
-
+        cache: false,
+        beforeSend: function() {
+            $("#help").html('<div class="loading"><img src="../loading.gif"/></div>');
         },
-        error : function (request, status, error) {
-            alert("jQuery AJAX request error");
-        }
+        success : function (data) {
+            $("#help").html($(data)).find("link, title, meta").remove();
+            $("#help a.showHelp").on("click", function(event){showHelp($(this), event)});
+        },
+        error : function (){ print404(); }
     });
 }
 
@@ -49,16 +74,32 @@ function showHideContents(content){
 }
 
 function contentsToggle(tool){
-    panel = $("#contents");
-    if(panel.hasClass("closed")){
-        panel.removeClass("closed");
-        panel.css("width", "20%");
+    var contents = $("#contents");
+    var main = $("#main");
+    if(contents.hasClass("closed")){        // Open contents panel and reduce main panel
+        contents.removeClass("closed");
+        main.removeClass("extended");
         tool.removeClass("right").addClass("left");
-        $("#main").width("78%");
-    }else{
-        panel.addClass("closed");
-        panel.css("width", "22px");
+    }else{                                  // Close contents panel and extend main panel
+        contents.addClass("closed");
+        main.addClass("extended");
         tool.removeClass("left").addClass("right");
-        $("#main").width("98%");
     }
+}
+
+function print404(){
+    $.ajax({
+        url     : "404.html",
+        cache: false,
+        beforeSend: function() {
+            $("#help").html('<div class="loading"><img src="../loading.gif"/></div>');
+        },
+        success : function (data) {
+            $("#help").html($(data)).find("link, title, meta").remove();
+            $("#help a.showHelp").on("click", function(event){showHelp($(this), event)});
+        },
+        error : function (request, status, error) {
+            $("#help").html("<h3>jQuery Ajax request error</h3>");
+        }
+    });
 }
