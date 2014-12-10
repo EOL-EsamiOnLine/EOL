@@ -21,7 +21,7 @@ class AdminController extends Controller{
      * @descr   Executes action (if exists and if user is allowed)
      */
     public function executeAction($action){
-        global $user;
+        global $user, $log;
 
         // If have necessary privileges execute action
         if ($this->getAccess($user, $action, $this->accessRules())) {
@@ -74,6 +74,69 @@ class AdminController extends Controller{
         }else{
             die($db->getError());
         }
+    }
+
+    /*******************************************************************
+     ********************************************************************
+     ***                                                              ***
+     ***                            System                            ***
+     ***                                                              ***
+     ********************************************************************
+     *******************************************************************/
+
+    /**
+     *  @name   actionSystemconfiguration
+     *  @descr  Shows system's configuration page
+     */
+    private function actionSystemconfiguration(){
+        global $engine;
+
+        $engine->renderDoctype();
+        $engine->loadLibs();
+        $engine->renderHeader();
+        $engine->renderPage();
+        $engine->renderFooter();
+    }
+
+    /**
+     *  @name   actionUpdatesystemconfiguration
+     *  @descr  Update system configuration
+     */
+    private function actionUpdatesystemconfiguration(){
+        global $log;
+
+        $configFile = fopen("../includes/config.php", "r") or die("Unable to open file!");
+        $configText = fread($configFile, filesize("../includes/config.php"));
+        fclose($configFile);
+
+
+        try{
+
+            $configText = preg_replace("#themeName'[ ]*][ ]*=[ ]*'.*'#", "themeName'] = '".$_POST['skin']."'", $configText);
+            $configText = preg_replace("#systemLogo'[ ]*][ ]*=[ ]*'.*'#", "systemLogo'] = '".$_POST['logo']."'", $configText);
+            $configText = preg_replace("#systemTitle'[ ]*][ ]*=[ ]*'.*'#", "systemTitle'] = '".$_POST['title']."'", $configText);
+            $configText = preg_replace("#systemHome'[ ]*][ ]*=[ ]*'.*'#", "systemHome'] = '".$_POST['home']."'", $configText);
+            $configText = preg_replace("#systemEmail'[ ]*][ ]*=[ ]*'.*'#", "systemEmail'] = '".$_POST['email']."'", $configText);
+            $configText = preg_replace("#systemLang'[ ]*][ ]*=[ ]*'.*'#", "systemLang'] = '".$_POST['language']."'", $configText);
+            $configText = preg_replace("#systemTimeZone'[ ]*][ ]*=[ ]*'.*'#", "systemTimeZone'] = '".$_POST['timezone']."'", $configText);
+            $configText = preg_replace("#dbType'[ ]*][ ]*=[ ]*'.*'#", "dbType'] = '".$_POST['dbType']."'", $configText);
+            $configText = preg_replace("#dbHost'[ ]*][ ]*=[ ]*'.*'#", "dbHost'] = '".$_POST['dbHost']."'", $configText);
+            $configText = preg_replace("#dbPort'[ ]*][ ]*=[ ]*'.*'#", "dbPort'] = '".$_POST['dbPort']."'", $configText);
+            $configText = preg_replace("#dbName'[ ]*][ ]*=[ ]*'.*'#", "dbName'] = '".$_POST['dbName']."'", $configText);
+            $configText = preg_replace("#dbUsername'[ ]*][ ]*=[ ]*'.*'#", "dbUsername'] = '".$_POST['dbUsername']."'", $configText);
+            $configText = preg_replace("#dbPassword'[ ]*][ ]*=[ ]*'.*'#", "dbPassword'] = '".$_POST['dbPassword']."'", $configText);
+
+            $configFile = fopen("../includes/config.php", "w") or die("Unable to open file!");
+            fwrite($configFile, $configText);
+            fclose($configFile);
+
+            echo "ACK";
+
+        }catch(Exception $ex){
+            $log->append(var_export($ex, true));
+            echo var_export($ex, true);
+        }
+
     }
 
      /*******************************************************************
@@ -146,13 +209,14 @@ class AdminController extends Controller{
                 for($index = 0; $index < $texts->length; $index++){
 
                     $id = $texts->item($index)->getAttribute('id');
-
-                    $value = str_replace('\n', '<br/>', $texts->item($index)->nodeValue);
-
+                    if (strpos($id,'ttMail') === false)
+                        $value = str_replace('\n', '<br/>', $texts->item($index)->nodeValue);
+                    else
+                        $value = $texts->item($index)->nodeValue;
 
                     $jsText .= "var $id = \"".str_replace('"', '\"', $value)."\";\n";
 
-                    $phpText .= "define('$id' , '".str_replace("'", "\'", $value)."');\n";
+                    $phpText .= "define('$id' , \"".str_replace('"', '\"', $value)."\");\n";
                 }
 
 
@@ -605,8 +669,8 @@ class AdminController extends Controller{
     }
 
     /**
-     *  @name   accessRules
-     *  @descr  Returns all access rules for User controller's actions:
+     * @name   accessRules
+     * @descr  Returns all access rules for User controller's actions:
      *  array(
      *     array(
      *       (allow | deny),                                     Parameter
@@ -614,12 +678,16 @@ class AdminController extends Controller{
      *       'roles'   => array('*' | '?' | 'a' | 't' | 's')     User's Role
      *     ),
      *  );
+     * @return array
      */
     private function accessRules(){
         return array(
             array(
                 'allow',
-                'actions' => array('Index', 'Exit'),
+                'actions' => array('Index', 'Exit', 'Newteacher', 'Rooms', 'Showroominfo', 'Newroom', 'Updateroominfo',
+                                   'Deleteroom','Selectlanguage', 'Language', 'Savelanguage', 'Newlanguage', 'Systemconfiguration',
+                                   'Updatesystemconfiguration'
+                                   ),
                 'roles'   => array('a'),
             ),
             array(
@@ -630,28 +698,12 @@ class AdminController extends Controller{
             array(
                 'allow',
                 'actions' => array('Newstudent'),
-                'roles'   => array('?', 'a'),
-            ),
-            array(
-                'allow',
-                'actions' => array('Newteacher'),
-                'roles'   => array('a'),
-            ),
-            array(
-                'allow',
-                'actions' => array('Newuserfromemail'),
-                'roles'   => array('t'),
+                'roles'   => array('?', 'a', 't'),
             ),
             array(
                 'allow',
                 'actions' => array('Setpassword', 'Lostpassword'),
                 'roles'   => array('?'),
-            ),
-            array(
-                'allow',
-                'actions' => array('Rooms', 'Showroominfo', 'Newroom', 'Updateroominfo', 'Deleteroom',
-                                   'Selectlanguage', 'Language', 'Savelanguage', 'Newlanguage'),
-                'roles'   => array('a'),
             ),
             array(
                 'deny',

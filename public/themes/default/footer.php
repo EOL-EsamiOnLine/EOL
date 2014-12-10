@@ -10,7 +10,7 @@ global $config;
 ?>
 
 <div id="footer">
-    <p><?= $config['systemTitle'].' (v'.$config['systemVersion'].')'?></p>
+    <p><?= ttBasedOn ?> <a href="https://github.com/EOL-EsamiOnLine/EOL" class="bold" target="_blank">EOL - Esami On Line</a> (v <?= $config['systemVersion'] ?>)</p>
 </div>
 </div>
 <div id="dialogError"><p></p></div>

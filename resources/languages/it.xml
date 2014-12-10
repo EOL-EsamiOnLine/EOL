@@ -27,6 +27,7 @@
     <text id="ttAssignSubject">Assegna Materia</text>
     <text id="ttAutomatic">Automatico</text>
     <!-- ======================== B ======================== -->
+    <text id="ttBasedOn">Basato su</text>
     <text id="ttBlocked">Bloccato</text>
     <text id="ttBlock">Blocca</text>
     <text id="ttUnblock">Sblocca</text>
@@ -39,6 +40,7 @@
     <text id="ttClose">Chiudi</text>
     <text id="ttClosed">Chiuso</text>
     <text id="ttCorrect">Correggi</text>
+    <text id="ttConfiguration">Configurazione</text>
     <text id="ttConfirm">Conferma</text>
     <text id="ttConfirmEmail">Conferma E-mail</text>
     <text id="ttConfirmPassword">Conferma Password</text>
@@ -66,13 +68,13 @@
     <text id="ttCSubmitTest">Vuoi consegnare il test?\nL'operazione non potrà essere annullata! Continuare?</text>
     <text id="ttCTest">La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!</text>
     <text id="ttCUnblockTest">Sei sicuro di voler sbloccare questo test?</text>
+    <text id="ttCUpdateConfigurations">Sei sicuro di voler salvare le nuove configurazioni di sistema?</text>
     <text id="ttCUpdateLanguage">Sei sicuro di voler aggiornare i file di lingua?\nL'operazione non potrà essere annullata. Continuare?</text>
     <!-- ======================== D ======================== -->
     <text id="ttD1">Facile</text>
     <text id="ttD2">Intermedio</text>
     <text id="ttD3">Difficile</text>
-    <text id="ttDistributionP">Proporzionale</text>
-    <text id="ttDistributionU">Universale</text>
+    <text id="ttDatabaseConfiguration">Configurazione del database</text>
     <text id="ttDay">Giorno</text>
     <text id="ttDelete">Elimina</text>
     <text id="ttDescription">Descrizione</text>
@@ -179,6 +181,9 @@
     <text id="ttGeneralInformations">Informazioni Generali</text>
     <!-- ======================== H ======================== -->
     <text id="ttHours">ore</text>
+    <text id="ttHome">Home</text>
+    <text id="ttHomepage">Homepage</text>
+    <text id="ttHost">Host</text>
     <!-- ======================= HELP ====================== -->
     <text id="ttHAnswPanel">Due click per modificare la risposta selezionata</text>
     <text id="ttHQuestLanguagesPanel">Un click per la traduzione\ndella domanda selezionata</text>
@@ -197,6 +202,7 @@
     <text id="ttLanguage">Lingua</text>
     <text id="ttLanguages">Lingue</text>
     <text id="ttLogin">Entra</text>
+    <text id="ttLogo">Logo</text>
     <text id="ttLoginOk">Login completato!</text>
     <text id="ttLogout">ESCI</text>
     <!-- ======================== M ======================== -->
@@ -214,6 +220,7 @@
     <!-- ==================== MESSAGES ===================== -->
     <text id="ttMActivation">Password impostata correttamente.\nVerrai portato alla tua Homepage</text>
     <text id="ttMAnswerDeleted">Risposta eliminata con successo</text>
+    <text id="ttMConfigurationsUpdated">Configurazioni di sistema aggiornate con successo</text>
     <text id="ttMConfirm">Test confermato e archiviato correttamente</text>
     <text id="ttMUserCreated">Creazione completata: ti è stata inviata una e-mail per completare la registrazione.\nControlla anche nella cartella Spam</text>
     <text id="ttMEdit">Modifiche salvate correttamente</text>
@@ -279,6 +286,7 @@
     <!-- ======================== P ======================== -->
     <text id="ttPassword">Password</text>
     <text id="ttPasswordLost">Password persa?</text>
+    <text id="ttPort">Porta</text>
     <text id="ttProfile">Profilo</text>
     <!-- ======================== Q ======================== -->
     <text id="ttQuestion">Domanda</text>
@@ -323,6 +331,7 @@
     <text id="ttSet">Imposta</text>
     <text id="ttSetPassword">Imposta la tua password</text>
     <text id="ttShowHide">Mostra/Nascondi</text>
+    <text id="ttSkin">Skin</text>
     <text id="ttSettings">Impostazioni</text>
     <text id="ttStart">Inizia</text>
     <text id="ttStarted">Iniziato</text>
@@ -341,6 +350,7 @@
     <text id="ttSubmit">Consegna</text>
     <text id="ttSurname">Cognome</text>
     <text id="ttSystem">Sistema</text>
+    <text id="ttSystemConfiguration">Configurazione di Sistema</text>
     <!-- ======================== T ======================== -->
     <text id="ttTeacher">Docente</text>
     <text id="ttTeachers">Docenti</text>
@@ -352,6 +362,8 @@
     <text id="ttTimeEnd">Ora di fine</text>
     <text id="ttTimeStart">Ora di inizio</text>
     <text id="ttTimeUsed">Tempo usato</text>
+    <text id="ttTimeZone">Fuso orario</text>
+    <text id="ttTitle">Titolo</text>
     <text id="ttTopic">Argomento</text>
     <text id="ttTopics">Argomenti</text>
     <text id="ttTopicsAndQuestions">Argomenti e Domande</text>
@@ -360,6 +372,7 @@
     <text id="ttTrue">Vero</text>
     <text id="ttType">Tipo</text>
     <!-- ======================== U ======================== -->
+    <text id="ttUser">Utente</text>
     <text id="ttUsers">Utenti</text>
     <!-- ======================== V ======================== -->
     <text id="ttView">Vedi</text>
