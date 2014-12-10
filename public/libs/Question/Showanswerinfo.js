@@ -21,6 +21,7 @@ function closeAnswerInfo(askConfirmation){
     if((!askConfirmation) || ((!answerEditing) || (confirmDialog(ttWarning, ttCDiscardEdits, closeAnswerInfo, false)))){
         answerEditing = false;
         answerRowSelected = false;
+        maximizeFixForAnswer = false;
         destroyAllCKEditorInstances();
         closeLightbox($('#answerInfo'));
         $("#questionInfo").slideDown();
@@ -35,6 +36,7 @@ function closeAnswerInfo(askConfirmation){
 function cancelNewAnswer(askConfirmation){
     if(((!askConfirmation) || (confirmDialog(ttWarning, ttCDiscardNew, cancelNewAnswer, false)))){
         answerEditing = false;
+        maximizeFixForAnswer = false;
         destroyAllCKEditorInstances();
         closeLightbox($("#answerInfo"));
         $("#questionInfo").slideDown();

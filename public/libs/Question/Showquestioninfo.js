@@ -6,6 +6,8 @@
  * Desc: Show question's info with all translations
  */
 
+var maximizeFixForAnswer = false;
+
 $(function(){
 
     /**
@@ -221,6 +223,7 @@ function newEmptyAnswer(type) {
                 $("body").append(data);
                 $("#questionInfo").slideUp();
                 newLightbox($("#answerInfo"), {});
+                maximizeFixForAnswer = true;
             }else{
 //                alert(data);
                 showErrorMessage(data);
@@ -259,6 +262,7 @@ function showAnswerInfo(selectedAnswerConfirmAndType){
                 $("body").append(data);
                 $("#questionInfo").slideUp();
                 newLightbox($("#answerInfo"), {});
+                maximizeFixForAnswer = true;
             },
             error : function (request, status, error) {
                 alert("jQuery AJAX request error:".error);
@@ -299,4 +303,12 @@ function changeCKEditorQuestionLanguage(tab){
     createCKEditorInstance("qt"+idLanguage);
     $("#qLangsTabs a.tab").removeClass("active");
     $(tab).addClass("active");
+}
+
+function fixMaximize(){
+    if(maximizeFixForAnswer){           // Answer editing   =>  Fix for div#answerInfo
+        $("#answerInfo").addClass("maximize_fix");
+    }else{                              // Question editing   =>  Fix for div#questionInfo
+        $("#questionInfo").addClass("maximize_fix");
+    }
 }
