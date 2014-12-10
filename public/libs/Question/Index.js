@@ -23,10 +23,6 @@ var qtci = {
 // Time for double click
 var timer;
 
-// Questions/Answers chars limit
-var qMaxLength = aMaxLength = 100;
-var ellipsis = " [...]";
-
 // Anchors for topic list
 var topicRowSelected = null;
 var topicRowEdit = null;

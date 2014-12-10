@@ -392,11 +392,10 @@ function isValidEmailAddress(emailAddress) {
 }
 
 function truncate(data, width){
-    if(data!=null){
+    if(data!=null)
         return '<div class="ellipsis" style="width :'+width+'; text-overflow:ellipsis;">'+data+'</div>';
-    }else{
+    else
         return '';
-    }
 }
 
 function scrollToRow(datatable, row){
