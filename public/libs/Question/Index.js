@@ -23,10 +23,6 @@ var qtci = {
 // Time for double click
 var timer;
 
-// Questions/Answers chars limit
-var qMaxLength = aMaxLength = 100;
-var ellipsis = " [...]";
-
 // Anchors for topic list
 var topicRowSelected = null;
 var topicRowEdit = null;
@@ -434,11 +430,13 @@ function createCKEditorInstance(instance){
         case "a" : onchange = function() { this.updateElement(); answerEditing = true; }; break;
         default : alert("CKEditor creation error");
     }
-    CKEDITOR.replace(instance, {filebrowserBrowseUrl:roxyFileman,
-        filebrowserUploadUrl:roxyFileman,
+    CKEDITOR.replace(instance, {
+        filebrowserBrowseUrl:roxyFileman,
+//        filebrowserUploadUrl:roxyFileman,
         filebrowserImageBrowseUrl:roxyFileman+'?type=image',
-        filebrowserImageUploadUrl:roxyFileman+'?type=image',
-        on: { change: onchange }});
+//        filebrowserImageUploadUrl:roxyFileman+'?type=image',
+        on: { change: onchange }
+    });
 }
 
 function closeQuestionTypeSelect(){

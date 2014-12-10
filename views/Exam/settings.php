@@ -91,10 +91,7 @@ global $user, $tt, $config;
                                 if($question['status'] == 'a'){
                                     if($idQuestion == $question['idQuestion']){
                                         if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                                            if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                                                $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                                            else
-                                                $text = $question['shortText'];
+                                            $text = $question['shortText'];
 
                                         $languages .= '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                                             class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
@@ -110,10 +107,7 @@ global $user, $tt, $config;
                                             $difficultyID = 'settingsD'.$question['difficulty'];
                                             $checkbox = '<input type="checkbox" value="'.$idQuestion.'" name="question" onchange="selectQuestion(this);"/>';
                                             if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                                                if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                                                    $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                                                else
-                                                    $text = $question['shortText'];
+                                                $text = $question['shortText'];
                                             $languages = '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                                                class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
                                                                src="'.$config['themeFlagsDir'].$allLangs[$question['fkLanguage']]['alias'].'.gif">';
@@ -140,10 +134,7 @@ global $user, $tt, $config;
                                             $difficultyID = 'settingsD'.$question['difficulty'];
                                             $checkbox = '<input type="checkbox" value="'.$idQuestion.'" name="question" onchange="selectQuestion(this);"/>';
                                             if($question['fkLanguage'] == $subjectInfo['fkLanguage'])
-                                                if(strlen($question['shortText']) > $config['datatablesTextLength'])
-                                                    $text = substr($question['shortText'], 0, ($config['datatablesTextLength'] - (strlen($config['ellipsis'])))).$config['ellipsis'];
-                                                else
-                                                    $text = $question['shortText'];
+                                                $text = $question['shortText'];
                                             $languages = '<img title="'.$allLangs[$question['fkLanguage']]['description'].'"
                                                                class="flag" alt="'.$allLangs[$question['fkLanguage']]['alias'].'"
                                                                src="'.$config['themeFlagsDir'].$allLangs[$question['fkLanguage']]['alias'].'.gif">';

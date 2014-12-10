@@ -294,23 +294,24 @@ class ExamController extends Controller{
                 if($exam['status'] == 'a'){
                     die(ttEExamArchived);
                 }elseif(($db->qSelect("Tests", "fkExam", $_POST['idExam'])) && ($tests = $db->getResultAssoc('idTest'))){
-                    foreach($tests as $idTest => $testInfo){
-                        switch($testInfo['status']){
-                            case 'w':
-                            case 's':
-                            case 'b': if(!$db->qArchiveTest($idTest, $correctScores=array(), $scoreTest=null, $bonus='0', $scoreFinal='0', $scale=0.0, $status=$testInfo['status']))
-                                          die($db->getError()); break;
-                            case 'e': if(($db->qTestDetails($idTest)) && ($testInfo = $db->nextRowAssoc()))
-                                          if(!$db->qArchiveTest($idTest, $correctScores=array(), $testInfo['scoreTest'], $bonus='0', $scoreFinal=round($testInfo['scoreTest']), $testInfo['scale']))
-                                              die($db->getError()); break;
+                    if(($db->qExams($_POST['idExam'])) && ($examInfo = $db->nextRowAssoc())){
+                        $scale = $examInfo['scale'];
+                        foreach($tests as $idTest => $testInfo){
+                            switch($testInfo['status']){
+                                case 'w':
+                                case 's':
+                                case 'b': if(!$db->qArchiveTest($idTest, $correctScores=array(), $scoreTest=null, $bonus='0', $scoreFinal='0', $scale=0.0, $status=$testInfo['status']))
+                                             die($db->getError()); break;
+                                case 'e': if(!$db->qArchiveTest($idTest, $correctScores=array(), $testInfo['scoreTest'], $bonus='0', $scoreFinal=round($testInfo['scoreTest']), $scale))
+                                             die($db->getError()); break;
+                            }
+                        }
+                        if($db->qArchiveExam($_POST['idExam'])){
+                            echo 'ACK';
+                        }else{
+                            die($db->getError());
                         }
                     }
-                    if($db->qArchiveExam($_POST['idExam'])){
-                        echo 'ACK';
-                    }else{
-                        die($db->getError());
-                    }
-
                 }
             }else{
                 die(ttEExamNotFound);

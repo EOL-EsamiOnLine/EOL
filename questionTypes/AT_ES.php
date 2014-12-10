@@ -16,8 +16,4 @@ class AT_ES extends Answer {
     public function getAnswerRowInTable(){}
 
     public function getAnswerScore(){}
-
-    public function getScoreFromGivenAnswer(){
-        return 0;
-    }
 }

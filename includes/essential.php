@@ -134,12 +134,10 @@ function openBox($title = '', $css = 'normal', $id = '', $buttons = null){
         echo '<div class="'.$class.'" style="'.$style.'" id="'.$id.'">';
     else
         echo '<div class="'.$class.'" style="'.$style.'">';
-    echo <<< HTML
-        <div class="box">
-            <!--<div class="boxTopLeft"></div>-->
-            <div class="boxTopCenter">$title</div>
-            <!--<div class="boxTopRight"></div>-->
-HTML;
+
+    echo '<div class="box">
+            <div class="boxTopCenter">'.$title.'</div>';
+
     if($buttons != null){
         echo '<div class="smallButtons">';
         foreach ($buttons as &$button) {
@@ -165,15 +163,12 @@ HTML;
 function closeBox(){
     global $config;
 
-    echo <<< HTML
-    </div>
-    <div class="boxBottom">
-        <!--<div class="boxBottomLeft"></div>-->
-        <div class="boxBottomCenter"></div>
-        <!--<div class="boxBottomRight"></div>-->
-    </div>
-    </div>
-HTML;
+    echo '</div>
+          <div class="boxBottom">
+              <div class="boxBottomCenter"></div>
+          </div>
+      </div>';
+
 }
 
 /**
@@ -205,34 +200,35 @@ function printMenu(){
  * @descr   Create the admin menu on page
  */
 function adminMenu(){
-    global $tt;
+    global $tt; ?>
 
-    echo <<<HTML
 <ul class="topnav">
-    <li><a href="index.php">Home</a></li>
+    <li><a href="index.php"><?= ttHome ?></a></li>
     <li>
-        <a class="trigger">{$tt(ttSubjects)}</a>
+        <a class="trigger"><?= ttSubjects ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=subject">{$tt(ttSubjects)}</a></li>
+            <li><a href="index.php?page=subject"><?= ttSubjects ?></a></li>
         </ul>
     </li>
     <li>
-        <a class="trigger">{$tt(ttUsers)}</a>
+        <a class="trigger"><?= ttUsers ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=admin/newteacher">{$tt(ttNewTeacher)}/{$tt(ttAdministrator)}</a></li>
-            <li><a href="index.php?page=admin/newstudent">{$tt(ttNewStudent)}</a></li>
+            <li><a href="index.php?page=admin/newteacher"><?= ttNewTeacher ?>/<?= ttAdministrator ?></a></li>
+            <li><a href="index.php?page=admin/newstudent"><?= ttNewStudent ?></a></li>
         </ul>
     </li>
     <li>
-        <a class="trigger">{$tt(ttSystem)}</a>
+        <a class="trigger"><?= ttSystem ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=admin/selectlanguage">{$tt(ttLanguages)}</a></li>
-            <li><a href="index.php?page=admin/rooms">{$tt(ttRooms)}</a></li>
+            <li><a href="index.php?page=admin/selectlanguage"><?= ttLanguages ?></a></li>
+            <li><a href="index.php?page=admin/systemconfiguration"><?= ttConfiguration ?></a></li>
+            <li><a href="index.php?page=admin/rooms"><?= ttRooms ?></a></li>
         </ul>
     </li>
-    <li><a href="index.php?page=admin/profile">{$tt(ttProfile)}</a></li>
-    <li><a href="index.php?page=admin/exit" style="color: red">{$tt(ttExit)}</a></li>
-HTML;
+    <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
+    <li><a href="index.php?page=admin/exit" style="color: red"><?= ttExit ?></a></li>
+
+<?php
 }
 
 /**
@@ -240,27 +236,27 @@ HTML;
  * @descr   Create the teacher menu on page
  */
 function teacherMenu(){
-    global $tt;
+    global $tt; ?>
 
-    echo <<<HTML
 <ul class="topnav">
-    <li><a href="index.php">Home</a></li>
+    <li><a href="index.php"><?= ttHome ?></a></li>
     <li>
-        <a class="trigger">{$tt(ttSubjects)}</a>
+        <a class="trigger"><?= ttSubjects ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=subject">{$tt(ttSelectSubject)}</a></li>
-            <li><a href="index.php?page=question">{$tt(ttTopicsAndQuestions)}</a></li>
+            <li><a href="index.php?page=subject"><?= ttSelectSubject ?></a></li>
+            <li><a href="index.php?page=question"><?= ttTopicsAndQuestions ?></a></li>
         </ul>
     </li>
     <li>
-        <a class="trigger">{$tt(ttExams)}</a>
+        <a class="trigger"><?= ttExams ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=exam/exams">{$tt(ttMyExams)}</a></li>
-            <li><a href="index.php?page=exam/settings">{$tt(ttSettings)}</a></li>
+            <li><a href="index.php?page=exam/exams"><?= ttMyExams ?></a></li>
+            <li><a href="index.php?page=exam/settings"><?= ttSettings ?></a></li>
         </ul>
     </li>
-    <li><a href="index.php?page=admin/profile">{$tt(ttProfile)}</a></li>
-HTML;
+    <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
+
+<?php
 }
 
 /**
@@ -268,28 +264,28 @@ HTML;
  * @descr   Create the adminTeacher menu on page
  */
 function adminTeacherMenu(){
-    global $tt;
+    global $tt; ?>
 
-    echo <<<HTML
 <ul class="topnav">
-    <li><a href="index.php">Home</a></li>
+    <li><a href="index.php"><?= ttHome ?></a></li>
     <li>
-        <a class="trigger">{$tt(ttSubjects)}</a>
+        <a class="trigger"><?= ttSubjects ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=subject">{$tt(ttSelectSubject)}</a></li>
-            <li><a href="index.php?page=question">{$tt(ttTopicsAndQuestions)}</a></li>
+            <li><a href="index.php?page=subject"><?= ttSelectSubject ?></a></li>
+            <li><a href="index.php?page=question"><?= ttTopicsAndQuestions ?></a></li>
         </ul>
     </li>
     <li>
-        <a class="trigger">{$tt(ttExams)}</a>
+        <a class="trigger"><?= ttExams ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=exam/exams">{$tt(ttMyExams)}</a></li>
-            <li><a href="index.php?page=exam/settings">{$tt(ttSettings)}</a></li>
+            <li><a href="index.php?page=exam/exams"><?= ttMyExams ?></a></li>
+            <li><a href="index.php?page=exam/settings"><?= ttSettings ?></a></li>
         </ul>
     </li>
-    <li><a href="index.php?page=admin/profile">{$tt(ttProfile)}</a></li>
-    <li><a href="index.php?page=admin" style="color: red">{$tt(ttAdministration)}</a></li>
-HTML;
+    <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
+    <li><a href="index.php?page=admin" style="color: red"><?= ttAdministration ?></a></li>
+
+<?php
 }
 
 /**
@@ -297,13 +293,13 @@ HTML;
  * @descr   Print the student menu on page
  */
 function studentMenu(){
-    global $tt;
+    global $tt; ?>
 
-    echo <<<HTML
 <ul class="topnav">
-    <li><a href="index.php">Home</a></li>
-    <li><a href="index.php?page=admin/profile">{$tt(ttProfile)}</a></li>
-HTML;
+    <li><a href="index.php"><?= ttHome ?></a></li>
+    <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
+
+<?php
 }
 
 /**
@@ -335,9 +331,7 @@ function dropdownSystemLanguage(){
 function guestMenu(){
     global $tt;
 
-    echo <<<HTML
-<ul id="break"></ul>
-HTML;
+    echo '<ul id="break"></ul>';
 }
 
 /**

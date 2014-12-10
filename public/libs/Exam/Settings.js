@@ -41,7 +41,7 @@ $(function(){
                                 order: [ qtci.text, "asc" ],
                                 columns : [
                                     { className: "qCheckbox", searchable : false, visible : false, "orderDataType": "dom-checkbox", width : "10px" },
-                                    { className: "qText", width : "750px" },
+                                    { className: "qText", width : "570px", mRender: function(data){return truncate(data, "600px")} },
                                     { className: "qLanguages", searchable : false, type: "alt-string", width : "60px" },
                                     { className: "qTopic", width : "80px" },
                                     { className: "qType", width : "100px" },

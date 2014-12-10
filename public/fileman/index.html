@@ -38,9 +38,9 @@
   <tr>
    <td valign="top" class="pnlDirs" id="dirActions">
     <div class="actions">
-      <input type="button" id="btnAddDir" value="Create" title="Create new directory" onclick="addDir()" data-lang-v="CreateDir" data-lang-t="T_CreateDir" />
-      <input type="button" id="btnRenameDir" value="Rename" title="Rename directory" onclick="renameDir()" data-lang-v="RenameDir" data-lang-t="T_RenameDir" />
-      <input type="button" id="btnDeleteDir" value="Delete" title="Delete selected directory" onclick="deleteDir()" data-lang-v="DeleteDir" data-lang-t="T_DeleteDir" />
+      <!--<input type="button" id="btnAddDir" value="Create" title="Create new directory" onclick="addDir()" data-lang-v="CreateDir" data-lang-t="T_CreateDir" />-->
+      <!--<input type="button" id="btnRenameDir" value="Rename" title="Rename directory" onclick="renameDir()" data-lang-v="RenameDir" data-lang-t="T_RenameDir" />-->
+      <!--<input type="button" id="btnDeleteDir" value="Delete" title="Delete selected directory" onclick="deleteDir()" data-lang-v="DeleteDir" data-lang-t="T_DeleteDir" />-->
     </div>
     <div id="pnlLoadingDirs">
        <span>Loading directories...</span><br>
@@ -117,22 +117,22 @@
   <a href="#" onclick="setFile()" data-lang="SelectFile" id="mnuSelectFile">Select</a><hr>
   <a href="#" onclick="previewFile()" data-lang="Preview" id="mnuPreview">Preview</a><hr>
   <a href="#" onclick="downloadFile()" data-lang="DownloadFile" id="mnuDownload">Download</a><hr>
-  <a href="#" onclick="return pasteToFiles(event, this)" data-lang="Paste" class="paste pale" id="mnuFilePaste">Paste</a><hr>
-  <a href="#" onclick="cutFile()" data-lang="Cut" id="mnuFileCut">Cut</a><hr>
-  <a href="#" onclick="copyFile()" data-lang="Copy" id="mnuFileCopy">Copy</a><hr>
+  <!--<a href="#" onclick="return pasteToFiles(event, this)" data-lang="Paste" class="paste pale" id="mnuFilePaste">Paste</a><hr>-->
+  <!--<a href="#" onclick="cutFile()" data-lang="Cut" id="mnuFileCut">Cut</a><hr>-->
+  <!--<a href="#" onclick="copyFile()" data-lang="Copy" id="mnuFileCopy">Copy</a><hr>-->
   <a href="#" onclick="renameFile()" data-lang="RenameFile" id="mnuRenameFile">Rename</a><hr>
   <a href="#" onclick="deleteFile()" data-lang="DeleteFile" id="mnuDeleteFile">Delete</a><!-- hr>
   <a href="#" onclick="fileProperties()" id="mnuProp">Properties</a -->
 </div>
-<div id="menuDir" class="contextMenu">
-  <a href="#" onclick="downloadDir()" data-lang="Download" id="mnuDownloadDir">Download</a><hr>
-  <a href="#" onclick="addDir()" data-lang="T_CreateDir" id="mnuCreateDir">Create new</a><hr>
-  <a href="#" onclick="return pasteToDirs(event, this)" data-lang="Paste" class="paste pale" id="mnuDirPaste">Paste</a><hr>
-  <a href="#" onclick="cutDir()" data-lang="Cut" id="mnuDirCut">Cut</a><hr>
-  <a href="#" onclick="copyDir()" data-lang="Copy" id="mnuDirCopy">Copy</a><hr>
-  <a href="#" onclick="renameDir()" data-lang="RenameDir" id="mnuRenameDir">Rename</a><hr>
-  <a href="#" onclick="deleteDir()" data-lang="DeleteDir" id="mnuDeleteDir">Delete</a>
-</div>
+<!--<div id="menuDir" class="contextMenu">-->
+  <!--<a href="#" onclick="downloadDir()" data-lang="Download" id="mnuDownloadDir">Download</a><hr>-->
+  <!--<a href="#" onclick="addDir()" data-lang="T_CreateDir" id="mnuCreateDir">Create new</a><hr>-->
+  <!--<a href="#" onclick="return pasteToDirs(event, this)" data-lang="Paste" class="paste pale" id="mnuDirPaste">Paste</a><hr>-->
+  <!--<a href="#" onclick="cutDir()" data-lang="Cut" id="mnuDirCut">Cut</a><hr>-->
+  <!--<a href="#" onclick="copyDir()" data-lang="Copy" id="mnuDirCopy">Copy</a><hr>-->
+  <!--<a href="#" onclick="renameDir()" data-lang="RenameDir" id="mnuRenameDir">Rename</a><hr>-->
+  <!--<a href="#" onclick="deleteDir()" data-lang="DeleteDir" id="mnuDeleteDir">Delete</a>-->
+<!--</div>-->
 <div id="pnlRenameFile" class="dialog">
   <span class="name"></span><br>
   <input type="text" id="txtFileName">

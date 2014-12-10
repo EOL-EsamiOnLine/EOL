@@ -35,13 +35,22 @@ body.noscroll {
     height              :   122px;
     background-color    :   #929292;
 }
-#eolLogo {
-    float       :   left;
-    width       :   171px;
-    height      :	88px;
-    background  :   url("images/eol.png") no-repeat;
-    margin-top  :   12px;
-    margin-left:    20px;
+#logoContainer {
+    float:left;
+    margin: 10px 10px 10px 10px;
+    height: 100px;
+}
+#logoContainer img {
+    height: 100%;
+    float: left;
+}
+#systemTitle {
+    float: left;
+    line-height: 110px;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 30px;
+    color: rgb(137, 202, 57);
 }
 #welcome {
     font-size   :   12px;
@@ -409,7 +418,6 @@ div.ui-datepicker{
 .boxCenterS{
     width               :   48%;
     position            :   relative;
-    overflow            :   hidden;
     margin              :   0 auto;
 }
 .boxRightS{
@@ -1154,17 +1162,6 @@ img.icon{
 /*************************************
 *             Languages              *
 *************************************/
-/*div.language.odd{*/
-    /*background-color: #efefef;*/
-/*}*/
-/*div.language.even{*/
-    /*background-color: #e2e2e2;*/
-/*}*/
-/*div.language div:not(.clearer){*/
-    /*width: 47.7%;*/
-    /*font-size: 14px;*/
-    /*padding: 10px;*/
-/*}*/
 textarea.language{
     width: 95%;
     padding-top: 10px;
@@ -1195,6 +1192,32 @@ textarea.language.green{
     text-align: center;
 }
 
+/*************************************
+*           Configuration            *
+*************************************/
+#systemConfiguration .columnLeft {
+    width                       :   50%;
+    float                       :   left;
+    height                      :   280px;
+}
+#systemConfiguration .columnRight {
+    width                       :   50%;
+    float                       :   left;
+    height                      :   280px;
+}
+#systemConfiguration h2 {
+    padding-left: 60px;
+    margin-bottom: 20px;
+}
+#systemConfiguration .infoEdit {
+    background: #B6B6B6;
+    padding: 0;
+}
+#systemConfiguration input[type=text],
+#systemConfiguration .dropdownInfo dt,
+#systemConfiguration .dropdownInfo ol {
+    width: 220px;
+}
 /*******************************************************************
 ********************************************************************
 ***                                                              ***
@@ -2152,124 +2175,9 @@ span.extraClose{
 }
 
 
-/*Aggiunto per la creazione della Report Section*/
 
-/*--------------------------**/
- /**  Report section   **/
- /**--------------------------*/
 
-/*.reportEdit label{*/
-    /*top                 :   5px;*/
-    /*min-width          	:   100px;*/
-    /*margin-left         :   12px;*/
-    /*text-align          :   right;*/
-    /*font-size           :   14px;*/
-    /*font-weight         :   bold;*/
-    /*margin-right		:	20px;*/
-/*}*/
-/*select{*/
-		/*color 		: 	#000000 ;*/
-		/*background 	: 	#FFFFFF ;*/
-		/*font-size 	:	12px;*/
-		/*width 		: 	180px;*/
-		/*position 	: 	relative;*/
-		/*font-family :	"Trebuchet MS",serif;*/
-/*}*/
-/*hr{*/
-	/*position	:	relative;*/
-	/*top			:   10px;*/
-	/*color 		: 	#D3D3D3;*/
-/*}*/
-/*#report{*/
-    /*text-align      	:   left;*/
-    /*min-height      	:   245px;*/
-    /*padding         	:   20px;*/
-    /*background-color    :   #929292;*/
-    /* height 				: 	490px; */
-/*}*/
-/*#report2{*/
-    /*text-align      	:   left;*/
-    /*min-height      	:   245px;*/
-    /*padding         	:   20px;*/
-    /*background-color    :   #929292;*/
-    /* height 				: 	620px; */
-/*}*/
-/*.tableNewReport{*/
-	/*font-size           :   14px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-/*}*/
-/*.pageNewReport{*/
-	/*font-size           :   18px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#A9A9A9;*/
-    /*margin-left         :   12px;*/
-/*}*/
-/*.pageReporter{*/
-	/*font-size           :   18px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#1E90FF;*/
-/*}*/
-/*.descriptionReporter{*/
-	/*font-size           :   12px;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	black;*/
-    /*font-style  		: 	italic;*/
-/*}*/
-/*.viewReportStyle{*/
-	/*font-size           :   14px;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	black;*/
-/*}*/
-/*.viewReportTitleStyle{*/
-	/*font-size           :   16px;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	black;*/
-    /*font-weight         :   bold;*/
-/*}*/
-/*a.button.superRightSpace{*/
-    /*margin-right         :   63px;*/
-/*}*/
-/*.pageViewReportCreated{*/
-	/*font-size           :   18px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#A9A9A9;*/
-    /*margin-left         :   63px;*/
-/*}*/
-/*.pageCreateNewReport{*/
-	/*font-size           :   18px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#A9A9A9;*/
-    /*margin-left         :   12px;*/
-    /*margin-bottom       :   50px;*/
-/*}*/
-/*.dateReportBoldStyle{*/
-	/*font-size           :   14px;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	black;*/
-    /*font-weight         :   bold;*/
-/*}*/
-/*.dateReportNormalStyle{*/
-	/*font-size           :   14px;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	black;*/
-/*}*/
-
-/*.pageReportResults{*/
-	/*font-size           :   18px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#A9A9A9;*/
-    /*margin-left         :   2px;*/
-/*}*/
-/*.reportTitle{*/
-	/*font-size           :   32px;*/
-    /*font-weight         :   bold;*/
-    /*font-family 		:	"Trebuchet MS",serif;*/
-    /*color 				: 	#A9A9A9;*/
-    /*margin-left         :   12px;*/
-/*}*/
+/* CKEditor mazmimize fix*/
+.maximize_fix{
+    position: static !important;
+}

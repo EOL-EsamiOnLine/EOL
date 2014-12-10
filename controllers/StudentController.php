@@ -193,14 +193,7 @@ class StudentController extends Controller{
                 if($db->qUpdateTestAnswers($_SESSION['idSet'], $questions, $answers)){
 
                     if((isset($_POST['submit'])) && ($_POST['submit'] == "true")){      // Close test
-                        $finalAnswers = array();
-                        while(count($answers) > 0){
-                            $answer = json_decode(array_pop($answers), true);
-                            if((!empty($answer)) && (is_numeric($answer[0]))){
-                                $finalAnswers = array_merge((array)$finalAnswers, (array)$answer);
-                            }
-                        }
-                        if($db->qEndTest($_SESSION['idSet'], $finalAnswers)){
+                        if($db->qEndTest($_SESSION['idSet'])){
                             unset($_SESSION['idSet']);
                             echo 'ACK';
                         }else{

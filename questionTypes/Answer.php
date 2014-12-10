@@ -121,6 +121,4 @@ abstract class Answer {
 
     public abstract function getAnswerScore();
 
-    public abstract function getScoreFromGivenAnswer();
-
 }

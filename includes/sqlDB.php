@@ -1041,7 +1041,7 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            $query = "SELECT idExam, Exams.name exam, status, Subjects.name subject, TestSettings.name settings, password, datetime, idSubject, idTestSetting
+            $query = "SELECT idExam, Exams.name exam, status, Subjects.name subject, TestSettings.name settings, password, datetime, idSubject, idTestSetting, scale
                       FROM
                           Exams
                               LEFT JOIN Subjects ON Exams.fkSubject = Subjects.idSubject
@@ -2159,11 +2159,10 @@ class sqlDB {
     /**
      * @name    qEndTest
      * @param   $idSet          String      Question set ID
-     * @param   $answers        Array       Array of final answers
      * @return  Boolean
      * @descr   Return true if test successfully stopped
      */
-    public function qEndTest($idSet, $answers){
+    public function qEndTest($idSet){
         global $log;
         $ack = true;
         $this->result = null;
@@ -2171,23 +2170,21 @@ class sqlDB {
 
         try{
             $datetime = date("Y-m-d H:i:s");
-            // Get score, with answer's score SUM
+
             $score = 0;
-            $query = "SELECT idAnswer, type, score
-                      FROM Answers, Questions
+            $query = "SELECT idQuestion, type, answer
+                      FROM Sets_Questions AS SQ
+                           JOIN Questions AS Q ON Q.idQuestion = SQ.fkQuestion
                       WHERE
-                          idAnswer IN (".implode(', ', $answers).")
-                          AND
-                          Answers.fkQuestion = Questions.idQuestion";
+                          fkSet = '$idSet'";
             $this->execQuery($query);
-            while($answerInfo = $this->nextRowAssoc()){
-                if(is_numeric($answerInfo['score'])){
-                    $score += $answerInfo['score'];
-                }else{
-                    $answer = Answer::newAnswer($answerInfo['type'], $answerInfo);
-                    $score += $answer->getAnswerScore();
-                }
+            $test = $this->getResultAssoc('idQuestion');
+
+            foreach($test as $idQuestion => $setQuestion){
+                $question = Question::newQuestion($setQuestion['type'], $setQuestion);
+                $score += $question->getScoreFromGivenAnswer();
             }
+
             $this->mysqli = $this->connect();
             // Get scale from test settings
             $query = "SELECT scale
@@ -2197,11 +2194,8 @@ class sqlDB {
                       WHERE
                           T.fkSet = '$idSet'";
             $this->execQuery($query);
-            $log->append("1");
             $row = $this->nextRowAssoc();
-            $log->append("2");
             $score = round($row['scale'] * $score, 1);
-            $log->append("3");
             // Update test
             $query = "UPDATE Tests
                       SET timeEnd = '$datetime',
@@ -2241,7 +2235,7 @@ class sqlDB {
             $queries = array();
 
             if($submitted){
-                $query = "SELECT idQuestion, answer, type
+                $query = "SELECT idQuestion, type, answer
                           FROM Sets_Questions AS SQ
                                JOIN Questions AS Q ON Q.idQuestion = SQ.fkQuestion
                           WHERE
@@ -2252,10 +2246,9 @@ class sqlDB {
                 $test = $this->getResultAssoc('idQuestion');
 
                 if(!$corrected){         // The test is not been corrected, get scores from given answers
-                    foreach($test as $idQuestion => $questionInfo){
-                        $answer = Answer::newAnswer($questionInfo['type'], array('answer' => $questionInfo['answer'],
-                                                                                 'scale' => $scale));
-                        $correctScores[$idQuestion] = round(($answer->getScoreFromGivenAnswer() * $scale), 1);
+                    foreach($test as $idQuestion => $setQuestion){
+                        $question = Question::newQuestion($setQuestion['type'], $setQuestion);
+                        $correctScores[$idQuestion] = round(($question->getScoreFromGivenAnswer() * $scale), 1);
                     }
                 }
 
@@ -2928,6 +2921,7 @@ class sqlDB {
         try{
             while(count($queries) > 0){
                 $query = array_shift($queries);
+//                $log->append($query);
                 $this->execQuery($query);           // Execute queries one by one as long as there isn't error
             }
             $this->mysqli->commit();

@@ -236,4 +236,20 @@ class QT_MR extends Question {
         $this->printQuestionInCorrection($idSubject, $answered, $scale, $lastQuestion);
     }
 
+    public function getScoreFromGivenAnswer(){
+        $score = 0;
+
+        $answer = json_decode(stripslashes($this->get('answer')), true);
+        if(count($answer) > 0){
+            $db = new sqlDB();
+            if($db->qSelect('Answers', 'idAnswer', $answer)){
+                while($result = $db->nextRowAssoc()){
+                    $score += $result['score'];
+                }
+            }else die($db->getError());
+        }
+
+        return $score;
+    }
+
 }
