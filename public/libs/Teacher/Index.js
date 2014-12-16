@@ -86,12 +86,14 @@ $(function(){
 function goToExam(selectedExam){
     var idExam = examsTable.row(selectedExam).data()[etci.examID];
     $("input[name='idExam']").val(idExam);
-    $("#form").attr("action", "index.php?page=exam/exams").submit();
+    $("#form").attr("action", "index.php?page=exam/exams")
+              .attr("target", "").submit();
 }
 
 
 function goToTest(selectedTest){
     var idTest = testsTable.row(selectedTest).data()[ttci.testID];
     $("input[name='idTest']").val(idTest);
-    $("#form").attr("action", "index.php?page=exam/correct").submit();
+    $("#form").attr("action", "index.php?page=exam/correct")
+              .attr("target", "_blank").submit();
 }

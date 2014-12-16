@@ -65,7 +65,7 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                                                'actionIcon' => 'view',
                                                'actionTitle' => ttView,
                                                'actionFunction' => "viewTest(this)"),
-                                  'b' => array('imageTitle' => 'Blocked',
+                                  'b' => array('imageTitle' => 'blocked',
                                                'action' => 'unblock',
                                                'actionIcon' => 'unblock',
                                                'actionTitle' => ttUnblock,
@@ -131,7 +131,7 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
     </table>
 </div>
 
-<form action="" method="post" id="idTestForm">
+<form action="" method="post" id="idTestForm" target="_blank">
     <input type="hidden" id="idTest" name="idTest" value="">
 </form>
 
