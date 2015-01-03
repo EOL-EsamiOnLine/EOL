@@ -12,7 +12,7 @@
  *----------------------------------*/
 
 // System version
-$config['systemVersion'] = '0.0.4';
+$config['systemVersion'] = '0.0.5';
 // System logo
 $config['systemLogo'] = '__SYSTEMLOGO__';
 // System title

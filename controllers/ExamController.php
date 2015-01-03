@@ -290,19 +290,20 @@ class ExamController extends Controller{
 
         if(isset($_POST['idExam'])){
             $db = new sqlDB();
-            if(($db->qSelect('Exams', 'idExam', $_POST['idExam'])) && ($exam = $db->nextRowAssoc())){
-                if($exam['status'] == 'a'){
+            if(($db->qSelect('Exams', 'idExam', $_POST['idExam'])) && ($examInfo = $db->nextRowAssoc())){
+                if($examInfo['status'] == 'a'){
                     die(ttEExamArchived);
                 }elseif(($db->qSelect("Tests", "fkExam", $_POST['idExam'])) && ($tests = $db->getResultAssoc('idTest'))){
-                    if(($db->qExams($_POST['idExam'])) && ($examInfo = $db->nextRowAssoc())){
-                        $scale = $examInfo['scale'];
+                    if(($db->qSelect("TestSettings", "idTestSetting", $examInfo['fkTestSetting'])) && ($examSettings = $db->nextRowAssoc())){
+                        $scale = $examSettings['scale'];
+                        $allowNegative = ($examSettings['negative'] == 0)? false : true;
                         foreach($tests as $idTest => $testInfo){
                             switch($testInfo['status']){
                                 case 'w':
                                 case 's':
-                                case 'b': if(!$db->qArchiveTest($idTest, $correctScores=array(), $scoreTest=null, $bonus='0', $scoreFinal='0', $scale=0.0, $status=$testInfo['status']))
+                                case 'b': if(!$db->qArchiveTest($idTest, $correctScores=array(), $scoreTest=null, $bonus='0', $scoreFinal='0', $scale=0.0, $allowNegative, $status=$testInfo['status']))
                                              die($db->getError()); break;
-                                case 'e': if(!$db->qArchiveTest($idTest, $correctScores=array(), $testInfo['scoreTest'], $bonus='0', $scoreFinal=round($testInfo['scoreTest']), $scale))
+                                case 'e': if(!$db->qArchiveTest($idTest, $correctScores=array(), $testInfo['scoreTest'], $testInfo['bonus'], $scoreFinal=round($testInfo['scoreTest']+$testInfo['bonus']), $scale, $allowNegative))
                                              die($db->getError()); break;
                             }
                         }
@@ -373,6 +374,7 @@ class ExamController extends Controller{
 
         if((isset($_POST['idTestSetting'])) && (isset($_POST['name'])) && (isset($_POST['scoreType'])) &&
             (isset($_POST['scoreMin'])) && (isset($_POST['bonus'])) && (isset($_POST['duration'])) &&
+            (isset($_POST['negative'])) &&(isset($_POST['editable'])) &&
             (isset($_POST['questions'])) && (isset($_POST['desc'])) && (isset($_POST['questionsT'])) &&
             (isset($_POST['questionsD'])) && (isset($_POST['questionsM'])) && (isset($_POST['completeUpdate']))){
 
@@ -392,7 +394,8 @@ class ExamController extends Controller{
                         $db = new sqlDB();
                         if($db->qUpdateTestSettingsInfo($_POST['idTestSetting'], $_POST['completeUpdate'],
                                                         $_POST['name'], $_POST['desc'], $_POST['scoreType'], $_POST['scoreMin'],
-                                                        $_POST['bonus'], $_POST['duration'], $_POST['questions'],
+                                                        $_POST['bonus'], $_POST['negative'], $_POST['editable'],
+                                                        $_POST['duration'], $_POST['questions'],
                                                         $distributionMatrix, $questionsT, $questionsD, $questionsM)){
                             echo 'ACK'.$ajaxSeparator.'ACK';
                         }else{
@@ -424,6 +427,7 @@ class ExamController extends Controller{
 
         if((isset($_POST['name'])) && (isset($_POST['scoreType'])) &&
             (isset($_POST['scoreMin'])) && (isset($_POST['bonus'])) &&
+            (isset($_POST['negative'])) &&(isset($_POST['editable'])) &&
             (isset($_POST['duration'])) && (isset($_POST['questions'])) &&
             (isset($_POST['desc'])) &&(isset($_POST['questionsT'])) &&
             (isset($_POST['questionsD'])) && (isset($_POST['questionsM'])) &&
@@ -438,7 +442,7 @@ class ExamController extends Controller{
 
             $db = new sqlDB();
             if(($db->qNewSettings($_SESSION['idSubject'], $_POST['name'], $_POST['scoreType'], $_POST['scoreMin'],
-                                  $_POST['bonus'], $_POST['duration'], $_POST['questions'], $_POST['desc'],
+                                  $_POST['bonus'], $_POST['negative'], $_POST['editable'], $_POST['duration'], $_POST['questions'], $_POST['desc'],
                                   $distributionMatrix, $questionsT, $questionsD, $questionsM)) && ($idNewSetting = $db->nextRowEnum())){
                 echo 'ACK'.$ajaxSeparator.$idNewSetting[0];
             }else{
@@ -628,16 +632,21 @@ class ExamController extends Controller{
      *  @descr  Shows page to correct test or store test details into history table
      */
     private function actionCorrect(){
-        global $engine;
+        global $log, $engine;
 
         if((isset($_POST['idTest'])) && (isset($_POST['correctScores'])) &&
            (isset($_POST['scoreTest'])) &&
            (isset($_POST['bonus'])) && (isset($_POST['scoreFinal']))){
 
             $db = new sqlDB();
-            if($db->qArchiveTest($_POST['idTest'], json_decode(stripslashes($_POST['correctScores']), true),
-                                 $_POST['scoreTest'], $_POST['bonus'], $_POST['scoreFinal'])){
-                echo 'ACK';
+            if(($db->qTestDetails($_POST['idTest']) && ($testInfo = $db->nextRowAssoc()))){
+                $allowNegative = ($testInfo['negative'] == 0)? false : true;
+                if($db->qArchiveTest($_POST['idTest'], json_decode(stripslashes($_POST['correctScores']), true),
+                                     $_POST['scoreTest'], $_POST['bonus'], $_POST['scoreFinal'], $testInfo['scale'], $allowNegative)){
+                    echo 'ACK';
+                }else{
+                    die($db->getError());
+                }
             }else{
                 die($db->getError());
             }

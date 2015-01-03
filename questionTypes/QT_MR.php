@@ -201,27 +201,29 @@ class QT_MR extends Question {
                 $answerdClass = "";
                 $right_wrongClass = ($answer['score'] > 0) ? 'rightAnswer' : 'wrongAnswer';
                 if(in_array($idAnswer, $answered)){
-                    $questionScore += round(($answer['score'] * $scale), 1);
+                    $questionScore += round(($answer['score'] * $scale), 2);
                     $answerdClass = 'answered';
                 }
                 $questionAnswers .= '<div class="'.$answerdClass.'">
                                          <span value="'.$idAnswer.'" class="responseMR '.$right_wrongClass.'"></span>
                                          <label>'.$answer['translation'].'</label>
-                                         <label class="score">'.round($answer['score'] * $scale, 1).'</label>
+                                         <label class="score">'.number_format(round($answer['score'] * $scale, 2), 2).'</label>
                                      </div>';
             }
-            $questionAnswers .= '<label class="questionScore">'.$questionScore.'</label>
+            $questionAnswers .= '<label class="questionScore">'.number_format($questionScore, 2).'</label>
                                  <div class="clearer"></div>';
 
             if(count($answered) != 0)
                 $questionClass = ($questionScore > 0) ? 'rightQuestion' : 'wrongQuestion';
+
+            $responseScore = ($questionScore > 0)? $questionScore : 0;
             ?>
 
             <div class="questionTest <?= $questionClass.' '.$lastQuestion ?>" value="<?= $this->get('idQuestion') ?>" type="MR">
                 <div class="questionText" onclick="showHide(this);">
                     <span class="responseQuestion"></span>
                     <?= $this->get('translation') ?>
-                    <span class="responseScore"><?= number_format($questionScore, 1); ?></span>
+                    <span class="responseScore"><?= number_format($responseScore, 2); ?></span>
                 </div>
                 <div class="questionAnswers hidden"><?= $questionAnswers ?></div>
             </div>

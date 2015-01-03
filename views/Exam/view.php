@@ -24,7 +24,7 @@ global $config;
         $numQuestions = $testInfo['questions'];
         $scoreTest = $testInfo['scoreTest'];
         $bonus = $testInfo['testBonus'];
-        $scoreFinal = $testInfo['scoreFinal'];
+        $scoreFinal = ($testInfo['scoreFinal'] > $testInfo['scoreType'])? $testInfo['scoreType'].' '.ttCumLaudae : $testInfo['scoreFinal'];
         $scale = $testInfo['scale'];
 
         if(($db->qViewArchivedTest($_POST['idTest'], null, $idSubject)) && ($questions = $db->getResultAssoc('idQuestion'))){
@@ -58,11 +58,7 @@ global $config;
                         </tr>
                         <tr>
                             <td class="sLabel"><?= ttBonus ?></td>
-                            <td>
-                                <dl class="dropdownBonus">
-                                    <dt class="readonly"><span><?= $bonus ?><span class="value"><?= $bonus ?></span></span></dt>
-                                </dl>
-                            </td>
+                            <td class="sScore"><label id="scoreBonus"><?= $bonus ?></label></td>
                             <td>=</td>
                         </tr>
                         <tr>
@@ -70,13 +66,13 @@ global $config;
                         </tr>
                         <tr>
                             <td class="sLabel"><?= ttFinalScore ?></td>
-                            <td class="sScore"><label id="scorePost"><?= $scoreFinal ?></label></td>
-                            <td></td>
+                            <td colspan="2" class="sScore"><label id="scorePost"><?= $scoreFinal ?></label></td>
                         </tr>
                     </table>
                     <input type="hidden" id="idTest" value="<?= $testInfo['idTest'] ?>">
 
                 </div>
+                <a class="button ok" onclick="window.close();"><?= ttClose ?></a>
             </div>
 
             <div class="clearer"></div>

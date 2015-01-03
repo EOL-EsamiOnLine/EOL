@@ -44,79 +44,86 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
 
         $db = new sqlDB();
         if(($db->qSelect('Exams', 'idExam', $_POST['idExam'])) && ($examInfo = $db->nextRowAssoc())){
-            if($db->qExamRegistrationsList($_POST['idExam'])){
-                $statuses = array('w' => array('imageTitle' => 'Waiting',
-                                               'action' => 'block',
-                                               'actionIcon' => 'block',
-                                               'actionTitle' => ttBlock,
-                                               'actionFunction' => "toggleBlockTest(new Array(true, this));"),
-                                  's' => array('imageTitle' => 'Started',
-                                               'action' => 'block',
-                                               'actionIcon' => 'block',
-                                               'actionTitle' => ttBlock,
-                                               'actionFunction' => "toggleBlockTest(new Array(true, this));"),
-                                  'e' => array('imageTitle' => 'Ended',
-                                               'action' => 'correct',
-                                               'actionIcon' => 'correct',
-                                               'actionTitle' => ttCorrect,
-                                               'actionFunction' => "correctTest(this)"),
-                                  'a' => array('imageTitle' => 'Archived',
-                                               'action' => 'view',
-                                               'actionIcon' => 'view',
-                                               'actionTitle' => ttView,
-                                               'actionFunction' => "viewTest(this)"),
-                                  'b' => array('imageTitle' => 'blocked',
-                                               'action' => 'unblock',
-                                               'actionIcon' => 'unblock',
-                                               'actionTitle' => ttUnblock,
-                                               'actionFunction' => "toggleBlockTest(new Array(true, this));"));
-                while($registration = $db->nextRowAssoc()){
-                    $start = $end = $time = "";
-                    if($registration['timeStart'] != null){
-                        $start = new DateTime($registration['timeStart']);
-                        if($registration['timeEnd'] != null){
-                            $end = new DateTime($registration['timeEnd']);
-                            $diff = $start->diff($end);
-                            $end = $end->format('H:i:s');
-                        }else{
-                            $end = new DateTime(date('Y-m-d H:i:s'));
-                            $diff = $start->diff($end);
-                            $end = '';
+            if(($db->qSelect('TestSettings', 'idTestSetting', $examInfo['fkTestSetting'])) && ($testsettingInfo = $db->nextRowAssoc())){
+                if ($db->qExamRegistrationsList($_POST['idExam'])) {
+                    $statuses = array('w' => array('imageTitle' => 'Waiting',
+                        'action' => 'block',
+                        'actionIcon' => 'block',
+                        'actionTitle' => ttBlock,
+                        'actionFunction' => "toggleBlockTest(new Array(true, this));"),
+                        's' => array('imageTitle' => 'Started',
+                            'action' => 'block',
+                            'actionIcon' => 'block',
+                            'actionTitle' => ttBlock,
+                            'actionFunction' => "toggleBlockTest(new Array(true, this));"),
+                        'e' => array('imageTitle' => 'Ended',
+                            'action' => 'correct',
+                            'actionIcon' => 'correct',
+                            'actionTitle' => ttCorrect,
+                            'actionFunction' => "correctTest(this)"),
+                        'a' => array('imageTitle' => 'Archived',
+                            'action' => 'view',
+                            'actionIcon' => 'view',
+                            'actionTitle' => ttView,
+                            'actionFunction' => "viewTest(this)"),
+                        'b' => array('imageTitle' => 'blocked',
+                            'action' => 'unblock',
+                            'actionIcon' => 'unblock',
+                            'actionTitle' => ttUnblock,
+                            'actionFunction' => "toggleBlockTest(new Array(true, this));"));
+                    while ($registration = $db->nextRowAssoc()) {
+                        $start = $end = $time = "";
+                        if ($registration['timeStart'] != null) {
+                            $start = new DateTime($registration['timeStart']);
+                            if ($registration['timeEnd'] != null) {
+                                $end = new DateTime($registration['timeEnd']);
+                                $diff = $start->diff($end);
+                                $end = $end->format('H:i:s');
+                            } else {
+                                $end = new DateTime(date('Y-m-d H:i:s'));
+                                $diff = $start->diff($end);
+                                $end = '';
+                            }
+                            if ($diff->d > 0) {
+                                $time = '> 24 h';
+                            } else {
+                                $time = $diff->format("%H:%I:%S");
+                            }
+                            $start = $start->format('H:i:s');
                         }
-                        if($diff->d > 0){
-                            $time = '> 24 h';
-                        }else{
-                            $time = $diff->format("%H:%I:%S");
-                        }
-                        $start = $start->format('H:i:s');
-                    }
-                    $status = $statuses[$registration['status']];
-                    $manage = '';
-                    ?>
+                        $status = $statuses[$registration['status']];
+                        $manage = '';
 
-                    <tr>
-                        <td><img src="<?= $config['themeImagesDir'].$status['imageTitle'] ?>.png"
-                                 title="<?= $status['imageTitle'] ?>" alt="<?= $status['imageTitle'] ?>"/></td>
-                        <td><?= $registration['surname'].' '.$registration['name'] ?></td>
-                        <td><?= $registration['email'] ?></td>
-                        <td><?= $start ?></td>
-                        <td><?= $end ?></td>
-                        <td><?= $time ?></td>
-                        <td><?= $registration['scoreTest'] ?></td>
-                        <td><?= $registration['scoreFinal'] ?></td>
-                        <td>
-                        <?php if(($examInfo['status'] != 'a') || ($registration['status'] == 'a')){ ?>
-                            <span class="manageButton <?= $status['action'] ?>">
-                                <img src="<?= $config['themeImagesDir'].$status['actionIcon'] ?>.png"
-                                     title="<?= $status['actionTitle'] ?>" alt="<?= $status['actionTitle'] ?>"
-                                     onclick="<?= $status['actionFunction'] ?>">
-                            </span>
-                        <?php } ?>
-                        </td>
-                        <td><?= $registration['fkUser'] ?></td>
-                        <td><?= $registration['idTest'] ?></td>
-                    </tr>
-                <?php
+                        $scoreFinal = ($registration['scoreFinal'] > $testsettingInfo['scoreType'])? $testsettingInfo['scoreType'].' '.ttCumLaudae : $registration['scoreFinal'];
+
+                        ?>
+
+                        <tr>
+                            <td><img src="<?= $config['themeImagesDir'] . $status['imageTitle'] ?>.png"
+                                     title="<?= $status['imageTitle'] ?>" alt="<?= $status['imageTitle'] ?>"/></td>
+                            <td><?= $registration['surname'] . ' ' . $registration['name'] ?></td>
+                            <td><?= $registration['email'] ?></td>
+                            <td><?= $start ?></td>
+                            <td><?= $end ?></td>
+                            <td><?= $time ?></td>
+                            <td><?= $registration['scoreTest'] ?></td>
+                            <td><?= $scoreFinal ?></td>
+                            <td>
+                                <?php if (($examInfo['status'] != 'a') || ($registration['status'] == 'a')) { ?>
+                                    <span class="manageButton <?= $status['action'] ?>">
+                                    <img src="<?= $config['themeImagesDir'] . $status['actionIcon'] ?>.png"
+                                         title="<?= $status['actionTitle'] ?>" alt="<?= $status['actionTitle'] ?>"
+                                         onclick="<?= $status['actionFunction'] ?>">
+                                </span>
+                                <?php } ?>
+                            </td>
+                            <td><?= $registration['fkUser'] ?></td>
+                            <td><?= $registration['idTest'] ?></td>
+                        </tr>
+                    <?php
+                    }
+                }else{
+                    $log->append($db->getError());
                 }
             }else{
                 $log->append($db->getError());

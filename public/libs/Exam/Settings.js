@@ -163,7 +163,8 @@ function showSettingsInfo(selectedSettingsAndConfirmation){
  *  @descr  Enables edits fields and shows Save button
  */
 function editSettingsInfo(){
-    makeWritable($("#settingsName, #settingsScoreMin, #settingsBonus, #settingsDesc, #settingsScoreType dt, #settingsDurationH dt, #settingsDurationM dt"));
+    makeWritable($("#settingsName, #settingsScoreMin, #settingsBonus, #settingsDesc, #settingsScoreType dt," +
+                   "#settingsNegative dt, #settingsEditable dt, #settingsDurationH dt, #settingsDurationM dt"));
     $(".dropdownInfo dt.writable").on("click", function() {
         $(this).children("span").toggleClass("clicked");
         $(this).next().children("ol").slideToggle(200);
@@ -244,6 +245,8 @@ function saveSettingsInfo(completeUpdate){
                 scoreType       :   $("#settingsScoreType dt span.value").text(),
                 scoreMin        :   $("#settingsScoreMin").val(),
                 bonus           :   $("#settingsBonus").val(),
+                negative        :   $("#settingsNegative dt span.value").text(),
+                editable        :   $("#settingsEditable dt span.value").text(),
                 duration        :   (parseInt($("#settingsDurationH dt span.value").text()) * 60
                                     + parseInt($("#settingsDurationM dt span.value").text())),
                 questions       :   $("#settingsQuestions").val(),
@@ -409,6 +412,8 @@ function createNewSettings(){
                 scoreType       :   $("#settingsScoreType dt span.value").text(),
                 scoreMin        :   $("#settingsScoreMin").val(),
                 bonus           :   $("#settingsBonus").val(),
+                negative        :   $("#settingsNegative dt span.value").text(),
+                editable        :   $("#settingsEditable dt span.value").text(),
                 duration        :   (parseInt($("#settingsDurationH dt span.value").text()) * 60
                                     + parseInt($("#settingsDurationM dt span.value").text())),
                 questions       :   $("#settingsQuestions").val(),

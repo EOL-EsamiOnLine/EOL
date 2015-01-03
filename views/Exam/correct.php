@@ -26,6 +26,7 @@ global $config;
         $scoreTest = $testInfo['scoreTest'];
         $scoreType = $testInfo['scoreType'];
         $scale = $testInfo['scale'];
+        $isEditable = ($testInfo['editable'] == 0)? false : true;
 
         if(($db->qQuestionSet($idSet, null, $idSubject)) && ($questions = $db->getResultAssoc('idQuestion'))){
             if(count($questions) != $numQuestions){
@@ -56,9 +57,12 @@ global $config;
                         </tr>
                         <tr>
                             <td class="sLabel"><?= ttBonus ?></td>
+                            <?php if($testInfo['bonus'] == 0){ ?>
+                            <td class="sScore"><label id="scoreBonus">0</label></td>
+                            <?php }else{ ?>
                             <td>
                                 <dl class="dropdownBonus">
-                                    <dt><span>0<span class="value">0</span></span></dt>
+                                    <dt><span><?= $testInfo['bonus'] ?><span class="value"><?= $testInfo['bonus'] ?></span></span></dt>
                                     <dd>
                                         <ol>
                                             <?php
@@ -71,7 +75,9 @@ global $config;
                                         </ol>
                                     </dd>
                                 </dl>
+                                <label id="scoreBonus" class="hidden"><?= $testInfo['bonus'] ?></label>
                             </td>
+                            <?php } ?>
                             <td>=</td>
                         </tr>
                         <tr>
@@ -79,8 +85,40 @@ global $config;
                         </tr>
                         <tr>
                             <td class="sLabel"><?= ttFinalScore ?></td>
-                            <td class="sScore"><label id="scorePost"><?= number_format(round($scoreTest, 0), 0); ?></label></td>
-                            <td></td>
+                            <?php
+                            $finalScore = $scoreTest + $testInfo['bonus'];
+                            if($finalScore > $scoreType)
+                                $finalScore = $scoreType;
+                            if($isEditable){ ?>
+                                <!-- Print dropdown for editable final score -->
+                                <td>
+                                    <dl class="dropdownFinalScore">
+                                        <dt><span><?= number_format(round($finalScore, 0), 0); ?><span class="value"><?= number_format(round($finalScore, 0), 0); ?></span></span></dt>
+                                        <dd>
+                                            <ol>
+                                                <?php
+                                                $index = 0;
+                                                while($index <= $testInfo['scoreType']){
+                                                    echo '<li>'.$index.'<span class="value">'.$index.'</span></li>';
+                                                    $index += 1;
+                                                }
+                                                ?>
+                                            </ol>
+                                        </dd>
+                                    </dl>
+                                    <label id="scorePost" class="hidden"><?= number_format(round($finalScore, 0), 0); ?></label>
+                                </td>
+                            <?php }else{ ?>
+                                <!-- Print label for non-editable final score -->
+                                <td class="sScore"><label id="scorePost"><?= number_format(round($finalScore, 0), 0); ?></label></td>
+                            <?php } ?>
+                            <td>
+                                <?php if($finalScore == $scoreType){ ?>
+                                    <span id="laudae"><input type="checkbox" id="scoreLaudae"><label><?= ttCumLaudae ?></label></span>
+                                <?php }else{ ?>
+                                    <span id="laudae" class="hidden"><input type="checkbox" id="scoreLaudae"<label>Lode</label></span>
+                                <?php } ?>
+                            </td>
                         </tr>
                     </table>
                     <input type="hidden" id="maxScore" value="<?= $scoreType ?>">

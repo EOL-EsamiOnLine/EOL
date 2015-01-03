@@ -9,12 +9,16 @@
 
 global $user, $tt, $log;
 
+$YNlabel[0] = 'No';
+$YNlabel[1] = 'Yes';
 
 $editClass = 'writable';
 $name = ttNewTestSettings;
 $scoreType = '10';
 $scoreMin = '0';
 $bonus = '0';
+$negative = '0';
+$editable = '0';
 $duration = '90';
 $questions = '0';
 $desc = '';
@@ -31,6 +35,8 @@ if($_POST['action'] == 'show'){
         $scoreType = $testSettings['scoreType'];
         $scoreMin = $testSettings['scoreMin'];
         $bonus = $testSettings['bonus'];
+        $negative = $testSettings['negative'];
+        $editable = $testSettings['editable'];
         $duration = $testSettings['duration'];
         $questions = $testSettings['questions'];
         $desc = $testSettings['description'];
@@ -81,6 +87,34 @@ if($_POST['action'] == 'show'){
 
         <label class="tSpace"><?= ttBonus ?> : </label>
         <input class="left <?= $editClass ?> tSpace numeric" type="number" min="0" id="settingsBonus" value="<?= $bonus ?>">
+
+        <div class="clearer"></div>
+
+        <label class="tSpace"><?= ttNegativeScores ?> : </label>
+        <dl class="dropdownInfo tSpace" id="settingsNegative">
+            <dt class="<?= $editClass ?>">
+                <span><?= constant('tt'.$YNlabel[$negative]) ?><span class="value"><?= $negative ?></span></span>
+            </dt>
+            <dd>
+                <ol>
+                    <li><?= ttNo ?><span class="value">0</span></li>
+                    <li><?= ttYes ?><span class="value">1</span></li>
+                </ol>
+            </dd>
+        </dl>
+
+        <label id="settingsEditableLabel" class="tSpace"><?= ttEditable ?> : </label>
+        <dl class="dropdownInfo tSpace" id="settingsEditable">
+            <dt class="<?= $editClass ?>">
+                <span><?= constant('tt'.$YNlabel[$editable]) ?><span class="value"><?= $editable ?></span></span>
+            </dt>
+            <dd>
+                <ol>
+                    <li><?= ttNo ?><span class="value">0</span></li>
+                    <li><?= ttYes ?><span class="value">1</span></li>
+                </ol>
+            </dd>
+        </dl>
 
         <div class="clearer"></div>
 
