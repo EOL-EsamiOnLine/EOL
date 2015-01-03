@@ -21,7 +21,8 @@ var ttci = {
     name : 0,
     subject : 1,
     time : 2,
-    testID : 3
+    score: 3,
+    testID : 4
 };
 
 var examsTable = null;
@@ -68,7 +69,8 @@ $(function(){
         columns : [
             { className: "tName"},
             { className: "tSubject"},
-            { className: "tTime", width: "80px"},
+            { className: "tTime"},
+            { className: "tScore"},
             { className: "tTestID", visible : false }
         ],
         language : {
