@@ -155,10 +155,7 @@ class QT_ES extends Question {
 
     public function printQuestionInView($idSubject, $answered, $scale, $lastQuestion){
         $questionAnswers = '<div class="responseES" value="'.$this->get('idQuestion').'">'.$answered[0].'</div>
-                                <dl class="dropdownScore">
-                                    <dt class="readonly"><span>'.$this->get('score').'<span class="value">'.$this->get('score').'</span></span></dt>
-                                </dl>
-                                <label class="score">'.ttScore.' : </label>
+                                <label class="score">'.ttScore.' : '.$this->get('score').'</label>
                                 <div class="clearer"></div>';
         $questionClass = ($this->get('score') > 0) ? 'rightQuestion' : 'wrongQuestion';
 
@@ -167,7 +164,7 @@ class QT_ES extends Question {
             <div class="questionText" onclick="showHide(this);">
                 <span class="responseQuestion"></span>
                 <?= $this->get('translation') ?>
-                <span class="responseScore"><?= number_format($this->get('score'), 1); ?></span>
+                <span class="responseScore"><?= number_format($this->get('score'), 2); ?></span>
             </div>
             <div class="questionAnswers hidden"><?= $questionAnswers ?></div>
         </div>

@@ -67,6 +67,7 @@
     <text id="ttCStopExam">Do you want to stop the selected exam?</text>
     <text id="ttCSubmitTest">Do you want to submit your test?\nThis operation can not be undone! Continue?</text>
     <text id="ttCTest">Password is correct. Your test is ready and will start after your click!</text>
+    <text id="ttCumLaudae">cum Laudae</text>
     <text id="ttCUnblockTest">Are you sure to unblock this test?</text>
     <text id="ttCUpdateConfigurations">Are you sure to save the new system configurations?</text>
     <text id="ttCUpdateLanguage">Are you sure to update language files?\nThis operation can not be undone. Continue?</text>
@@ -107,6 +108,7 @@
     <text id="ttDuration">Duration</text>
     <!-- ======================== E ======================== -->
     <text id="ttEdit">Edit</text>
+    <text id="ttEditable">Editable Score</text>
     <text id="ttError">Error</text>
     <text id="ttEmail">E-mail</text>
     <text id="ttEnd">End</text>
@@ -207,7 +209,7 @@
     <text id="ttLogout">LOGOUT</text>
     <!-- ======================== M ======================== -->
     <text id="ttMailLostPassword">To reset your account password please click the following link:\n\n_LINK_\n\nIf you have not request a password reset ignore this email.</text>
-    <text id="ttMailCredentials">Hi _USERNAME_,\nBelow are shown your personal access credentials:\n\nE-mail : _USEREMAIL_ \n Password : _USERPASSWORD_'</text>
+    <text id="ttMailCredentials">Hi _USERNAME_,\nBelow are shown your personal access credentials:\n\nE-mail : _USEREMAIL_ \n Password : _USERPASSWORD_</text>
     <text id="ttMailNewTeacher">Welcome to _SYSTEMNAME_.\nTo activate your accunt please click the following link and set your personal account's password:</text>
     <text id="ttMainLanguage">Main Language</text>
     <text id="ttManage">Manage</text>
@@ -254,6 +256,7 @@
     <text id="ttMTopicDeleted">Topic successfully deleted</text>
     <!-- ======================== N ======================== -->
     <text id="ttName">Name</text>
+    <text id="ttNegativeScores">Negative scores</text>
     <text id="ttNew">New</text>
     <text id="ttNext">Next</text>
     <text id="ttNewAnswer">New Answer</text>

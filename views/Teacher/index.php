@@ -102,7 +102,7 @@ global $config, $user;
     <div class="clearer"></div>
 </div>
 
-<form action="" method="post" id="form">
+<form action="" method="post" id="form" target="_blank">
     <input type="hidden" name="idExam" value="">
     <input type="hidden" name="idTest" value="">
 </form>

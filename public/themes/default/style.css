@@ -1490,14 +1490,27 @@ div.ellipsis {
     background: #e8e8e8;
 }
 #testSettingsInfo .columnLeft{
-    width                       :   45%;
+    width                       :   43%;
     float                       :   left;
     background                  :   #B6B6B6;
     border-right                :   1px solid #000000;
     border-top-right-radius     :   10px;
     border-bottom-right-radius  :   10px;
-    height                      :   280px;
+    height                      :   295px;
     margin-left                 :   10px;
+}
+#settingsNegative.dropdownInfo dd,
+#settingsNegative.dropdownInfo dt,
+#settingsNegative.dropdownInfo ol{
+  width               :   50px;
+}
+#settingsEditable.dropdownInfo dd,
+#settingsEditable.dropdownInfo dt,
+#settingsEditable.dropdownInfo ol{
+  width               :   50px;
+}
+#settingsEditableLabel {
+  margin-left: 32px;
 }
 #settingsDuration .dropdownInfo dd,
 #settingsDuration .dropdownInfo dt,
@@ -1510,24 +1523,24 @@ div.ellipsis {
     padding-left        :   5px;
 }
 #testSettingsInfo textarea {
-    width: 280px;
+    width: 64%;
 }
 #testSettingsInfo .columnCenter{
     float                       :   left;
-    width                       :   32%;
-    height                      :   280px;
+    width                       :   33%;
+    height                      :   295px;
     padding-left                :   10px;
     padding-right               :   10px;
     position                    :   relative;
 }
 #testSettingsInfo .tableScroll{
-    overflow-y         	        : 	scroll;
-    height				        :	200px;
+    overflow-y         	        : 	auto;
+    height				              :	  235px;
 }
 #testSettingsInfo .columnRight{
-    width                       :   17%;
+    width                       :   18%;
     float                       :   left;
-    height                      :   280px;
+    height                      :   295px;
     padding-left                :   10px;
     padding-right               :   10px;
     border-left                 :   1px solid #000000;
@@ -1810,9 +1823,15 @@ div.rightQuestion span.responseQuestion{
     background          :   url('images/right.png') no-repeat;
     background-size     :   100%;
 }
+div.rightQuestion div.questionText {
+    background: #cdf9d3;
+}
 div.wrongQuestion span.responseQuestion{
     background          :   url('images/wrong.png') no-repeat;
     background-size     :   100%;
+}
+div.wrongQuestion div.questionText {
+    background: #ffcece;
 }
 div.correctQuestion span.responseQuestion{
     background          :   url('images/correct.png') no-repeat;
@@ -1836,7 +1855,8 @@ img.showhide{
     padding             :   0;
     cursor              :   default;
 }
-.dropdownBonus{
+.dropdownBonus,
+.dropdownFinalScore{
     float               :   left;
     margin              :   0;
     padding             :   0;
@@ -1844,29 +1864,36 @@ img.showhide{
 }
 .dropdownBonus dd,
 .dropdownScore dd,
+.dropdownFinalScore dd,
 .dropdownBonus dt,
 .dropdownScore dt,
+.dropdownFinalScore dt,
 .dropdownBonus ol,
-.dropdownScore ol {
+.dropdownScore ol,
+.dropdownFinalScore ol{
     margin              :   0 19px 0 0;
     padding             :   0;
     font-size           :   14px;
     width               :   70px;
 }
-.dropdownBonus dt{
+.dropdownBonus dt,
+.dropdownFinalScore dt{
     margin-top          :   1px;
 }
 .dropdownBonus ol,
-.dropdownScore ol{
+.dropdownScore ol,
+.dropdownFinalScore ol{
     max-height          :   150px;
     overflow-y          :   auto;
 }
 .dropdownBonus dd,
-.dropdownScore dd {
+.dropdownScore dd,
+.dropdownFinalScore dd{
     position            :   relative;
 }
 .dropdownBonus dt,
-.dropdownScore dt{
+.dropdownScore dt,
+.dropdownFinalScore dt{
     background          :   #f5f5f5 url(images/arrow2.png) no-repeat scroll right center;
     display             :   block;
     border              :   1px solid #8a8a8a;
@@ -1874,12 +1901,14 @@ img.showhide{
     padding-right       :   15px;
 }
 .dropdownBonus dt span,
-.dropdownScore dt span {
+.dropdownScore dt span,
+.dropdownFinalScore dt span{
     display             :   block;
     padding             :   2px 2px 2px 4px;
 }
 .dropdownBonus dd ol,
-.dropdownScore dd ol {
+.dropdownScore dd ol,
+.dropdownFinalScore dd ol{
     background          :   #f5f5f5;
     border              :   1px solid #8a8a8a;
     display             :   none;
@@ -1887,27 +1916,31 @@ img.showhide{
     padding             :   2px;
     position            :   absolute;
     left                :   0;
-    top                 :   2px;
+    top                 :   -90px;
     z-index             :   1000;
 }
 .dropdownBonus dd ol li,
-.dropdownScore dd ol li{
+.dropdownScore dd ol li,
+.dropdownFinalScore dd ol li{
     padding         :   1px 1px 1px 3px;
     border-bottom   :   1px solid #8a8a8a;
     text-align      :   left;
 }
 .dropdownBonus dd ol li:hover,
-.dropdownScore dd ol li:hover{
+.dropdownScore dd ol li:hover,
+.dropdownFinalScore dd ol li:hover{
     color                   :   #FFFFFF;
     background              :   url(images/hover.png) repeat;
     background-size         :   100% 100%;
 }
 .dropdownBonus span.value,
-.dropdownScore span.value {
+.dropdownScore span.value,
+.dropdownFinalScore span.value{
     display             :   none;
 }
 .dropdownBonus dt.readonly,
-.dropdownScore dt.readonly{
+.dropdownScore dt.readonly,
+.dropdownFinalScore dt.readonly{
     background: #f5f5f5;
 }
 #lastLine{
@@ -1916,7 +1949,7 @@ img.showhide{
     text-align: center;
 }
 #finalScorePanel{
-    width:300px;
+    width:250px;
     margin: 20px auto;
     text-align: left;
 }

@@ -210,17 +210,17 @@ class QT_TF extends Question {
                 $right_wrongClass = ($score[1] > 0) ? 'rightAnswer' : 'wrongAnswer';
 
                 if(in_array($idAnswer, $answered)){
-                    $questionScore += round(($score[1] * $scale), 1);
+                    $questionScore += round(($score[1] * $scale), 2);
                     $answerdClass = 'answered';
                 }
 
                 $questionAnswers .= '<div class="'.$answerdClass.'">
                                          <span value="'.$idAnswer.'" class="responseTF '.$right_wrongClass.'"></span>
                                          <label>'.$translation[$score[0]].'</label>
-                                         <label class="score">'.round($score[1] * $scale, 1).'</label>
+                                         <label class="score">'.number_format(round($score[1] * $scale, 2), 2).'</label>
                                      </div>';
             }
-            $questionAnswers .= '<label class="questionScore">'.$questionScore.'</label>
+            $questionAnswers .= '<label class="questionScore">'.number_format($questionScore, 2).'</label>
                                  <div class="clearer"></div>';
 
             if(count($answered) != 0)
@@ -232,7 +232,7 @@ class QT_TF extends Question {
                 <div class="questionText" onclick="showHide(this);">
                     <span class="responseQuestion"></span>
                     <?= $this->get('translation') ?>
-                    <span class="responseScore"><?= number_format($questionScore, 1); ?></span>
+                    <span class="responseScore"><?= number_format($questionScore, 2); ?></span>
                 </div>
                 <div class="questionAnswers hidden"><?= $questionAnswers ?></div>
             </div>

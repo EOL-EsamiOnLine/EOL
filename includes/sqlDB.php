@@ -1041,7 +1041,8 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            $query = "SELECT idExam, Exams.name exam, status, Subjects.name subject, TestSettings.name settings, password, datetime, idSubject, idTestSetting, scale
+            $query = "SELECT idExam, Exams.name exam, status, Subjects.name subject,
+                             TestSettings.name settings, password, datetime, idSubject, idTestSetting, scale
                       FROM
                           Exams
                               LEFT JOIN Subjects ON Exams.fkSubject = Subjects.idSubject
@@ -1647,6 +1648,8 @@ class sqlDB {
      * @param   $scoreType              String          Test setting's score type
      * @param   $scoreMin               String          Test setting's minimum score
      * @param   $bonus                  String          Test setting's bonus
+     * @param   $negative               String          Test setting's negative
+     * @param   $editable               String          Test setting's editable
      * @param   $duration               String          Test setting's duration
      * @param   $questions              String          Test setting's questions number
      * @param   $distributionMatrix     Array           Test setting's random questions distribution for topic and difficulty
@@ -1657,20 +1660,22 @@ class sqlDB {
      * @descr   Returns true if info was saved successfully, false otherwise
      */
     public function qUpdateTestSettingsInfo($idTestSetting, $completeUpdate, $name, $desc, $scoreType=null, $scoreMin=null,
-                                            $bonus=null, $duration=null, $questions=null, $distributionMatrix=null,
-                                            $questionsT=null, $questionsD=null, $questionsM=null){
+                                            $bonus=null, $negative=null, $editable=null, $duration=null, $questions=null,
+                                            $distributionMatrix=null, $questionsT=null, $questionsD=null, $questionsM=null){
         global $log;
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
 
         try{
-            $data = $this->prepareData(array($name, $desc));
+            $data = $this->prepareData(array($name, $desc, $negative, $editable));
             if($completeUpdate != 'true'){
                 $query = "UPDATE TestSettings
                           SET
                               name = '".$data[0]."',
-                              description = '".$data[1]."'
+                              description = '".$data[1]."',
+                              negative = '$negative',
+                              editable = '$editable'
                           WHERE
                               idTestSetting = '$idTestSetting'";
                 $this->execQuery($query);
@@ -1687,6 +1692,8 @@ class sqlDB {
                               scale = '$scale',
                               bonus = '$bonus',
                               duration = '$duration',
+                              negative = '$negative',
+                              editable = '$editable',
                               numEasy = '".$questionsD[1]['total']."',
                               numMedium = '".$questionsD[2]['total']."',
                               numHard = '".$questionsD[3]['total']."'
@@ -1740,6 +1747,8 @@ class sqlDB {
      * @param   $scoreType              String          Test setting's score type
      * @param   $scoreMin               String          Test setting's minimum score
      * @param   $bonus                  String          Test setting's bonus
+     * @param   $negative               String          Test setting's negative
+     * @param   $editable               String          Test setting's editable
      * @param   $duration               String          Test setting's duration
      * @param   $questions              String          Test setting's questions number
      * @param   $desc                   String          Test setting's description
@@ -1750,8 +1759,8 @@ class sqlDB {
      * @return  Boolean
      * @descr   Returns true if info was saved successfully, false otherwise
      */
-    public function qNewSettings($idSubject, $name, $scoreType, $scoreMin, $bonus, $duration, $questions,
-                                 $desc, $distributionMatrix, $questionsT, $questionsD, $questionsM){
+    public function qNewSettings($idSubject, $name, $scoreType, $scoreMin, $bonus, $negative, $editable, $duration,
+                                 $questions, $desc, $distributionMatrix, $questionsT, $questionsD, $questionsM){
         global $log;
         $ack = true;
         $this->result = null;
@@ -1762,8 +1771,8 @@ class sqlDB {
 
             $data = $this->prepareData(array($name, $desc));
             $scale = round($scoreType / $questions, 1);
-            $query = "INSERT INTO TestSettings (name, description, questions, scoreType, scoreMin, scale, bonus, duration, numEasy, numMedium, numHard, fkSubject)
-                  	  VALUES ('$data[0]', '$data[1]', '$questions', '$scoreType', '$scoreMin', '$scale', '$bonus', '$duration', '".$questionsD[1]['total']."', '".$questionsD[2]['total']."', '".$questionsD[3]['total']."', '$idSubject')";
+            $query = "INSERT INTO TestSettings (name, description, questions, scoreType, scoreMin, scale, bonus, negative, editable, duration, numEasy, numMedium, numHard, fkSubject)
+                  	  VALUES ('$data[0]', '$data[1]', '$questions', '$scoreType', '$scoreMin', '$scale', '$bonus', '$negative', '$editable', '$duration', '".$questionsD[1]['total']."', '".$questionsD[2]['total']."', '".$questionsD[3]['total']."', '$idSubject')";
 			array_push($queries, $query);
             $query = "SET @settID = LAST_INSERT_ID()";
             array_push($queries, $query);
@@ -2015,7 +2024,7 @@ class sqlDB {
             $query = "SELECT T.idTest, T.timeStart, T.timeEnd, T.scoreTest, T.scoreFinal, T.status, T.fkSet, T.fkExam, T.bonus AS testBonus,
                              S.idUser, S.name, S.surname, S.email, S.fkLanguage,
                              E.idExam, E.fkSubject,
-                             TS.questions, TS.scoreType, TS.scoreMin, TS.scale, TS.bonus, TS.duration
+                             TS.questions, TS.scoreType, TS.scoreMin, TS.scale, TS.bonus, TS.duration, TS.negative, TS.editable
                           FROM
                               Tests AS T
                               JOIN Users AS S ON T.fkUser = S.idUser
@@ -2171,6 +2180,20 @@ class sqlDB {
         try{
             $datetime = date("Y-m-d H:i:s");
 
+            // Get scale and negative from test settings
+            $query = "SELECT scale, negative
+                      FROM TestSettings AS TS
+                          JOIN Exams AS E ON E.fkTestSetting = TS.idTestSetting
+                          JOIN Tests AS T ON T.fkExam = E.idExam
+                      WHERE
+                          T.fkSet = '$idSet'";
+            $this->execQuery($query);
+            $row = $this->nextRowAssoc();
+            $scale = $row['scale'];
+            $allowNegative = ($row['negative'] == 0)? false : true;
+
+            // Calculate test's score
+            $this->mysqli = $this->connect();
             $score = 0;
             $query = "SELECT idQuestion, type, answer
                       FROM Sets_Questions AS SQ
@@ -2182,21 +2205,15 @@ class sqlDB {
 
             foreach($test as $idQuestion => $setQuestion){
                 $question = Question::newQuestion($setQuestion['type'], $setQuestion);
-                $score += $question->getScoreFromGivenAnswer();
+                $scoreTemp = $question->getScoreFromGivenAnswer();
+                // If negative score is not allowed and question's score is negative sum 0, sum real score otherwise
+                $score2add = (!$allowNegative && $scoreTemp < 0)? 0 : $scoreTemp;
+                $score += $score2add;
             }
+            $score = round($scale * $score, 2);
 
-            $this->mysqli = $this->connect();
-            // Get scale from test settings
-            $query = "SELECT scale
-                      FROM TestSettings AS TS
-                          JOIN Exams AS E ON E.fkTestSetting = TS.idTestSetting
-                          JOIN Tests AS T ON T.fkExam = E.idExam
-                      WHERE
-                          T.fkSet = '$idSet'";
-            $this->execQuery($query);
-            $row = $this->nextRowAssoc();
-            $score = round($row['scale'] * $score, 1);
             // Update test
+            $this->mysqli = $this->connect();
             $query = "UPDATE Tests
                       SET timeEnd = '$datetime',
                           scoreTest = '$score',
@@ -2213,18 +2230,18 @@ class sqlDB {
     }
 
     /**
-     * @name    qArchiveTest
      * @param   $idTest             String      Test's ID
      * @param   $correctScores      Array       Test's final score
      * @param   $scoreTest          String      Test's final score
      * @param   $bonus              String      Test's bonus score
      * @param   $scoreFinal         String      Test's final score
      * @param   $scale              Float       Test Setting's scale
+     * @param   $allowNegative      Bool        True if test allow negative score, else otherwise
      * @param   $status             String      Test's status (if != 'e')
-     * @return  Boolean
+     * @return  bool
      * @descr   Return true if test successfully archived
      */
-    public function qArchiveTest($idTest, $correctScores, $scoreTest, $bonus, $scoreFinal, $scale=1.0, $status='a'){
+    public function qArchiveTest($idTest, $correctScores, $scoreTest, $bonus, $scoreFinal, $scale=1.0, $allowNegative=false, $status='a'){
         global $log;
         $ack = true;
         $this->result = null;
@@ -2248,7 +2265,10 @@ class sqlDB {
                 if(!$corrected){         // The test is not been corrected, get scores from given answers
                     foreach($test as $idQuestion => $setQuestion){
                         $question = Question::newQuestion($setQuestion['type'], $setQuestion);
-                        $correctScores[$idQuestion] = round(($question->getScoreFromGivenAnswer() * $scale), 1);
+                        $scoreTemp = $question->getScoreFromGivenAnswer();
+                        // If negative score is not allowed and question's score is negative sum 0, sum real score otherwise
+                        $score2add = (!$allowNegative && $scoreTemp < 0)? 0 : $scoreTemp;
+                        $correctScores[$idQuestion] = round(($score2add * $scale), 2);
                     }
                 }
 
@@ -2968,21 +2988,6 @@ class sqlDB {
             while(($row = $this->nextRowAssoc())){
                 $result[$row[$column]] = $row;
             }
-        }
-        return $result;
-    }
-
-    /*
-     * @name    getAllAssoc
-     * @return  array
-     * @descr   Fetch entire result set into associative array
-     */
-    public function getAllAssoc(){
-        $result = array();
-        $index = 0;
-        if(($result = $this->result->fetch_all()) == null){
-            $this->result->close();
-            $this->close();
         }
         return $result;
     }

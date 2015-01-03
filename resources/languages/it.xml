@@ -67,6 +67,7 @@
     <text id="ttCStopExam">Vuoi fermare questo esame?</text>
     <text id="ttCSubmitTest">Vuoi consegnare il test?\nL'operazione non potrà essere annullata! Continuare?</text>
     <text id="ttCTest">La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!</text>
+    <text id="ttCumLaudae">e Lode</text>
     <text id="ttCUnblockTest">Sei sicuro di voler sbloccare questo test?</text>
     <text id="ttCUpdateConfigurations">Sei sicuro di voler salvare le nuove configurazioni di sistema?</text>
     <text id="ttCUpdateLanguage">Sei sicuro di voler aggiornare i file di lingua?\nL'operazione non potrà essere annullata. Continuare?</text>
@@ -107,6 +108,7 @@
     <text id="ttDuration">Durata</text>
     <!-- ======================== E ======================== -->
     <text id="ttEdit">Modifica</text>
+    <text id="ttEditable">Punteggio modificabile</text>
     <text id="ttError">Errore</text>
     <text id="ttEmail">E-mail</text>
     <text id="ttEnd">Fine</text>
@@ -254,6 +256,7 @@
     <text id="ttMTopicDeleted">Argomento eliminato con successo</text>
     <!-- ======================== N ======================== -->
     <text id="ttName">Nome</text>
+    <text id="ttNegativeScores">Punteggi negativi</text>
     <text id="ttNew">Nuovo</text>
     <text id="ttNext">Avanti</text>
     <text id="ttNewAnswer">Nuova risposta</text>
