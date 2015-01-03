@@ -92,7 +92,7 @@ define('ttDTTestEmpty' , "No tests to show");
 define('ttDone' , "Exam done");
 define('ttDuration' , "Duration");
 define('ttEdit' , "Edit");
-define('ttEditable' , "Editable Score");
+define('ttEditableScore' , "Editable Score");
 define('ttError' , "Error");
 define('ttEmail' , "E-mail");
 define('ttEnd' , "End");

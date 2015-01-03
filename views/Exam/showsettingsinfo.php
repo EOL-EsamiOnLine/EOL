@@ -103,7 +103,7 @@ if($_POST['action'] == 'show'){
             </dd>
         </dl>
 
-        <label id="settingsEditableLabel" class="tSpace"><?= ttEditable ?> : </label>
+        <label id="settingsEditableLabel" class="tSpace"><?= ttEditableScore ?> : </label>
         <dl class="dropdownInfo tSpace" id="settingsEditable">
             <dt class="<?= $editClass ?>">
                 <span><?= constant('tt'.$YNlabel[$editable]) ?><span class="value"><?= $editable ?></span></span>
