@@ -72,6 +72,7 @@ global $config, $user;
                               <th class="tName">'.ttName.'</th>
                               <th class="tSubject">'.ttSubject.'</th>
                               <th class="tTime">'.ttTimeUsed.'</th>
+                              <th class="tScore">'.ttScoreTest.'</th>
                               <th class="tTestID"></th>
                           </tr>
                       </thead>
@@ -85,11 +86,13 @@ global $config, $user;
                     $end = new DateTime($test['timeEnd']);
                     $diff = $start->diff($end);
                     $time = $diff->format("%H:%I:%S");
+                    $score = $test['scoreTest'];
 
                     echo '<tr>
                               <td>'.$test['surname'].' '.$test['name'].'</td>
                               <td>'.$subject.'</td>
                               <td>'.$time.'</td>
+                              <td>'.$score.'</td>
                               <td>'.$idTest.'</td>
                           </tr>';
                 }

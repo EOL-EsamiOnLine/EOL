@@ -2058,7 +2058,7 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            $query = "SELECT idTest, timeStart, timeEnd, T.status, fkExam, fkSubject, idUser, S.name, S.surname, Sub.name AS subName
+            $query = "SELECT idTest, timeStart, timeEnd, T.status, scoreTest, fkExam, fkSubject, idUser, S.name, S.surname, Sub.name AS subName
                       FROM Tests AS T
                           JOIN Exams AS E ON T.fkExam = E.idExam
                           JOIN Users AS S ON T.fkUser = S.idUser
