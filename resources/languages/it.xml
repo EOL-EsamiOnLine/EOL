@@ -108,7 +108,7 @@
     <text id="ttDuration">Durata</text>
     <!-- ======================== E ======================== -->
     <text id="ttEdit">Modifica</text>
-    <text id="ttEditable">Punteggio modificabile</text>
+    <text id="ttEditableScore">Voto modificabile</text>
     <text id="ttError">Errore</text>
     <text id="ttEmail">E-mail</text>
     <text id="ttEnd">Fine</text>
