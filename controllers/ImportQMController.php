@@ -39,7 +39,7 @@ class ImportQMController extends Controller{
 
     /**
      *  @name   actionIndex
-     *  @descr  Show student index page
+     *  @descr  Show import index page
      */
     private function actionImportpage(){
         global $engine;
@@ -53,29 +53,51 @@ class ImportQMController extends Controller{
     }
 
     /**
-     *  @name   actionImport
-     *  @descr  Perform a importQM procedure
+     *  @name   actionInit
+     *  @descr  Perform a  init importQM procedure
      */
-    private function actionImport(){
-        global $config, $log;
-        $dir_iterator = new RecursiveDirectoryIterator("../../DOMANDE");
-        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
-        $i=0;
 
+    private function actionInitimport(){
+        global $config, $log;
+        if(file_exists($config['importQMDir'])){
+            echo 'Questions Folder: <span style=\'color:green; font-weight:bold\'>Found</span></br></br>';
+        }
+        else {
+            echo 'Questions Folder: <span style=\'color:red; font-weight:bold\'>Not Found</span></br></br>';
+
+        }
+    }
+
+
+    /**
+     *  @name   actionPrepareimport
+     *  @descr  Prepare importQM procedure
+     */
+
+    private function actionPrepareimport()
+    {
+
+        global $config, $log;
+        $dir_iterator = new RecursiveDirectoryIterator($config['importQMDir']);
+        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
+        $i = 0;
+        $fileCounter = 0;
+        $questionCounter=0;
         //OTTENGO LE INFO NECESSARIE SULLE DOMANDE IN PREPARAZIONE ALL'IMPORT
         foreach ($iterator as $file) {
-            if($file->isfile()){
-                $path=pathinfo($file);
-                if($path['extension']=='xml' && filesize($file)>0){
-                    $xml=file_get_contents($file) or die("Error: Cannot create object");
+            if ($file->isfile()) {
+                $path = pathinfo($file);
+                if ($path['extension'] == 'xml' && filesize($file) > 0) {
+                    $xml = file_get_contents($file) or die("Error: Cannot create object");
 
-                    $xml=ImportQMController::fixImportErrors($xml);
+                    $xml = ImportQMController::fixImportErrors($xml);
                     $root = new SimpleXMLElement($xml);
+                    $fileCounter++;
 
-                    foreach($root->children() as $item){
-
+                    foreach ($root->children() as $item) {
+                        $questionCounter++;
                         $itemtype = $item->itemmetadata->qmd_itemtype;
-                        $questionsTypeArray[$i]=$itemtype;
+                        $questionsTypeArray[$i] = $itemtype;
                         $i++;
 
                     }
@@ -84,39 +106,52 @@ class ImportQMController extends Controller{
             }
         }
 
-        $questionsTypeArray=array_unique($questionsTypeArray);
-        $i=0;
-        foreach($questionsTypeArray as $key => $value){
-            $res[$i]=$value;
+        $questionsTypeArray = array_unique($questionsTypeArray);
+        $i = 0;
+        foreach ($questionsTypeArray as $key => $value) {
+            $res[$i] = $value;
             //echo $res[$i]."<br>";
             $i++;
         }
 
+        echo "<strong>".$fileCounter."</strong> XML Files Found<br/>";
+        echo "<strong>".$questionCounter."</strong> Questions Found<br/><br/>";
+
+
+    }
+
+    /**
+     *  @name   actionImport
+     *  @descr  Perform a importQM procedure
+     */
+    private function actionImport()
+    {
+        global $config, $log;
+        $dir_iterator = new RecursiveDirectoryIterator($config['importQMDir']);
+        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
 
         foreach ($iterator as $file) {
-            if($file->isfile()){
-                $path=pathinfo($file);
-                if($path['extension']=='xml' && filesize($file)>0){
-                    $xml=file_get_contents($file) or die("Error: Cannot create object");
+            if ($file->isfile()) {
+                $path = pathinfo($file);
+                if ($path['extension'] == 'xml' && filesize($file) > 0) {
+                    $xml = file_get_contents($file) or die("Error: Cannot create object");
 
 
-
-                    $xml=ImportQMController::fixImportErrors($xml);
+                    $xml = ImportQMController::fixImportErrors($xml);
 
                     //PATH DELLE IMMAGINI
-                    $xml=str_replace("%SERVER.GRAPHICS%", "../../", $xml);
-
+                    $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
 
 
                     $root = new SimpleXMLElement($xml);
 
 
-                    foreach($root->children() as $item){
+                    foreach ($root->children() as $item) {
 
                         $itemtype = $item->itemmetadata->qmd_itemtype;
 
 
-                        switch($itemtype){
+                        switch ($itemtype) {
                             case 'Multiple Response':
                                 //parser($item);
                                 break;
@@ -128,9 +163,10 @@ class ImportQMController extends Controller{
                 }
             }
         }
-
-
     }
+
+
+
 
     /**
      * @name fixImportErrors
@@ -263,7 +299,7 @@ class ImportQMController extends Controller{
         return array(
             array(
                 'allow',
-                'actions' => array('Import','Importpage'
+                'actions' => array('Initimport','Prepareimport','Import','Importpage'
                 ),
                 'roles'   => array('a'),
             ),

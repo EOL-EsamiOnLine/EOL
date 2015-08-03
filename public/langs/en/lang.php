@@ -347,5 +347,8 @@ define('ttWelcome' , "Welcome");
 define('ttWaiting' , "Waiting");
 define('ttWarning' , "Warning");
 define('ttYes' , "Yes");
+
+
+define('ttPrepareImportQM' , "Prepare");
 define('ttImportQM' , "ImportQM");
 define('ttImport' , "Import");

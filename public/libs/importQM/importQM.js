@@ -11,21 +11,68 @@ $(document).ready(function () {
     /**
      *  @descr  Binded event for ENTER key on fields
      */
-    $("#importQuestions").on("click",loadPage);
+    initImport();
+    $("#prepareImport").on("click",prepareImport);
+    $("#importQuestions").on("click",startImport);
 });
 
 
+
+
+
+
 /**
- *  @descr  Binded login function
+ *  @descr  init Import function
  */
-function loadPage() {
+function initImport() {
+
+    $.ajax({
+        url     : "index.php?page=importQM/initimport",
+        type    : "post",
+        data    :{
+        },
+        success : function (data, status) {
+            $("#ImportMsg").html(data);
+        },
+        error : function (request, status, error) {
+            alert("jQuery AJAX request error:".error);
+        }
+    });
+
+}
+
+
+
+
+/**
+ *  @descr prepare Import function
+ */
+function prepareImport() {
+
+    $.ajax({
+        url     : "index.php?page=importQM/prepareimport",
+        type    : "post",
+        data    :{
+        },
+        success : function (data, status) {
+            $("#ImportMsg").html(data);
+        },
+        error : function (request, status, error) {
+            alert("jQuery AJAX request error:".error);
+        }
+    });
+
+}
+
+/**
+ *  @descr  stat Import Procedure function
+ */
+function startImport() {
 
         $.ajax({
             url     : "index.php?page=importQM/import",
             type    : "post",
             data    :{
-                email       :   $("#email").val(),
-                password    :   $("#password").val()
             },
             success : function (data, status) {
                 $(".infoEdit").html(data);
