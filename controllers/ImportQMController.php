@@ -129,7 +129,7 @@ class ImportQMController extends Controller{
         global $config, $log;
         $dir_iterator = new RecursiveDirectoryIterator($config['importQMDir']);
         $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
-
+        $lastIdSubject=-1;
         foreach ($iterator as $file) {
             if ($file->isfile()) {
                 $path = pathinfo($file);
@@ -148,6 +148,32 @@ class ImportQMController extends Controller{
 
                     foreach ($root->children() as $item) {
 
+                        //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
+                        $qPath = $item->itemmetadata->qmd_topic;
+
+
+                        $questionsInfo=ImportQMController::parsingQPath($qPath);
+
+                        //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
+                        $aliasLang=ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
+                        ImportQMController::createNewLanguage($aliasLang,$questionsInfo['sbjLang']);
+
+
+                        //INSERISCO LA MATERIA SE NON ESISTE
+                        $idSubject=ImportQMController::createNewsubject($questionsInfo['sbjName'],"",$aliasLang,$questionsInfo['sbjVers']);
+
+
+                        //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
+                        if($idSubject==-1)
+                            ImportQMController::createNewtopic($lastIdSubject,$questionsInfo['topicName'],$questionsInfo['topicName']);
+                        else {
+                            ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
+                            $lastIdSubject=$idSubject;
+                        }
+
+
+                        /*
+
                         $itemtype = $item->itemmetadata->qmd_itemtype;
 
 
@@ -157,7 +183,7 @@ class ImportQMController extends Controller{
                                 break;
 
                         }
-
+                        */
                     }
 
                 }
@@ -277,6 +303,113 @@ class ImportQMController extends Controller{
         $res['topicDifficulty']=$difficulty;
 
         return $res;
+
+
+    }
+
+
+    /**
+     *  @name   createNewLanguage
+     *  @descr  Creates a new XML language file
+     */
+    private static function getAliasLanguage($description){
+
+        $langCode['english']='en';
+        $langCode['spanish']='es';
+        $langCode['german']='de';
+        $langCode['french']='fr';
+        $langCode['italian']='it';
+        $langCode['polish']='pl';
+        $langCode['russian']='ru';
+        $langCode['greek']='gr';
+        $langCode['slovenian']='si';
+
+        return $langCode[$description];
+
+    }
+
+
+
+    /**
+     *  @name   createNewLanguage
+     *  @descr  Creates a new XML language file
+     */
+    private static function createNewLanguage($alias,$description){
+        global $engine, $log, $config;
+
+
+
+
+            if (file_exists($config['systemLangsDir'] . $alias . '/')) {
+
+            } else {
+                $db = new sqlDB();
+                if ($db->qCreateLanguage($alias, $description)) {
+                    if ((mkdir($config['systemLangsDir'] . $alias . '/')) &&
+                        (copy($config['systemLangsDir'] . 'en/lang.php', $config['systemLangsDir'] . $alias . '/lang.php')) &&
+                        (copy($config['systemLangsDir'] . 'en/lang.js', $config['systemLangsDir'] . $alias . '/lang.js')) &&
+                        (copy($config['systemLangsXml'] . 'en.xml', $config['systemLangsXml'] . $alias . '.xml'))
+                    ) {
+                        $xml = new DOMDocument();
+                        $xml->load($config['systemLangsXml'] . $alias . '.xml');
+                        $xml->getElementById('alias')->nodeValue = $alias;
+                        $xml->getElementById('name')->nodeValue = $description;
+                        $xml->save($config['systemLangsXml'] . $alias . '.xml');
+                        echo 'ACK';
+                    } else {
+                        unlink($config['systemLangsDir'] . $alias . '/lang.php');
+                        unlink($config['systemLangsDir'] . $alias . '/lang.js');
+                        unlink($config['systemLangsXml'] . $alias . '.xml');
+                        rmdir($config['systemLangsDir'] . $alias . '/');
+                    }
+                } else {
+                    echo ttEDatabase;
+                }
+            }
+    }
+
+
+
+    /**
+     *  @name   createNewsubject
+     *  @descr  Show page to create a new subject
+     */
+    private function createNewsubject($sbjName,$sbjDesc,$sbjLang,$sbjVers){
+        global $log;
+
+
+            $db = new sqlDB();
+            if (($db->qSelect("Languages","alias",$sbjLang) && ($langId = $db->nextRowEnum()))) {
+                if (($db->qNewSubject($sbjName." - ".strtoupper($sbjLang)." V.". $sbjVers, $sbjDesc, $langId[0], $sbjVers)) && ($subjectID = $db->nextRowEnum())) {
+                    return $subjectID[0];
+                } else {
+                    //die($db->getError());
+                    return -1;
+                }
+
+            }
+            $db->close();
+    }
+
+
+
+    /**
+     *  @name   createNewtopic
+     *  @descr  Show page to create a new topic
+     */
+    private function createNewtopic($idSbj,$topicName,$topicDesc){
+        global $log;
+
+
+        $db = new sqlDB();
+        if($db->qNewTopic($idSbj, $topicName, $topicDesc)){
+            if($row = $db->nextRowEnum()){
+                echo $row[0];
+            }
+        }else{
+            //die($db->getError());
+        }
+        $db->close();
 
 
     }

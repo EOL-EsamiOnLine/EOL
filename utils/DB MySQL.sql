@@ -544,6 +544,16 @@ VALUES (2, 'it', 'Italiano');
 -- Insert syntax for test teacher account (password: testeol)
 -- -----------------------------------------------------
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
-VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1');
+VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1'),
+('emanuele', 'gragnoli', 'emanuelegragnoli@live.it', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1');
 
+
+
+ALTER TABLE Subjects ADD version REAL NULL DEFAULT -1 COMMENT 'Subjects version';
+
+      ALTER TABLE Subjects
+        ADD UNIQUE sbjC(name,fkLanguage,version);
+
+        ALTER TABLE Topics
+        ADD UNIQUE TopicC(name,fkSubject);
 

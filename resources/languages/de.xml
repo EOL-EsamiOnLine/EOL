@@ -7,7 +7,7 @@
 <!ATTLIST text id ID #IMPLIED>
 ]>
 <language>
-    <info id="name">German</info>
+    <info id="name">german</info>
     <info id="alias">de</info>
     <!-- ======================== A ======================== -->
     <text id="ttAccountActivation">Account Activation</text>

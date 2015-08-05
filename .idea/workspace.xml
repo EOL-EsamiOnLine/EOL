@@ -2,12 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="878db13d-0230-4161-8352-183a0818e4b5" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/AdminController.php" afterPath="$PROJECT_DIR$/controllers/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/Controller.php" afterPath="$PROJECT_DIR$/includes/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/DB MySQL.sql" afterPath="$PROJECT_DIR$/utils/DB MySQL.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/EOL.iml" afterPath="$PROJECT_DIR$/.idea/EOL.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/Engine.php" afterPath="$PROJECT_DIR$/includes/Engine.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/ExamController.php" afterPath="$PROJECT_DIR$/controllers/ExamController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/ImportQMController.php" afterPath="$PROJECT_DIR$/controllers/ImportQMController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/config.php" afterPath="$PROJECT_DIR$/includes/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/libs/importQM/importQM.js" afterPath="$PROJECT_DIR$/public/libs/importQM/importQM.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/importQM/importpage.php" afterPath="$PROJECT_DIR$/views/importQM/importpage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/Log.php" afterPath="$PROJECT_DIR$/includes/Log.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/LoginController.php" afterPath="$PROJECT_DIR$/controllers/LoginController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/QuestionController.php" afterPath="$PROJECT_DIR$/controllers/QuestionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js" afterPath="$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/StudentController.php" afterPath="$PROJECT_DIR$/controllers/StudentController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/SubjectController.php" afterPath="$PROJECT_DIR$/controllers/SubjectController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/TeacherController.php" afterPath="$PROJECT_DIR$/controllers/TeacherController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/User.php" afterPath="$PROJECT_DIR$/includes/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/de.xml" afterPath="$PROJECT_DIR$/resources/languages/de.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/es.xml" afterPath="$PROJECT_DIR$/resources/languages/es.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/essential.php" afterPath="$PROJECT_DIR$/includes/essential.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/fr.xml" afterPath="$PROJECT_DIR$/resources/languages/fr.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/gr.xml" afterPath="$PROJECT_DIR$/resources/languages/gr.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/de/lang.php" afterPath="$PROJECT_DIR$/public/langs/de/lang.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/en/lang.php" afterPath="$PROJECT_DIR$/public/langs/en/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/es/lang.php" afterPath="$PROJECT_DIR$/public/langs/es/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/fr/lang.php" afterPath="$PROJECT_DIR$/public/langs/fr/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/gr/lang.php" afterPath="$PROJECT_DIR$/public/langs/gr/lang.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/it/lang.php" afterPath="$PROJECT_DIR$/public/langs/it/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/pl/lang.php" afterPath="$PROJECT_DIR$/public/langs/pl/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/ru/lang.php" afterPath="$PROJECT_DIR$/public/langs/ru/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/langs/si/lang.php" afterPath="$PROJECT_DIR$/public/langs/si/lang.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/pl.xml" afterPath="$PROJECT_DIR$/resources/languages/pl.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/ru.xml" afterPath="$PROJECT_DIR$/resources/languages/ru.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/Subject/showsubjectinfo.php" afterPath="$PROJECT_DIR$/views/Subject/showsubjectinfo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/languages/si.xml" afterPath="$PROJECT_DIR$/resources/languages/si.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/includes/sqlDB.php" afterPath="$PROJECT_DIR$/includes/sqlDB.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/system.log" afterPath="$PROJECT_DIR$/logs/system.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EOL.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,35 +70,94 @@
       <file leaf-file-name="ImportQMController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6102941" vertical-offset="0" max-vertical-offset="4800">
-              <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+            <state vertical-scroll-proportion="-4.849624" vertical-offset="5700" max-vertical-offset="6795">
+              <caret line="165" column="35" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
               <folding>
                 <element signature="e#6#139#0#PHP" expanded="true" />
-                <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-                <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-                <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-                <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-                <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+                <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+                <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="importQM.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/libs/importQM/importQM.js">
+      <file leaf-file-name="sqlDB.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/sqlDB.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
-              <caret line="77" column="28" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="28" />
+            <state vertical-scroll-proportion="-5.9215684" vertical-offset="44773" max-vertical-offset="45945">
+              <caret line="3011" column="34" selection-start-line="3011" selection-start-column="34" selection-end-line="3011" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="importpage.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/importQM/importpage.php">
+      <file leaf-file-name="SubjectController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/SubjectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="510">
-              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+            <state vertical-scroll-proportion="-10.083333" vertical-offset="1483" max-vertical-offset="4455">
+              <caret line="115" column="37" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Showsubjectinfo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2583" max-vertical-offset="3615">
+              <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showsubjectinfo.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/Subject/showsubjectinfo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.375" vertical-offset="420" max-vertical-offset="1275">
+              <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/Subject/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="10.0" vertical-offset="240" max-vertical-offset="1680">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1438337330000" expanded="true" signature="2116:2579" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lang.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/langs/en/lang.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-23.958334" vertical-offset="4780" max-vertical-offset="5445">
+              <caret line="357" column="12" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lang.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/langs/de/lang.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-26.458334" vertical-offset="4720" max-vertical-offset="5445">
+              <caret line="357" column="32" selection-start-line="357" selection-start-column="32" selection-end-line="357" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lang.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/langs/it/lang.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-24.583334" vertical-offset="4735" max-vertical-offset="5415">
+              <caret line="355" column="17" selection-start-line="355" selection-start-column="8" selection-end-line="355" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -85,10 +179,15 @@
         <option value="$PROJECT_DIR$/public/themes/default/header.php" />
         <option value="$PROJECT_DIR$/includes/essential.php" />
         <option value="$PROJECT_DIR$/includes/config.php" />
-        <option value="$PROJECT_DIR$/public/langs/en/lang.php" />
-        <option value="$PROJECT_DIR$/public/langs/it/lang.php" />
         <option value="$PROJECT_DIR$/views/importQM/importpage.php" />
         <option value="$PROJECT_DIR$/public/libs/importQM/importQM.js" />
+        <option value="$PROJECT_DIR$/controllers/AdminController.php" />
+        <option value="$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js" />
+        <option value="$PROJECT_DIR$/controllers/SubjectController.php" />
+        <option value="$PROJECT_DIR$/includes/sqlDB.php" />
+        <option value="$PROJECT_DIR$/public/langs/it/lang.php" />
+        <option value="$PROJECT_DIR$/views/Subject/showsubjectinfo.php" />
+        <option value="$PROJECT_DIR$/public/langs/en/lang.php" />
         <option value="$PROJECT_DIR$/controllers/ImportQMController.php" />
       </list>
     </option>
@@ -157,7 +256,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -171,33 +270,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EOL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EOL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Question" />
+              <option name="myItemId" value="Subject" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -211,11 +288,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -236,12 +309,22 @@
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
+              <option name="myItemId" value="EOL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EOL" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Exam" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -263,7 +346,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
+              <option name="myItemId" value="Subject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EOL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="EOL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="langs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -307,7 +408,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="en" />
+              <option name="myItemId" value="de" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -451,15 +552,44 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6690">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#139#0#PHP" expanded="true" />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/SubjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2858" max-vertical-offset="4455">
+          <caret line="219" column="5" selection-start-line="194" selection-start-column="4" selection-end-line="219" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5910">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#6#139#0#PHP" expanded="true" />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="4260">
           <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -468,7 +598,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -478,11 +607,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -501,11 +627,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -516,11 +639,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -541,24 +661,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/includes/sqlDB.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="45795">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/includes/Log.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="702">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/Engine.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="63.541668" vertical-offset="1525" max-vertical-offset="2190">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
@@ -575,14 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7744361" vertical-offset="2890" max-vertical-offset="5775">
           <caret line="233" column="9" selection-start-line="233" selection-start-column="9" selection-end-line="233" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/SubjectController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6992483" vertical-offset="3790" max-vertical-offset="4455">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -597,21 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1215">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/langs/en/lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.666666" vertical-offset="4649" max-vertical-offset="5385">
-          <caret line="351" column="25" selection-start-line="351" selection-start-column="8" selection-end-line="351" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/includes/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6691176" vertical-offset="70" max-vertical-offset="1260">
-          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -620,9 +702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.15056819" vertical-offset="106" max-vertical-offset="810">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -630,7 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6483357" vertical-offset="1830" max-vertical-offset="6855">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -638,7 +716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9985528" vertical-offset="690" max-vertical-offset="7335">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,15 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4500">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3585">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -662,9 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="691">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,23 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8017366" vertical-offset="554" max-vertical-offset="1245">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/langs/it/lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9070465" vertical-offset="4660" max-vertical-offset="5400">
-          <caret line="351" column="25" selection-start-line="351" selection-start-column="25" selection-end-line="351" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/importQM/importpage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="510">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,21 +744,156 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
           <caret line="77" column="28" selection-start-line="77" selection-start-column="19" selection-end-line="77" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44227886" vertical-offset="3545" max-vertical-offset="10725">
+          <caret line="262" column="41" selection-start-line="262" selection-start-column="41" selection-end-line="262" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Engine.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2833583" vertical-offset="1523" max-vertical-offset="2190">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77205884" vertical-offset="0" max-vertical-offset="1260">
+          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/Admin/Newlanguage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.19318181" vertical-offset="136" max-vertical-offset="840">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/Admin/Language.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44313148" vertical-offset="0" max-vertical-offset="1995">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/ExamController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.4407797" vertical-offset="2295" max-vertical-offset="11820">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/TeacherController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.52205884" vertical-offset="355" max-vertical-offset="1200">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/importQM/importpage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48672566" vertical-offset="0" max-vertical-offset="678">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/Subject/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4954683" vertical-offset="810" max-vertical-offset="2430">
+          <caret line="120" column="86" selection-start-line="120" selection-start-column="76" selection-end-line="120" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/langs/it/lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.583334" vertical-offset="4735" max-vertical-offset="5415">
+          <caret line="355" column="17" selection-start-line="355" selection-start-column="8" selection-end-line="355" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/langs/de/lang.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6371555" vertical-offset="3195" max-vertical-offset="5325">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Subject/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.0" vertical-offset="240" max-vertical-offset="1680">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1438337330000" expanded="true" signature="2116:2579" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/libs/Subject/Showsubjectinfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2583" max-vertical-offset="3615">
+          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/Subject/showsubjectinfo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.375" vertical-offset="420" max-vertical-offset="1275">
+          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/sqlDB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.9215684" vertical-offset="44773" max-vertical-offset="45945">
+          <caret line="3011" column="34" selection-start-line="3011" selection-start-column="34" selection-end-line="3011" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/langs/en/lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-23.958334" vertical-offset="4780" max-vertical-offset="5445">
+          <caret line="357" column="12" selection-start-line="357" selection-start-column="0" selection-end-line="357" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/langs/de/lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-26.458334" vertical-offset="4720" max-vertical-offset="5445">
+          <caret line="357" column="32" selection-start-line="357" selection-start-column="32" selection-end-line="357" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/SubjectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.083333" vertical-offset="1483" max-vertical-offset="4455">
+          <caret line="115" column="37" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6102941" vertical-offset="0" max-vertical-offset="4800">
-          <caret line="73" column="23" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="23" />
+        <state vertical-scroll-proportion="-4.849624" vertical-offset="5700" max-vertical-offset="6795">
+          <caret line="165" column="35" selection-start-line="165" selection-start-column="35" selection-end-line="165" selection-end-column="35" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1438611929000" expanded="true" signature="1647:1680" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1655" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1680:2097" placeholder="..." />
-            <marker date="1438611929000" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1438776966000" expanded="true" signature="1781:1808" placeholder="..." />
           </folding>
         </state>
       </provider>

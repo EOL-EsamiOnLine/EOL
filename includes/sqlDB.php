@@ -191,7 +191,7 @@ class sqlDB {
      * @return  Boolean
      * @descr   Returns true if info was saved successfully, false otherwise
      */
-    public function qNewSubject($name, $desc, $lang){
+    public function qNewSubject($name, $desc, $lang,$vers){
         global $log, $user;
         $ack = true;
         $this->result = null;
@@ -199,9 +199,9 @@ class sqlDB {
 
         try{
             $queries = array();
-            $data = $this->prepareData(array($name, $desc, $lang));
-            $query = "INSERT INTO Subjects (name, description, fkLanguage)
-                      VALUES ('$data[0]', '$data[1]', '$data[2]')";
+            $data = $this->prepareData(array($name, $desc, $lang,$vers));
+            $query = "INSERT INTO Subjects (name, description, fkLanguage,version)
+                      VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]')";
             array_push($queries, $query);
             $query = "SET @subID = LAST_INSERT_ID()";
             array_push($queries, $query);
@@ -219,6 +219,16 @@ class sqlDB {
 
         return $ack;
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @name    qDeleteSubject
