@@ -131,6 +131,13 @@ class ImportQMController extends Controller{
         $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
         $lastIdSubject=-1;
         $lastIdTopic=-1;
+        $idLastLang=-1;
+        $idTopic=-1;
+        $aliasLastLang=-1;
+        $lastTokenSbj="";
+        $lastSubjectId=-1;
+        $lastTokenTopic="";
+        $lastTopicId=-1;
         foreach ($iterator as $file) {
             if ($file->isfile()) {
                 $path = pathinfo($file);
@@ -158,25 +165,57 @@ class ImportQMController extends Controller{
                         $difficulty=$questionsInfo['topicDifficulty'];
                         //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
                         $aliasLang=ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
-                        ImportQMController::createNewLanguage($aliasLang,$questionsInfo['sbjLang']);
-                        $idLang=ImportQMController::getLastSubject($aliasLang);
+
+                        if($aliasLang!=$aliasLastLang) {
+                            ImportQMController::createNewLanguage($aliasLang, $questionsInfo['sbjLang']);
+                            $idLang = ImportQMController::getLastSubject($aliasLang);
+                            $idLastLang=$idLang;
+                            $aliasLastLang=$aliasLang;
+
+                        }
+                        else{
+                            $idLang=$idLastLang;
+                        }
+
+
 
                         //INSERISCO LA MATERIA SE NON ESISTE
-                        $idSubject=ImportQMController::createNewsubject($questionsInfo['sbjName'],"",$aliasLang,$questionsInfo['sbjVers']);
+                        $tokenSbj=$questionsInfo['sbjName'].$aliasLang.$questionsInfo['sbjVers'];
+
+                        if(strcmp($tokenSbj,$lastTokenSbj)==0){
+                            $idSubject=$lastSubjectId;
+                        }
+                        else{
+                            $idSubject=ImportQMController::createNewsubject($questionsInfo['sbjName'],"",$aliasLang,$questionsInfo['sbjVers']);
+                            $lastSubjectId=$idSubject;
+                            $lastTokenSbj=$tokenSbj;
+                        }
 
 
+
+
+
+                        $tokenTopic=$idSubject.$questionsInfo['topicName'].$difficulty;
                         //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
-                        if($idSubject==-1)
-                            $idTopic=ImportQMController::createNewtopic($lastIdSubject,$questionsInfo['topicName'],$questionsInfo['topicName']);
-                        else {
+                        if((strcmp($tokenTopic,$lastTokenTopic))==0){
+                            $idTopic=$lastTopicId;
+                        }
+                        else{
                             $idTopic=ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
-                            $lastIdSubject=$idSubject;
+                            $lastTopicId=$idTopic;
+                            $lastTokenTopic=$tokenTopic;
                         }
 
-                        if($idTopic!=-1){
-                            $lastIdTopic=$idTopic;
 
-                        }
+
+
+
+
+
+
+
+                        $log->append("idTopic: ".$idTopic);
+
 
 
 
@@ -187,7 +226,7 @@ class ImportQMController extends Controller{
 
                         switch ($itemtype) {
                             case 'Multiple Choice':
-                                ImportQMController::parserMC($item,$lastIdTopic,"MC",$difficulty,$idLang);
+                                ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
                                 break;
 
                         }
@@ -259,9 +298,27 @@ class ImportQMController extends Controller{
         $row=null;
         $db = new sqlDB();
         $idQuestions[0]=-1;
-        $res['Qtext']=strip_tags($res['Qtext']);
+        $res['Qtext']=$res['Qtext'];
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $res['Qtext'],array($idLang => $res['Qtext']))){
+        $idLastLang=0;
+        if($idLang>$idLastLang)
+            $idLastLang=$idLang;
+        $translationsQ[0]=null;
+        for($j=1;$j<=$idLastLang;$j++){
+
+
+            if($idLang==$j){
+                $translationsQ[$j]=$res['Qtext'];
+            }
+            else{
+                $translationsQ[$j]="";
+            }
+
+        }
+
+
+
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $res['Qtext'],$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
 
@@ -292,8 +349,9 @@ class ImportQMController extends Controller{
 
             //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
 
+            $res[$Aindex][1]=str_replace("<table border=0 align center> <tr><td>","",$res[$Aindex][1]);
+            $res[$Aindex][1]=str_replace("<table border =0> <tr><td>","",$res[$Aindex][1]);
 
-            $res[$Aindex][1]=strip_tags($res[$Aindex][1]);
             $translationsA[0]=null;
 
             if($idLang>$idLastLang)
@@ -318,7 +376,7 @@ class ImportQMController extends Controller{
 
             }
             else{
-                $log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
 
             }
             $db->close();
@@ -356,6 +414,9 @@ class ImportQMController extends Controller{
 
 
     }
+
+
+
 
     /**
      * @name parsingQPath
@@ -550,9 +611,18 @@ class ImportQMController extends Controller{
             if($row = $db->nextRowEnum()){
                 return $row[0];
             }
+            else{
+                return -1;
+            }
         }else{
             //die($db->getError());
-            return -1;
+            if($db->qSelect("Topics", "name", $topicName)) {
+                if($row = $db->nextRowEnum()){
+                    return $row[0];
+                }
+                else
+                    return -1;
+            }
         }
         $db->close();
 
