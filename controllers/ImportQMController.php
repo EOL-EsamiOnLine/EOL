@@ -130,6 +130,7 @@ class ImportQMController extends Controller{
         $dir_iterator = new RecursiveDirectoryIterator($config['importQMDir']);
         $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
         $lastIdSubject=-1;
+        $lastIdTopic=-1;
         foreach ($iterator as $file) {
             if ($file->isfile()) {
                 $path = pathinfo($file);
@@ -154,10 +155,11 @@ class ImportQMController extends Controller{
 
                         $questionsInfo=ImportQMController::parsingQPath($qPath);
 
+                        $difficulty=$questionsInfo['topicDifficulty'];
                         //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
                         $aliasLang=ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
                         ImportQMController::createNewLanguage($aliasLang,$questionsInfo['sbjLang']);
-
+                        $idLang=ImportQMController::getLastSubject($aliasLang);
 
                         //INSERISCO LA MATERIA SE NON ESISTE
                         $idSubject=ImportQMController::createNewsubject($questionsInfo['sbjName'],"",$aliasLang,$questionsInfo['sbjVers']);
@@ -165,25 +167,31 @@ class ImportQMController extends Controller{
 
                         //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
                         if($idSubject==-1)
-                            ImportQMController::createNewtopic($lastIdSubject,$questionsInfo['topicName'],$questionsInfo['topicName']);
+                            $idTopic=ImportQMController::createNewtopic($lastIdSubject,$questionsInfo['topicName'],$questionsInfo['topicName']);
                         else {
-                            ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
+                            $idTopic=ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
                             $lastIdSubject=$idSubject;
                         }
 
+                        if($idTopic!=-1){
+                            $lastIdTopic=$idTopic;
 
-                        /*
+                        }
+
+
+
+
 
                         $itemtype = $item->itemmetadata->qmd_itemtype;
 
 
                         switch ($itemtype) {
-                            case 'Multiple Response':
-                                //parser($item);
+                            case 'Multiple Choice':
+                                ImportQMController::parserMC($item,$lastIdTopic,"MC",$difficulty,$idLang);
                                 break;
 
                         }
-                        */
+
                     }
 
                 }
@@ -191,6 +199,139 @@ class ImportQMController extends Controller{
         }
     }
 
+    /**
+     * @name getLastSubject
+     * @param String $item
+     * @param String $lastIdTopic
+     */
+
+    private static function getLastSubject($lang){
+
+        $db=new sqlDB();
+        if($db->qSelect("Languages","alias",$lang)){
+            if($row = $db->nextRowEnum()){
+                return $row[0];
+            }
+            else
+                return -1;
+        }else{
+            //die($db->getError());
+            return -1;
+        }
+        $db->close();
+    }
+
+    /**
+     * @name parserMC
+     * @param String $item
+     * @param String $lastIdTopic
+     */
+
+    private static function parserMC($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
+
+        $res=null;
+        $i=0;
+
+        $res['Qtext']=$item->presentation->material->mattext;
+
+        $response_lid = $item->presentation->response_lid[0]->render_choice;
+        foreach($response_lid->children() as $response_label){
+
+
+            $Aindex="Atext".$i;
+            //LETTERA DELLA RISPOSTA
+            $res[$Aindex][0]=$response_label['ident'];
+            //TESTO RISPOSTA
+            $res[$Aindex][1]=$response_label->material->mattext;
+            $i++;
+
+        }
+        $res['Acorrect']=$item->resprocessing->respcondition[0]->conditionvar->varequal;
+        $res['NoAnswers']=$i;
+
+
+        //INSERIMENTO DOMANDA
+        //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
+
+
+        global $log;
+
+        $row=null;
+        $db = new sqlDB();
+        $idQuestions[0]=-1;
+        $res['Qtext']=strip_tags($res['Qtext']);
+
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $res['Qtext'],array($idLang => $res['Qtext']))){
+            if($row = $db->nextRowEnum()){
+                //$log->append($row[0]);
+
+            }
+        }else{
+                $log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+
+
+        }
+
+        $db->close();
+        $db = new sqlDB();
+
+
+        //INSERIMENTO RISPOSTE
+        $idLastLang=0;
+        for($i=0;$i<$res['NoAnswers'];$i++){
+            $db = new sqlDB();
+            $Aindex="Atext".$i;
+
+            $score=0;
+
+            if((strcmp($res[$Aindex][0],$res['Acorrect']))==0)
+                $score=1.0;
+            else
+                $score=0.0;
+
+
+            //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
+
+
+            $res[$Aindex][1]=strip_tags($res[$Aindex][1]);
+            $translationsA[0]=null;
+
+            if($idLang>$idLastLang)
+                $idLastLang=$idLang;
+
+            for($j=1;$j<=$idLastLang;$j++){
+
+
+                if($idLang==$j){
+                    $translationsA[$j]=$res[$Aindex][1];
+                }
+                else{
+                    $translationsA[$j]="";
+                }
+
+            }
+
+
+            //$log->append(count($translationsA));
+
+            if($db->qNewAnswer($row[0], $score , $translationsA)) {
+
+            }
+            else{
+                $log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+
+            }
+            $db->close();
+        }
+
+
+
+
+
+
+
+
+    }
 
 
 
@@ -362,8 +503,11 @@ class ImportQMController extends Controller{
                         unlink($config['systemLangsXml'] . $alias . '.xml');
                         rmdir($config['systemLangsDir'] . $alias . '/');
                     }
+
+
+
                 } else {
-                    echo ttEDatabase;
+                    echo ttError;
                 }
             }
     }
@@ -380,7 +524,7 @@ class ImportQMController extends Controller{
 
             $db = new sqlDB();
             if (($db->qSelect("Languages","alias",$sbjLang) && ($langId = $db->nextRowEnum()))) {
-                if (($db->qNewSubject($sbjName." - ".strtoupper($sbjLang)." V.". $sbjVers, $sbjDesc, $langId[0], $sbjVers)) && ($subjectID = $db->nextRowEnum())) {
+                if (($db->qNewSubject($sbjName." - ".strtoupper($sbjLang)." V". $sbjVers, $sbjDesc, $langId[0], $sbjVers)) && ($subjectID = $db->nextRowEnum())) {
                     return $subjectID[0];
                 } else {
                     //die($db->getError());
@@ -404,10 +548,11 @@ class ImportQMController extends Controller{
         $db = new sqlDB();
         if($db->qNewTopic($idSbj, $topicName, $topicDesc)){
             if($row = $db->nextRowEnum()){
-                echo $row[0];
+                return $row[0];
             }
         }else{
             //die($db->getError());
+            return -1;
         }
         $db->close();
 
