@@ -214,7 +214,7 @@ class ImportQMController extends Controller{
 
 
 
-                        $log->append("idTopic: ".$idTopic);
+                        //$log->append("idTopic: ".$idTopic);
 
 
 
@@ -298,8 +298,8 @@ class ImportQMController extends Controller{
         $row=null;
         $db = new sqlDB();
         $idQuestions[0]=-1;
-        $res['Qtext']=$res['Qtext'];
-
+        $res['Qtext']=strip_tags($res['Qtext'],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+        $res['Qtext']=str_replace("'","",$res['Qtext']);
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -348,9 +348,18 @@ class ImportQMController extends Controller{
 
 
             //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
-
+            /*
             $res[$Aindex][1]=str_replace("<table border=0 align center> <tr><td>","",$res[$Aindex][1]);
+            $res[$Aindex][1]=str_replace("<TABLE BORDER=0 ALIGN=CENTER><TR><TD>","",$res[$Aindex][1]);
             $res[$Aindex][1]=str_replace("<table border =0> <tr><td>","",$res[$Aindex][1]);
+            $res[$Aindex][1]=str_replace("<table border=0> <tr><td>","",$res[$Aindex][1]);
+            */
+
+            $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+            $res[$Aindex][1]=str_replace("'","\'",$res[$Aindex][1]);
+            $res[$Aindex][1]=str_replace(" <BR>')"," <BR>\')",$res[$Aindex][1]);
+
+
 
             $translationsA[0]=null;
 
@@ -616,8 +625,11 @@ class ImportQMController extends Controller{
             }
         }else{
             //die($db->getError());
-            if($db->qSelect("Topics", "name", $topicName)) {
+
+            if($db->qSelectTwoArgs("Topics", "name", $topicName,"fkSubject", $idSbj)) {
                 if($row = $db->nextRowEnum()){
+                    $log->append("###".$row[0]);
+
                     return $row[0];
                 }
                 else

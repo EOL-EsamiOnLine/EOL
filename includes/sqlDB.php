@@ -2785,6 +2785,62 @@ class sqlDB {
         return $ack;
     }
 
+
+
+
+
+
+    /**
+     * @name    qSelectTwoArgs
+     * @param   $tableName      String          Table to search
+     * @param   $columnName     String          Field to search
+     * @param   $value          String|Array    Value to search
+     * @param   $columnName2     String          Field to search
+     * @param   $value2          String|Array    Value to search
+     * @param   $order          String          Value to order by
+     * @return  Boolean
+     * @descr   Search into a table a specific value for a column
+     */
+    public function qSelectTwoArgs($tableName, $columnName = '', $value = '',$columnName2 = '', $value2 = '', $order = ''){
+        global $log;
+        $ack = true;
+        $this->result = null;
+        $this->mysqli = $this->connect();
+
+        try{
+            $newValue = (is_array($value))? implode(',', $value) : $value;
+            $newValue2 = (is_array($value2))? implode(',', $value2) : $value2;
+
+            $data = $this->prepareData(array($tableName, $columnName, $newValue, $columnName2, $newValue2, $order));
+
+            $query = "SELECT * FROM $data[0]";
+            if(($columnName != '') && (is_array($value)))
+                $query .= " WHERE $data[1] IN ($data[2])";
+            elseif(($columnName != '') && ($value != ''))
+                $query .= " WHERE $data[1] = '$data[2]'";
+
+            if(($columnName2 != '') && (is_array($value2)))
+                $query .= " AND $data[3] IN ($data[4])";
+            elseif(($columnName2 != '') && ($value2 != ''))
+                $query .= " AND $data[3] = $data[4] ";
+
+
+
+            if($order != ''){
+                $query .= " ORDER BY $data[5]";
+            }
+            $log->append($query);
+
+            $this->execQuery($query);
+        }catch(Exception $ex){
+            $ack = false;
+
+            $log->append(__FUNCTION__." : ".$this->getError());
+        }
+
+        return $ack;
+    }
+
     /**
      * @name    qDelete
      * @param   $tableName      String        Table to search
