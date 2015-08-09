@@ -83,6 +83,7 @@ class ImportQMController extends Controller{
         $i = 0;
         $fileCounter = 0;
         $questionCounter=0;
+        $temptype='';
         //OTTENGO LE INFO NECESSARIE SULLE DOMANDE IN PREPARAZIONE ALL'IMPORT
         foreach ($iterator as $file) {
             if ($file->isfile()) {
@@ -100,22 +101,72 @@ class ImportQMController extends Controller{
                         $questionsTypeArray[$i] = $itemtype;
                         $i++;
 
+
+
+
                     }
 
                 }
             }
         }
 
-        $questionsTypeArray = array_unique($questionsTypeArray);
-        $i = 0;
-        foreach ($questionsTypeArray as $key => $value) {
-            $res[$i] = $value;
-            //echo $res[$i]."<br>";
-            $i++;
-        }
+
+
 
         echo "<strong>".$fileCounter."</strong> XML Files Found<br/>";
         echo "<strong>".$questionCounter."</strong> Questions Found<br/><br/>";
+
+
+
+
+
+
+
+        $questionsTypeArrayU=array_unique($questionsTypeArray);
+        $i=0;
+
+        foreach($questionsTypeArrayU as $key => $value){
+            $res[$i]=$value;
+            $i++;
+        }
+
+
+
+
+
+        for ($i=0;$i<11;$i++){
+            $count[$i]=0;
+        }
+
+        $totQ=0;
+        for ($i=0;$i<count($res);$i++){
+
+            for ($j=0;$j<count($questionsTypeArray);$j++){
+
+                //echo $res[$i]." ? ".$questionsTypeArray[$j]."<br>";
+
+                if(strcmp($res[$i],$questionsTypeArray[$j])==0){
+                    $count[$i]+=1;
+
+                }
+
+            }
+            $totQ+=$count[$i];
+        }
+
+
+
+
+        echo "<table style='width:50%; margin: 0 auto'><tr><th>Type Of Question</th><th>Number</th></tr>";
+
+
+        for ($i=0;$i<11;$i++){
+
+            echo '<tr><td>'.$res[$i]."</td><td>".$count[$i]."</td></tr>";
+        }
+
+        echo "<tr> <td colspan='2'>TOT: ".$totQ."</td></tr>";
+        echo "</table>";
 
 
     }
@@ -159,7 +210,6 @@ class ImportQMController extends Controller{
                         //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
                         $qPath = $item->itemmetadata->qmd_topic;
 
-
                         $questionsInfo=ImportQMController::parsingQPath($qPath);
 
                         $difficulty=$questionsInfo['topicDifficulty'];
@@ -177,8 +227,6 @@ class ImportQMController extends Controller{
                             $idLang=$idLastLang;
                         }
 
-
-
                         //INSERISCO LA MATERIA SE NON ESISTE
                         $tokenSbj=$questionsInfo['sbjName'].$aliasLang.$questionsInfo['sbjVers'];
 
@@ -191,10 +239,6 @@ class ImportQMController extends Controller{
                             $lastTokenSbj=$tokenSbj;
                         }
 
-
-
-
-
                         $tokenTopic=$idSubject.$questionsInfo['topicName'].$difficulty;
                         //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
                         if((strcmp($tokenTopic,$lastTokenTopic))==0){
@@ -206,20 +250,7 @@ class ImportQMController extends Controller{
                             $lastTokenTopic=$tokenTopic;
                         }
 
-
-
-
-
-
-
-
-
                         //$log->append("idTopic: ".$idTopic);
-
-
-
-
-
 
                         $itemtype = $item->itemmetadata->qmd_itemtype;
 
@@ -227,6 +258,9 @@ class ImportQMController extends Controller{
                         switch ($itemtype) {
                             case 'Multiple Choice':
                                 ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
+                                break;
+                            case 'Multiple Response':
+                                //ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
                                 break;
 
                         }
@@ -267,22 +301,47 @@ class ImportQMController extends Controller{
      */
 
     private static function parserMC($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
+        global $log;
 
         $res=null;
         $i=0;
 
-        $res['Qtext']=$item->presentation->material->mattext;
+        $res['Qtext']='';
+
+
+
+        //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
+        foreach($item->presentation->children() as $material){
+
+            if(strcmp($material->getName(),'material')==0) {
+                $mat=$material->children();
+                if (strcmp($mat[0]->getName(), 'mattext') == 0) {
+                    $res['Qtext'] .= $mat[0];
+                }
+                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                    $srcImg = $mat[0]['uri'];
+                    $heightImg = $mat[0]['height'];
+                    $widthImg = $mat[0]['width'];
+                    $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
+                    $log->append('xx' . $res['Qtext']);
+
+                }
+            }
+        }
+
+
 
         $response_lid = $item->presentation->response_lid[0]->render_choice;
         foreach($response_lid->children() as $response_label){
 
-
-            $Aindex="Atext".$i;
-            //LETTERA DELLA RISPOSTA
-            $res[$Aindex][0]=$response_label['ident'];
-            //TESTO RISPOSTA
-            $res[$Aindex][1]=$response_label->material->mattext;
-            $i++;
+            if(strcmp($response_label->getName(),'response_label')==0) {
+                $Aindex = "Atext" . $i;
+                //LETTERA DELLA RISPOSTA
+                $res[$Aindex][0] = $response_label['ident'];
+                //TESTO RISPOSTA
+                $res[$Aindex][1] = $response_label->material->mattext;
+                $i++;
+            }
 
         }
 
@@ -296,6 +355,7 @@ class ImportQMController extends Controller{
                 $max=$respcondition->setvar;
             }
 
+
         }
         $res['Acorrect']=$letter;
         $res['NoAnswers']=$i;
@@ -305,14 +365,12 @@ class ImportQMController extends Controller{
         //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
 
 
-        global $log;
-
         $row=null;
         $db = new sqlDB();
         $idQuestions[0]=-1;
         $res['Qtext']=strip_tags($res['Qtext'],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
         $res['Qtext']=str_replace("'","",$res['Qtext']);
-        $res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -361,20 +419,9 @@ class ImportQMController extends Controller{
 
 
             //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
-            /*
-            $res[$Aindex][1]=str_replace("<table border=0 align center> <tr><td>","",$res[$Aindex][1]);
-            $res[$Aindex][1]=str_replace("<TABLE BORDER=0 ALIGN=CENTER><TR><TD>","",$res[$Aindex][1]);
-            $res[$Aindex][1]=str_replace("<table border =0> <tr><td>","",$res[$Aindex][1]);
-            $res[$Aindex][1]=str_replace("<table border=0> <tr><td>","",$res[$Aindex][1]);
-            */
-            $res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
+
+            //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
             $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
-            //$res[$Aindex][1]=str_replace("'","\'",$res[$Aindex][1]);
-            //$res[$Aindex][1]=str_replace(" <BR>')"," <BR>\')",$res[$Aindex][1]);
-            //$res[$Aindex][1]=str_replace(".'",".\'')",$res[$Aindex][1]);
-
-
-
 
 
             $translationsA[0]=null;
@@ -406,11 +453,6 @@ class ImportQMController extends Controller{
             }
             $db->close();
         }
-
-
-
-
-
 
 
 

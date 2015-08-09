@@ -350,7 +350,7 @@ define('ttYes' , "Yes");
 
 
 
-define('ttPrepareImportQM' , "Prepare");
+define('ttPrepareImportQM' , "Preview");
 define('ttImportQM' , "ImportQM");
 define('ttImport' , "Import");
 

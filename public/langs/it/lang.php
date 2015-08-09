@@ -349,7 +349,7 @@ define('ttWarning' , "Attenzione");
 define('ttYes' , "Sì");
 
 
-define('ttPrepareImportQM' , "Prepara");
+define('ttPrepareImportQM' , "Dettagli");
 define('ttImportQM' , "ImportQM");
 define('ttImport' , "Import");
 
