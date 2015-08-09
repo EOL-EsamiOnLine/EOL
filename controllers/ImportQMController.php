@@ -285,7 +285,19 @@ class ImportQMController extends Controller{
             $i++;
 
         }
-        $res['Acorrect']=$item->resprocessing->respcondition[0]->conditionvar->varequal;
+
+        $max=0;
+        $letter='';
+
+        foreach($item->resprocessing->children() as $respcondition){
+
+            if(($respcondition->setvar)>$max){
+                $letter=$respcondition->conditionvar->varequal;
+                $max=$respcondition->setvar;
+            }
+
+        }
+        $res['Acorrect']=$letter;
         $res['NoAnswers']=$i;
 
 
@@ -300,6 +312,7 @@ class ImportQMController extends Controller{
         $idQuestions[0]=-1;
         $res['Qtext']=strip_tags($res['Qtext'],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
         $res['Qtext']=str_replace("'","",$res['Qtext']);
+        $res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -324,7 +337,7 @@ class ImportQMController extends Controller{
 
             }
         }else{
-                $log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
 
 
         }
@@ -354,10 +367,13 @@ class ImportQMController extends Controller{
             $res[$Aindex][1]=str_replace("<table border =0> <tr><td>","",$res[$Aindex][1]);
             $res[$Aindex][1]=str_replace("<table border=0> <tr><td>","",$res[$Aindex][1]);
             */
-
+            $res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
             $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
-            $res[$Aindex][1]=str_replace("'","\'",$res[$Aindex][1]);
-            $res[$Aindex][1]=str_replace(" <BR>')"," <BR>\')",$res[$Aindex][1]);
+            //$res[$Aindex][1]=str_replace("'","\'",$res[$Aindex][1]);
+            //$res[$Aindex][1]=str_replace(" <BR>')"," <BR>\')",$res[$Aindex][1]);
+            //$res[$Aindex][1]=str_replace(".'",".\'')",$res[$Aindex][1]);
+
+
 
 
 
@@ -628,7 +644,7 @@ class ImportQMController extends Controller{
 
             if($db->qSelectTwoArgs("Topics", "name", $topicName,"fkSubject", $idSbj)) {
                 if($row = $db->nextRowEnum()){
-                    $log->append("###".$row[0]);
+                    //$log->append("###".$row[0]);
 
                     return $row[0];
                 }
