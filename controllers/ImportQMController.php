@@ -305,7 +305,13 @@ class ImportQMController extends Controller{
      */
 
     private static function parserMR($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
+
+
+        //MANCANO DUE DOMANDE DA IMPORTARE - RISOLVERE PROBLEMI DI TAG VARI
+
         global $log;
+
+
 
         $res=null;
         $i=0;
@@ -382,10 +388,10 @@ class ImportQMController extends Controller{
         }
 
 
-
-
         $res['NoCorrect']=count($correctAnswersArrU);
         $res['NoAnswers']=$i;
+        $log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
+
         $res['Acorrect']=ImportQMController::setScore($res,$correctAnswersArrU);
 
 
@@ -444,7 +450,7 @@ class ImportQMController extends Controller{
 
             $score=$res['Acorrect'][$ACindex]['score'];
 
-            //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
+            $log->append("SSS".$score);
 
             //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
             $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
@@ -1070,18 +1076,39 @@ class ImportQMController extends Controller{
     private static function setScore($res,$correctAnswersArrU){
         global $log;
         $NoWrong=$res['NoAnswers']-$res['NoCorrect'];
-        $valueRight=round(1/$res['NoCorrect'], 1, PHP_ROUND_HALF_DOWN);
-        $valueWrong=round(-1/$NoWrong, 1, PHP_ROUND_HALF_DOWN);;
-        $i=0;
 
-        foreach($res as $element){
+        $valueRight=round(1/$res['NoCorrect'], 1, PHP_ROUND_HALF_UP);
+
+
+
+        //RISOLVERE I CASI IN CUI NON CI SONO RISPOSTE ERRATE
+        if($NoWrong>0){
+            $valueWrong=-round(1/$NoWrong, 1, PHP_ROUND_HALF_UP);
+        }
+        else{
+                $valueWrong = 0;
+                $log->append("AAAAAAAAAAAAAAAAAAAAAA");
+        }
+
+        //$log->append("AAA".$res['NoAnswers']." ".$res['NoCorrect']." ".$NoWrong."  ".$valueRight." ".$valueWrong);
+
+        $out='';
+        for($i=0;$i<$res['NoAnswers'];$i++){
+
             $ACindex="Acorrect".$i;
-            $out[$ACindex]['ident']=$element[0];
-            if(in_array($element[0],$correctAnswersArrU))
-                $out[$ACindex]['score']=$valueRight;
-            else
-                $out[$ACindex]['score']=$valueWrong;
-            $i++;
+            $Aindex = "Atext" . $i;
+
+            //$log->append("XXX".$res[$Aindex][0]);
+
+            $out[$ACindex]['score']=$valueWrong;
+
+            foreach($correctAnswersArrU as $value){
+                //$log->append("XXX------>".$value." ");
+                if(strcmp($res[$Aindex][0],$value)==0)
+                    $out[$ACindex]['score'] = $valueRight;
+
+            }
+
         }
 
         return $out;
