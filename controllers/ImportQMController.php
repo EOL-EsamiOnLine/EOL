@@ -260,10 +260,10 @@ class ImportQMController extends Controller{
                                 //ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
                                 break;
                             case 'Multiple Response':
-                                //ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
+                                ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
                                 break;
                             case 'True/False':
-                                ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
+                                //ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
                                 break;
 
 
@@ -297,6 +297,198 @@ class ImportQMController extends Controller{
         }
         $db->close();
     }
+
+    /**
+     * @name parserMR
+     * @param String $item
+     * @param String $lastIdTopic
+     */
+
+    private static function parserMR($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
+        global $log;
+
+        $res=null;
+        $i=0;
+
+        $res['Qtext']='';
+
+        $log->append("</br>$lastIdTopic");
+
+        //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
+        foreach($item->presentation->children() as $material){
+
+            if(strcmp($material->getName(),'material')==0) {
+                $mat=$material->children();
+                if (strcmp($mat[0]->getName(), 'mattext') == 0) {
+                    $res['Qtext'] .= $mat[0];
+                }
+                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                    $srcImg = $mat[0]['uri'];
+                    $heightImg = $mat[0]['height'];
+                    $widthImg = $mat[0]['width'];
+                    $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
+                    $log->append('xx' . $res['Qtext']);
+
+                }
+            }
+        }
+
+
+
+        $response_lid = $item->presentation->response_lid[0]->render_choice;
+        foreach($response_lid->children() as $response_label){
+
+            if(strcmp($response_label->getName(),'response_label')==0) {
+                $Aindex = "Atext" . $i;
+                //LETTERA DELLA RISPOSTA
+                $res[$Aindex][0] = $response_label['ident'];
+                //TESTO RISPOSTA
+                $res[$Aindex][1] = $response_label->material->mattext;
+                $i++;
+            }
+
+        }
+
+
+        $j=0;
+        foreach($item->resprocessing->children() as $respcondition){
+
+
+            if($respcondition->getName()=="respcondition"){
+
+                if($respcondition->setvar>0){
+                    $conditionvar=$respcondition->conditionvar[0];
+                    foreach($conditionvar->children() as $varequal){
+                        if(strcmp($varequal->getName(),'varequal')==0){
+                            $correctAnswersArr[$j]=$varequal;
+                            $j++;
+                        }
+                    }
+
+
+                }
+
+            }
+
+
+
+        }
+        $arrTemp=array_unique($correctAnswersArr);
+        $c=0;
+        foreach($arrTemp as $value){
+            $correctAnswersArrU[$c]=$value;
+            $log->append($correctAnswersArrU[$c]);
+            $c++;
+        }
+
+
+
+
+        $res['NoCorrect']=count($correctAnswersArrU);
+        $res['NoAnswers']=$i;
+        $res['Acorrect']=ImportQMController::setScore($res,$correctAnswersArrU);
+
+
+        //INSERIMENTO DOMANDA
+        //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
+
+
+        $row=null;
+        $db = new sqlDB();
+        $idQuestions[0]=-1;
+        $res['Qtext']=strip_tags($res['Qtext'],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+        $res['Qtext']=str_replace("'","",$res['Qtext']);
+        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+        $idLastLang=0;
+        if($idLang>$idLastLang)
+            $idLastLang=$idLang;
+        $translationsQ[0]=null;
+        for($j=1;$j<=$idLastLang;$j++){
+
+
+            if($idLang==$j){
+                $translationsQ[$j]=$res['Qtext'];
+            }
+            else{
+                $translationsQ[$j]="";
+            }
+
+        }
+
+
+
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $res['Qtext'],$translationsQ)){
+            if($row = $db->nextRowEnum()){
+                //$log->append($row[0]);
+
+            }
+        }else{
+            $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
+
+
+        }
+
+        $db->close();
+        $db = new sqlDB();
+
+
+        //INSERIMENTO RISPOSTE
+        $idLastLang=0;
+        for($i=0;$i<$res['NoAnswers'];$i++){
+            $db = new sqlDB();
+
+
+            $Aindex="Atext".$i;
+            $ACindex="Acorrect".$i;
+            $score=0;
+
+            $score=$res['Acorrect'][$ACindex]['score'];
+
+            //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
+
+            //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
+            $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+
+
+            $translationsA[0]=null;
+
+            if($idLang>$idLastLang)
+                $idLastLang=$idLang;
+
+            for($j=1;$j<=$idLastLang;$j++){
+
+
+                if($idLang==$j){
+                    $translationsA[$j]=$res[$Aindex][1];
+                }
+                else{
+                    $translationsA[$j]="";
+                }
+
+            }
+
+
+            //$log->append(count($translationsA));
+
+            if($db->qNewAnswer($row[0], $score , $translationsA)) {
+
+            }
+            else{
+                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+
+            }
+            $db->close();
+        }
+
+
+
+    }
+
+
+
+
+
+
 
     /**
      * @name parserMC
@@ -462,8 +654,10 @@ class ImportQMController extends Controller{
 
     }
 
+
+
     /**
-     * @name parserMC
+     * @name parserTF
      * @param String $item
      * @param String $lastIdTopic
      */
@@ -867,6 +1061,30 @@ class ImportQMController extends Controller{
             }
         }
         $db->close();
+
+
+    }
+
+
+
+    private static function setScore($res,$correctAnswersArrU){
+        global $log;
+        $NoWrong=$res['NoAnswers']-$res['NoCorrect'];
+        $valueRight=round(1/$res['NoCorrect'], 1, PHP_ROUND_HALF_DOWN);
+        $valueWrong=round(-1/$NoWrong, 1, PHP_ROUND_HALF_DOWN);;
+        $i=0;
+
+        foreach($res as $element){
+            $ACindex="Acorrect".$i;
+            $out[$ACindex]['ident']=$element[0];
+            if(in_array($element[0],$correctAnswersArrU))
+                $out[$ACindex]['score']=$valueRight;
+            else
+                $out[$ACindex]['score']=$valueWrong;
+            $i++;
+        }
+
+        return $out;
 
 
     }
