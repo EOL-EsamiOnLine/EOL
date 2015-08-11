@@ -318,7 +318,7 @@ class ImportQMController extends Controller{
 
         $res['Qtext']='';
 
-        $log->append("</br>$lastIdTopic");
+        //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
         foreach($item->presentation->children() as $material){
@@ -333,16 +333,21 @@ class ImportQMController extends Controller{
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
                     $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
-                    $log->append('xx' . $res['Qtext']);
 
                 }
             }
         }
+        if($res['Qtext']=='')
+            $log->append("XXX -------> LAST ID TOPIC: $lastIdTopic DIFFICULTY: $difficulty QUESTION TEXT: ". $res['Qtext']);
+
 
 
 
         $response_lid = $item->presentation->response_lid[0]->render_choice;
         foreach($response_lid->children() as $response_label){
+            if($res['Qtext']=='' and strcmp($response_label->getName(),'material')==0) {
+                $res['Qtext'].=$response_label->mattext;
+            }
 
             if(strcmp($response_label->getName(),'response_label')==0) {
                 $Aindex = "Atext" . $i;
@@ -383,14 +388,14 @@ class ImportQMController extends Controller{
         $c=0;
         foreach($arrTemp as $value){
             $correctAnswersArrU[$c]=$value;
-            $log->append($correctAnswersArrU[$c]);
+            //$log->append($correctAnswersArrU[$c]);
             $c++;
         }
 
 
         $res['NoCorrect']=count($correctAnswersArrU);
         $res['NoAnswers']=$i;
-        $log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
+        //$log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
 
         $res['Acorrect']=ImportQMController::setScore($res,$correctAnswersArrU);
 
@@ -450,7 +455,7 @@ class ImportQMController extends Controller{
 
             $score=$res['Acorrect'][$ACindex]['score'];
 
-            $log->append("SSS".$score);
+            //$log->append("SSS".$score);
 
             //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
             $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
@@ -525,7 +530,7 @@ class ImportQMController extends Controller{
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
                     $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
-                    $log->append('xx' . $res['Qtext']);
+                    //$log->append('xx' . $res['Qtext']);
 
                 }
             }
@@ -597,7 +602,7 @@ class ImportQMController extends Controller{
 
             }
         }else{
-                $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
+                //$log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
 
 
         }
@@ -691,7 +696,7 @@ class ImportQMController extends Controller{
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
                     $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
-                    $log->append('xx' . $res['Qtext']);
+                    //$log->append('xx' . $res['Qtext']);
 
                 }
             }
@@ -763,7 +768,7 @@ class ImportQMController extends Controller{
 
             }
         }else{
-            $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
+            //("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
 
 
         }
@@ -1087,7 +1092,7 @@ class ImportQMController extends Controller{
         }
         else{
                 $valueWrong = 0;
-                $log->append("AAAAAAAAAAAAAAAAAAAAAA");
+                //$log->append("AAAAAAAAAAAAAAAAAAAAAA");
         }
 
         //$log->append("AAA".$res['NoAnswers']." ".$res['NoCorrect']." ".$NoWrong."  ".$valueRight." ".$valueWrong);
