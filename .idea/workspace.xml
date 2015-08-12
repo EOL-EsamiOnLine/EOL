@@ -28,13 +28,13 @@
       <file leaf-file-name="ImportQMController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41373238" vertical-offset="7840" max-vertical-offset="15470">
-              <caret line="475" column="0" selection-start-line="475" selection-start-column="0" selection-end-line="475" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.38908452" vertical-offset="14246" max-vertical-offset="22389">
+              <caret line="851" column="25" selection-start-line="851" selection-start-column="25" selection-end-line="851" selection-end-column="25" />
               <folding>
                 <element signature="e#6#139#0#PHP" expanded="true" />
-                <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-                <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-                <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+                <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+                <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+                <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -43,7 +43,7 @@
       <file leaf-file-name="sqlDB.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/includes/sqlDB.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6363635" vertical-offset="15725" max-vertical-offset="53023">
+            <state vertical-scroll-proportion="0.0" vertical-offset="15725" max-vertical-offset="53023">
               <caret line="946" column="54" selection-start-line="946" selection-start-column="54" selection-end-line="946" selection-end-column="54" />
               <folding />
             </state>
@@ -138,6 +138,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,7 +241,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -249,7 +249,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="SearchEverywhereHistoryKey" value="qNewQuestion&#9;null&#9;null&#10;newQuestion&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
@@ -303,7 +303,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -409,9 +409,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -429,9 +429,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -442,9 +442,9 @@
           <caret line="90" column="14" selection-start-line="90" selection-start-column="14" selection-end-line="90" selection-end-column="14" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -462,9 +462,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -483,9 +483,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -496,9 +496,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -764,7 +764,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/includes/sqlDB.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6363635" vertical-offset="15725" max-vertical-offset="53023">
+        <state vertical-scroll-proportion="0.0" vertical-offset="15725" max-vertical-offset="53023">
           <caret line="946" column="54" selection-start-line="946" selection-start-column="54" selection-end-line="946" selection-end-column="54" />
           <folding />
         </state>
@@ -772,13 +772,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/ImportQMController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41373238" vertical-offset="7840" max-vertical-offset="15470">
-          <caret line="475" column="0" selection-start-line="475" selection-start-column="0" selection-end-line="475" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.38908452" vertical-offset="14246" max-vertical-offset="22389">
+          <caret line="851" column="25" selection-start-line="851" selection-start-column="25" selection-end-line="851" selection-end-column="25" />
           <folding>
             <element signature="e#6#139#0#PHP" expanded="true" />
-            <marker date="1439197658061" expanded="true" signature="1649:1678" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="1781:1808" placeholder="..." />
-            <marker date="1439197658061" expanded="true" signature="3992:4017" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1649:1678" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="1781:1808" placeholder="..." />
+            <marker date="1439372218496" expanded="true" signature="3992:4017" placeholder="..." />
           </folding>
         </state>
       </provider>
