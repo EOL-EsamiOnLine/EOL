@@ -75,7 +75,17 @@ function startImport() {
             data    :{
             },
             success : function (data, status) {
-                $(".infoEdit").html(data);
+                //$(".infoEdit").html(data);
+
+                if(data=="ACK"){
+                    showSuccessMessage(ttImportComplete);
+                    setTimeout(function(){ location.replace("index.php?page=admin/index") }, 3000);
+                }
+                else{
+                    errorDialog(ttError , data);
+                }
+
+
             },
             error : function (request, status, error) {
                 alert("jQuery AJAX request error:".error);

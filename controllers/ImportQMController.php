@@ -189,93 +189,103 @@ class ImportQMController extends Controller{
         $lastSubjectId=-1;
         $lastTokenTopic="";
         $lastTopicId=-1;
-        foreach ($iterator as $file) {
-            if ($file->isfile()) {
-                $path = pathinfo($file);
-                if ($path['extension'] == 'xml' && filesize($file) > 0) {
-                    $xml = file_get_contents($file) or die("Error: Cannot create object");
+        try {
+            foreach ($iterator as $file) {
+                if ($file->isfile()) {
+                    $path = pathinfo($file);
+                    if ($path['extension'] == 'xml' && filesize($file) > 0) {
+                        $xml = file_get_contents($file) or die("Error: Cannot create object");
 
 
-                    $xml = ImportQMController::fixImportErrors($xml);
+                        $xml = ImportQMController::fixImportErrors($xml);
 
-                    //PATH DELLE IMMAGINI
-                    $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
-
-
-                    $root = new SimpleXMLElement($xml);
+                        //PATH DELLE IMMAGINI
+                        $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
 
 
-                    foreach ($root->children() as $item) {
-
-                        //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
-                        $qPath = $item->itemmetadata->qmd_topic;
-
-                        $questionsInfo=ImportQMController::parsingQPath($qPath);
-
-                        $difficulty=$questionsInfo['topicDifficulty'];
-                        //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
-                        $aliasLang=ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
-
-                        if($aliasLang!=$aliasLastLang) {
-                            ImportQMController::createNewLanguage($aliasLang, $questionsInfo['sbjLang']);
-                            $idLang = ImportQMController::getLastSubject($aliasLang);
-                            $idLastLang=$idLang;
-                            $aliasLastLang=$aliasLang;
-
-                        }
-                        else{
-                            $idLang=$idLastLang;
-                        }
-
-                        //INSERISCO LA MATERIA SE NON ESISTE
-                        $tokenSbj=$questionsInfo['sbjName'].$aliasLang.$questionsInfo['sbjVers'];
-
-                        if(strcmp($tokenSbj,$lastTokenSbj)==0){
-                            $idSubject=$lastSubjectId;
-                        }
-                        else{
-                            $idSubject=ImportQMController::createNewsubject($questionsInfo['sbjName'],"",$aliasLang,$questionsInfo['sbjVers']);
-                            $lastSubjectId=$idSubject;
-                            $lastTokenSbj=$tokenSbj;
-                        }
-
-                        $tokenTopic=$idSubject.$questionsInfo['topicName'].$difficulty;
-                        //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
-                        if((strcmp($tokenTopic,$lastTokenTopic))==0){
-                            $idTopic=$lastTopicId;
-                        }
-                        else{
-                            $idTopic=ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
-                            $lastTopicId=$idTopic;
-                            $lastTokenTopic=$tokenTopic;
-                        }
-
-                        //$log->append("idTopic: ".$idTopic);
-
-                        $itemtype = $item->itemmetadata->qmd_itemtype;
+                        $root = new SimpleXMLElement($xml);
 
 
-                        switch ($itemtype) {
-                            case 'Multiple Choice':
-                                //ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
-                                break;
-                            case 'Multiple Response':
-                               // ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
-                                break;
-                            case 'True/False':
-                                //ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
-                                break;
-                            case 'Numeric':
-                                ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
-                                break;
+                        foreach ($root->children() as $item) {
+
+                            //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
+                            $qPath = $item->itemmetadata->qmd_topic;
+
+                            $questionsInfo = ImportQMController::parsingQPath($qPath);
+
+                            $difficulty = $questionsInfo['topicDifficulty'];
+                            //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
+                            $aliasLang = ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
+
+                            if ($aliasLang != $aliasLastLang) {
+                                ImportQMController::createNewLanguage($aliasLang, $questionsInfo['sbjLang']);
+                                $idLang = ImportQMController::getLastSubject($aliasLang);
+                                $idLastLang = $idLang;
+                                $aliasLastLang = $aliasLang;
+
+                            } else {
+                                $idLang = $idLastLang;
+                            }
+
+                            //INSERISCO LA MATERIA SE NON ESISTE
+                            $tokenSbj = $questionsInfo['sbjName'] . $aliasLang . $questionsInfo['sbjVers'];
+
+                            if (strcmp($tokenSbj, $lastTokenSbj) == 0) {
+                                $idSubject = $lastSubjectId;
+                            } else {
+                                $idSubject = ImportQMController::createNewsubject($questionsInfo['sbjName'], "", $aliasLang, $questionsInfo['sbjVers']);
+                                $lastSubjectId = $idSubject;
+                                $lastTokenSbj = $tokenSbj;
+                            }
+
+                            $tokenTopic = $idSubject . $questionsInfo['topicName'] . $difficulty;
+                            //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
+                            if ((strcmp($tokenTopic, $lastTokenTopic)) == 0) {
+                                $idTopic = $lastTopicId;
+                            } else {
+                                $idTopic = ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
+                                $lastTopicId = $idTopic;
+                                $lastTokenTopic = $tokenTopic;
+                            }
+
+                            //$log->append("idTopic: ".$idTopic);
+
+                            $itemtype = $item->itemmetadata->qmd_itemtype;
 
 
-                        }
+                                switch ($itemtype) {
+                                    case 'Multiple Choice':
+                                        //ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
+                                        break;
+                                    case 'Multiple Response':
+                                        // ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
+                                        break;
+                                    case 'True/False':
+                                        //ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
+                                        break;
+                                    case 'Numeric':
+                                        //ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
+                                        break;
+                                    case 'Text Match':
+                                        ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
+                                        break;
+
+
+                                }
+
+
+                            }
 
                     }
 
                 }
+
             }
+            echo 'ACK';
+
+        }
+        catch(Exception $ex){
+            echo 'NACK';
         }
     }
 
@@ -300,6 +310,209 @@ class ImportQMController extends Controller{
         }
         $db->close();
     }
+
+
+
+
+    /**
+     * @name parserTM
+     * @param String $item
+     * @param String $lastIdTopic
+     */
+
+    private static function parserTM($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
+
+        global $log;
+        $res=null;
+        $i=0;
+
+        $res['Qtext']='';
+
+        //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
+
+        //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
+        foreach($item->presentation->children() as $material){
+
+            if(strcmp($material->getName(),'material')==0) {
+                $mat=$material->children();
+                if (strcmp($mat[0]->getName(), 'mattext') == 0) {
+                    $res['Qtext'] .= $mat[0];
+                }
+                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                    $srcImg = $mat[0]['uri'];
+                    $heightImg = $mat[0]['height'];
+                    $widthImg = $mat[0]['width'];
+                    $res['Qtext'] .= "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
+
+                }
+            }
+        }
+        if($res['Qtext']=='')
+            $log->append("XXX -------> LAST ID TOPIC: $lastIdTopic DIFFICULTY: $difficulty QUESTION TEXT: ". $res['Qtext']);
+
+
+        /*
+
+        $response_lid = $item->presentation->response_lid[0]->render_choice;
+        if(isset($response_lid)) {
+            foreach ($response_lid->children() as $response_label) {
+                if ($res['Qtext'] == '' and strcmp($response_label->getName(), 'material') == 0) {
+                    $res['Qtext'] .= $response_label->mattext;
+                }
+
+
+            }
+        }
+        */
+
+
+        // ------------------------- INIZIO PARSING RISPOSTE TEXT MATCH ------------------------//
+        $correctAnswersArrU=array();
+        $i=0;
+        foreach($item->resprocessing->children() as $respcondition){
+            if($respcondition->getName()=="respcondition"){
+
+                if($respcondition->setvar>0){
+                    $conditionvar=$respcondition->conditionvar[0];
+                    foreach($conditionvar->children() as $varequal){
+                        $arr=array();
+                        if(strcmp($varequal->getName(),'varequal')==0)
+                            $arr=ImportQMController::checkNumber(explode(",",$varequal));
+                        if(strcmp($varequal->getName(),'varcontains')==0)
+                            $arr=ImportQMController::checkNumber(explode(",",$varequal));
+
+                        //CASO DELLA OR
+                        /*
+                        <or>
+                        <varcontains respident="1" case="No">propylene</varcontains>
+                        <varcontains respident="1" case="No">propileno</varcontains>
+                        </or>
+                        */
+                        $arrTemp=array();
+                        $arr2=array();
+                        if(strcmp($varequal->getName(),'or')==0){
+                            foreach($varequal->children() as $vr){
+                                $arrTemp=ImportQMController::checkNumber(explode(",",$vr));
+                                $arr2=array_merge($arr2,$arrTemp);
+                            }
+                            //var_dump($arr2);
+
+                        }
+
+                        $resArr=array();
+                        $j=0;
+                        foreach($arr as $ans){
+                            $resArr[$j]=$ans;
+                            $j++;
+                        }
+                        foreach($arr2 as $ans){
+                            $resArr[$j]=$ans;
+                            $j++;
+                        }
+                        //print_r($resArr);
+
+                        foreach ($resArr as $answer) {
+                            $correctAnswersArrU[$i]=$answer;
+                            $Aindex = "Atext" . $i;
+                            //LETTERA DELLA RISPOSTA
+                            $res[$Aindex][0] = '';
+                            //TESTO RISPOSTA
+                            $res[$Aindex][1] = $answer;
+                            $i++;
+
+                        }
+
+                    }
+
+
+                }
+
+
+            }
+
+        }
+
+        // ------------------------- FINE PARSING RISPOSTE TEXT MATCH ------------------------//
+        $res['NoCorrect']=count($correctAnswersArrU);
+        $res['NoAnswers']=$i;
+        //$log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
+        //INSERIMENTO DOMANDA
+        //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
+        $row=null;
+        $db = new sqlDB();
+        $idQuestions[0]=-1;
+        $res['Qtext']=strip_tags($res['Qtext'],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+        $res['Qtext']=str_replace("'","",$res['Qtext']);
+        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+        $idLastLang=0;
+        if($idLang>$idLastLang)
+            $idLastLang=$idLang;
+        $translationsQ[0]=null;
+        for($j=1;$j<=$idLastLang;$j++){
+
+            if($idLang==$j){
+                $translationsQ[$j]=$res['Qtext'];
+            }
+            else{
+                $translationsQ[$j]="";
+            }
+
+        }
+
+
+
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $res['Qtext'],$translationsQ)){
+            if($row = $db->nextRowEnum()){
+                //$log->append($row[0]);
+            }
+        }else{
+            $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
+
+        }
+
+        $db->close();
+        $db = new sqlDB();
+
+        //INSERIMENTO RISPOSTE
+        $idLastLang=0;
+        for($i=0;$i<$res['NoAnswers'];$i++){
+            $db = new sqlDB();
+            $Aindex="Atext".$i;
+            $score=1;
+            //$log->append("SSS".$score);
+            //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
+            $res[$Aindex][1]=strip_tags($res[$Aindex][1],"<applet><object><p><img><br></br><sub><sup><APPLET><OBJECT><P><IMG><BR></BR><SUB><SUP>");
+
+            $translationsA[0]=null;
+
+            if($idLang>$idLastLang)
+                $idLastLang=$idLang;
+
+            for($j=1;$j<=$idLastLang;$j++){
+
+                if($idLang==$j){
+                    $translationsA[$j]=$res[$Aindex][1];
+                }
+                else{
+                    $translationsA[$j]="";
+                }
+
+            }
+
+            //$log->append(count($translationsA));
+            if($db->qNewAnswer($row[0], $score , $translationsA)) {
+
+            }
+            else{
+                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+            }
+            $db->close();
+        }
+
+
+
+    }
+
 
     /**
      * @name parserMR
@@ -400,7 +613,7 @@ class ImportQMController extends Controller{
         $res['NoAnswers']=$i;
         //$log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
 
-        $res['Acorrect']=ImportQMController::setScore($res,$correctAnswersArrU);
+        $res['Acorrect']=ImportQMController::setScoreMR($res,$correctAnswersArrU);
 
 
         //INSERIMENTO DOMANDA
@@ -508,6 +721,7 @@ class ImportQMController extends Controller{
      * @name parserMC
      * @param String $item
      * @param String $lastIdTopic
+     * @descr parse the MC questions
      */
 
     private static function parserMC($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
@@ -1158,7 +1372,7 @@ class ImportQMController extends Controller{
                         $xml->getElementById('alias')->nodeValue = $alias;
                         $xml->getElementById('name')->nodeValue = $description;
                         $xml->save($config['systemLangsXml'] . $alias . '.xml');
-                        echo 'ACK';
+                        //echo 'ACK';
                     } else {
                         unlink($config['systemLangsDir'] . $alias . '/lang.php');
                         unlink($config['systemLangsDir'] . $alias . '/lang.js');
@@ -1169,7 +1383,7 @@ class ImportQMController extends Controller{
 
 
                 } else {
-                    echo ttError;
+                    //echo ttError;
                 }
             }
     }
@@ -1234,8 +1448,14 @@ class ImportQMController extends Controller{
     }
 
 
-
-    private static function setScore($res,$correctAnswersArrU){
+    /**
+     *  @name   setScoreMR
+     *  @param  array $res answers list
+     *  @param  array $correctAnswersArrU correct answers list
+     *  @return array score per asnwer
+     *  @descr  Set the right score for MR
+     */
+    private static function setScoreMR($res,$correctAnswersArrU){
         global $log;
         $NoWrong=$res['NoAnswers']-$res['NoCorrect'];
 
@@ -1280,6 +1500,30 @@ class ImportQMController extends Controller{
 
 
 
+    /**
+     *  @name   checkNumber
+     *  @param  array $arr answers list
+     *  @return array $res numeri value
+     *  @descr  check if list is composed by two numeric value in this case merge the int part with the decimal part
+     */
+    private static function checkNumber($arr){
+
+        $res=array();
+        if(count($arr)==2){
+            if(is_numeric($arr[0]) and is_numeric($arr[1])){
+                $num=implode('.',$arr);
+                $res=explode(",", $num);
+            }
+            else
+                $res=$arr;
+
+        }
+        else
+            $res=$arr;
+
+
+        return $res;
+    }
 
     /**
      *  @name   accessRules

@@ -347,3 +347,8 @@ var ttWelcome = "Welcome";
 var ttWaiting = "Waiting";
 var ttWarning = "Warning";
 var ttYes = "Yes";
+
+
+var ttImportComplete="Questions Import successfully completed";
+
+
