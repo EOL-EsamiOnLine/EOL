@@ -541,6 +541,41 @@ class sqlDB {
         return $ack;
     }
 
+
+
+
+    /**
+     * @name    qNewTopicV2
+     * @param   $idSubject      String        Subject's ID
+     * @param   $name           String        Topic's name
+     * @param   $code           String        Topic's unique code
+     * @param   $desc           String        Topic's description
+     * @return  Boolean
+     * @descr   Returns true if topic was saved created, false otherwise
+     */
+    public function qNewTopicV2($idSubject, $name, $code, $desc){
+        global $log;
+        $ack = true;
+        $this->result = null;
+        $this->mysqli = $this->connect();
+
+        $queries = array();
+        try{
+            $data = $this->prepareData(array($name, $code, $desc));
+            $query = "INSERT INTO Topics (name, code, description, fkSubject)
+                  VALUES ('$data[0]', '$data[1]', '$data[2]', '$idSubject')";
+            array_push($queries, $query);
+            $query = "SELECT LAST_INSERT_ID()";
+            array_push($queries, $query);
+            $this->execTransaction($queries);
+        }catch(Exception $ex){
+            $ack = false;
+            $log->append(__FUNCTION__." : ".$this->getError());
+        }
+
+        return $ack;
+    }
+
 /*******************************************************************
 *                            Questions                             *
 *******************************************************************/
@@ -1775,7 +1810,8 @@ class sqlDB {
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
-
+        $log->append($idSubject. $name. $scoreType. $scoreMin. $bonus. $negative. $editable. $duration.
+            $questions. $desc);
         try{
         	$queries = array();
 

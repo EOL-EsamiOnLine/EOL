@@ -238,12 +238,12 @@ class ImportQMController extends Controller{
                                 $lastTokenSbj = $tokenSbj;
                             }
 
-                            $tokenTopic = $idSubject . $questionsInfo['topicName'] . $difficulty;
+                            $tokenTopic = $idSubject . $questionsInfo['topicCode'];
                             //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
                             if ((strcmp($tokenTopic, $lastTokenTopic)) == 0) {
                                 $idTopic = $lastTopicId;
                             } else {
-                                $idTopic = ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicName']);
+                                $idTopic = ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicCode'],$questionsInfo['topicName']);
                                 $lastTopicId = $idTopic;
                                 $lastTokenTopic = $tokenTopic;
                             }
@@ -255,19 +255,19 @@ class ImportQMController extends Controller{
 
                                 switch ($itemtype) {
                                     case 'Multiple Choice':
-                                        //ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
+                                        ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
                                         break;
                                     case 'Multiple Response':
-                                        // ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
+                                        ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
                                         break;
                                     case 'True/False':
-                                        //ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
+                                        ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
                                         break;
                                     case 'Numeric':
                                         //ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
                                         break;
                                     case 'Text Match':
-                                        ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
+                                        //ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
                                         break;
 
 
@@ -338,7 +338,7 @@ class ImportQMController extends Controller{
                 if (strcmp($mat[0]->getName(), 'mattext') == 0) {
                     $res['Qtext'] .= $mat[0];
                 }
-                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                else if (strcmp($mat[0]->getName(), 'matimage') == 0) {
                     $srcImg = $mat[0]['uri'];
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
@@ -544,7 +544,7 @@ class ImportQMController extends Controller{
                 if (strcmp($mat[0]->getName(), 'mattext') == 0) {
                     $res['Qtext'] .= $mat[0];
                 }
-                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                else if (strcmp($mat[0]->getName(), 'matimage') == 0) {
                     $srcImg = $mat[0]['uri'];
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
@@ -742,7 +742,7 @@ class ImportQMController extends Controller{
                 if (strcmp($mat[0]->getName(), 'mattext') == 0) {
                     $res['Qtext'] .= $mat[0];
                 }
-                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                else if (strcmp($mat[0]->getName(), 'matimage') == 0) {
                     $srcImg = $mat[0]['uri'];
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
@@ -908,7 +908,7 @@ class ImportQMController extends Controller{
                 if (strcmp($mat[0]->getName(), 'mattext') == 0) {
                     $res['Qtext'] .= $mat[0];
                 }
-                if (strcmp($mat[0]->getName(), 'matimage') == 0) {
+                else if (strcmp($mat[0]->getName(), 'matimage') == 0) {
                     $srcImg = $mat[0]['uri'];
                     $heightImg = $mat[0]['height'];
                     $widthImg = $mat[0]['width'];
@@ -1238,81 +1238,126 @@ class ImportQMController extends Controller{
      * @param String $qpath question path
      * @return Array $res quesion info
      */
-    private static function parsingQPath($qPath){
+    private static function parsingQPath($qPath)
+    {
 
+        global $log;
         //ARRAY COD -> NAME SUBJECTS
-        $subjectsList['ac3']='Analyical Chemistry 3';
-        $subjectsList['bc3']='Biological Chemistry 3';
-        $subjectsList['cc4']='Computational Chemistry 4';
-        $subjectsList['ce3']='Chemical Engineering 3';
-        $subjectsList['ch4']='Cultural Heritage 4';
-        $subjectsList['gc1']='General Chemistry 1';
-        $subjectsList['gc2']='General Chemistry 2';
-        $subjectsList['gc']='General Chemistry';
-        $subjectsList['ic3']='Inorganic Chemistry 3';
-        $subjectsList['oc3']='Organic Chemistry 3';
-        $subjectsList['pc3']='Physical Chemistry 3';
-        $subjectsList['mc']=' mc ';
-        $subjectsList['xxx']='END';
+        $subjectsList['ac3'] = 'Analyical Chemistry 3';
+        $subjectsList['bc3'] = 'Biological Chemistry 3';
+        $subjectsList['cc4'] = 'Computational Chemistry 4';
+        $subjectsList['ce3'] = 'Chemical Engineering 3';
+        $subjectsList['ch4'] = 'Cultural Heritage 4';
+        $subjectsList['gc1'] = 'General Chemistry 1';
+        $subjectsList['gc2'] = 'General Chemistry 2';
+        $subjectsList['gc'] = 'General Chemistry';
+        $subjectsList['ic3'] = 'Inorganic Chemistry 3';
+        $subjectsList['oc3'] = 'Organic Chemistry 3';
+        $subjectsList['pc3'] = 'Physical Chemistry 3';
+        $subjectsList['mc'] = ' mc ';
+        $subjectsList['xxx'] = 'END';
 
         //CREATE ASSOCIATIVE ARRAY FROM PATH STRING
-        if(substr_count($qPath,"/")>0)
-            $parts=explode("/", $qPath);
+        if (substr_count($qPath, "/") > 0)
+            $parts = explode("/", $qPath);
         else
-            $parts=explode("\\", $qPath);
+            $parts = explode("\\", $qPath);
 
         //GET ARRAY $parts LENGTH
-        $lenParts=count($parts);
+        $lenParts = count($parts);
 
         //MANAGE ALL CASES
-        switch($lenParts){
+        switch ($lenParts) {
             case 2:
-                $subjectName=strtolower($parts[0]);
-                $difficulty=1;
-                $TopicName=$parts[1];
+                $subjectName = strtolower($parts[0]);
+                $difficulty = 1;
+                $TopicName = $parts[1];
 
                 //GESTISCO IL CASO UNICO cdb_mc_v400en
-                if($subjectName=='cdb_mc_v400en'){
+                if ($subjectName == 'cdb_mc_v400en') {
 
-                    $sbjName='mc';
-                    $sbjLang='english';
-                    $version='4.00';
-                    $difficulty=1;
+                    $sbjName = 'mc';
+                    $sbjLang = 'english';
+                    $version = '4.00';
+                    $difficulty = 1;
 
                 }
                 break;
             case 3:
-                $subjectName=strtolower($parts[0]);
-                $difficulty=substr($parts[1],strlen($parts[1])-1,1);
-                $TopicName=$parts[2];
+                $subjectName = strtolower($parts[0]);
+                $difficulty = substr($parts[1], strlen($parts[1]) - 1, 1);
+                $TopicName = $parts[2];
                 break;
             case 4:
-                $subjectName=strtolower($parts[0]);
-                $difficulty=substr($parts[2],strlen($parts[2])-1,1);
-                $TopicName=$parts[3];
+                $temp=explode(' ',$parts[1]);
+                $modulo=$temp[2];
+                $tParts=explode(' ',$parts[0]);
+                $tParts[1]=$tParts[1].$modulo;
+                $parts[0]=implode(' ',$tParts);
+
+                $subjectName = strtolower($parts[0]);
+                $difficulty = substr($parts[2], strlen($parts[2]) - 1, 1);
+                $TopicName = $parts[3];
                 break;
 
         }
 
-        if(substr_count($subjectName,"version")>0){
-            $SubjectParts=explode("version",$subjectName);
-            $SubjectNameAndLang=explode(" ",$SubjectParts[0]);
-            $sbjName=$SubjectNameAndLang[1];
-            $sbjLang=$SubjectNameAndLang[2];
-            $version=$SubjectParts[1];
-            if(substr($version,2,1)!='.'){
-                $version=substr($version,1,1).'.'.substr($version,2,2);
+        if (substr_count($subjectName, "version") > 0) {
+            $SubjectParts = explode("version", $subjectName);
+            $SubjectNameAndLang = explode(" ", $SubjectParts[0]);
+            $sbjName = $SubjectNameAndLang[1];
+            $sbjLang = $SubjectNameAndLang[2];
+            $version = $SubjectParts[1];
+            if (substr($version, 2, 1) != '.') {
+                $version = substr($version, 1, 1) . '.' . substr($version, 2, 2);
             }
-            $version=floatval($version);
+            $version = floatval($version);
 
         }
 
         //PREPARE RESULTS ASSOCIATIVE ARRAY
-        $TopicNames=explode(' - ',$TopicName);
-        if(count($TopicNames)>1)
-            $res['topicName']=$TopicNames[1];
-        else
-            $res['topicName']=$TopicNames[0];
+        $TopicNames = explode(' - ', $TopicName);
+
+        if (count($TopicNames) > 1) {
+            $res['topicCode'] = substr($TopicNames[0],0,strlen($TopicNames[0])-2).substr($TopicNames[0],strlen($TopicNames[0])-1,1);
+            $res['topicName'] = $TopicNames[1];
+        } else {
+            $TopicNames = explode(' – ', $TopicName);
+            if (count($TopicNames) > 1) {
+                $res['topicCode'] = substr($TopicNames[0],0,strlen($TopicNames[0])-2).substr($TopicNames[0],strlen($TopicNames[0])-1,1);
+                $res['topicName'] = $TopicNames[1];
+            } else {
+                $TopicNames = explode('  -', $TopicName);
+                if (count($TopicNames) > 1) {
+                    $res['topicCode'] = substr($TopicNames[0],0,strlen($TopicNames[0])-2).substr($TopicNames[0],strlen($TopicNames[0])-1,1);
+                    $res['topicName'] = $TopicNames[1];
+                } else {
+                    $TopicNames = explode('–', $TopicName);
+                    if (count($TopicNames) > 1) {
+                        $res['topicCode'] = substr($TopicNames[0],0,strlen($TopicNames[0])-2).substr($TopicNames[0],strlen($TopicNames[0])-1,1);
+                        $res['topicName'] = $TopicNames[1];
+                    } else {
+                        $TopicNames = explode(' -', $TopicName);
+                        if (count($TopicNames) > 1) {
+                            $res['topicCode'] = substr($TopicNames[0],0,strlen($TopicNames[0])-2).substr($TopicNames[0],strlen($TopicNames[0])-1,1);
+                            $res['topicName'] = $TopicNames[1];
+                        } else {
+                            $res['topicCode'] = $TopicNames[0];
+                            $res['topicName'] = $TopicNames[0];
+                        }
+                    }
+                }
+            }
+        }
+
+        if($sbjName=='ce3'){
+            $res['topicCode']=substr($res['topicCode'],0,strlen($res['topicCode'])-2) . substr($res['topicCode'],strlen($res['topicCode'])-1,1);
+            //$log->append('###'.$res['topicCode']);
+        }
+
+
+
+        //$log->append($res['topicCode']);
 
         $res['sbjName']=$subjectsList[$sbjName];
         $res['sbjLang']=$sbjLang;
@@ -1354,9 +1399,6 @@ class ImportQMController extends Controller{
     private static function createNewLanguage($alias,$description){
         global $engine, $log, $config;
 
-
-
-
             if (file_exists($config['systemLangsDir'] . $alias . '/')) {
 
             } else {
@@ -1383,7 +1425,7 @@ class ImportQMController extends Controller{
 
 
                 } else {
-                    //echo ttError;
+                    echo ttError;
                 }
             }
     }
@@ -1417,12 +1459,12 @@ class ImportQMController extends Controller{
      *  @name   createNewtopic
      *  @descr  Show page to create a new topic
      */
-    private function createNewtopic($idSbj,$topicName,$topicDesc){
+    private function createNewtopic($idSbj,$topicName,$topicCode,$topicDesc){
         global $log;
 
 
         $db = new sqlDB();
-        if($db->qNewTopic($idSbj, $topicName, $topicDesc)){
+        if($db->qNewTopicV2($idSbj, $topicName,$topicCode, $topicDesc)){
             if($row = $db->nextRowEnum()){
                 return $row[0];
             }
@@ -1432,7 +1474,7 @@ class ImportQMController extends Controller{
         }else{
             //die($db->getError());
 
-            if($db->qSelectTwoArgs("Topics", "name", $topicName,"fkSubject", $idSbj)) {
+            if($db->qSelectTwoArgs("Topics", "code", $topicCode,"fkSubject", $idSbj)) {
                 if($row = $db->nextRowEnum()){
                     //$log->append("###".$row[0]);
 
