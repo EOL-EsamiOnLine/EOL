@@ -35,6 +35,7 @@ body.noscroll {
     height              :   122px;
     background-color    :   #929292;
 }
+/*
 #logoContainer {
     float:left;
     margin: 10px 10px 10px 10px;
@@ -51,6 +52,16 @@ body.noscroll {
     margin-left: 20px;
     font-size: 30px;
     color: rgb(137, 202, 57);
+}
+*/
+
+#eolLogo {
+    float       :   left;
+    width       :   400px;
+    height      :	100px;
+    background  :   url("images/eol_echemTest.png") no-repeat;
+    margin-top  :   12px;
+    margin-left:    20px;
 }
 #welcome {
     font-size   :   12px;
