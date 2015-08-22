@@ -409,6 +409,8 @@ div.ui-datepicker{
     font-size           :   11px;
     color               :   #000000;
     text-align          :   left;
+    overflow            :   scroll;
+
 }
 .boxLeftS{
     width               :   48%;
