@@ -1,0 +1,61 @@
+
+<item title="110-002 78." ident="8694400977791426">
+    <itemmetadata>
+        <qmd_itemtype>Multiple Choice</qmd_itemtype>
+        <qmd_status>Normal</qmd_status>
+        <qmd_toolvendor>Questionmark Perception</qmd_toolvendor>
+        <qmd_topic>CDB GC1 Italian version 3.50\gc1it1\gc1it10 - Cicli di vita... di alcuni prodotti chimici</qmd_topic>
+    </itemmetadata>
+    <presentation>
+        <material>
+            <mattext texttype="text/html"><![CDATA[Il principale componente della carta è:<BR><BR>]]></mattext>
+        </material>
+        <response_lid ident="1">
+            <render_choice shuffle="Yes">
+                <response_label ident="A">
+                    <material>
+                        <mattext texttype="text/html"><![CDATA[Emicellulosa <BR>]]></mattext>
+                    </material>
+                </response_label>
+                <response_label ident="B">
+                    <material>
+                        <mattext texttype="text/html"><![CDATA[Cellophane <BR>]]></mattext>
+                    </material>
+                </response_label>
+                <response_label ident="C">
+                    <material>
+                        <mattext texttype="text/html"><![CDATA[Celluloide <BR>]]></mattext>
+                    </material>
+                </response_label>
+                <response_label ident="D">
+                    <material>
+                        <mattext texttype="text/html"><![CDATA[Cellulosa <BR>]]></mattext>
+                    </material>
+                </response_label>
+                <response_label ident="E">
+                    <material>
+                        <mattext texttype="text/html"><![CDATA[Argilla <BR>]]></mattext>
+                    </material>
+                </response_label>
+            </render_choice>
+        </response_lid>
+    </presentation>
+    <resprocessing>
+        <outcomes>
+            <decvar/>
+        </outcomes>
+        <respcondition title="3" >
+            <conditionvar>
+                <varequal respident="1">D</varequal>
+            </conditionvar>
+            <setvar action="Set">60</setvar>
+            <displayfeedback linkrefid="3"/>
+        </respcondition>
+    </resprocessing>
+    <itemfeedback ident="3" view="Candidate">
+    </itemfeedback>
+</item>
+
+
+
+

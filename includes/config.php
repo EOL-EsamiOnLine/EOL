@@ -76,7 +76,7 @@ $config['dbPassword'] = '';
 // Themes directory
 $config['themesDir'] = 'themes/';
 // Theme name (equals to theme folder)
-$config['themeName'] = 'default';
+$config['themeName'] = 'echemTest';
 // Theme directory
 $config['themeDir'] = $config['themesDir'].$config['themeName'].'/';
 // Theme's images directory

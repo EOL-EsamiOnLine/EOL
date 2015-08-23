@@ -6,16 +6,19 @@
  * Time: 11:38 AM
  * Desc: Header of all pages
  */
-?>
 
-<?php
-global $user;
+global $user, $config;
 ?>
 
 <div id="header">
     <div id="eolLogo"></div>
-    <!--img src="<?= $config['themeImagesDir'] ?>logo.gif" style="position:absolute; top:20px; left:250px;" /-->
-    <div id="logocontainer"></div>
+
+    <!--<div id="logoContainer">
+        <img src="">
+        <div id="systemTitle">EOL - Esami On Line</div>
+    </div>
+    -->
+
     <div id="welcome">
         <div>
             <a class="w"><?= ttWelcome ?></a><br/>

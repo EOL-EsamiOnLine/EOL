@@ -14,6 +14,8 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Languages` (
   PRIMARY KEY (`idLanguage`) ,
   UNIQUE INDEX `alias_UNIQUE` (`alias` ASC) )
 ENGINE = InnoDB
+
+ 
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
 COMMENT = 'Availables languages';
