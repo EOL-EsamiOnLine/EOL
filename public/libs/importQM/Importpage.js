@@ -1,56 +1,51 @@
 /**
- * File: Login.js
- * User: Masterplan
- * Date: 3/15/13
+ * File: ImportQM.js
+ * User: Emanuele Gragnoli
+ * Date: 08/24/15
  * Time: 7:32 PM
- * Desc: Javascript library for login module
+ * Desc: Javascript library for ImportQM module
  */
 
 $(document).ready(function () {
-
-    /**
-     *  @descr  Binded event for ENTER key on fields
-     */
-    initImport();
-    $("#prepareImport").on("click",prepareImport);
-    $("#importQuestions").on("click",startImport);
+    init();
 });
 
-
-
-
-
-
 /**
- *  @descr  init Import function
+ *  @descr  init function
  */
-function initImport() {
-
+function init() {
     $.ajax({
-        url     : "index.php?page=importQM/initimport",
+        url     : "index.php?page=importQM/init",
         type    : "post",
         data    :{
         },
         success : function (data, status) {
-            $("#ImportMsg").html(data);
+            var res=JSON.parse(data);
+            $("#ImportMsg").html(res[0]);
+            if(res[1].toString()=='true'){
+                //ENABLE BUTTONS
+                $("#previewImport").on("click",preview);
+                $("#importQuestions").on("click",startImport);
+            }
+            else{
+                //DISABLE BUTTONS
+                $("#previewImport").on("click",function(){showErrorMessage('FOLDER NOT FOUND')});
+                $("#importQuestions").on("click",function(){showErrorMessage('FOLDER NOT FOUND')});
+
+            }
         },
         error : function (request, status, error) {
             alert("jQuery AJAX request error:".error);
         }
     });
-
 }
 
-
-
-
 /**
- *  @descr prepare Import function
+ *  @descr prepare function
  */
-function prepareImport() {
-
+function preview() {
     $.ajax({
-        url     : "index.php?page=importQM/prepareimport",
+        url     : "index.php?page=importQM/preview",
         type    : "post",
         data    :{
         },
@@ -61,22 +56,18 @@ function prepareImport() {
             alert("jQuery AJAX request error:".error);
         }
     });
-
 }
 
 /**
  *  @descr  stat Import Procedure function
  */
 function startImport() {
-
         $.ajax({
             url     : "index.php?page=importQM/import",
             type    : "post",
             data    :{
             },
             success : function (data, status) {
-                //$(".infoEdit").html(data);
-
                 if(data=="ACK"){
                     showSuccessMessage(ttImportComplete);
                     setTimeout(function(){ location.replace("index.php?page=admin/index") }, 3000);
@@ -84,8 +75,6 @@ function startImport() {
                 else{
                     errorDialog(ttError , data);
                 }
-
-
             },
             error : function (request, status, error) {
                 alert("jQuery AJAX request error:".error);

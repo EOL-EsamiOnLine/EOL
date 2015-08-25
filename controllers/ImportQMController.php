@@ -57,24 +57,27 @@ class ImportQMController extends Controller{
      *  @descr  Perform a  init importQM procedure
      */
 
-    private function actionInitimport(){
+    private function actionInit(){
         global $config, $log;
         if(file_exists($config['importQMDir'])){
-            echo 'Questions Folder: <span style=\'color:green; font-weight:bold\'>Found</span></br></br>';
+            $res[0]='Questions Folder: <span style=\'color:green; font-weight:bold\'>Found</span></br></br>';
+            $res[1]=true;
         }
         else {
-            echo 'Questions Folder: <span style=\'color:red; font-weight:bold\'>Not Found</span></br></br>';
-
+            $res[0]='Questions Folder: <span style=\'color:red; font-weight:bold\'>Not Found</span></br></br>';
+            $res[1]=false;
         }
+        $output=json_encode($res);
+        echo $output;
     }
 
 
     /**
-     *  @name   actionPrepareimport
-     *  @descr  Prepare importQM procedure
+     *  @name   actionPreview
+     *  @descr  Preview import Data
      */
 
-    private function actionPrepareimport()
+    private function actionPreview()
     {
 
         global $config, $log;
@@ -142,7 +145,7 @@ class ImportQMController extends Controller{
         for ($i=0;$i<11;$i++){
             echo '<tr><td>'.$res[$i]."</td><td>".$count[$i]."</td></tr>";
         }
-        echo "<tr> <td colspan='2'>TOT: ".$totQ."</td></tr>";
+        echo "<tr> <td colspan='2'>&nbsp;</td></tr>";
         echo "</table>";
 
 
@@ -189,6 +192,7 @@ class ImportQMController extends Controller{
                             $qPath = $item->itemmetadata->qmd_topic;
 
                             $questionsInfo = ImportQMController::parsingQPath($qPath);
+                            $questionsInfo['itemtype'] = $item->itemmetadata->qmd_itemtype;
 
                             $difficulty = $questionsInfo['topicDifficulty'];
                             //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
@@ -227,10 +231,9 @@ class ImportQMController extends Controller{
 
                             //$log->append("idTopic: ".$idTopic);
 
-                            $itemtype = $item->itemmetadata->qmd_itemtype;
 
 
-                                switch ($itemtype) {
+                                switch ($questionsInfo['itemtype']) {
                                     case 'Multiple Choice':
                                         ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
                                         break;
@@ -1459,7 +1462,7 @@ class ImportQMController extends Controller{
         return array(
             array(
                 'allow',
-                'actions' => array('Initimport','Prepareimport','Import','Importpage'
+                'actions' => array('Init','Preview','Import','Importpage'
                 ),
                 'roles'   => array('a'),
             ),

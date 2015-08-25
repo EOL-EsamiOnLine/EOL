@@ -351,8 +351,8 @@ define('ttYes' , "Yes");
 
 
 define('ttPrepareImportQM' , "Preview");
-define('ttImportQM' , "ImportQM");
-define('ttImport' , "Import");
+define('ttImportQM' , "Import");
+define('ttImport' , "Import echemTest");
 
 
 define('ttSbjVers' , "Version");

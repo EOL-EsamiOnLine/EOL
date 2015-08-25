@@ -39,7 +39,7 @@ $config['systemLangsXml'] = '../resources/languages/';
 $config['systemExtraDir'] = 'extra/';
 
 //ImportQM directory
-$config['importQMDir']='../../DOMANDE';
+$config['importQMDir']='../../QUESTIONS';
 
 // System log files directory
 $config['logDir'] = '../logs/';
