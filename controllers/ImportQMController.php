@@ -87,68 +87,51 @@ class ImportQMController extends Controller{
         $fileCounter = 0;
         $questionCounter=0;
         $temptype='';
-        //OTTENGO LE INFO NECESSARIE SULLE DOMANDE IN PREPARAZIONE ALL'IMPORT
         foreach ($iterator as $file) {
             if ($file->isfile()) {
                 $path = pathinfo($file);
                 if ($path['extension'] == 'xml' && filesize($file) > 0) {
                     $xml = file_get_contents($file) or die("Error: Cannot create object");
-
                     $xml = ImportQMController::fixImportErrors($xml);
                     $root = new SimpleXMLElement($xml);
                     $fileCounter++;
-
                     foreach ($root->children() as $item) {
                         $questionCounter++;
                         $itemtype = $item->itemmetadata->qmd_itemtype;
                         $questionsTypeArray[$i] = $itemtype;
                         $i++;
-
                     }
-
                 }
             }
         }
-
         echo "<strong>".$fileCounter."</strong> XML Files Found<br/>";
         echo "<strong>".$questionCounter."</strong> Questions Found<br/><br/>";
-
         $questionsTypeArrayU=array_unique($questionsTypeArray);
         $i=0;
-
         foreach($questionsTypeArrayU as $key => $value){
             $res[$i]=$value;
             $i++;
         }
-
         for ($i=0;$i<11;$i++){
             $count[$i]=0;
         }
-
         $totQ=0;
         for ($i=0;$i<count($res);$i++){
-
             for ($j=0;$j<count($questionsTypeArray);$j++){
-
                 //echo $res[$i]." ? ".$questionsTypeArray[$j]."<br>";
-
                 if(strcmp($res[$i],$questionsTypeArray[$j])==0){
                     $count[$i]+=1;
 
                 }
-
             }
             $totQ+=$count[$i];
         }
-
         echo "<table style='width:50%; margin: 0 auto'><tr><th>Type Of Question</th><th>Number</th></tr>";
         for ($i=0;$i<11;$i++){
             echo '<tr><td>'.$res[$i]."</td><td>".$count[$i]."</td></tr>";
         }
         echo "<tr> <td colspan='2'>&nbsp;</td></tr>";
         echo "</table>";
-
-
     }
 
     /**
@@ -176,12 +159,10 @@ class ImportQMController extends Controller{
                     if ($path['extension'] == 'xml' && filesize($file) > 0) {
                         $xml = file_get_contents($file) or die("Error: Cannot create object");
 
-
                         $xml = ImportQMController::fixImportErrors($xml);
 
-                        //PATH DELLE IMMAGINI
+                        //SETTO IL PATH DELLE IMMAGINI
                         $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
-
 
                         $root = new SimpleXMLElement($xml);
 
@@ -189,10 +170,9 @@ class ImportQMController extends Controller{
                         foreach ($root->children() as $item) {
 
                             //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
-                            $qPath = $item->itemmetadata->qmd_topic;
+                            $qMetadata = $item->itemmetadata;
 
-                            $questionsInfo = ImportQMController::parsingQPath($qPath);
-                            $questionsInfo['itemtype'] = $item->itemmetadata->qmd_itemtype;
+                            $questionsInfo = ImportQMController::parsingQMetadata($qMetadata);
 
                             $difficulty = $questionsInfo['topicDifficulty'];
                             //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
@@ -220,7 +200,7 @@ class ImportQMController extends Controller{
                             }
 
                             $tokenTopic = $idSubject . $questionsInfo['topicCode'];
-                            //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID PRECEDENTE
+                            //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID DEL TOPIC PRECEDENTE
                             if ((strcmp($tokenTopic, $lastTokenTopic)) == 0) {
                                 $idTopic = $lastTopicId;
                             } else {
@@ -231,30 +211,28 @@ class ImportQMController extends Controller{
 
                             //$log->append("idTopic: ".$idTopic);
 
-
-
-                                switch ($questionsInfo['itemtype']) {
-                                    case 'Multiple Choice':
-                                        ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
-                                        break;
-                                    case 'Multiple Response':
-                                        ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
-                                        break;
-                                    case 'True/False':
-                                        ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
-                                        break;
-                                    case 'Numeric':
-                                        //ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
-                                        break;
-                                    case 'Text Match':
-                                        //ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
-                                        break;
-
-
-                                }
+                            switch ($questionsInfo['itemtype']) {
+                                case 'Multiple Choice':
+                                    ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
+                                    break;
+                                case 'Multiple Response':
+                                    ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
+                                    break;
+                                case 'True/False':
+                                    ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
+                                    break;
+                                case 'Numeric':
+                                    //ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
+                                    break;
+                                case 'Text Match':
+                                    //ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
+                                    break;
 
 
                             }
+
+
+                        }
 
                     }
 
@@ -1067,8 +1045,9 @@ class ImportQMController extends Controller{
      * @param String $qpath question path
      * @return Array $res quesion info
      */
-    private static function parsingQPath($qPath)
+    private static function parsingQMetadata($qMetadata)
     {
+        $qPath=$qMetadata->qmd_topic;
 
         global $log;
         //ARRAY COD -> NAME SUBJECTS
@@ -1191,6 +1170,9 @@ class ImportQMController extends Controller{
         $res['sbjLang']=$sbjLang;
         $res['sbjVers']=$version;
         $res['topicDifficulty']=$difficulty;
+        $res['itemtype'] = $qMetadata->qmd_itemtype;
+
+
         return $res;
 
 
