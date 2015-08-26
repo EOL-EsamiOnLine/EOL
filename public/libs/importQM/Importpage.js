@@ -15,7 +15,7 @@ $(document).ready(function () {
  */
 function init() {
     $.ajax({
-        url     : "index.php?page=importQM/init",
+        url     : "index.php?page=ImportQM/init",
         type    : "post",
         data    :{
         },
@@ -45,7 +45,7 @@ function init() {
  */
 function preview() {
     $.ajax({
-        url     : "index.php?page=importQM/preview",
+        url     : "index.php?page=ImportQM/preview",
         type    : "post",
         data    :{
         },
@@ -63,7 +63,7 @@ function preview() {
  */
 function startImport() {
         $.ajax({
-            url     : "index.php?page=importQM/import",
+            url     : "index.php?page=ImportQM/import",
             type    : "post",
             data    :{
             },

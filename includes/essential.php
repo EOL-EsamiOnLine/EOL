@@ -229,7 +229,7 @@ function adminMenu(){
     <li>
         <a class="trigger"><?= ttImportQM ?></a>
         <ul class="subnav">
-            <li><a href="index.php?page=importQM/importpage"><?= ttImport ?></a></li>
+            <li><a href="index.php?page=importqm/importpage"><?= ttImport ?></a></li>
         </ul>
     </li>
 

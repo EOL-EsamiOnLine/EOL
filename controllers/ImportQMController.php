@@ -1,6 +1,6 @@
 <?php
 /**
- * File: ImportQMController.php
+ * File: ImportqmController.php
  * User: Elia
  * Date: 5/21/15
  * Time: 10:45 AM
@@ -54,7 +54,7 @@ class ImportQMController extends Controller{
 
     /**
      *  @name   actionInit
-     *  @descr  Perform a  init importQM procedure
+     *  @descr  Perform a  init ImportQM procedure
      */
 
     private function actionInit(){
@@ -136,7 +136,7 @@ class ImportQMController extends Controller{
 
     /**
      *  @name   actionImport
-     *  @descr  Perform a importQM procedure
+     *  @descr  Perform a ImportQM procedure
      */
     private function actionImport()
     {
@@ -157,9 +157,24 @@ class ImportQMController extends Controller{
                 if ($file->isfile()) {
                     $path = pathinfo($file);
                     if ($path['extension'] == 'xml' && filesize($file) > 0) {
+
                         $xml = file_get_contents($file) or die("Error: Cannot create object");
 
+                        //FIX1 ENCODING PROBLEMS
+                        $xml=str_replace('<?xml version="1.0" standalone="no"?>', '<?xml version="1.0" encoding="UTF-8" standalone="no"?>', $xml);
+
+                        //FIX2 ENCODING PROBLEMS
+                        $arr = array("UTF-8", "GB2312", "GBK", "ISO-8859-1");
+                        $charset = mb_detect_encoding($xml, $arr, true);
+                        $log->append("PP".$charset);
+                        $xml = mb_convert_encoding($xml, 'UTF-8', $charset);
+
+
+
+
                         $xml = ImportQMController::fixImportErrors($xml);
+
+
 
                         //SETTO IL PATH DELLE IMMAGINI
                         $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
@@ -1310,13 +1325,15 @@ class ImportQMController extends Controller{
         global $log;
         $NoWrong=$res['NoAnswers']-$res['NoCorrect'];
 
-        $valueRight=round(1/$res['NoCorrect'], 1, PHP_ROUND_HALF_UP);
+        //round(ceil(1/$res['NoCorrect'] * 10) / 10,2); //  to round up to 1dp
+
+        $valueRight=round(1/$res['NoCorrect'], 1);
 
 
 
         //RISOLVERE I CASI IN CUI NON CI SONO RISPOSTE ERRATE
         if($NoWrong>0){
-            $valueWrong=-round(1/$NoWrong, 1, PHP_ROUND_HALF_UP);
+            $valueWrong=-round(1/$NoWrong, 1);
         }
         else{
                 $valueWrong = 0;

@@ -40,6 +40,7 @@ $config['systemExtraDir'] = 'extra/';
 
 //ImportQM directory
 $config['importQMDir']='../../QUESTIONS';
+$config['topicResQM']='../../topicresources';
 
 // System log files directory
 $config['logDir'] = '../logs/';
