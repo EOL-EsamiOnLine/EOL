@@ -158,17 +158,14 @@ class ImportQMController extends Controller{
                     $path = pathinfo($file);
                     if ($path['extension'] == 'xml' && filesize($file) > 0) {
 
+
                         $xml = file_get_contents($file) or die("Error: Cannot create object");
 
-                        //FIX1 ENCODING PROBLEMS
-                        $xml=str_replace('<?xml version="1.0" standalone="no"?>', '<?xml version="1.0" encoding="UTF-8" standalone="no"?>', $xml);
 
-                        //FIX2 ENCODING PROBLEMS
-                        $arr = array("UTF-8", "GB2312", "GBK", "ISO-8859-1");
-                        $charset = mb_detect_encoding($xml, $arr, true);
-                        $log->append("PP".$charset);
-                        $xml = mb_convert_encoding($xml, 'UTF-8', $charset);
+                        //FIX IMPORT ENCODING
+                        $xml = mb_convert_encoding($xml, 'HTML-ENTITIES', "UTF-8");
 
+                        //$log->append(htmlentities($xml));
 
 
 
@@ -180,6 +177,8 @@ class ImportQMController extends Controller{
                         $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
 
                         $root = new SimpleXMLElement($xml);
+
+
 
 
                         foreach ($root->children() as $item) {
@@ -248,6 +247,8 @@ class ImportQMController extends Controller{
 
 
                         }
+                        //CLEAN THE OUTPUT BUFFER
+                        ob_clean();
 
                     }
 
@@ -622,7 +623,8 @@ class ImportQMController extends Controller{
         foreach($item->presentation->children() as $material) {
             $res['Qtext'] .= ImportQMController::getQuestionText($material);
         }
-        //$log->append("HHH ".$res['Qtext']);
+
+
 
 
 

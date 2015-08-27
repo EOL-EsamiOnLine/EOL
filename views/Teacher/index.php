@@ -40,11 +40,19 @@ global $config, $user;
                                 title="'.constant('tt'.$statuses[$examInfo['status']]).'"/>';
                 $exam = $examInfo['examName'];
                 $subject = $examInfo['subjectName'];
+
+                /*
                 $datetime = new DateTime($examInfo['datetime']);
                 $day = $datetime->format("d/m/Y");
                 $time = $datetime->format("H:i");
-                $idExam = $examInfo['idExam'];
 
+                */
+
+                $datetime = strtotime($examInfo['datetime']);
+                $day = date('d/m/Y', $datetime);
+                $time = date('H:i', $datetime);
+
+                $idExam = $examInfo['idExam'];
                 echo '<tr>
                           <td>'.$status.'</td>
                           <td>'.$exam.'</td>
@@ -82,10 +90,21 @@ global $config, $user;
 
                     $subject = $test['subName'];
                     $idTest = $test['idTest'];
+
+
+                    /*
                     $start = new DateTime($test['timeStart']);
                     $end = new DateTime($test['timeEnd']);
                     $diff = $start->diff($end);
                     $time = $diff->format("%H:%I:%S");
+                    */
+
+                    $start = strtotime($test['timeStart']);
+                    $end = strtotime($test['timeEnd']);
+                    $diff = $end - $start;
+                    $time = date("%H:%I:%S", $diff);
+
+
                     $score = $test['scoreTest'];
 
                     echo '<tr>

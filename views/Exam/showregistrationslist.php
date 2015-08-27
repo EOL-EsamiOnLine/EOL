@@ -74,22 +74,39 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                     while ($registration = $db->nextRowAssoc()) {
                         $start = $end = $time = "";
                         if ($registration['timeStart'] != null) {
-                            $start = new DateTime($registration['timeStart']);
+                            //$start = new DateTime($registration['timeStart']);
+                            $start = strtotime($registration['timeStart']);
+
                             if ($registration['timeEnd'] != null) {
+                                /*
                                 $end = new DateTime($registration['timeEnd']);
                                 $diff = $start->diff($end);
                                 $end = $end->format('H:i:s');
+                                */
+                                $end = strtotime($registration['timeEnd']);
+                                $diff = $end - $start;
+                                $end = date('H:i:s', $end);
+
                             } else {
+                                /*
                                 $end = new DateTime(date('Y-m-d H:i:s'));
                                 $diff = $start->diff($end);
                                 $end = '';
+                                */
+                                $end = strtotime(date('Y-m-d H:i:s'));
+                                $diff = $end - $start;
+                                $end = '';
+
                             }
-                            if ($diff->d > 0) {
+                            if (date('d',$diff)> 0) {
                                 $time = '> 24 h';
                             } else {
-                                $time = $diff->format("%H:%I:%S");
+                                //$time = $diff->format("%H:%I:%S");
+                                $time = date("%H:%I:%S",$diff);
                             }
-                            $start = $start->format('H:i:s');
+                            //$start = $start->format('H:i:s');
+                            $start = date('H:i:s',$start);
+
                         }
                         $status = $statuses[$registration['status']];
                         $manage = '';

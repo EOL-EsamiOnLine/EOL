@@ -62,9 +62,16 @@ if(isset($_POST['idExam'])){
                     $name = $exam['exam'];
                     $subject = $exam['subject'];
                     $settings = $exam['settings'];
+
+                    /*
                     $datetime = new DateTime($exam['datetime']);
                     $day = $datetime->format("d/m/Y");
                     $time = $datetime->format("H:i");
+                    */
+                    $datetime = strtotime($exam['datetime']);
+                    $day = date('d/m/Y', $datetime);
+                    $time = date('H:i', $datetime);
+
                     $password = $exam['password'];
                     $idExam = $exam['idExam'];
                     $idSubject = $exam['idSubject'];
