@@ -98,11 +98,21 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                                 $end = '';
 
                             }
-                            if (date('d',$diff)> 0) {
+
+                            $arr['days']=floor($diff/(60*60*24));
+                            $diff=$diff-(60*60*24*$arr['days']);
+                            $arr['hours']=floor($diff/(60*60));
+                            $diff=$diff-(60*60*$arr['hours']);
+                            $arr['minutes']=floor($diff/60);
+                            $diff=$diff-(60*$arr['minutes']);
+                            $arr['seconds']=$diff;
+
+                            //if (date('d',$diff)> 0) {
+                            if ($arr['days']> 0) {
                                 $time = '> 24 h';
                             } else {
                                 //$time = $diff->format("%H:%I:%S");
-                                $time = date("%H:%I:%S",$diff);
+                                $time = date("H:i:s",mktime($arr['hours'],$arr['minutes'],$arr['seconds']));
                             }
                             //$start = $start->format('H:i:s');
                             $start = date('H:i:s',$start);

@@ -102,7 +102,17 @@ global $config, $user;
                     $start = strtotime($test['timeStart']);
                     $end = strtotime($test['timeEnd']);
                     $diff = $end - $start;
-                    $time = date("%H:%I:%S", $diff);
+
+                    $arr['days']=floor($diff/(60*60*24));
+                    $diff=$diff-(60*60*24*$arr['days']);
+                    $arr['hours']=floor($diff/(60*60));
+                    $diff=$diff-(60*60*$arr['hours']);
+                    $arr['minutes']=floor($diff/60);
+                    $diff=$diff-(60*$arr['minutes']);
+                    $arr['seconds']=$diff;
+
+                    $time = date("H:i:s",mktime($arr['hours'],$arr['minutes'],$arr['seconds']));
+
 
 
                     $score = $test['scoreTest'];
