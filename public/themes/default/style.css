@@ -2217,3 +2217,40 @@ span.extraClose{
 .maximize_fix{
     position: static !important;
 }
+
+#thing {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    left: 3px;
+    top: 3px;
+    transition: left .5s ease-in, top .5s ease-in;
+}
+
+#myCanvas{
+    border:2px solid #000000;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:0px;
+    height:0px;
+}
+
+#contentContainerCrop{
+    /* border: 2px black solid;  */
+    overflow: hidden;
+    width: 420px;
+    height: 450px;
+
+}
+
+#flagcontainer{
+    position: absolute;
+}
+
+#contentContainerDeD{
+    /*border: 2px black solid;*/
+    overflow: hidden;
+    width: 420px;
+    height: 450px;
+}
