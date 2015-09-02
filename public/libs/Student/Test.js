@@ -44,6 +44,7 @@ function submitTest(askConfirmation){
             var answer = getGivenAnswer(this);
             answersTest.push(JSON.stringify(answer));
         });
+        var idLang = $(".dropdownSystemLanguage dd ul li").find("span.value").text();
 //        alert(answersTest);
 //        alert(JSON.stringify(answersTest));
         if(questionsTest.length == answersTest.length){
@@ -53,6 +54,7 @@ function submitTest(askConfirmation){
                 data    : {
                     questions  :  JSON.stringify(questionsTest),
                     answers    :  JSON.stringify(answersTest),
+                    idLang    :  JSON.stringify(idLang),
                     submit     :  "true"
                 },
                 success : function (data) {
