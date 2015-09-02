@@ -19,3 +19,32 @@ $(function(){
     });
 
 });
+
+
+// Sposta il puntatore durante la visualizzazione della preview della domanda
+function getClickPosition(event) {
+    var container = $( "#contentContainer" );
+    var theThing = $("#thing");
+    var parentOffset = container.parent().offset();
+    var x = (event.pageX - parentOffset.left - 20 - 13);
+    var y = (event.pageY - parentOffset.top - 20 - 13);
+    var xPositionPX = x + "px";
+    var yPositionPX = y + "px";
+    theThing.css("left",xPositionPX);
+    theThing.css("top",yPositionPX);
+
+
+}
+
+// Controlla che il valore inserito in fase di test nella domanda numeric sia un NUMERO viene visualizzato in fase di preview
+function controlNum(){
+    var valore = document.getElementById("inputNumber").value;
+    num = $.isNumeric(valore);
+    if ((num == false) && (valore !="")) {
+        showErrorMessage (ttNumberError);
+    }
+}
+
+$('.flag').dragon({
+    'within': $('#contentContainerDeD')
+});
