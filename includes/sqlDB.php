@@ -2148,7 +2148,7 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            $query = "UPDATE Sets_Questions SET answer = CASE\n";
+            $query = "UPDATE Sets_Questions SET fkIdLanguage = $IdLang , answer = CASE\n"; // inserisco nella tabella anche la lingua utilizzata per eseguire il test
             while(count($questions) > 0){
                 $question = array_pop($questions);
                 $answer = array_pop($answers);
