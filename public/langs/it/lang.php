@@ -354,6 +354,7 @@ define('ttWaiting' , "Attesa");
 define('ttWarning' , "Attenzione");
 define('ttYes' , "Sì");
 
+
 define('ttHotspotAnswerInfo' , 'Coordinate area risposta giusta:');
 define('ttSizeWin' , 'Dimensioni finestra:');
 define('ttWidth' , 'Larghezza:');
@@ -362,6 +363,8 @@ define('ttRightArea' , 'Area Corretta');
 define('ttWrongArea' , 'Area Sbagliata');
 define('ttStudentAnswer' , 'Risposta data dallo studente:');
 define('ttInsertImage' , 'Inserire immagine');
+
+
 
 
 
