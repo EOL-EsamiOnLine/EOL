@@ -361,5 +361,3 @@ var ttNumberError = "Il valore da inserire deve essere un numero intero o con la
 var ttImportComplete="Import Domande terminato con successo";
 
 
-var ttImportComplete="Import Domande terminato con successo";
-

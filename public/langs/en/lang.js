@@ -354,8 +354,10 @@ var ttWaiting = "Waiting";
 var ttWarning = "Warning";
 var ttYes = "Yes";
 
+
 var ttNumberError = "The value should be an integer or a decimal (ES: 12.5) ";
 
 
 var ttImportComplete="Questions Import successfully completed";
+
 
