@@ -40,11 +40,19 @@ global $config, $user;
                                 title="'.constant('tt'.$statuses[$examInfo['status']]).'"/>';
                 $exam = $examInfo['examName'];
                 $subject = $examInfo['subjectName'];
+
+                /*
                 $datetime = new DateTime($examInfo['datetime']);
                 $day = $datetime->format("d/m/Y");
                 $time = $datetime->format("H:i");
-                $idExam = $examInfo['idExam'];
 
+                */
+
+                $datetime = strtotime($examInfo['datetime']);
+                $day = date('d/m/Y', $datetime);
+                $time = date('H:i', $datetime);
+
+                $idExam = $examInfo['idExam'];
                 echo '<tr>
                           <td>'.$status.'</td>
                           <td>'.$exam.'</td>
@@ -82,10 +90,31 @@ global $config, $user;
 
                     $subject = $test['subName'];
                     $idTest = $test['idTest'];
+
+
+                    /*
                     $start = new DateTime($test['timeStart']);
                     $end = new DateTime($test['timeEnd']);
                     $diff = $start->diff($end);
                     $time = $diff->format("%H:%I:%S");
+                    */
+
+                    $start = strtotime($test['timeStart']);
+                    $end = strtotime($test['timeEnd']);
+                    $diff = $end - $start;
+
+                    $arr['days']=floor($diff/(60*60*24));
+                    $diff=$diff-(60*60*24*$arr['days']);
+                    $arr['hours']=floor($diff/(60*60));
+                    $diff=$diff-(60*60*$arr['hours']);
+                    $arr['minutes']=floor($diff/60);
+                    $diff=$diff-(60*$arr['minutes']);
+                    $arr['seconds']=$diff;
+
+                    $time = date("H:i:s",mktime($arr['hours'],$arr['minutes'],$arr['seconds']));
+
+
+
                     $score = $test['scoreTest'];
 
                     echo '<tr>

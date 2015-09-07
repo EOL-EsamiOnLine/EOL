@@ -347,3 +347,12 @@ define('ttWelcome' , "Welcome");
 define('ttWaiting' , "Waiting");
 define('ttWarning' , "Warning");
 define('ttYes' , "Yes");
+
+
+
+define('ttPrepareImportQM' , "Preview");
+define('ttImportQM' , "Import");
+define('ttImport' , "Import echemTest");
+
+
+define('ttSbjVers' , "Version");

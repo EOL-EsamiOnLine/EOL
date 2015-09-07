@@ -178,14 +178,16 @@ function createNewSubject(){
         showErrorMessage(ttEIncorrectField);
     else{
         var name = $("#infoName").val();
+        var vers = $("#infoVers").val();
         var desc = $("#infoDesc").val();
         var lang = $("#infoLanguage dt span.value").text();
-        if((name != "") && (lang != "")){
+        if((name != "") && (lang != "") && (vers != "") && !isNaN(parseFloat(vers))){
             $.ajax({
                 url     : "index.php?page=subject/newsubject",
                 type    : "post",
                 data    : {
                     subjectName  : name,
+                    subjectVers  : vers,
                     subjectDesc  : desc,
                     subjectLang  : lang
                 },

@@ -50,12 +50,22 @@ $db = new sqlDB();
 if(($db->qExamsAvailable($_POST['idSubject'], $user->id)) && ($exams = $db->getResultAssoc('idExam'))){
     foreach($exams as $idExam => $examInfo){
         $name = &$examInfo['name'];
+        /*
         $datetime = new DateTime($examInfo['datetime']);
         $day = $datetime->format("d/m/Y");
         $time = $datetime->format("H:i");
+        */
+        $datetime = strtotime($examInfo['datetime']);
+        $day = date('d/m/Y', $datetime);
+        $time = date('H:i', $datetime);
+
         if($examInfo['regEnd'] != ''){
+            /*
             $datetime = new DateTime($examInfo['regEnd']);
             $regEnd = $datetime->format("d/m/Y - H:i");
+            */
+            $datetime = strtotime($examInfo['regEnd']);
+            $regEnd = date("d/m/Y - H:i",$datetime);
         }else{
             $regEnd = '';
         }

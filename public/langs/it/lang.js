@@ -347,3 +347,5 @@ var ttWelcome = "Benvenuto";
 var ttWaiting = "Attesa";
 var ttWarning = "Attenzione";
 var ttYes = "Sì";
+
+var ttImportComplete="Import Domande terminato con successo";

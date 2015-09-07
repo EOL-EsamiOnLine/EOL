@@ -191,7 +191,7 @@ class sqlDB {
      * @return  Boolean
      * @descr   Returns true if info was saved successfully, false otherwise
      */
-    public function qNewSubject($name, $desc, $lang){
+    public function qNewSubject($name, $desc, $lang,$vers){
         global $log, $user;
         $ack = true;
         $this->result = null;
@@ -199,9 +199,9 @@ class sqlDB {
 
         try{
             $queries = array();
-            $data = $this->prepareData(array($name, $desc, $lang));
-            $query = "INSERT INTO Subjects (name, description, fkLanguage)
-                      VALUES ('$data[0]', '$data[1]', '$data[2]')";
+            $data = $this->prepareData(array($name, $desc, $lang,$vers));
+            $query = "INSERT INTO Subjects (name, description, fkLanguage,version)
+                      VALUES ('$data[0]', '$data[1]', '$data[2]', '$data[3]')";
             array_push($queries, $query);
             $query = "SET @subID = LAST_INSERT_ID()";
             array_push($queries, $query);
@@ -219,6 +219,16 @@ class sqlDB {
 
         return $ack;
     }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * @name    qDeleteSubject
@@ -519,6 +529,41 @@ class sqlDB {
             $data = $this->prepareData(array($name, $desc));
             $query = "INSERT INTO Topics (name, description, fkSubject)
                   VALUES ('$data[0]', '$data[1]', '$idSubject')";
+            array_push($queries, $query);
+            $query = "SELECT LAST_INSERT_ID()";
+            array_push($queries, $query);
+            $this->execTransaction($queries);
+        }catch(Exception $ex){
+            $ack = false;
+            $log->append(__FUNCTION__." : ".$this->getError());
+        }
+
+        return $ack;
+    }
+
+
+
+
+    /**
+     * @name    qNewTopicV2
+     * @param   $idSubject      String        Subject's ID
+     * @param   $name           String        Topic's name
+     * @param   $code           String        Topic's unique code
+     * @param   $desc           String        Topic's description
+     * @return  Boolean
+     * @descr   Returns true if topic was saved created, false otherwise
+     */
+    public function qNewTopicV2($idSubject, $name, $code, $desc){
+        global $log;
+        $ack = true;
+        $this->result = null;
+        $this->mysqli = $this->connect();
+
+        $queries = array();
+        try{
+            $data = $this->prepareData(array($name, $code, $desc));
+            $query = "INSERT INTO Topics (name, code, description, fkSubject)
+                  VALUES ('$data[0]', '$data[1]', '$data[2]', '$idSubject')";
             array_push($queries, $query);
             $query = "SELECT LAST_INSERT_ID()";
             array_push($queries, $query);
@@ -1765,7 +1810,8 @@ class sqlDB {
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
-
+        $log->append($idSubject. $name. $scoreType. $scoreMin. $bonus. $negative. $editable. $duration.
+            $questions. $desc);
         try{
         	$queries = array();
 
@@ -2769,6 +2815,62 @@ class sqlDB {
             $this->execQuery($query);
         }catch(Exception $ex){
             $ack = false;
+            $log->append(__FUNCTION__." : ".$this->getError());
+        }
+
+        return $ack;
+    }
+
+
+
+
+
+
+    /**
+     * @name    qSelectTwoArgs
+     * @param   $tableName      String          Table to search
+     * @param   $columnName     String          Field to search
+     * @param   $value          String|Array    Value to search
+     * @param   $columnName2     String          Field to search
+     * @param   $value2          String|Array    Value to search
+     * @param   $order          String          Value to order by
+     * @return  Boolean
+     * @descr   Search into a table a specific value for a column
+     */
+    public function qSelectTwoArgs($tableName, $columnName = '', $value = '',$columnName2 = '', $value2 = '', $order = ''){
+        global $log;
+        $ack = true;
+        $this->result = null;
+        $this->mysqli = $this->connect();
+
+        try{
+            $newValue = (is_array($value))? implode(',', $value) : $value;
+            $newValue2 = (is_array($value2))? implode(',', $value2) : $value2;
+
+            $data = $this->prepareData(array($tableName, $columnName, $newValue, $columnName2, $newValue2, $order));
+
+            $query = "SELECT * FROM $data[0]";
+            if(($columnName != '') && (is_array($value)))
+                $query .= " WHERE $data[1] IN ($data[2])";
+            elseif(($columnName != '') && ($value != ''))
+                $query .= " WHERE $data[1] = '$data[2]'";
+
+            if(($columnName2 != '') && (is_array($value2)))
+                $query .= " AND $data[3] IN ($data[4])";
+            elseif(($columnName2 != '') && ($value2 != ''))
+                $query .= " AND $data[3] = $data[4] ";
+
+
+
+            if($order != ''){
+                $query .= " ORDER BY $data[5]";
+            }
+            $log->append($query);
+
+            $this->execQuery($query);
+        }catch(Exception $ex){
+            $ack = false;
+
             $log->append(__FUNCTION__." : ".$this->getError());
         }
 
