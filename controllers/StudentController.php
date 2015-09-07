@@ -179,6 +179,14 @@ class StudentController extends Controller{
             $db = new sqlDB();
             if(($db->qSelect('Tests', 'fkSet', $_SESSION['idSet'])) && ($testInfo = $db->nextRowAssoc())){
 //                if(($testInfo['status'] != 'w') && ($testInfo['status'] != 's')){
+
+                $db2 = new sqlDB();
+                if(($db2->qSelect('users', 'idUser', $testInfo ['fkUser'])) && ($testInfo2 = $db2->nextRowAssoc())) {
+                    $idLang = $testInfo2['fkLanguage'];    //prendo la lingua dalla tabella users
+                }else{
+                    die($db->getError());
+                }
+
                 if($testInfo['status'] != 's'){
                     die(ttETestBlockedSubmitted);               // Test has been blocked or already submitted
                 }

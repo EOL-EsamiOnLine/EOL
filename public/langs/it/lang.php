@@ -276,6 +276,12 @@ define('ttQTYN' , "Si / No");
 define('ttQTYNDescription' , "Una domanda Sì/No è una domanda a risposta singola che chiede al partecipante di rispondere con un \"Sì\" o un \"No\".");
 define('ttQTTF' , "Vera / Falso");
 define('ttQTTFDescription' , "Una domanda Vero/Falso è una domanda a risposta singola che chiede al partecipante di rispondere con un \"Vero\" o un \"Falso\".");
+define('ttQTNM' , 'Numerica');
+define('ttQTNMDescription' , 'In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.');
+define('ttQTTM' , 'Testo');
+define('ttQTTMDescription' , 'In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.');
+define('ttQTHS' , 'Hotspot');
+define('ttQTHSDescription' , 'Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un immagine per indicare la risposta.');
 define('ttRandom' , "Casuali");
 define('ttRefresh' , "Aggiorna");
 define('ttRegister' , "Registrati");
@@ -347,6 +353,20 @@ define('ttWelcome' , "Benvenuto");
 define('ttWaiting' , "Attesa");
 define('ttWarning' , "Attenzione");
 define('ttYes' , "Sì");
+
+
+define('ttHotspotAnswerInfo' , 'Coordinate area risposta giusta:');
+define('ttSizeWin' , 'Dimensioni finestra:');
+define('ttWidth' , 'Larghezza:');
+define('ttHeight' , 'Altezza:');
+define('ttRightArea' , 'Area Corretta');
+define('ttWrongArea' , 'Area Sbagliata');
+define('ttStudentAnswer' , 'Risposta data dallo studente:');
+define('ttInsertImage' , 'Inserire immagine');
+
+
+
+
 
 
 define('ttPrepareImportQM' , "Dettagli");
