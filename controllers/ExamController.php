@@ -97,9 +97,15 @@ class ExamController extends Controller{
                 $statuses = array('w' => array('Waiting', 'Start'),
                                   's' => array('Started', 'Stop'),
                                   'e' => array('Stopped', 'Start'));
+                /*
                 $datetime = new DateTime($examInfo['datetime']);
                 $day = $datetime->format("d/m/Y");
                 $time = $datetime->format("H:i");
+                */
+
+                $datetime = strtotime($examInfo['datetime']);
+                $day = date('d/m/Y', $datetime);
+                $time = date('H:i', $datetime);
                 $manage = '<span class="manageButton edit">
                                <img name="edit" src="'.$config['themeImagesDir'].'edit.png"title="'.ttEdit.'" onclick="showExamInfo(this);">
                            </span>
@@ -176,9 +182,22 @@ class ExamController extends Controller{
                 $statuses = array('w' => array('Waiting', 'Start'),
                                   's' => array('Started', 'Stop'),
                                   'e' => array('Stopped', 'Start'));
+                /*
                 $datetime = new DateTime($examInfo['datetime']);
                 $day = $datetime->format("d/m/Y");
                 $time = $datetime->format("H:i");
+                */
+
+
+
+
+
+                $datetime = strtotime($examInfo['datetime']);
+                $day = date('d/m/Y', $datetime);
+                $time = date('H:i', $datetime);
+
+                $log->append($day." ".$time);
+
                 $manage = '<span class="manageButton edit">
                                <img name="edit" src="'.$config['themeImagesDir'].'edit.png"title="'.ttEdit.'" onclick="showExamInfo(this);">
                            </span>

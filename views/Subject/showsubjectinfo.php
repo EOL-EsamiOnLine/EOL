@@ -11,6 +11,7 @@ global $log, $config, $user;
 
 $idSubject = '';
 $subjectName = ttNewSubject;
+$subjectVers='';
 $subjectDesc = '';
 $subjectLang = 1;       // English
 $class = 'writable';
@@ -24,6 +25,7 @@ if($_POST['action'] == 'show'){
         $subjectName = $subject['name'];
         $subjectDesc = $subject['description'];
         $subjectLang = $subject['fkLanguage'];
+        $subjectVers = $subject['version']==-1 ? "-" : $subject['version'];
         $class = 'readonly';
         $dropdownClass = 'notChange';
         $dropdownDTClass = '';
@@ -38,6 +40,11 @@ if($_POST['action'] == 'show'){
 <label class="b2Space" for="infoName"><?= ttName ?> : </label>
 <input class="<?= $class ?>" type="text" id="infoName" name="subjectName" value="<?= $subjectName ?>">
 <a id="infoNameChars" class="charsCounter hidden"><?= strlen($subjectName) ?></a>
+<div class="clearer"></div>
+
+<label class="b2Space" for="infoVers"><?= ttSbjVers ?> : </label>
+<input class="<?= $class ?>" type="text" id="infoVers" name="subjectVers"  value="<?= $subjectVers ?>">
+
 <div class="clearer"></div>
 
 <label for="infoDesc"><?= ttDescription ?> : </label>

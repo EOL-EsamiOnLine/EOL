@@ -33,8 +33,11 @@ body.noscroll {
     width	            :	100%;
     margin              :	5px auto auto;
     height              :   122px;
-    background-color    :   #929292;
+    background-color    :   #0d3b7e;
 }
+/*
+ background-color    :   #929292;
+
 #logoContainer {
     float:left;
     margin: 10px 10px 10px 10px;
@@ -51,6 +54,16 @@ body.noscroll {
     margin-left: 20px;
     font-size: 30px;
     color: rgb(137, 202, 57);
+}
+*/
+
+#eolLogo {
+    float       :   left;
+    width       :   400px;
+    height      :	100px;
+    background  :   url("images/eol.png") no-repeat;
+    margin-top  :   12px;
+    margin-left:    20px;
 }
 #welcome {
     font-size   :   12px;
@@ -409,6 +422,8 @@ div.ui-datepicker{
     font-size           :   11px;
     color               :   #000000;
     text-align          :   left;
+    overflow            :   scroll;
+
 }
 .boxLeftS{
     width               :   48%;
@@ -2079,7 +2094,7 @@ img.showhide{
     left                :   50%;
     margin-left         :   -110px;
     cursor              :   pointer;
-    border              :   5px inset #90ee90;
+    border              :   5px inset #e29e06;
     z-index             :   1000;
 }
 #correct .boxContent,

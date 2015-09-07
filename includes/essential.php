@@ -220,6 +220,7 @@ function adminMenu(){
             <li><a href="index.php?page=admin/newstudent"><?= ttNewStudent ?></a></li>
         </ul>
     </li>
+
     <li>
         <a class="trigger"><?= ttSystem ?></a>
         <ul class="subnav">
@@ -228,6 +229,13 @@ function adminMenu(){
             <li><a href="index.php?page=admin/rooms"><?= ttRooms ?></a></li>
         </ul>
     </li>
+    <li>
+        <a class="trigger"><?= ttImportQM ?></a>
+        <ul class="subnav">
+            <li><a href="index.php?page=importqm/importpage"><?= ttImport ?></a></li>
+        </ul>
+    </li>
+
     <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
     <li><a href="index.php?page=admin/exit" style="color: red"><?= ttExit ?></a></li>
 
@@ -285,6 +293,7 @@ function adminTeacherMenu(){
             <li><a href="index.php?page=exam/settings"><?= ttSettings ?></a></li>
         </ul>
     </li>
+
     <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
     <li><a href="index.php?page=admin" style="color: red"><?= ttAdministration ?></a></li>
 

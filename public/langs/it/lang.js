@@ -353,4 +353,9 @@ var ttWelcome = "Benvenuto";
 var ttWaiting = "Attesa";
 var ttWarning = "Attenzione";
 var ttYes = "Sì";
+
 var ttNumberError = "Il valore da inserire deve essere un numero intero o con la virgola (ES: 12.5) ";
+
+
+var ttImportComplete="Import Domande terminato con successo";
+

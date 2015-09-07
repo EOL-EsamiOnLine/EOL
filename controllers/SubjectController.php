@@ -119,7 +119,7 @@ class SubjectController extends Controller{
         if((isset($_POST['subjectName'])) && (isset($_POST['subjectLang']))){
             $db = new sqlDB();
             $desc = isset($_POST['subjectDesc']) ? $_POST['subjectDesc'] : "";
-            if(($db->qNewSubject($_POST['subjectName'], $desc, $_POST['subjectLang'])) && ($subjectID = $db->nextRowEnum())){
+            if(($db->qNewSubject($_POST['subjectName'], $desc, $_POST['subjectLang'],$_POST['subjectVers'])) && ($subjectID = $db->nextRowEnum())){
                 echo $subjectID[0];
             }else{
                 die($db->getError());

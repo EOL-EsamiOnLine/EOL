@@ -11,11 +11,13 @@ global $user, $config;
 ?>
 
 <div id="header">
+    <div id="eolLogo"></div>
 
-    <div id="logoContainer">
-        <img src="<?= $config['systemLogo'] ?>">
+    <!--<div id="logoContainer">
+        <img src="">
         <div id="systemTitle">EOL - Esami On Line</div>
     </div>
+    -->
 
     <div id="welcome">
         <div>

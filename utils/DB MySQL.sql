@@ -14,6 +14,8 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Languages` (
   PRIMARY KEY (`idLanguage`) ,
   UNIQUE INDEX `alias_UNIQUE` (`alias` ASC) )
 ENGINE = InnoDB
+
+ 
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
 COMMENT = 'Availables languages';
@@ -544,6 +546,24 @@ VALUES (2, 'it', 'Italiano');
 -- Insert syntax for test teacher account (password: testeol)
 -- -----------------------------------------------------
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
-VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1');
+VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1'),
+('emanuele', 'gragnoli', 'emanuelegragnoli@live.it', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
+('mario', 'rossi', 'mariorossi@live.it', 'bdcb71322f263c72d56717fb7e7238fc00473517', 's', '1'),
+('admin', 'admin', 'admin@eol.org', '4e7afebcfbae000b22c7c85e5560f89a2a0280b4', 'at', '1');
 
+
+
+
+ALTER TABLE TestSettings ADD negative BOOLEAN NULL DEFAULT 0 COMMENT 'Negative Scores';
+ALTER TABLE TestSettings ADD editable BOOLEAN NULL DEFAULT 0 COMMENT 'Editable Scores';
+
+
+ALTER TABLE Subjects ADD version REAL NULL DEFAULT -1 COMMENT 'Subjects version';
+ALTER TABLE Topics ADD code VARCHAR(20) NULL DEFAULT NULL COMMENT 'Unique Code Topics Imported';
+
+      ALTER TABLE Subjects
+        ADD UNIQUE sbjC(name,fkLanguage,version);
+
+        ALTER TABLE Topics
+        ADD UNIQUE TopicC(code,fkSubject);
 
