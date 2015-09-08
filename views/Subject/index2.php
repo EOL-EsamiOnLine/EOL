@@ -17,11 +17,11 @@ global $user, $config;
     <div>
         <?php
 
-        $request = '1';
+        $request = '2';
 
         if(isset($_GET['r'])){
             $request = $_GET['r'];
-            if($request == 'qstn')
+            if($request == 'qstn2')
                 echo '<div class="msgCenter"> '.ttMSubjectQuestions.'</div>';       // Select subject and go to topics and questions editor
             elseif($request == 'set')
                 echo '<div class="msgCenter"> '.ttMSubjectSettings.'</div>';        // Select subject and go to test settings editor

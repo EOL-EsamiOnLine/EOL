@@ -311,9 +311,7 @@
     <text id="ttQTNMDescription">In a Numeric Question, the participant answers by typing in either a whole number or a real number.</text>
     <text id="ttQTTM">Text Match</text>
     <text id="ttQTTMDescription">In a Text Match question, the participant types in a single word, or a few words to indicate their answer. You define right or wrong words or phrases in advance by entering a list of acceptable answers.</text>
-    <text id="ttQTHS">Hotspot</text>
-    <text id="ttQTHSDescription">A Hotspot question is a drag and drop question with only one "hot" area. The participant places a single marker on an image to indicate the answer.</text>
-    <!-- ======================== R ======================== -->
+     <!-- ======================== R ======================== -->
     <text id="ttRandom">Random</text>
     <text id="ttRefresh">Refresh</text>
     <text id="ttRegister">Register</text>

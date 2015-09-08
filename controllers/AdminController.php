@@ -67,6 +67,10 @@ class AdminController extends Controller{
                     $user->role = 'at';
                     $_SESSION['user'] = serialize($user);
                 }
+                if($row['role'] == 'ae'){
+                    $user->role = 'ae';
+                    $_SESSION['user'] = serialize($user);
+                }
                 header('Location: index.php');
             }else{
                 die(ttEUserNotFound);
@@ -693,12 +697,12 @@ class AdminController extends Controller{
             array(
                 'allow',
                 'actions' => array('Profile', 'Updateprofile'),
-                'roles'   => array('a', 't', 's'),
+                'roles'   => array('a', 't', 's','e'),
             ),
             array(
                 'allow',
                 'actions' => array('Newstudent'),
-                'roles'   => array('?', 'a', 't'),
+                'roles'   => array('?', 'a', 't','e'),
             ),
             array(
                 'allow',

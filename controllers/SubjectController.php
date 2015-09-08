@@ -52,6 +52,21 @@ class SubjectController extends Controller{
 
     }
 
+    /**
+     *  @name   actionIndex
+     *  @descr  Show subject index page
+     */
+    private function actionIndex2(){
+        global $engine;
+
+        $engine->renderDoctype();
+        $engine->loadLibs();
+        $engine->renderHeader();
+        $engine->renderPage();
+        $engine->renderFooter();
+
+    }
+
     /********************************************************************
      *                              Subject                             *
      ********************************************************************/
@@ -265,6 +280,11 @@ class SubjectController extends Controller{
                 'allow',
                 'actions' => array('Showtopicinfo', 'Updatetopicinfo', 'Newtopic', 'Deletetopic'),
                 'roles'   => array('t'),
+            ),
+            array(
+                'allow',
+                'actions' => array('Index2','Showsubjectinfo','Showtopicinfo'),
+                'roles'   => array('e'),
             ),
             array(
                 'allow',

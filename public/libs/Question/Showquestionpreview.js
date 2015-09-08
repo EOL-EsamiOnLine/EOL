@@ -45,6 +45,3 @@ function controlNum(){
     }
 }
 
-$('.flag').dragon({
-    'within': $('#contentContainerDeD')
-});
