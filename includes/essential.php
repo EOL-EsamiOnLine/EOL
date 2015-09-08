@@ -42,7 +42,7 @@ function getQuestionTypes(){
         'ES',        # Essay
         'NM',       # Numeric
         'TM',       # Text Match
-        'HS'       # Hotspot
+       
 
     );
     return $types;

@@ -311,8 +311,6 @@
     <text id="ttQTNMDescription">In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale. </text>
     <text id="ttQTTM">Testo</text>
     <text id="ttQTTMDescription">In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.</text>
-    <text id="ttQTHS">Hotspot</text>
-    <text id="ttQTHSDescription">Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un'immagine per indicare la risposta.</text>
     <!-- ======================== R ======================== -->
     <text id="ttRandom">Casuali</text>
     <text id="ttRefresh">Aggiorna</text>
