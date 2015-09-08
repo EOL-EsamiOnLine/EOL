@@ -284,6 +284,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Sets_Questions` (
   `fkSet` INT(10) UNSIGNED NOT NULL COMMENT 'Set''s ID' ,
   `fkQuestion` INT(10) UNSIGNED NOT NULL COMMENT 'Question''s ID' ,
   `answer` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'ID or text for answered question in this set' ,
+  `fkIdLanguage` INT(10) UNSIGNED REFERENCES Languages(idLanguage),
   PRIMARY KEY (`fkSet`, `fkQuestion`) ,
   INDEX `fk_Sets_Questions_Set_idx` (`fkSet` ASC) ,
   INDEX `fk_Sets_Questions_Question_idx` (`fkQuestion` ASC) ,

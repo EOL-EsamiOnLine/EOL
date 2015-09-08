@@ -375,3 +375,13 @@ define('ttImport' , "Import echemTest");
 
 define('ttSbjVers' , "Versione");
 
+
+define('ttQTNM' , "Numeric");
+define('ttQTNMDescription' , "A Numeric question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+
+define('ttQTTM' , "Text Match");
+define('ttQTTMDescription' , "A Text Match question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+
+define('ttQTHS' , "Hot Spot");
+define('ttQTHSDescription' , "A Text Match question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+

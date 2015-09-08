@@ -276,6 +276,7 @@ define('ttQTYN' , "Yes / No");
 define('ttQTYNDescription' , "A Yes/No question is a multiple choice question that asks the participant to give a \"Yes\" or \"No\" answer to a question.");
 define('ttQTTF' , "True / False");
 define('ttQTTFDescription' , "A True/False question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+
 define('ttRandom' , "Random");
 define('ttRefresh' , "Refresh");
 define('ttRegister' , "Register");
@@ -366,3 +367,13 @@ define('ttImport' , "Import echemTest");
 
 
 define('ttSbjVers' , "Version");
+
+define('ttQTNM' , "Numeric");
+define('ttQTNMDescription' , "A Numeric question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+
+define('ttQTTM' , "Text Match");
+define('ttQTTMDescription' , "A Text Match question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+
+define('ttQTHS' , "Hot Spot");
+define('ttQTHSDescription' , "A Text Match question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+

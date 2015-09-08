@@ -236,10 +236,10 @@ class ImportQMController extends Controller{
                                     ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
                                     break;
                                 case 'Numeric':
-                                    //ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
+                                    ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
                                     break;
                                 case 'Text Match':
-                                    //ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
+                                    ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
                                     break;
 
 

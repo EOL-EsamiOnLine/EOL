@@ -361,3 +361,11 @@ var ttNumberError = "Il valore da inserire deve essere un numero intero o con la
 var ttImportComplete="Import Domande terminato con successo";
 
 
+var ttQTNM = "Numerica";
+var ttQTNMDescription = "In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.";
+var ttQTTM = "Testo";
+var ttQTTMDescription = "In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.";
+var ttQTHS = "Hotspot";
+var ttQTHSDescription = "Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un'immagine per indicare la risposta.";
+
+var ttNumberError = "Il valore da inserire deve essere un numero intero o con la virgola (ES: 12.5) ";

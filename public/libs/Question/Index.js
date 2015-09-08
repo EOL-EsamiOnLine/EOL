@@ -267,9 +267,9 @@ function showQuestionPreview(idQuestion, idLanguage, selectedLanguage) {
             },
             success : function (data) {
                 if(data == "NACK"){
-//                    alert(data);
+                   //alert(data);
                 }else{
-//                    alert(data);
+                   //alert('ciao'+data);
                     $("#questionPreview .boxContent").html(data)
                         .slideDown({
                             duration : 400

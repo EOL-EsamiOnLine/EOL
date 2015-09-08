@@ -40,7 +40,7 @@ function getClickPosition(event) {
 function controlNum(){
     var valore = document.getElementById("inputNumber").value;
     num = $.isNumeric(valore);
-    if ((num == false) && (valore !="")) {
+    if ((num == false) || (valore !="")) {
         showErrorMessage (ttNumberError);
     }
 }

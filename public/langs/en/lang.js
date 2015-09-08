@@ -360,4 +360,11 @@ var ttNumberError = "The value should be an integer or a decimal (ES: 12.5) ";
 
 var ttImportComplete="Questions Import successfully completed";
 
+var ttQTNM = "Numeric";
+var ttQTNMDescription = "In a Numeric Question, the participant answers by typing in either a whole number or a real number.";
+var ttQTTM = "Text Match";
+var ttQTTMDescription = "In a Text Match question, the participant types in a single word, or a few words to indicate their answer. You define right or wrong words or phrases in advance by entering a list of acceptable answers.";
+var ttQTHS = "Hotspot";
+var ttQTHSDescription = "A Hotspot question is a drag and drop question with only one right area. The participant places a single marker on an image to indicate the answer.";
+var ttNumberError = "The value should be an integer or a decimal (ES: 12.5) ";
 
