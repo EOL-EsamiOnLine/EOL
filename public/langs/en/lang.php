@@ -371,3 +371,5 @@ define('ttImport' , "Import echemTest");
 
 
 define('ttSbjVers' , "Version");
+
+define('ttETeachers' , "echemTest Teachers");
