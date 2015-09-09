@@ -67,10 +67,6 @@ class AdminController extends Controller{
                     $user->role = 'at';
                     $_SESSION['user'] = serialize($user);
                 }
-                if($row['role'] == 'ae'){
-                    $user->role = 'ae';
-                    $_SESSION['user'] = serialize($user);
-                }
                 header('Location: index.php');
             }else{
                 die(ttEUserNotFound);

@@ -38,7 +38,8 @@ global $user, $tt;
             <label><?= ttRole ?> : </label>
             <span class="left">
                 <input type="radio" name="userRole" value="a"> <?= ttAdministrator ?> <br/>
-                <input type="radio" name="userRole" value="t" checked> <?= ttTeacher ?>
+                <input type="radio" name="userRole" value="e" checked> <?= tteTeacher ?></br>
+                <input type="radio" name="userRole" value="t" > <?= ttTeacher ?>
                 <input type="checkbox" value="a" id="administratorRole"> <?= ttAdministrator ?> <br/>
             </span>
             <div class="clearer b2Space"></div>

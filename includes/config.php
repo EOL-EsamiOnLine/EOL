@@ -29,7 +29,6 @@ $config['controller']['e'] = 'Teacher';
 $config['controller']['t'] = 'Teacher';
 $config['controller']['s'] = 'Student';
 $config['controller']['at'] = 'Teacher';
-$config['controller']['ae'] = 'Teacher';
 // System directories
 $config['systemControllersDir'] = '../controllers/';
 $config['systemQuestionTypesClassDir'] = '../questionTypes/';

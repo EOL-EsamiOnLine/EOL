@@ -12,7 +12,7 @@ $(function(){
      *  @descr  Binded event for role checkbox
      */
     $("input[name=userRole]").on("change", function(event){
-        if($("input[name=userRole]:checked").val() == "t"){
+        if($("input[name=userRole]:checked").val() == "t" ){
             $("#administratorRole").removeAttr("disabled");
         }else{
             $("#administratorRole").attr("disabled", "");

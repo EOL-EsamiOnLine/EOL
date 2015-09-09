@@ -547,10 +547,9 @@ VALUES (2, 'it', 'Italiano');
 -- Insert syntax for test teacher account (password: testeol)
 -- -----------------------------------------------------
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
-VALUES ('emanuele', 'gragnoli', 'emanuelegragnoli@live.it', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
-('mario', 'rossi', 'mariorossi@live.it', 'bdcb71322f263c72d56717fb7e7238fc00473517', 's', '1'),
-('echem', 'test', 'echem@test.org', '1b7b4b4203b28059f9eaf6f754b137d5e0a3ac8a', 'ae', '1');
-
+VALUES ('admin', 'admin', 'admin@eol.org', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
+('mario', 'rossi', 'mariorossi@eol.org', 'bdcb71322f263c72d56717fb7e7238fc00473517', 's', '1'),
+('echem', 'test', 'echemtest@eol.org', '1b7b4b4203b28059f9eaf6f754b137d5e0a3ac8a', 'e', '1');
 
 
 

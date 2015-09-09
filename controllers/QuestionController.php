@@ -78,7 +78,7 @@ class QuestionController extends Controller{
             $engine->renderPage();
             $engine->renderFooter();
         }else{
-            header('Location: index.php?page=subject&r=qstn2');
+            header('Location: index.php?page=subject/index2&r=qstn2');
         }
 
     }

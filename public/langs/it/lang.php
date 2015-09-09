@@ -326,6 +326,7 @@ define('ttSurname' , "Cognome");
 define('ttSystem' , "Sistema");
 define('ttSystemConfiguration' , "Configurazione di Sistema");
 define('ttTeacher' , "Docente");
+define('tteTeacher' , "Docente echem");
 define('ttTeachers' , "Docenti");
 define('ttTest' , "Test");
 define('ttTests' , "Test");

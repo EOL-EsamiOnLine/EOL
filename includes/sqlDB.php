@@ -106,7 +106,7 @@ class sqlDB {
         $this->mysqli = $this->connect();
 
         try{
-            if(($role == 't') || ($role == 'at')){
+            if(($role == 'e') || ($role == 't') || ($role == 'at')){
                 $query = "SELECT *
                           FROM
                               Subjects
@@ -2032,11 +2032,11 @@ class sqlDB {
                           Users AS U ";
             if($idSubject == null){
                 $query .= "WHERE
-                               role IN ('at', 't', 'st')";
+                               role IN ('at', 't', 'st','e')";
             }else{
                 $query .= " JOIN Users_Subjects AS US ON U.idUser = US.fkUser
                         WHERE
-                            role IN ('at', 't', 'st')
+                            role IN ('at', 't', 'st','e')
                             AND
                             US.fkSubject = '$idSubject';";
             }
