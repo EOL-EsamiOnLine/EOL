@@ -210,7 +210,7 @@ class QT_TM extends Question
         $questionAnswers = '';
         $questionScore = 0;
         $questionClass = 'emptyQuestion';
-
+        $idLang='';
         $db2 = new sqlDB();
         //if (($db2->qSelect('sets_questions', 'fkQuestion', $this->get('idQuestion'))) && ($risp = $db2->getResultAssoc())) {
         if (($db2->qSelect('sets_questions', 'fkQuestion', $this->get('idQuestion'))) && ($risp = $db2->nextRowAssoc())) {

@@ -40,8 +40,13 @@ global $user, $tt;
                 <input class="writable" type="password" id="userPassword" size="75%" value="">
                 <div class="clearer"></div>
 
+
                 <label class="b2Space"><?= ttConfirmPassword ?> : </label>
                 <input class="writable" type="password" id="userPassword2" size="75%" value="">
+                <div class="clearer"></div>
+                <div style="font-size: 12px;  text-align:center;font-weight: 200; color:red">The password must be at least <strong>8 characters</strong> long</div>
+
+
                 <div class="clearer b2Space"></div>
             <?php } ?>
 

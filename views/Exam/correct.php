@@ -110,7 +110,7 @@ global $config;
                                 </td>
                             <?php }else{ ?>
                                 <!-- Print label for non-editable final score -->
-                                <td class="sScore"><label id="scorePost"><?= number_format(round($finalScore, 0), 0); ?></label></td>
+                                <td class="sScore"><label id="scorePost"><?= number_format(round($finalScore, 0), 0); ?>/<?= $scoreType?></label></td>
                             <?php } ?>
                             <td>
                                 <?php if($finalScore == $scoreType){ ?>

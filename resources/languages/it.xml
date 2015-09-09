@@ -62,9 +62,9 @@
     <text id="ttCRegister">Sei sicuro di volerti registrare a questo esame?</text>
     <text id="ttCRegisterStudents">Sei sicuro di voler registrare gli studenti selezionati all'esame?</text>
     <text id="ttCRenewPassword">La password per l'esame verrà aggiornata.\nL'operazione non potrà essere annullata! Continuare?</text>
-    <text id="ttCStartExam">Vuoi far partire questo esame?</text>
+    <text id="ttCStartExam">Vuoi attivare questo esame?</text>
     <text id="ttCStartTest">Vuoi iniziare l'esame ora?\nTi verrà richiesta la password d'accesso all'esame.</text>
-    <text id="ttCStopExam">Vuoi fermare questo esame?</text>
+    <text id="ttCStopExam">Vuoi disattivare questo esame?</text>
     <text id="ttCSubmitTest">Vuoi consegnare il test?\nL'operazione non potrà essere annullata! Continuare?</text>
     <text id="ttCTest">La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!</text>
     <text id="ttCumLaudae">e Lode</text>

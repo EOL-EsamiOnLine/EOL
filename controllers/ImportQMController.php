@@ -278,8 +278,8 @@ class ImportQMController extends Controller{
         $res=null;
         $i=0;
         $res['Qtext']='';
-        $shortTextAllowedTags="<p><br><sub><sup><P><BR><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><br><sub><sup><APPLET><OBJECT><P><IMG><BR><SUB><SUP>";
+        $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
+        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
 
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
 
@@ -445,8 +445,8 @@ class ImportQMController extends Controller{
         $res=null;
         $i=0;
         $res['Qtext']='';
-        $shortTextAllowedTags="<p><br><sub><sup><P><BR><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><br><sub><sup><APPLET><OBJECT><P><IMG><BR><SUB><SUP>";
+        $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
+        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
 
 
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
@@ -477,11 +477,12 @@ class ImportQMController extends Controller{
         }
 
         $j=0;
+        $addAction=false;
         foreach($item->resprocessing->children() as $respcondition){
 
             if($respcondition->getName()=="respcondition"){
 
-                if($respcondition->setvar>0){
+                if(($respcondition->setvar>0) && ($respcondition->setvar['action']=='Add')){
                     $conditionvar=$respcondition->conditionvar[0];
                     foreach($conditionvar->children() as $varequal){
                         if(strcmp($varequal->getName(),'varequal')==0){
@@ -490,12 +491,32 @@ class ImportQMController extends Controller{
                         }
                     }
 
-
+                    $addAction=true;
                 }
+
 
             }
 
         }
+
+        if($addAction==false) {
+            foreach ($item->resprocessing->children() as $respcondition) {
+                if ($respcondition->getName() == "respcondition") {
+                    if (($respcondition->setvar > 0) && ($respcondition->setvar['action'] == 'Set')) {
+                        $conditionvar = $respcondition->conditionvar[0];
+                        foreach ($conditionvar->children() as $varequal) {
+                            if (strcmp($varequal->getName(), 'varequal') == 0) {
+                                $correctAnswersArr[$j] = $varequal;
+                                $j++;
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+
         $arrTemp=array_unique($correctAnswersArr);
         $c=0;
         foreach($arrTemp as $value){
@@ -614,8 +635,8 @@ class ImportQMController extends Controller{
         $res=null;
         $i=0;
         $res['Qtext']='';
-        $shortTextAllowedTags="<p><br><sub><sup><P><BR><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><br><sub><sup><APPLET><OBJECT><P><IMG><BR><SUB><SUP>";
+        $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
+        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
 
 
 
@@ -770,8 +791,8 @@ class ImportQMController extends Controller{
         $res=null;
         $i=0;
         $res['Qtext']='';
-        $shortTextAllowedTags="<p><br><sub><sup><P><BR><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><br><sub><sup><APPLET><OBJECT><P><IMG><BR><SUB><SUP>";
+        $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
+        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
 
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -919,8 +940,8 @@ class ImportQMController extends Controller{
     private static function parserNM($item,$lastIdTopic,$itemtype,$difficulty,$idLang){
         global $log;
         $i=0;
-        $shortTextAllowedTags="<p><br><sub><sup><P><BR><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><br><sub><sup><APPLET><OBJECT><P><IMG><BR><SUB><SUP>";
+        $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
+        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
         $res['Qtext']='';
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -1396,6 +1417,27 @@ class ImportQMController extends Controller{
     }
 
     /**
+     * @name stripLastBrTags
+     * @param String $text
+     * @param String $text
+     */
+    private static function stripLastBrTags($text){
+
+        if(strlen($text)>=0){
+            $brTag=substr($text,strlen($text)-4,4);
+            if($brTag=='<br>' or $brTag=='<BR>'){
+                $subtext=substr($text, 0,strlen($text)-4);
+                return ImportQMController::stripLastBrTags($subtext);
+            }
+            else{
+                return $text;
+            }
+        }
+        else{
+            return $text;
+        }
+    }
+    /**
      *  @name   getQuestionText
      *  @param  simpleXMLObject $material answers list
      *  @return string  $res text
@@ -1421,6 +1463,8 @@ class ImportQMController extends Controller{
                 $res = "<img src='../../$srcImg' height='$heightImg' height='$widthImg' alt=''/> ";
 
             }
+
+
         }
         return $res;
 
@@ -1446,6 +1490,7 @@ class ImportQMController extends Controller{
         }
         $db->close();
     }
+
 
 
     /**

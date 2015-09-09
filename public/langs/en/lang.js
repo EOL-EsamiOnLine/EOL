@@ -48,9 +48,9 @@ var ttCDiscardNew = "The created item will be lost.<br/>Exit?";
 var ttCRegister = "Are you sure to register on this exam?";
 var ttCRegisterStudents = "Are you sure to register these selected students on the exam?";
 var ttCRenewPassword = "The exam's password will be changed.<br/>This operation can not be undone.<br/>Continue?";
-var ttCStartExam = "Do you want to start the selected exam?";
+var ttCStartExam = "Do you want to activate the selected exam?";
 var ttCStartTest = "Do you want to start the exam now?<br/>Exam password will be required.";
-var ttCStopExam = "Do you want to stop the selected exam?";
+var ttCStopExam = "Do you want to deactivate the selected exam?";
 var ttCSubmitTest = "Do you want to submit your test?<br/>This operation can not be undone! Continue?";
 var ttCTest = "Password is correct. Your test is ready and will start after your click!";
 var ttCumLaudae = "cum Laudae";
@@ -201,8 +201,8 @@ var ttMUserCreated = "Creation completed: an email has been sent to you to compl
 var ttMEdit = "Edits saved successfully";
 var ttMExamArchived = "Exam successfully archived";
 var ttMExamDeleted = "Exam successfully deleted";
-var ttMExamStarted = "Exam successfully started";
-var ttMExamStopped = "Exam successfully stopped";
+var ttMExamStarted = "Exam successfully activated";
+var ttMExamStopped = "Exam successfully deactivated";
 var ttMLanguageCreated = "Translation successfully created";
 var ttMLanguageSaved = "Translation successfully saved";
 var ttMLanguageUpdated = "Translation successfully updated";
@@ -360,11 +360,5 @@ var ttNumberError = "The value should be an integer or a decimal (ES: 12.5) ";
 
 var ttImportComplete="Questions Import successfully completed";
 
-var ttQTNM = "Numeric";
-var ttQTNMDescription = "In a Numeric Question, the participant answers by typing in either a whole number or a real number.";
-var ttQTTM = "Text Match";
-var ttQTTMDescription = "In a Text Match question, the participant types in a single word, or a few words to indicate their answer. You define right or wrong words or phrases in advance by entering a list of acceptable answers.";
-var ttQTHS = "Hotspot";
-var ttQTHSDescription = "A Hotspot question is a drag and drop question with only one right area. The participant places a single marker on an image to indicate the answer.";
 var ttNumberError = "The value should be an integer or a decimal (ES: 12.5) ";
 

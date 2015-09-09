@@ -62,9 +62,9 @@
     <text id="ttCRegister">Are you sure to register on this exam?</text>
     <text id="ttCRegisterStudents">Are you sure to register these selected students on the exam?</text>
     <text id="ttCRenewPassword">The exam's password will be changed.\nThis operation can not be undone.\nContinue?</text>
-    <text id="ttCStartExam">Do you want to start the selected exam?</text>
+    <text id="ttCStartExam">Do you want activate the selected exam?</text>
     <text id="ttCStartTest">Do you want to start the exam now?\nExam password will be required.</text>
-    <text id="ttCStopExam">Do you want to stop the selected exam?</text>
+    <text id="ttCStopExam">Do you want to deactivate the selected exam?</text>
     <text id="ttCSubmitTest">Do you want to submit your test?\nThis operation can not be undone! Continue?</text>
     <text id="ttCTest">Password is correct. Your test is ready and will start after your click!</text>
     <text id="ttCumLaudae">cum Laudae</text>
@@ -311,7 +311,7 @@
     <text id="ttQTNMDescription">In a Numeric Question, the participant answers by typing in either a whole number or a real number.</text>
     <text id="ttQTTM">Text Match</text>
     <text id="ttQTTMDescription">In a Text Match question, the participant types in a single word, or a few words to indicate their answer. You define right or wrong words or phrases in advance by entering a list of acceptable answers.</text>
-   <!-- ======================== R ======================== -->
+     <!-- ======================== R ======================== -->
     <text id="ttRandom">Random</text>
     <text id="ttRefresh">Refresh</text>
     <text id="ttRegister">Register</text>

@@ -1546,7 +1546,7 @@ div.ellipsis {
 #testSettingsInfo .columnCenter{
     float                       :   left;
     width                       :   33%;
-    height                      :   295px;
+    height                      :   350px;
     padding-left                :   10px;
     padding-right               :   10px;
     position                    :   relative;
@@ -1783,10 +1783,16 @@ div.questionAnswers > div{
 }
 #correct div.questionText{
     cursor: pointer;
+
 }
+
+
+
 #correct div.questionTest.last .questionAnswers{
     border-bottom: none;
     margin-bottom: 0;
+
+
 }
 div.answered{
     background-color    :   #fff581;
@@ -1858,6 +1864,7 @@ div.correctQuestion span.responseQuestion{
 div.questionText span.responseScore{
     float:right;
     margin-right: 20px;
+
 }
 img.showhide{
     margin: 0;

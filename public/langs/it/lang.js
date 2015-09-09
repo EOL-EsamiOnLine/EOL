@@ -48,9 +48,9 @@ var ttCDiscardNew = "L'elemento creato verrà perso.<br/>Uscire?";
 var ttCRegister = "Sei sicuro di volerti registrare a questo esame?";
 var ttCRegisterStudents = "Sei sicuro di voler registrare gli studenti selezionati all'esame?";
 var ttCRenewPassword = "La password per l'esame verrà aggiornata.<br/>L'operazione non potrà essere annullata! Continuare?";
-var ttCStartExam = "Vuoi far partire questo esame?";
+var ttCStartExam = "Vuoi attivare questo esame?";
 var ttCStartTest = "Vuoi iniziare l'esame ora?<br/>Ti verrà richiesta la password d'accesso all'esame.";
-var ttCStopExam = "Vuoi fermare questo esame?";
+var ttCStopExam = "Vuoi disattivare questo esame?";
 var ttCSubmitTest = "Vuoi consegnare il test?<br/>L'operazione non potrà essere annullata! Continuare?";
 var ttCTest = "La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!";
 var ttCumLaudae = "e Lode";
@@ -201,8 +201,8 @@ var ttMUserCreated = "Creazione completata: ti è stata inviata una e-mail per c
 var ttMEdit = "Modifiche salvate correttamente";
 var ttMExamArchived = "Esame archiviato con successo";
 var ttMExamDeleted = "Esame eliminato con successo";
-var ttMExamStarted = "Esame avviato con successo";
-var ttMExamStopped = "Esame fermato con successo";
+var ttMExamStarted = "Esame attivato con successo";
+var ttMExamStopped = "Esame disattivato con successo";
 var ttMLanguageCreated = "Traduzione creata con successo";
 var ttMLanguageSaved = "Traduzione salvata con successo";
 var ttMLanguageUpdated = "Traduzione aggiornata con successo";
@@ -360,12 +360,5 @@ var ttNumberError = "Il valore da inserire deve essere un numero intero o con la
 
 var ttImportComplete="Import Domande terminato con successo";
 
-
-var ttQTNM = "Numerica";
-var ttQTNMDescription = "In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.";
-var ttQTTM = "Testo";
-var ttQTTMDescription = "In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.";
-var ttQTHS = "Hotspot";
-var ttQTHSDescription = "Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un'immagine per indicare la risposta.";
 
 var ttNumberError = "Il valore da inserire deve essere un numero intero o con la virgola (ES: 12.5) ";

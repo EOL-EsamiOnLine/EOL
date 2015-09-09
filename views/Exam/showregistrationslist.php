@@ -133,8 +133,8 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                             <td><?= $start ?></td>
                             <td><?= $end ?></td>
                             <td><?= $time ?></td>
-                            <td><?= $registration['scoreTest'] ?></td>
-                            <td><?= $scoreFinal ?></td>
+                            <td><?= $registration['scoreTest'] ?>/<?=$testsettingInfo['scoreType']?></td>
+                            <td><?= $scoreFinal ?>/<?=$testsettingInfo['scoreType']?></td>
                             <td>
                                 <?php if (($examInfo['status'] != 'a') || ($registration['status'] == 'a')) { ?>
                                     <span class="manageButton <?= $status['action'] ?>">
