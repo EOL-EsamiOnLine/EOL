@@ -176,6 +176,11 @@ class ImportQMController extends Controller{
                         //SETTO IL PATH DELLE IMMAGINI
                         $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
 
+
+
+
+
+
                         $root = new SimpleXMLElement($xml);
 
 
@@ -279,7 +284,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
 
@@ -367,7 +373,15 @@ class ImportQMController extends Controller{
         $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
         $res['Qtext']=str_replace("'","",$res['Qtext']);
         $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
-        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+
+        $extra='';
+        //$log->append('EED'.$res['Qtext']);
+        if(strpos($res['Qtext'],'<APPLET')!==false) {
+            $extra = 'c';
+            //$log->append('EEE'.$extra);
+        }
+        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
+
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -383,7 +397,7 @@ class ImportQMController extends Controller{
 
         }
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $shortText,$translationsQ)){
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
             }
@@ -446,7 +460,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
@@ -542,7 +557,15 @@ class ImportQMController extends Controller{
         $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
         $res['Qtext']=str_replace("'","",$res['Qtext']);
         $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
-        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+
+        $extra='';
+        //$log->append('EED'.$res['Qtext']);
+        if(strpos($res['Qtext'],'<APPLET')!==false) {
+            $extra = 'c';
+            //$log->append('EEE'.$extra);
+        }
+        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
+
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -559,7 +582,7 @@ class ImportQMController extends Controller{
 
         }
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $shortText,$translationsQ)){
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
 
@@ -636,7 +659,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
 
@@ -691,7 +715,15 @@ class ImportQMController extends Controller{
         $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
         $res['Qtext']=str_replace("'","",$res['Qtext']);
         $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
-        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+
+        $extra='';
+        //$log->append('EED'.$res['Qtext']);
+        if(strpos($res['Qtext'],'<APPLET')!==false) {
+            $extra = 'c';
+            //$log->append('EEE'.$extra);
+        }
+        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
+
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -710,7 +742,7 @@ class ImportQMController extends Controller{
 
 
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $shortText,$translationsQ)){
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
 
@@ -792,7 +824,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -841,7 +874,15 @@ class ImportQMController extends Controller{
         $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
         $res['Qtext']=str_replace("'","",$res['Qtext']);
         $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
-        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+
+        $extra='';
+        //$log->append('EED'.$res['Qtext']);
+        if(strpos($res['Qtext'],'<APPLET')!==false) {
+            $extra = 'c';
+            //$log->append('EEE'.$extra);
+        }
+        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
+
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -860,7 +901,8 @@ class ImportQMController extends Controller{
 
 
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $shortText,$translationsQ)){
+
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty,$extra, $shortText,$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
 
@@ -941,7 +983,9 @@ class ImportQMController extends Controller{
         global $log;
         $i=0;
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<applet><object><p><img><sub><sup><APPLET><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+
         $res['Qtext']='';
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -955,7 +999,15 @@ class ImportQMController extends Controller{
         $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
         $res['Qtext']=str_replace("'","",$res['Qtext']);
         $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
-        //$res['Qtext']=strcmp($res['Qtext'],'')==0 ? "NO TEXT" : $res['Qtext'];
+
+        $extra='';
+        //$log->append('EED'.$res['Qtext']);
+        if(strpos($res['Qtext'],'<APPLET')!==false) {
+            $extra = 'c';
+            //$log->append('EEE'.$extra);
+        }
+        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
+
         $idLastLang=0;
         if($idLang>$idLastLang)
             $idLastLang=$idLang;
@@ -974,7 +1026,7 @@ class ImportQMController extends Controller{
 
 
 
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, "", $shortText,$translationsQ)){
+        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
             if($row = $db->nextRowEnum()){
                 //$log->append($row[0]);
 

@@ -22,6 +22,8 @@ global $user, $engine, $config;
     <link rel="stylesheet" href="<?= $config['themeDir'];?>jquery.dataTables_themeroller.min.css" media="screen" type="text/css" />
     <link rel="shortcut icon" type="image/png" href="<?= $config['themeImagesDir'] ?>favicon.png"/>
 
+
+
     <script type="text/javascript" src="<?= $config['systemLangsDir'].$user->lang ?>/lang.js"></script>
     <script> var imageDir = "<?= $config['themeImagesDir'] ?>"; </script>
     <script> var flagDir = "<?= $config['themeFlagsDir'] ?>"; </script>
@@ -38,8 +40,10 @@ global $user, $engine, $config;
 
     <script src="ckeditor/ckeditor.js"></script>
 
+
 </head>
 <body>
     <div id="container">
+
 
 

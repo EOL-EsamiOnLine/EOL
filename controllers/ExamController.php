@@ -350,7 +350,7 @@ class ExamController extends Controller{
      *  @descr  Show the list of settings for selected subject
      */
     private function actionSettings(){
-        global $config, $engine;
+        global $config, $engine,$user;
 
         if(isset($_POST['idSubject'])){
             $_SESSION['idSubject'] = $_POST['idSubject'];
@@ -364,7 +364,10 @@ class ExamController extends Controller{
             $engine->renderPage();
             $engine->renderFooter();
         }else{
-            header('Location: index.php?page=subject&r=set');
+            if(($user->role=='t') || ($user->role=='at'))
+                header('Location: index.php?page=subject&r=set');
+            else
+                header('Location: index.php?page=subject/index2&r=set');
         }
     }
 
