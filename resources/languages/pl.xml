@@ -361,6 +361,7 @@
     <!-- ======================== T ======================== -->
     <text id="ttTeacher">Teacher</text>
     <text id="ttTeachers">Teachers</text>
+    <text id="ttETeachers">echemTest Teachers</text>
     <text id="ttTest">Test</text>
     <text id="ttTests">Tests</text>
     <text id="ttTestToCorrect">Tests to correct</text>

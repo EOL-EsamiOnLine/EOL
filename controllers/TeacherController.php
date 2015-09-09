@@ -68,7 +68,7 @@ class TeacherController extends Controller{
             array(
                 'allow',
                 'actions' => array('Index'),
-                'roles'   => array('t'),
+                'roles'   => array('e','t'),
             ),
             array(
                 'deny',

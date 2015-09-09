@@ -45,8 +45,12 @@ $(function(){
 function selectSubject(){
     $("input[name=idSubject]").attr("value", $(".selected").attr("value"));
     var request = $("input[name=request]").attr("value").trim();
-    if((request == "") || (request == "qstn"))
+
+
+    if((request == "1") || (request == "qstn"))
         $("#idSubjectForm").attr("action", "index.php?page=question");
+    else if((request == "2") || (request == "qstn2"))
+        $("#idSubjectForm").attr("action", "index.php?page=question/index2");
     else if(request == "set")
         $("#idSubjectForm").attr("action", "index.php?page=exam/settings");
     $("#idSubjectForm").submit();

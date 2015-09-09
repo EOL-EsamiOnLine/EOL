@@ -33,9 +33,3 @@ function showHide(selected){
     }
 }
 
-// funzione che sposta il puntatore nella posizione del click dello studente in fase di correzione
-function prova(x,y){
-    var theThing = $("#thing");
-    theThing.css("left",x);
-    theThing.css("top",y);
-}

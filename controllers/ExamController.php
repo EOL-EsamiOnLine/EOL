@@ -794,7 +794,7 @@ class ExamController extends Controller{
                 'actions' => array('Settings', 'Showsettingsinfo', 'Updatesettingsinfo', 'Newsettings', 'Deletesettings',
                                    'Exams', 'Showexaminfo', 'Deleteexam', 'Testsettingslist', 'Updateexaminfo', 'Newexam', 'Changestatus',
                                    'Showregistrationslist', 'Showaddstudentspanel', 'Registerstudents', 'Toggleblock', 'Correct', 'View', 'Archiveexam'),
-                'roles'   => array('t'),
+                'roles'   => array('t','e'),
             ),
             array(
                 'deny',
