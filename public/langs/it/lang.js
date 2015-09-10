@@ -358,7 +358,7 @@ var ttYes = "Sì";
 var ttNumberError = "Il valore da inserire deve essere un numero intero o con la virgola (ES: 12.5) ";
 
 
-var ttImportComplete="Import Domande terminato con successo";
-
+var ttImportComplete="Import Domande completato con successo";
+var ttAImportComplete="Import Domande già completato con successo";
 
 var ttNumberError = "Il valore da inserire deve essere un numero intero o con la virgola (ES: 12.5) ";

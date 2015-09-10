@@ -361,7 +361,7 @@
     <!-- ======================== T ======================== -->
     <text id="ttTeacher">Docente</text>
     <text id="ttTeachers">Docenti</text>
-    <text id="ttETeachers">Insegnanti echemTest</text>
+    <text id="ttETeachers">Esaminatori</text>
 
     <text id="ttTest">Test</text>
     <text id="ttTests">Test</text>

@@ -2968,6 +2968,30 @@ class sqlDB {
 
 
 
+    /**
+     * @name    qAddImportFlag
+     * @return  Boolean
+     * @descr   add Import Flag to 1
+     */
+    public function qUpdateImportFlag(){
+        global $log, $user;
+        $ack = true;
+        $this->result = null;
+        $this->mysqli = $this->connect();
+
+        try{
+            $queries = array();
+            $query = "Update Flag_Import set done=1";
+            $this->execQuery($query);
+
+        }catch(Exception $ex){
+            $ack = false;
+            $log->append(__FUNCTION__." : ".$this->getError());
+        }
+
+        return $ack;
+    }
+
 /*******************************************************************
 *                              mysqli                              *
 *******************************************************************/
@@ -3153,3 +3177,5 @@ class sqlDB {
     }
 
 }
+
+

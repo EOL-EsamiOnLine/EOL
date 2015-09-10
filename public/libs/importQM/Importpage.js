@@ -70,11 +70,11 @@ function startImport() {
             success : function (data, status) {
                 if(data=="ACK"){
                     showSuccessMessage(ttImportComplete);
-                    setTimeout(function(){ location.replace("index.php?page=admin/index") }, 3000);
                 }
                 else{
-                    errorDialog(ttError , data);
+                    showSuccessMessage(ttAImportComplete);
                 }
+                setTimeout(function(){ location.replace("index.php?page=admin/index") }, 3000);
             },
             error : function (request, status, error) {
                 alert("jQuery AJAX request error:".error);

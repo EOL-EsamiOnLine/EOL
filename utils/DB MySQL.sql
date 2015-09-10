@@ -529,7 +529,33 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
 COMMENT = 'Relation between Teachers and Subjects';
 
+
+
+
+
+-- -----------------------------------------------------
+-- Table `eol`.`Flag_Import`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eol`.`Flag_Import` ;
+
+CREATE  TABLE IF NOT EXISTS `eol`.`Flag_Import` (
+  `done` TINYINT NULL DEFAULT 0 )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci
+COMMENT = 'Flag to check if import is done';
+
+
+
+
+
 USE `eol` ;
+
+-- ------------------
+-- First time i add flag with 0 to do the import
+-- ------------------
+INSERT INTO `Flag_Import` (`done`)
+VALUES (0);
 
 -- -----------------------------------------------------
 -- Default language (English)
@@ -547,9 +573,9 @@ VALUES (2, 'it', 'Italiano');
 -- Insert syntax for test teacher account (password: testeol)
 -- -----------------------------------------------------
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
-VALUES ('admin', 'admin', 'admin@eol.org', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
-('mario', 'rossi', 'mariorossi@eol.org', 'bdcb71322f263c72d56717fb7e7238fc00473517', 's', '1'),
-('echem', 'test', 'echemtest@eol.org', '1b7b4b4203b28059f9eaf6f754b137d5e0a3ac8a', 'e', '1');
+VALUES ('admin', 'echemTest', 'admin@eol.org', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
+('User01', 'echemTest', 'user01@eol.org', '202884d0ebf976b175565124cefefee738897332', 's', '1'),
+('examiner', 'echemTest', 'examiner@eol.org', '1b7b4b4203b28059f9eaf6f754b137d5e0a3ac8a', 'e', '1');
 
 
 

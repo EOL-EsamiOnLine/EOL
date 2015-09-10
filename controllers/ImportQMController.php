@@ -152,120 +152,148 @@ class ImportQMController extends Controller{
         $lastSubjectId=-1;
         $lastTokenTopic="";
         $lastTopicId=-1;
-        try {
-            foreach ($iterator as $file) {
-                if ($file->isfile()) {
-                    $path = pathinfo($file);
-                    if ($path['extension'] == 'xml' && filesize($file) > 0) {
 
 
-                        $xml = file_get_contents($file) or die("Error: Cannot create object");
+        $db = new sqlDB();
 
 
-                        //FIX IMPORT ENCODING
-                        $xml = mb_convert_encoding($xml, 'HTML-ENTITIES', "UTF-8");
+        if($db->qSelect("Flag_Import")) {
+            if($row = $db->nextRowEnum() and $row[0]==0){
 
-                        //$log->append(htmlentities($xml));
-
-
-
-                        $xml = ImportQMController::fixImportErrors($xml);
-
-
-
-                        //SETTO IL PATH DELLE IMMAGINI
-                        $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
+                try {
+                    foreach ($iterator as $file) {
+                        if ($file->isfile()) {
+                            $path = pathinfo($file);
+                            if ($path['extension'] == 'xml' && filesize($file) > 0) {
 
 
+                                $xml = file_get_contents($file) or die("Error: Cannot create object");
+
+
+                                //FIX IMPORT ENCODING
+                                $xml = mb_convert_encoding($xml, 'HTML-ENTITIES', "UTF-8");
+
+                                //$log->append(htmlentities($xml));
 
 
 
-
-                        $root = new SimpleXMLElement($xml);
-
+                                $xml = ImportQMController::fixImportErrors($xml);
 
 
 
-                        foreach ($root->children() as $item) {
+                                //SETTO IL PATH DELLE IMMAGINI
+                                $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
 
-                            //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
-                            $qMetadata = $item->itemmetadata;
 
-                            $questionsInfo = ImportQMController::parsingQMetadata($qMetadata);
 
-                            $difficulty = $questionsInfo['topicDifficulty'];
-                            //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
-                            $aliasLang = ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
 
-                            if ($aliasLang != $aliasLastLang) {
-                                ImportQMController::createNewLanguage($aliasLang, $questionsInfo['sbjLang']);
-                                $idLang = ImportQMController::getLastSubject($aliasLang);
-                                $idLastLang = $idLang;
-                                $aliasLastLang = $aliasLang;
 
-                            } else {
-                                $idLang = $idLastLang;
+
+                                $root = new SimpleXMLElement($xml);
+
+
+
+
+                                foreach ($root->children() as $item) {
+
+                                    //CDB [subjectName] [lang] version [no.version]{\,/}[difficulty]{\,/}[topic] - [topicName]
+                                    $qMetadata = $item->itemmetadata;
+
+                                    $questionsInfo = ImportQMController::parsingQMetadata($qMetadata);
+
+                                    $difficulty = $questionsInfo['topicDifficulty'];
+                                    //INSERISCO UNA NUOVA LINGUA SE NON E' PRESENTE
+                                    $aliasLang = ImportQMController::getAliasLanguage($questionsInfo['sbjLang']);
+
+                                    if ($aliasLang != $aliasLastLang) {
+                                        ImportQMController::createNewLanguage($aliasLang, $questionsInfo['sbjLang']);
+                                        $idLang = ImportQMController::getLastSubject($aliasLang);
+                                        $idLastLang = $idLang;
+                                        $aliasLastLang = $aliasLang;
+
+                                    } else {
+                                        $idLang = $idLastLang;
+                                    }
+
+                                    //INSERISCO LA MATERIA SE NON ESISTE
+                                    $tokenSbj = $questionsInfo['sbjName'] . $aliasLang . $questionsInfo['sbjVers'];
+
+                                    if(strcmp($tokenSbj, $lastTokenSbj) == 0) {
+                                        $idSubject = $lastSubjectId;
+                                    } else {
+                                        $idSubject = ImportQMController::createNewsubject($questionsInfo['sbjName'], "", $aliasLang, $questionsInfo['sbjVers']);
+                                        $lastSubjectId = $idSubject;
+                                        $lastTokenSbj = $tokenSbj;
+                                    }
+
+                                    $tokenTopic = $idSubject . $questionsInfo['topicCode'];
+                                    //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID DEL TOPIC PRECEDENTE
+                                    if ((strcmp($tokenTopic, $lastTokenTopic)) == 0) {
+                                        $idTopic = $lastTopicId;
+                                    } else {
+                                        $idTopic = ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicCode'],$questionsInfo['topicName']);
+                                        $lastTopicId = $idTopic;
+                                        $lastTokenTopic = $tokenTopic;
+                                    }
+
+                                    //$log->append("idTopic: ".$idTopic);
+
+                                    switch ($questionsInfo['itemtype']) {
+                                        case 'Multiple Choice':
+                                            ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
+                                            break;
+                                        case 'Multiple Response':
+                                            ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
+                                            break;
+                                        case 'True/False':
+                                            ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
+                                            break;
+                                        case 'Numeric':
+                                            ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
+                                            break;
+                                        case 'Text Match':
+                                            ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
+                                            break;
+
+
+                                    }
+
+
+                                }
+                                //CLEAN THE OUTPUT BUFFER
+                                ob_clean();
+
                             }
-
-                            //INSERISCO LA MATERIA SE NON ESISTE
-                            $tokenSbj = $questionsInfo['sbjName'] . $aliasLang . $questionsInfo['sbjVers'];
-
-                            if(strcmp($tokenSbj, $lastTokenSbj) == 0) {
-                                $idSubject = $lastSubjectId;
-                            } else {
-                                $idSubject = ImportQMController::createNewsubject($questionsInfo['sbjName'], "", $aliasLang, $questionsInfo['sbjVers']);
-                                $lastSubjectId = $idSubject;
-                                $lastTokenSbj = $tokenSbj;
-                            }
-
-                            $tokenTopic = $idSubject . $questionsInfo['topicCode'];
-                            //SE E' SEMPRE LA STESSA MATERIA UTILIZZO L'ID DEL TOPIC PRECEDENTE
-                            if ((strcmp($tokenTopic, $lastTokenTopic)) == 0) {
-                                $idTopic = $lastTopicId;
-                            } else {
-                                $idTopic = ImportQMController::createNewtopic($idSubject, $questionsInfo['topicName'], $questionsInfo['topicCode'],$questionsInfo['topicName']);
-                                $lastTopicId = $idTopic;
-                                $lastTokenTopic = $tokenTopic;
-                            }
-
-                            //$log->append("idTopic: ".$idTopic);
-
-                            switch ($questionsInfo['itemtype']) {
-                                case 'Multiple Choice':
-                                    ImportQMController::parserMC($item,$idTopic,"MC",$difficulty,$idLang);
-                                    break;
-                                case 'Multiple Response':
-                                    ImportQMController::parserMR($item,$idTopic,"MR",$difficulty,$idLang);
-                                    break;
-                                case 'True/False':
-                                    ImportQMController::parserTF($item,$idTopic,"TF",$difficulty,$idLang);
-                                    break;
-                                case 'Numeric':
-                                    ImportQMController::parserNM($item,$idTopic,"NM",$difficulty,$idLang);
-                                    break;
-                                case 'Text Match':
-                                    ImportQMController::parserTM($item, $idTopic, "TM", $difficulty, $idLang);
-                                    break;
-
-
-                            }
-
 
                         }
-                        //CLEAN THE OUTPUT BUFFER
-                        ob_clean();
 
                     }
+                    if($db->qUpdateImportFlag()){
+                        echo 'ACK';
+                    }
+                    else{
+                        echo 'NACK';
+                    }
+
 
                 }
+                catch(Exception $ex){
+                    echo 'NACK';
+                }
+
+
+
+
+
 
             }
-            echo 'ACK';
+            else
+                echo 'NACK';
+        }
 
-        }
-        catch(Exception $ex){
-            echo 'NACK';
-        }
+
+
+
     }
 
 
@@ -284,9 +312,9 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-
+        $QtextAllowedTags="<APPLET><applet><embed></EMBED><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<table><TABLE><tr><TR><td><TD><th><TH><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $questionOk=false;
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -306,8 +334,12 @@ class ImportQMController extends Controller{
                     $conditionvar=$respcondition->conditionvar[0];
                     foreach($conditionvar->children() as $varequal){
                         $arr=array();
-                        if(strcmp($varequal->getName(),'varequal')==0)
-                            $arr=ImportQMController::checkNumber(explode(",",$varequal));
+                        //$log->append($varequal);
+                        if(strcmp($varequal->getName(),'varequal')==0) {
+
+                            $arr = ImportQMController::checkNumber(explode(",", $varequal));
+
+                        }
                         if(strcmp($varequal->getName(),'varcontains')==0)
                             $arr=ImportQMController::checkNumber(explode(",",$varequal));
 
@@ -339,7 +371,7 @@ class ImportQMController extends Controller{
                             $resArr[$j]=$ans;
                             $j++;
                         }
-                        //print_r($resArr);
+                        print_r($resArr);
                         foreach ($resArr as $answer) {
                             $correctAnswersArrU[$i]=$answer;
                             $Aindex = "Atext" . $i;
@@ -348,6 +380,11 @@ class ImportQMController extends Controller{
                             //TESTO RISPOSTA
                             $res[$Aindex][1] = $answer;
                             $i++;
+
+                            if(strcmp($answer,"")!=0){
+
+                                $questionOk=true;
+                            }
 
                         }
 
@@ -362,87 +399,88 @@ class ImportQMController extends Controller{
         }
 
         // ------------------------- FINE PARSING RISPOSTE TEXT MATCH ------------------------//
-        $res['NoCorrect']=count($correctAnswersArrU);
-        $res['NoAnswers']=$i;
-        //$log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
-        //INSERIMENTO DOMANDA
-        //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
-        $row=null;
-        $db = new sqlDB();
-        $idQuestions[0]=-1;
-        $res['Qtext']=strip_tags($res['Qtext'],$QtextAllowedTags);
-        $res['Qtext']=str_replace("'","",$res['Qtext']);
-        $shortText=strip_tags($res['Qtext'],$shortTextAllowedTags);
 
-        $extra='';
-        //$log->append('EED'.$res['Qtext']);
-        if(strpos($res['Qtext'],'<APPLET')!==false) {
-            $extra = 'c';
-            //$log->append('EEE'.$extra);
-        }
-        $res['Qtext'] =strip_tags($res['Qtext'],$QtextAllowedTags2);
-
-        $idLastLang=0;
-        if($idLang>$idLastLang)
-            $idLastLang=$idLang;
-        $translationsQ[0]=null;
-        for($j=1;$j<=$idLastLang;$j++){
-
-            if($idLang==$j){
-                $translationsQ[$j]=$res['Qtext'];
-            }
-            else{
-                $translationsQ[$j]="";
-            }
-
-        }
-
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
-            if($row = $db->nextRowEnum()){
-                //$log->append($row[0]);
-            }
-        }else{
-            $log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
-
-        }
-
-        $db->close();
-        $db = new sqlDB();
-
-        //INSERIMENTO RISPOSTE
-        $idLastLang=0;
-        for($i=0;$i<$res['NoAnswers'];$i++){
+        if($questionOk==true) {
+            $res['NoCorrect'] = count($correctAnswersArrU);
+            $res['NoAnswers'] = $i;
+            //$log->append("AAA Topic: ".$lastIdTopic." ".$difficulty." ".$idLang);
+            //INSERIMENTO DOMANDA
+            //    public function qNewQuestion($idTopic, $type, $difficulty, $extras, $shortText, $translationsQ);
+            $row = null;
             $db = new sqlDB();
-            $Aindex="Atext".$i;
-            $score=1;
-            //$log->append("SSS".$score);
-            //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
-            $res[$Aindex][1]=strip_tags($res[$Aindex][1],$QtextAllowedTags);
+            $idQuestions[0] = -1;
+            $res['Qtext'] = strip_tags($res['Qtext'], $QtextAllowedTags);
+            $res['Qtext'] = str_replace("'", "", $res['Qtext']);
+            $shortText = strip_tags($res['Qtext'], $shortTextAllowedTags);
 
-            $translationsA[0]=null;
+            $extra = '';
+            //$log->append('EED'.$res['Qtext']);
+            if (strpos($res['Qtext'], '<APPLET') !== false || strpos($res['Qtext'], '<EMBED') !== false) {
+                $extra = 'c';
+                //$log->append('EEE'.$extra);
+            }
+            $res['Qtext'] = strip_tags($res['Qtext'], $QtextAllowedTags2);
 
-            if($idLang>$idLastLang)
-                $idLastLang=$idLang;
+            $idLastLang = 0;
+            if ($idLang > $idLastLang)
+                $idLastLang = $idLang;
+            $translationsQ[0] = null;
+            for ($j = 1; $j <= $idLastLang; $j++) {
 
-            for($j=1;$j<=$idLastLang;$j++){
-
-                if($idLang==$j){
-                    $translationsA[$j]=$res[$Aindex][1];
+                if ($idLang == $j) {
+                    $translationsQ[$j] = $res['Qtext'];
+                } else {
+                    $translationsQ[$j] = "";
                 }
-                else{
-                    $translationsA[$j]="";
+
+            }
+
+            if ($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText, $translationsQ)) {
+                if ($row = $db->nextRowEnum()) {
+                    //$log->append($row[0]);
                 }
+            } else {
+                $log->append("## QUESTION TEXT: " . $res['Qtext'] . " idTopic: " . $lastIdTopic . " idLang: " . $idLang);
 
             }
 
-            //$log->append(count($translationsA));
-            if($db->qNewAnswer($row[0], $score , $translationsA)) {
-
-            }
-            else{
-                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
-            }
             $db->close();
+            $db = new sqlDB();
+            //INSERIMENTO RISPOSTE
+            $idLastLang = 0;
+            for ($i = 0; $i < $res['NoAnswers']; $i++) {
+                $db = new sqlDB();
+                $Aindex = "Atext" . $i;
+                $score = 1;
+                //$log->append("SSS".$score);
+                //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
+                $res[$Aindex][1] = strip_tags($res[$Aindex][1], $QtextAllowedTags);
+
+                $translationsA[0] = null;
+
+                if ($idLang > $idLastLang)
+                    $idLastLang = $idLang;
+
+                for ($j = 1; $j <= $idLastLang; $j++) {
+
+                    if ($idLang == $j) {
+                        $translationsA[$j] = $res[$Aindex][1];
+                    } else {
+                        $translationsA[$j] = "";
+                    }
+
+                }
+
+                //$log->append(count($translationsA));
+                if ($db->qNewAnswer($row[0], $score, $translationsA)) {
+
+                } else {
+                    $log->append('AAA '.serialize($translationsA)." Topic id ".$lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                    //$log->append('AAA '.serialize($res)." Topic id ".$lastIdTopic." ".$difficulty);
+
+                }
+                $db->close();
+            }
         }
 
     }
@@ -460,8 +498,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<table><TABLE><tr><TR><td><TD><th><TH><APPLET><applet><embed></EMBED><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<table><TABLE><tr><TR><td><TD><th><TH><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
         //$log->append("</br>XXX -------> LAST ID TOPIC:         $lastIdTopic");
@@ -560,7 +598,7 @@ class ImportQMController extends Controller{
 
         $extra='';
         //$log->append('EED'.$res['Qtext']);
-        if(strpos($res['Qtext'],'<APPLET')!==false) {
+        if(strpos($res['Qtext'],'<APPLET')!==false || strpos($res['Qtext'],'<EMBED')!==false) {
             $extra = 'c';
             //$log->append('EEE'.$extra);
         }
@@ -635,7 +673,7 @@ class ImportQMController extends Controller{
 
             }
             else{
-                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                //$log->append('AAA'.$lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
 
             }
             $db->close();
@@ -659,8 +697,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<table><TABLE><tr><TR><td><TD><th><TH><embed></EMBED><APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<table><TABLE><tr><TR><td><TD><th><TH><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
 
@@ -718,7 +756,7 @@ class ImportQMController extends Controller{
 
         $extra='';
         //$log->append('EED'.$res['Qtext']);
-        if(strpos($res['Qtext'],'<APPLET')!==false) {
+        if(strpos($res['Qtext'],'<APPLET')!==false || strpos($res['Qtext'],'<EMBED')!==false) {
             $extra = 'c';
             //$log->append('EEE'.$extra);
         }
@@ -801,7 +839,7 @@ class ImportQMController extends Controller{
 
             }
             else{
-                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                //$log->append('AAA'.$lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
 
             }
             $db->close();
@@ -824,8 +862,8 @@ class ImportQMController extends Controller{
         $i=0;
         $res['Qtext']='';
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<table><TABLE><tr><TR><td><TD><th><TH><embed></EMBED><APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<table><TABLE><tr><TR><td><TD><th><TH><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
 
         //E' RIMASTO DA GESTIRE L'UNICO CASO ISOLATO CON MATIMAGE IL CUI PATH DELL'IMG NON E' COMPLETO
@@ -877,7 +915,7 @@ class ImportQMController extends Controller{
 
         $extra='';
         //$log->append('EED'.$res['Qtext']);
-        if(strpos($res['Qtext'],'<APPLET')!==false) {
+        if(strpos($res['Qtext'],'<APPLET')!==false || strpos($res['Qtext'],'<EMBED')!==false) {
             $extra = 'c';
             //$log->append('EEE'.$extra);
         }
@@ -964,7 +1002,7 @@ class ImportQMController extends Controller{
 
             }
             else{
-                //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
+                //$log->append('AAA'.$lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
 
             }
             $db->close();
@@ -983,8 +1021,8 @@ class ImportQMController extends Controller{
         global $log;
         $i=0;
         $shortTextAllowedTags="<p><sub><sup><P><SUB><SUP>";
-        $QtextAllowedTags="<APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
-        $QtextAllowedTags2="<span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags="<table><TABLE><tr><TR><td><TD><th><TH><EMBED><embed></EMBED><APPLET><applet><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
+        $QtextAllowedTags2="<table><TABLE><tr><TR><td><TD><th><TH><span><div><em></div></span><object><p><img><sub><sup><OBJECT><P><IMG><SUB><SUP>";
 
         $res['Qtext']='';
 
@@ -1002,7 +1040,7 @@ class ImportQMController extends Controller{
 
         $extra='';
         //$log->append('EED'.$res['Qtext']);
-        if(strpos($res['Qtext'],'<APPLET')!==false) {
+        if(strpos($res['Qtext'],'<APPLET')!==false || strpos($res['Qtext'],'<EMBED')!==false) {
             $extra = 'c';
             //$log->append('EEE'.$extra);
         }
@@ -1024,85 +1062,121 @@ class ImportQMController extends Controller{
 
         }
 
+        $resprocessing = $item->resprocessing;
+        $max = 0;
 
-
-        if($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText,$translationsQ)){
-            if($row = $db->nextRowEnum()){
-                //$log->append($row[0]);
-
-            }
-        }else{
-            //$log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
-
-
-        }
-
-        $db->close();
-        $db = new sqlDB();
-
-
-        $resprocessing=$item->resprocessing;
-        $max=0;
-
+        //CHECKIF ANSWERS HAVE TEXT
         foreach($resprocessing->children() as $respcondition){
             if($respcondition->getName()=="respcondition"){
 
                 if($respcondition->setvar>$max){
                     $max=$respcondition->setvar;
-                    if(isset($respcondition->conditionvar->varequal))
-                        $letter=$respcondition->conditionvar->varequal;
+                    $letter=$respcondition->conditionvar->varequal;
+                    if($letter == '') {
+                        $letter = $respcondition->conditionvar->vargte;
+                        if($letter == '') {
+                            $letter = $respcondition->conditionvar->varlte;
+                            if ($letter == '') {
+                                $letter = $respcondition->conditionvar->or->vargte;
+                                if ($letter == '')
+                                    $letter = $respcondition->conditionvar->or->varequal;
+                            }
+                        }
 
-                    else
-                        $letter=$respcondition->conditionvar->vargte;
+                    }
+
 
                 }
 
             }
         }
+        if($letter!='') {
 
 
+            if ($db->qNewQuestion($lastIdTopic, $itemtype, $difficulty, $extra, $shortText, $translationsQ)) {
+                if ($row = $db->nextRowEnum()) {
+                    $temp = $row[0];
 
-        //INSERIMENTO RISPOSTE
-        $idLastLang=0;
-
-        $db = new sqlDB();
-        $letter;
-        $score=1.0;
-
-        //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
-
-        //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
-       $letter=strip_tags( $letter,$QtextAllowedTags);
+                }
+            } else {
+                //$log->append("## QUESTION TEXT: ".$res['Qtext']." idTopic: ".$lastIdTopic." idLang: ".$idLang);
 
 
-        $translationsA[0]=null;
-
-        if($idLang>$idLastLang)
-            $idLastLang=$idLang;
-
-        for($j=1;$j<=$idLastLang;$j++){
-
-
-            if($idLang==$j){
-                $translationsA[$j]= $letter;
-            }
-            else{
-                $translationsA[$j]="";
             }
 
+            $db->close();
+            $db = new sqlDB();
+
+
+            $resprocessing = $item->resprocessing;
+            $max = 0;
+
+            foreach ($resprocessing->children() as $respcondition) {
+                if ($respcondition->getName() == "respcondition") {
+
+                    if ($respcondition->setvar > $max) {
+                        $max = $respcondition->setvar;
+                        $letter = $respcondition->conditionvar->varequal;
+                        if ($letter == '') {
+                            $letter = $respcondition->conditionvar->vargte;
+                            if ($letter == '') {
+                                $letter = $respcondition->conditionvar->varlte;
+                                if ($letter == '') {
+                                    $letter = $respcondition->conditionvar->or->vargte;
+                                    if ($letter == '')
+                                        $letter = $respcondition->conditionvar->or->varequal;
+                                }
+                            }
+
+                        }
+
+
+                    }
+
+                }
+            }
+
+
+            //INSERIMENTO RISPOSTE
+            $idLastLang = 0;
+
+            $db = new sqlDB();
+            $letter;
+            $score = 1.0;
+
+            //$log->append($score ."   ".$idLang."   ".$res[$Aindex][1]);
+
+            //$res[$Aindex][1]=strcmp($res[$Aindex][1],'')==0 ? 'NO TEXT' : $res[$Aindex][1];
+            $letter = strip_tags($letter, $QtextAllowedTags);
+
+
+            $translationsA[0] = null;
+
+            if ($idLang > $idLastLang)
+                $idLastLang = $idLang;
+
+            for ($j = 1; $j <= $idLastLang; $j++) {
+
+
+                if ($idLang == $j) {
+                    $translationsA[$j] = $letter;
+                } else {
+                    $translationsA[$j] = "";
+                }
+
+            }
+
+
+            //$log->append(count($translationsA));
+
+            if ($db->qNewAnswer($row[0], $score, $translationsA)) {
+
+            } else {
+                //$log->append('AAA idQuestion' . $temp . " " . $lastIdTopic . " " . $difficulty . " " . $res['Qtext'] . " " . $idLang);
+
+            }
+            $db->close();
         }
-
-
-        //$log->append(count($translationsA));
-
-        if($db->qNewAnswer($row[0], $score , $translationsA)) {
-
-        }
-        else{
-            //$log->append($lastIdTopic." ".$difficulty." ".$res['Qtext']." ".$idLang);
-
-        }
-        $db->close();
 
 
     }

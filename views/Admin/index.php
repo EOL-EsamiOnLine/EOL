@@ -32,9 +32,6 @@ global $config, $user;
         if($db->qSelect('Users', 'role', 'e')){
             $eteachers += $db->numResultRows();
         }
-        if($db->qSelect('Users', 'role', 'ae')){
-            $eteachers += $db->numResultRows();
-        }
         if($db->qSelect('Users', 'role', 's')){
             $students = $db->numResultRows();
         }

@@ -326,7 +326,7 @@ define('ttSurname' , "Cognome");
 define('ttSystem' , "Sistema");
 define('ttSystemConfiguration' , "Configurazione di Sistema");
 define('ttTeacher' , "Docente");
-define('tteTeacher' , "Docente echem");
+define('tteTeacher' , "Esaminatore");
 define('ttTeachers' , "Docenti");
 define('ttTest' , "Test");
 define('ttTests' , "Test");
@@ -373,4 +373,4 @@ define('ttImportQM' , "Import");
 define('ttImport' , "Import echemTest");
 
 define('ttSbjVers' , "Versione");
-define('ttETeachers' , "Insegnanti echemTest");
+define('ttETeachers' , "Esaminatori");
