@@ -2187,14 +2187,16 @@ class sqlDB {
      * @return  Boolean
      * @descr   Return true if successfully update all answers for requested test
      */
-    public function qUpdateTestAnswers($idSet, $questions, $answers){
+    public function qUpdateTestAnswers($idSet,$IdLang, $questions, $answers){
         global $log;
         $ack = true;
         $this->result = null;
         $this->mysqli = $this->connect();
 
         try{
-            $query = "UPDATE Sets_Questions SET answer = CASE\n";
+            //$query = "UPDATE Sets_Questions SET answer = CASE\n";
+            $query = "UPDATE Sets_Questions SET fkIdLanguage = $IdLang , answer = CASE\n"; // inserisco nella tabella anche la lingua utilizzata per eseguire il test
+
             while(count($questions) > 0){
                 $question = array_pop($questions);
                 $answer = array_pop($answers);

@@ -1,0 +1,978 @@
+09/10/2015 16:24:09 - qNewTopicV2 : Duplicate entry 'ac3enA-1' for key 'TopicC'
+09/10/2015 16:24:09 - SELECT * FROM Topics WHERE code = 'ac3enA' AND fkSubject = 1 
+09/10/2015 16:24:09 - qNewTopicV2 : Duplicate entry 'ac3enB-1' for key 'TopicC'
+09/10/2015 16:24:09 - SELECT * FROM Topics WHERE code = 'ac3enB' AND fkSubject = 1 
+09/10/2015 16:24:09 - qNewTopicV2 : Duplicate entry 'ac3enC-1' for key 'TopicC'
+09/10/2015 16:24:09 - SELECT * FROM Topics WHERE code = 'ac3enC' AND fkSubject = 1 
+09/10/2015 16:24:09 - qNewTopicV2 : Duplicate entry 'ac3enD-1' for key 'TopicC'
+09/10/2015 16:24:09 - SELECT * FROM Topics WHERE code = 'ac3enD' AND fkSubject = 1 
+09/10/2015 16:24:09 - qNewTopicV2 : Duplicate entry 'ac3enE-1' for key 'TopicC'
+09/10/2015 16:24:09 - SELECT * FROM Topics WHERE code = 'ac3enE' AND fkSubject = 1 
+09/10/2015 16:24:10 - qNewTopicV2 : Duplicate entry 'ac3enB-1' for key 'TopicC'
+09/10/2015 16:24:10 - SELECT * FROM Topics WHERE code = 'ac3enB' AND fkSubject = 1 
+09/10/2015 16:24:10 - qNewTopicV2 : Duplicate entry 'ac3enC-1' for key 'TopicC'
+09/10/2015 16:24:10 - SELECT * FROM Topics WHERE code = 'ac3enC' AND fkSubject = 1 
+09/10/2015 16:24:10 - qNewTopicV2 : Duplicate entry 'ac3enD-1' for key 'TopicC'
+09/10/2015 16:24:10 - SELECT * FROM Topics WHERE code = 'ac3enD' AND fkSubject = 1 
+09/10/2015 16:24:10 - qNewTopicV2 : Duplicate entry 'ac3enE-1' for key 'TopicC'
+09/10/2015 16:24:10 - SELECT * FROM Topics WHERE code = 'ac3enE' AND fkSubject = 1 
+09/10/2015 16:24:10 - qNewTopicV2 : Duplicate entry 'ac3enF-1' for key 'TopicC'
+09/10/2015 16:24:10 - SELECT * FROM Topics WHERE code = 'ac3enF' AND fkSubject = 1 
+09/10/2015 16:24:11 - qNewTopicV2 : Duplicate entry 'ac3esA-2' for key 'TopicC'
+09/10/2015 16:24:11 - SELECT * FROM Topics WHERE code = 'ac3esA' AND fkSubject = 2 
+09/10/2015 16:24:11 - qNewTopicV2 : Duplicate entry 'ac3esB-2' for key 'TopicC'
+09/10/2015 16:24:11 - SELECT * FROM Topics WHERE code = 'ac3esB' AND fkSubject = 2 
+09/10/2015 16:24:11 - qNewTopicV2 : Duplicate entry 'ac3esC-2' for key 'TopicC'
+09/10/2015 16:24:11 - SELECT * FROM Topics WHERE code = 'ac3esC' AND fkSubject = 2 
+09/10/2015 16:24:11 - qNewTopicV2 : Duplicate entry 'ac3esD-2' for key 'TopicC'
+09/10/2015 16:24:11 - SELECT * FROM Topics WHERE code = 'ac3esD' AND fkSubject = 2 
+09/10/2015 16:24:11 - qNewTopicV2 : Duplicate entry 'ac3esE-2' for key 'TopicC'
+09/10/2015 16:24:11 - SELECT * FROM Topics WHERE code = 'ac3esE' AND fkSubject = 2 
+09/10/2015 16:24:12 - qNewTopicV2 : Duplicate entry 'ac3esB-2' for key 'TopicC'
+09/10/2015 16:24:12 - SELECT * FROM Topics WHERE code = 'ac3esB' AND fkSubject = 2 
+09/10/2015 16:24:12 - qNewTopicV2 : Duplicate entry 'ac3esC-2' for key 'TopicC'
+09/10/2015 16:24:12 - SELECT * FROM Topics WHERE code = 'ac3esC' AND fkSubject = 2 
+09/10/2015 16:24:12 - qNewTopicV2 : Duplicate entry 'ac3esD-2' for key 'TopicC'
+09/10/2015 16:24:12 - SELECT * FROM Topics WHERE code = 'ac3esD' AND fkSubject = 2 
+09/10/2015 16:24:12 - qNewTopicV2 : Duplicate entry 'ac3esE-2' for key 'TopicC'
+09/10/2015 16:24:12 - SELECT * FROM Topics WHERE code = 'ac3esE' AND fkSubject = 2 
+09/10/2015 16:24:12 - ZZZ=207></P>
+
+09/10/2015 16:24:12 - qNewTopicV2 : Duplicate entry 'ac3esF-2' for key 'TopicC'
+09/10/2015 16:24:12 - SELECT * FROM Topics WHERE code = 'ac3esF' AND fkSubject = 2 
+09/10/2015 16:24:13 - qNewTopicV2 : Duplicate entry 'bc3en0-3' for key 'TopicC'
+09/10/2015 16:24:13 - SELECT * FROM Topics WHERE code = 'bc3en0' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en1-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en1' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en2-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en2' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en3-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en3' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en4-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en4' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en5-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en5' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en6-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en6' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en7-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en7' AND fkSubject = 3 
+09/10/2015 16:24:14 - qNewTopicV2 : Duplicate entry 'bc3en8-3' for key 'TopicC'
+09/10/2015 16:24:14 - SELECT * FROM Topics WHERE code = 'bc3en8' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en9-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en9' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en0-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en0' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en1-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en1' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en2-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en2' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en3-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en3' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en4-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en4' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en5-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en5' AND fkSubject = 3 
+09/10/2015 16:24:15 - qNewTopicV2 : Duplicate entry 'bc3en6-3' for key 'TopicC'
+09/10/2015 16:24:15 - SELECT * FROM Topics WHERE code = 'bc3en6' AND fkSubject = 3 
+09/10/2015 16:24:16 - qNewTopicV2 : Duplicate entry 'bc3en7-3' for key 'TopicC'
+09/10/2015 16:24:16 - SELECT * FROM Topics WHERE code = 'bc3en7' AND fkSubject = 3 
+09/10/2015 16:24:16 - qNewTopicV2 : Duplicate entry 'bc3en8-3' for key 'TopicC'
+09/10/2015 16:24:16 - SELECT * FROM Topics WHERE code = 'bc3en8' AND fkSubject = 3 
+09/10/2015 16:24:16 - qNewTopicV2 : Duplicate entry 'bc3en9-3' for key 'TopicC'
+09/10/2015 16:24:16 - SELECT * FROM Topics WHERE code = 'bc3en9' AND fkSubject = 3 
+09/10/2015 16:24:19 - qNewTopicV2 : Duplicate entry 'bc3es0-4' for key 'TopicC'
+09/10/2015 16:24:19 - SELECT * FROM Topics WHERE code = 'bc3es0' AND fkSubject = 4 
+09/10/2015 16:24:19 - qNewTopicV2 : Duplicate entry 'bc3es1-4' for key 'TopicC'
+09/10/2015 16:24:19 - SELECT * FROM Topics WHERE code = 'bc3es1' AND fkSubject = 4 
+09/10/2015 16:24:19 - qNewTopicV2 : Duplicate entry 'bc3es2-4' for key 'TopicC'
+09/10/2015 16:24:19 - SELECT * FROM Topics WHERE code = 'bc3es2' AND fkSubject = 4 
+09/10/2015 16:24:19 - qNewTopicV2 : Duplicate entry 'bc3es3-4' for key 'TopicC'
+09/10/2015 16:24:19 - SELECT * FROM Topics WHERE code = 'bc3es3' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es4-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es4' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es5-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es5' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es6-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es6' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es7-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es7' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es8-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es8' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es9-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es9' AND fkSubject = 4 
+09/10/2015 16:24:20 - qNewTopicV2 : Duplicate entry 'bc3es0-4' for key 'TopicC'
+09/10/2015 16:24:20 - SELECT * FROM Topics WHERE code = 'bc3es0' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es1-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es1' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es2-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es2' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es3-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es3' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es4-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es4' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es5-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es5' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es6-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es6' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es7-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es7' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es8-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es8' AND fkSubject = 4 
+09/10/2015 16:24:21 - qNewTopicV2 : Duplicate entry 'bc3es9-4' for key 'TopicC'
+09/10/2015 16:24:21 - SELECT * FROM Topics WHERE code = 'bc3es9' AND fkSubject = 4 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en1-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en1' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en2-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en2' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en3-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en3' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en4-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en4' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en5-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en5' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en1-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en1' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en2-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en2' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en4-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en4' AND fkSubject = 6 
+09/10/2015 16:24:23 - qNewTopicV2 : Duplicate entry 'ce3en5-6' for key 'TopicC'
+09/10/2015 16:24:23 - SELECT * FROM Topics WHERE code = 'ce3en5' AND fkSubject = 6 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en0-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en0' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en1-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en1' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en2-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en2' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en3-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en3' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en4-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en4' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en5-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en5' AND fkSubject = 7 
+09/10/2015 16:24:24 - qNewTopicV2 : Duplicate entry 'ch4en6-7' for key 'TopicC'
+09/10/2015 16:24:24 - SELECT * FROM Topics WHERE code = 'ch4en6' AND fkSubject = 7 
+09/10/2015 16:24:25 - qNewTopicV2 : Duplicate entry 'ch4en7-7' for key 'TopicC'
+09/10/2015 16:24:25 - SELECT * FROM Topics WHERE code = 'ch4en7' AND fkSubject = 7 
+09/10/2015 16:24:25 - qNewTopicV2 : Duplicate entry 'ch4en0-7' for key 'TopicC'
+09/10/2015 16:24:25 - SELECT * FROM Topics WHERE code = 'ch4en0' AND fkSubject = 7 
+09/10/2015 16:24:25 - qNewTopicV2 : Duplicate entry 'ch4en1-7' for key 'TopicC'
+09/10/2015 16:24:25 - SELECT * FROM Topics WHERE code = 'ch4en1' AND fkSubject = 7 
+09/10/2015 16:24:25 - qNewTopicV2 : Duplicate entry 'ch4en2-7' for key 'TopicC'
+09/10/2015 16:24:25 - SELECT * FROM Topics WHERE code = 'ch4en2' AND fkSubject = 7 
+09/10/2015 16:24:26 - qNewTopicV2 : Duplicate entry 'ch4en3-7' for key 'TopicC'
+09/10/2015 16:24:26 - SELECT * FROM Topics WHERE code = 'ch4en3' AND fkSubject = 7 
+09/10/2015 16:24:26 - qNewTopicV2 : Duplicate entry 'ch4en4-7' for key 'TopicC'
+09/10/2015 16:24:26 - SELECT * FROM Topics WHERE code = 'ch4en4' AND fkSubject = 7 
+09/10/2015 16:24:26 - qNewTopicV2 : Duplicate entry 'ch4en5-7' for key 'TopicC'
+09/10/2015 16:24:26 - SELECT * FROM Topics WHERE code = 'ch4en5' AND fkSubject = 7 
+09/10/2015 16:24:26 - qNewTopicV2 : Duplicate entry 'ch4en6-7' for key 'TopicC'
+09/10/2015 16:24:26 - SELECT * FROM Topics WHERE code = 'ch4en6' AND fkSubject = 7 
+09/10/2015 16:24:27 - qNewTopicV2 : Duplicate entry 'ch4en7-7' for key 'TopicC'
+09/10/2015 16:24:27 - SELECT * FROM Topics WHERE code = 'ch4en7' AND fkSubject = 7 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de0-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de0' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de1-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de1' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de2-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de2' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de3-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de3' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de4-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de4' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de5-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de5' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de6-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de6' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de7-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de7' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de9-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de9' AND fkSubject = 8 
+09/10/2015 16:24:28 - qNewTopicV2 : Duplicate entry 'gc1de0-8' for key 'TopicC'
+09/10/2015 16:24:28 - SELECT * FROM Topics WHERE code = 'gc1de0' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de1-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de1' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de2-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de2' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de3-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de3' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de4-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de4' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de5-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de5' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de6-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de6' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de7-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de7' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de8-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de8' AND fkSubject = 8 
+09/10/2015 16:24:29 - qNewTopicV2 : Duplicate entry 'gc1de9-8' for key 'TopicC'
+09/10/2015 16:24:29 - SELECT * FROM Topics WHERE code = 'gc1de9' AND fkSubject = 8 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en0-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en0' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en1-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en1' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en2-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en2' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en3-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en3' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en4-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en4' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en5-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en5' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en6-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en6' AND fkSubject = 9 
+09/10/2015 16:24:30 - qNewTopicV2 : Duplicate entry 'gc1en7-9' for key 'TopicC'
+09/10/2015 16:24:30 - SELECT * FROM Topics WHERE code = 'gc1en7' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en8-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en8' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en9-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en9' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en0-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en0' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en1-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en1' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en2-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en2' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en3-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en3' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en4-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en4' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en5-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en5' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en6-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en6' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en7-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en7' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en8-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en8' AND fkSubject = 9 
+09/10/2015 16:24:31 - qNewTopicV2 : Duplicate entry 'gc1en9-9' for key 'TopicC'
+09/10/2015 16:24:31 - SELECT * FROM Topics WHERE code = 'gc1en9' AND fkSubject = 9 
+09/10/2015 16:24:33 - qNewTopicV2 : Duplicate entry 'gc1es0-10' for key 'TopicC'
+09/10/2015 16:24:33 - SELECT * FROM Topics WHERE code = 'gc1es0' AND fkSubject = 10 
+09/10/2015 16:24:33 - qNewTopicV2 : Duplicate entry 'gc1es1-10' for key 'TopicC'
+09/10/2015 16:24:33 - SELECT * FROM Topics WHERE code = 'gc1es1' AND fkSubject = 10 
+09/10/2015 16:24:33 - qNewTopicV2 : Duplicate entry 'gc1es2-10' for key 'TopicC'
+09/10/2015 16:24:33 - SELECT * FROM Topics WHERE code = 'gc1es2' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es3-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es3' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es4-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es4' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es5-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es5' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es6-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es6' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es7-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es7' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es8-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es8' AND fkSubject = 10 
+09/10/2015 16:24:34 - qNewTopicV2 : Duplicate entry 'gc1es9-10' for key 'TopicC'
+09/10/2015 16:24:34 - SELECT * FROM Topics WHERE code = 'gc1es9' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es0-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es0' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es1-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es1' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es2-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es2' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es3-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es3' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es4-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es4' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es5-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es5' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es6-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es6' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es7-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es7' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es8-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es8' AND fkSubject = 10 
+09/10/2015 16:24:35 - qNewTopicV2 : Duplicate entry 'gc1es9-10' for key 'TopicC'
+09/10/2015 16:24:35 - SELECT * FROM Topics WHERE code = 'gc1es9' AND fkSubject = 10 
+09/10/2015 16:24:37 - qNewTopicV2 : Duplicate entry 'gc1fr0-11' for key 'TopicC'
+09/10/2015 16:24:37 - SELECT * FROM Topics WHERE code = 'gc1fr0' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr1-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr1' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr2-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr2' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr3-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr3' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr4-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr4' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr5-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr5' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr6-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr6' AND fkSubject = 11 
+09/10/2015 16:24:38 - qNewTopicV2 : Duplicate entry 'gc1fr7-11' for key 'TopicC'
+09/10/2015 16:24:38 - SELECT * FROM Topics WHERE code = 'gc1fr7' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr8-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr8' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr9-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr9' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr0-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr0' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr1-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr1' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr2-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr2' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr3-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr3' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr4-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr4' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr5-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr5' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr6-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr6' AND fkSubject = 11 
+09/10/2015 16:24:39 - qNewTopicV2 : Duplicate entry 'gc1fr7-11' for key 'TopicC'
+09/10/2015 16:24:39 - SELECT * FROM Topics WHERE code = 'gc1fr7' AND fkSubject = 11 
+09/10/2015 16:24:40 - qNewTopicV2 : Duplicate entry 'gc1fr8-11' for key 'TopicC'
+09/10/2015 16:24:40 - SELECT * FROM Topics WHERE code = 'gc1fr8' AND fkSubject = 11 
+09/10/2015 16:24:40 - qNewTopicV2 : Duplicate entry 'gc1fr9-11' for key 'TopicC'
+09/10/2015 16:24:40 - SELECT * FROM Topics WHERE code = 'gc1fr9' AND fkSubject = 11 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it0-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it0' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it1-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it1' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it2-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it2' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it3-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it3' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it4-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it4' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it5-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it5' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it6-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it6' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it7-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it7' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it8-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it8' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it9-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it9' AND fkSubject = 12 
+09/10/2015 16:24:41 - qNewTopicV2 : Duplicate entry 'gc1it0-12' for key 'TopicC'
+09/10/2015 16:24:41 - SELECT * FROM Topics WHERE code = 'gc1it0' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it1-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it1' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it2-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it2' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it3-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it3' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it4-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it4' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it5-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it5' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it6-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it6' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it7-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it7' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it8-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it8' AND fkSubject = 12 
+09/10/2015 16:24:42 - qNewTopicV2 : Duplicate entry 'gc1it9-12' for key 'TopicC'
+09/10/2015 16:24:42 - SELECT * FROM Topics WHERE code = 'gc1it9' AND fkSubject = 12 
+09/10/2015 16:24:43 - qNewTopicV2 : Duplicate entry 'gc1pl0-13' for key 'TopicC'
+09/10/2015 16:24:43 - SELECT * FROM Topics WHERE code = 'gc1pl0' AND fkSubject = 13 
+09/10/2015 16:24:43 - qNewTopicV2 : Duplicate entry 'gc1pl1-13' for key 'TopicC'
+09/10/2015 16:24:43 - SELECT * FROM Topics WHERE code = 'gc1pl1' AND fkSubject = 13 
+09/10/2015 16:24:43 - qNewTopicV2 : Duplicate entry 'gc1pl2-13' for key 'TopicC'
+09/10/2015 16:24:43 - SELECT * FROM Topics WHERE code = 'gc1pl2' AND fkSubject = 13 
+09/10/2015 16:24:43 - qNewTopicV2 : Duplicate entry 'gc1pl3-13' for key 'TopicC'
+09/10/2015 16:24:43 - SELECT * FROM Topics WHERE code = 'gc1pl3' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl4-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl4' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl5-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl5' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl6-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl6' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl7-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl7' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl8-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl8' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl9-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl9' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl0-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl0' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl1-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl1' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl2-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl2' AND fkSubject = 13 
+09/10/2015 16:24:44 - qNewTopicV2 : Duplicate entry 'gc1pl3-13' for key 'TopicC'
+09/10/2015 16:24:44 - SELECT * FROM Topics WHERE code = 'gc1pl3' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl4-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl4' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl5-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl5' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl6-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl6' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl7-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl7' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl8-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl8' AND fkSubject = 13 
+09/10/2015 16:24:45 - qNewTopicV2 : Duplicate entry 'gc1pl9-13' for key 'TopicC'
+09/10/2015 16:24:45 - SELECT * FROM Topics WHERE code = 'gc1pl9' AND fkSubject = 13 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru0-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru0' AND fkSubject = 14 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru1-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru1' AND fkSubject = 14 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru2-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru2' AND fkSubject = 14 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru3-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru3' AND fkSubject = 14 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru4-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru4' AND fkSubject = 14 
+09/10/2015 16:24:46 - qNewTopicV2 : Duplicate entry 'gc1ru5-14' for key 'TopicC'
+09/10/2015 16:24:46 - SELECT * FROM Topics WHERE code = 'gc1ru5' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru7-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru7' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru8-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru8' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru9-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru9' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru0-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru0' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru1-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru1' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru2-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru2' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru3-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru3' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru4-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru4' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru5-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru5' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru6-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru6' AND fkSubject = 14 
+09/10/2015 16:24:47 - qNewTopicV2 : Duplicate entry 'gc1ru7-14' for key 'TopicC'
+09/10/2015 16:24:47 - SELECT * FROM Topics WHERE code = 'gc1ru7' AND fkSubject = 14 
+09/10/2015 16:24:48 - qNewTopicV2 : Duplicate entry 'gc1ru8-14' for key 'TopicC'
+09/10/2015 16:24:48 - SELECT * FROM Topics WHERE code = 'gc1ru8' AND fkSubject = 14 
+09/10/2015 16:24:48 - qNewTopicV2 : Duplicate entry 'gc1ru9-14' for key 'TopicC'
+09/10/2015 16:24:48 - SELECT * FROM Topics WHERE code = 'gc1ru9' AND fkSubject = 14 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de0-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de0' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de1-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de1' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de2-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de2' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de3-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de3' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de4-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de4' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de5-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de5' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de6-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de6' AND fkSubject = 15 
+09/10/2015 16:24:49 - qNewTopicV2 : Duplicate entry 'gc2de7-15' for key 'TopicC'
+09/10/2015 16:24:49 - SELECT * FROM Topics WHERE code = 'gc2de7' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de8-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de8' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de9-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de9' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de0-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de0' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de1-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de1' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de2-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de2' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de3-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de3' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de4-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de4' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de5-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de5' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de6-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de6' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de7-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de7' AND fkSubject = 15 
+09/10/2015 16:24:50 - qNewTopicV2 : Duplicate entry 'gc2de8-15' for key 'TopicC'
+09/10/2015 16:24:50 - SELECT * FROM Topics WHERE code = 'gc2de8' AND fkSubject = 15 
+09/10/2015 16:24:51 - qNewTopicV2 : Duplicate entry 'gc2de9-15' for key 'TopicC'
+09/10/2015 16:24:51 - SELECT * FROM Topics WHERE code = 'gc2de9' AND fkSubject = 15 
+09/10/2015 16:24:52 - qNewTopicV2 : Duplicate entry 'gc2en0-16' for key 'TopicC'
+09/10/2015 16:24:52 - SELECT * FROM Topics WHERE code = 'gc2en0' AND fkSubject = 16 
+09/10/2015 16:24:52 - qNewTopicV2 : Duplicate entry 'gc2en1-16' for key 'TopicC'
+09/10/2015 16:24:52 - SELECT * FROM Topics WHERE code = 'gc2en1' AND fkSubject = 16 
+09/10/2015 16:24:52 - qNewTopicV2 : Duplicate entry 'gc2en2-16' for key 'TopicC'
+09/10/2015 16:24:52 - SELECT * FROM Topics WHERE code = 'gc2en2' AND fkSubject = 16 
+09/10/2015 16:24:52 - qNewTopicV2 : Duplicate entry 'gc2en3-16' for key 'TopicC'
+09/10/2015 16:24:52 - SELECT * FROM Topics WHERE code = 'gc2en3' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en4-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en4' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en5-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en5' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en6-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en6' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en7-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en7' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en8-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en8' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en9-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en9' AND fkSubject = 16 
+09/10/2015 16:24:53 - qNewTopicV2 : Duplicate entry 'gc2en0-16' for key 'TopicC'
+09/10/2015 16:24:53 - SELECT * FROM Topics WHERE code = 'gc2en0' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en1-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en1' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en2-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en2' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en3-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en3' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en4-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en4' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en5-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en5' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en6-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en6' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en7-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en7' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en8-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en8' AND fkSubject = 16 
+09/10/2015 16:24:54 - qNewTopicV2 : Duplicate entry 'gc2en9-16' for key 'TopicC'
+09/10/2015 16:24:54 - SELECT * FROM Topics WHERE code = 'gc2en9' AND fkSubject = 16 
+09/10/2015 16:24:56 - qNewTopicV2 : Duplicate entry 'gc2es0-17' for key 'TopicC'
+09/10/2015 16:24:56 - SELECT * FROM Topics WHERE code = 'gc2es0' AND fkSubject = 17 
+09/10/2015 16:24:56 - qNewTopicV2 : Duplicate entry 'gc2es1-17' for key 'TopicC'
+09/10/2015 16:24:56 - SELECT * FROM Topics WHERE code = 'gc2es1' AND fkSubject = 17 
+09/10/2015 16:24:56 - qNewTopicV2 : Duplicate entry 'gc2es2-17' for key 'TopicC'
+09/10/2015 16:24:56 - SELECT * FROM Topics WHERE code = 'gc2es2' AND fkSubject = 17 
+09/10/2015 16:24:56 - qNewTopicV2 : Duplicate entry 'gc2es3-17' for key 'TopicC'
+09/10/2015 16:24:56 - SELECT * FROM Topics WHERE code = 'gc2es3' AND fkSubject = 17 
+09/10/2015 16:24:56 - qNewTopicV2 : Duplicate entry 'gc2es4-17' for key 'TopicC'
+09/10/2015 16:24:56 - SELECT * FROM Topics WHERE code = 'gc2es4' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es5-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es5' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es6-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es6' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es7-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es7' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es8-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es8' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es9-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es9' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es0-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es0' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es1-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es1' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es2-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es2' AND fkSubject = 17 
+09/10/2015 16:24:57 - qNewTopicV2 : Duplicate entry 'gc2es3-17' for key 'TopicC'
+09/10/2015 16:24:57 - SELECT * FROM Topics WHERE code = 'gc2es3' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es4-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es4' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es5-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es5' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es6-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es6' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es7-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es7' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es8-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es8' AND fkSubject = 17 
+09/10/2015 16:24:58 - qNewTopicV2 : Duplicate entry 'gc2es9-17' for key 'TopicC'
+09/10/2015 16:24:58 - SELECT * FROM Topics WHERE code = 'gc2es9' AND fkSubject = 17 
+09/10/2015 16:25:02 - qNewTopicV2 : Duplicate entry 'gc2fr6-18' for key 'TopicC'
+09/10/2015 16:25:02 - SELECT * FROM Topics WHERE code = 'gc2fr6' AND fkSubject = 18 
+09/10/2015 16:25:02 - qNewTopicV2 : Duplicate entry 'gc2fr9-18' for key 'TopicC'
+09/10/2015 16:25:02 - SELECT * FROM Topics WHERE code = 'gc2fr9' AND fkSubject = 18 
+09/10/2015 16:25:04 - qNewTopicV2 : Duplicate entry 'gc2it0-19' for key 'TopicC'
+09/10/2015 16:25:04 - SELECT * FROM Topics WHERE code = 'gc2it0' AND fkSubject = 19 
+09/10/2015 16:25:04 - qNewTopicV2 : Duplicate entry 'gc2it1-19' for key 'TopicC'
+09/10/2015 16:25:04 - SELECT * FROM Topics WHERE code = 'gc2it1' AND fkSubject = 19 
+09/10/2015 16:25:04 - qNewTopicV2 : Duplicate entry 'gc2it2-19' for key 'TopicC'
+09/10/2015 16:25:04 - SELECT * FROM Topics WHERE code = 'gc2it2' AND fkSubject = 19 
+09/10/2015 16:25:04 - qNewTopicV2 : Duplicate entry 'gc2it3-19' for key 'TopicC'
+09/10/2015 16:25:04 - SELECT * FROM Topics WHERE code = 'gc2it3' AND fkSubject = 19 
+09/10/2015 16:25:04 - qNewTopicV2 : Duplicate entry 'gc2it4-19' for key 'TopicC'
+09/10/2015 16:25:04 - SELECT * FROM Topics WHERE code = 'gc2it4' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it5-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it5' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it6-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it6' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it7-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it7' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it8-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it8' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it9-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it9' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it0-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it0' AND fkSubject = 19 
+09/10/2015 16:25:05 - qNewTopicV2 : Duplicate entry 'gc2it1-19' for key 'TopicC'
+09/10/2015 16:25:05 - SELECT * FROM Topics WHERE code = 'gc2it1' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it2-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it2' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it3-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it3' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it4-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it4' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it5-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it5' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it6-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it6' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it7-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it7' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it8-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it8' AND fkSubject = 19 
+09/10/2015 16:25:06 - qNewTopicV2 : Duplicate entry 'gc2it9-19' for key 'TopicC'
+09/10/2015 16:25:06 - SELECT * FROM Topics WHERE code = 'gc2it9' AND fkSubject = 19 
+09/10/2015 16:25:08 - qNewTopicV2 : Duplicate entry 'gc2pl0-20' for key 'TopicC'
+09/10/2015 16:25:08 - SELECT * FROM Topics WHERE code = 'gc2pl0' AND fkSubject = 20 
+09/10/2015 16:25:08 - qNewTopicV2 : Duplicate entry 'gc2pl1-20' for key 'TopicC'
+09/10/2015 16:25:08 - SELECT * FROM Topics WHERE code = 'gc2pl1' AND fkSubject = 20 
+09/10/2015 16:25:09 - qNewTopicV2 : Duplicate entry 'gc2pl2-20' for key 'TopicC'
+09/10/2015 16:25:09 - SELECT * FROM Topics WHERE code = 'gc2pl2' AND fkSubject = 20 
+09/10/2015 16:25:09 - qNewTopicV2 : Duplicate entry 'gc2pl3-20' for key 'TopicC'
+09/10/2015 16:25:09 - SELECT * FROM Topics WHERE code = 'gc2pl3' AND fkSubject = 20 
+09/10/2015 16:25:09 - qNewTopicV2 : Duplicate entry 'gc2pl4-20' for key 'TopicC'
+09/10/2015 16:25:09 - SELECT * FROM Topics WHERE code = 'gc2pl4' AND fkSubject = 20 
+09/10/2015 16:25:09 - qNewTopicV2 : Duplicate entry 'gc2pl5-20' for key 'TopicC'
+09/10/2015 16:25:09 - SELECT * FROM Topics WHERE code = 'gc2pl5' AND fkSubject = 20 
+09/10/2015 16:25:09 - qNewTopicV2 : Duplicate entry 'gc2pl6-20' for key 'TopicC'
+09/10/2015 16:25:09 - SELECT * FROM Topics WHERE code = 'gc2pl6' AND fkSubject = 20 
+09/10/2015 16:25:10 - qNewTopicV2 : Duplicate entry 'gc2pl7-20' for key 'TopicC'
+09/10/2015 16:25:10 - SELECT * FROM Topics WHERE code = 'gc2pl7' AND fkSubject = 20 
+09/10/2015 16:25:10 - qNewTopicV2 : Duplicate entry 'gc2pl8-20' for key 'TopicC'
+09/10/2015 16:25:10 - SELECT * FROM Topics WHERE code = 'gc2pl8' AND fkSubject = 20 
+09/10/2015 16:25:10 - qNewTopicV2 : Duplicate entry 'gc2pl9-20' for key 'TopicC'
+09/10/2015 16:25:10 - SELECT * FROM Topics WHERE code = 'gc2pl9' AND fkSubject = 20 
+09/10/2015 16:25:10 - qNewTopicV2 : Duplicate entry 'gc2pl0-20' for key 'TopicC'
+09/10/2015 16:25:10 - SELECT * FROM Topics WHERE code = 'gc2pl0' AND fkSubject = 20 
+09/10/2015 16:25:10 - qNewTopicV2 : Duplicate entry 'gc2pl1-20' for key 'TopicC'
+09/10/2015 16:25:10 - SELECT * FROM Topics WHERE code = 'gc2pl1' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl2-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl2' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl3-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl3' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl4-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl4' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl5-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl5' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl6-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl6' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl7-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl7' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl8-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl8' AND fkSubject = 20 
+09/10/2015 16:25:11 - qNewTopicV2 : Duplicate entry 'gc2pl9-20' for key 'TopicC'
+09/10/2015 16:25:11 - SELECT * FROM Topics WHERE code = 'gc2pl9' AND fkSubject = 20 
+09/10/2015 16:25:13 - qNewTopicV2 : Duplicate entry 'gc2ru0-21' for key 'TopicC'
+09/10/2015 16:25:13 - SELECT * FROM Topics WHERE code = 'gc2ru0' AND fkSubject = 21 
+09/10/2015 16:25:13 - qNewTopicV2 : Duplicate entry 'gc2ru1-21' for key 'TopicC'
+09/10/2015 16:25:13 - SELECT * FROM Topics WHERE code = 'gc2ru1' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru3-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru3' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru4-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru4' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru5-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru5' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru6-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru6' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru7-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru7' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru8-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru8' AND fkSubject = 21 
+09/10/2015 16:25:14 - qNewTopicV2 : Duplicate entry 'gc2ru9-21' for key 'TopicC'
+09/10/2015 16:25:14 - SELECT * FROM Topics WHERE code = 'gc2ru9' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru0-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru0' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru1-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru1' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru2-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru2' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru3-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru3' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru4-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru4' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru5-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru5' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru6-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru6' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru7-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru7' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru8-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru8' AND fkSubject = 21 
+09/10/2015 16:25:15 - qNewTopicV2 : Duplicate entry 'gc2ru9-21' for key 'TopicC'
+09/10/2015 16:25:15 - SELECT * FROM Topics WHERE code = 'gc2ru9' AND fkSubject = 21 
+09/10/2015 16:25:18 - qNewAnswer : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+09/10/2015 16:25:18 - AAA a:9:{i:0;N;i:1;s:0:"";i:2;s:0:"";i:3;s:0:"";i:4;s:0:"";i:5;s:0:"";i:6;s:0:"";i:7;s:0:"";i:8;s:0:"";} Topic id 562 1 &Upsilon;&pi;&omicron;&delta;&epsilon;&#943;&xi;&tau;&epsilon; &tau;&omicron;&nu; &alpha;&rho;&iota;&theta;&mu;&#972; &tau;&eta;&sigmaf; &omicron;&mu;&#940;&delta;&alpha;&sigmaf; &sigma;&tau;&eta;&nu; &omicron;&pi;&omicron;&#943;&alpha; &alpha;&nu;&#942;&kappa;&epsilon;&iota; &tau;&omicron; &mu;&alpha;&gamma;&nu;&#942;&sigma;&iota;&omicron;.<P><IMG height=271 alt="" hspace=0 src="../../topicresources/545540240/g1tbper_gr_col.jpg" width=554 border=0></P> 8
+09/10/2015 16:25:20 - qNewTopicV2 : Duplicate entry 'gc1gr0-22' for key 'TopicC'
+09/10/2015 16:25:20 - SELECT * FROM Topics WHERE code = 'gc1gr0' AND fkSubject = 22 
+09/10/2015 16:25:21 - qNewTopicV2 : Duplicate entry 'gc1gr1-22' for key 'TopicC'
+09/10/2015 16:25:21 - SELECT * FROM Topics WHERE code = 'gc1gr1' AND fkSubject = 22 
+09/10/2015 16:25:22 - qNewTopicV2 : Duplicate entry 'gc1gr2-22' for key 'TopicC'
+09/10/2015 16:25:22 - SELECT * FROM Topics WHERE code = 'gc1gr2' AND fkSubject = 22 
+09/10/2015 16:25:22 - qNewTopicV2 : Duplicate entry 'gc1gr3-22' for key 'TopicC'
+09/10/2015 16:25:22 - SELECT * FROM Topics WHERE code = 'gc1gr3' AND fkSubject = 22 
+09/10/2015 16:25:22 - qNewTopicV2 : Duplicate entry 'gc1gr4-22' for key 'TopicC'
+09/10/2015 16:25:22 - SELECT * FROM Topics WHERE code = 'gc1gr4' AND fkSubject = 22 
+09/10/2015 16:25:23 - qNewTopicV2 : Duplicate entry 'gc1gr5-22' for key 'TopicC'
+09/10/2015 16:25:23 - SELECT * FROM Topics WHERE code = 'gc1gr5' AND fkSubject = 22 
+09/10/2015 16:25:23 - qNewTopicV2 : Duplicate entry 'gc1gr6-22' for key 'TopicC'
+09/10/2015 16:25:23 - SELECT * FROM Topics WHERE code = 'gc1gr6' AND fkSubject = 22 
+09/10/2015 16:25:23 - qNewTopicV2 : Duplicate entry 'gc1gr7-22' for key 'TopicC'
+09/10/2015 16:25:23 - SELECT * FROM Topics WHERE code = 'gc1gr7' AND fkSubject = 22 
+09/10/2015 16:25:24 - qNewTopicV2 : Duplicate entry 'gc1gr8-22' for key 'TopicC'
+09/10/2015 16:25:24 - SELECT * FROM Topics WHERE code = 'gc1gr8' AND fkSubject = 22 
+09/10/2015 16:25:24 - qNewTopicV2 : Duplicate entry 'gc1gr9-22' for key 'TopicC'
+09/10/2015 16:25:24 - SELECT * FROM Topics WHERE code = 'gc1gr9' AND fkSubject = 22 
+09/10/2015 16:25:24 - qNewTopicV2 : Duplicate entry 'gc1gr0-22' for key 'TopicC'
+09/10/2015 16:25:24 - SELECT * FROM Topics WHERE code = 'gc1gr0' AND fkSubject = 22 
+09/10/2015 16:25:25 - qNewTopicV2 : Duplicate entry 'gc1gr1-22' for key 'TopicC'
+09/10/2015 16:25:25 - SELECT * FROM Topics WHERE code = 'gc1gr1' AND fkSubject = 22 
+09/10/2015 16:25:25 - qNewTopicV2 : Duplicate entry 'gc1gr2-22' for key 'TopicC'
+09/10/2015 16:25:25 - SELECT * FROM Topics WHERE code = 'gc1gr2' AND fkSubject = 22 
+09/10/2015 16:25:25 - qNewTopicV2 : Duplicate entry 'gc1gr3-22' for key 'TopicC'
+09/10/2015 16:25:25 - SELECT * FROM Topics WHERE code = 'gc1gr3' AND fkSubject = 22 
+09/10/2015 16:25:25 - qNewTopicV2 : Duplicate entry 'gc1gr4-22' for key 'TopicC'
+09/10/2015 16:25:25 - SELECT * FROM Topics WHERE code = 'gc1gr4' AND fkSubject = 22 
+09/10/2015 16:25:26 - qNewTopicV2 : Duplicate entry 'gc1gr5-22' for key 'TopicC'
+09/10/2015 16:25:26 - SELECT * FROM Topics WHERE code = 'gc1gr5' AND fkSubject = 22 
+09/10/2015 16:25:27 - qNewTopicV2 : Duplicate entry 'gc1gr6-22' for key 'TopicC'
+09/10/2015 16:25:27 - SELECT * FROM Topics WHERE code = 'gc1gr6' AND fkSubject = 22 
+09/10/2015 16:25:27 - qNewTopicV2 : Duplicate entry 'gc1gr7-22' for key 'TopicC'
+09/10/2015 16:25:27 - SELECT * FROM Topics WHERE code = 'gc1gr7' AND fkSubject = 22 
+09/10/2015 16:25:27 - qNewAnswer : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+09/10/2015 16:25:27 - AAA a:9:{i:0;N;i:1;s:0:"";i:2;s:0:"";i:3;s:0:"";i:4;s:0:"";i:5;s:0:"";i:6;s:0:"";i:7;s:0:"";i:8;s:0:"";} Topic id 567 3 &Mu;&#943;&alpha; &alpha;&lambda;&kappa;&omicron;&#972;&lambda;&eta; &#941;&chi;&epsilon;&iota; &tau;&omicron;&nu; &chi;&eta;&mu;&iota;&kappa;&#972; &tau;&#973;&pi;&omicron;: C<SUB>3</SUB>H<SUB>7</SUB>OH&Nu;&alpha; &gamma;&rho;&#940;&psi;&epsilon;&tau;&epsilon; &tau;&omicron; &#972;&nu;&omicron;&mu;&alpha; &tau;&eta;&sigmaf; &lambda;&epsilon;&iota;&tau;&omicron;&upsilon;&rho;&gamma;&iota;&kappa;&#942;&sigmaf; &omicron;&mu;&#940;&delta;&alpha;&sigmaf; &sigma;&tau;&omicron; &mu;&#972;&rho;&iota;&omicron; &alpha;&upsilon;&tau;&#972;. 8
+09/10/2015 16:25:27 - qNewTopicV2 : Duplicate entry 'gc1gr8-22' for key 'TopicC'
+09/10/2015 16:25:27 - SELECT * FROM Topics WHERE code = 'gc1gr8' AND fkSubject = 22 
+09/10/2015 16:25:28 - qNewTopicV2 : Duplicate entry 'gc1gr9-22' for key 'TopicC'
+09/10/2015 16:25:28 - SELECT * FROM Topics WHERE code = 'gc1gr9' AND fkSubject = 22 
+09/10/2015 16:25:29 - qNewAnswer : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+09/10/2015 16:25:29 - AAA a:9:{i:0;N;i:1;s:0:"";i:2;s:0:"";i:3;s:0:"";i:4;s:0:"";i:5;s:0:"";i:6;s:0:"";i:7;s:0:"";i:8;s:0:"";} Topic id 591 1 &Omicron; &pi;&alpha;&rho;&alpha;&kappa;&#940;&tau;&omega; &pi;&#943;&nu;&alpha;&kappa;&alpha;&sigmaf; &delta;&epsilon;&#943;&chi;&nu;&epsilon;&iota; &tau;&omicron;&nu; &alpha;&rho;&iota;&theta;&mu;&#972; &tau;&omega;&nu; &eta;&lambda;&epsilon;&kappa;&tau;&rho;&omicron;&nu;&#943;&omega;&nu; &sigma;&epsilon; &#941;&xi;&iota; &omicron;&upsilon;&delta;&#941;&tau;&epsilon;&rho;&alpha; &#940;&tau;&omicron;&mu;&alpha; &pi;&omicron;&upsilon; &epsilon;&pi;&iota;&sigma;&eta;&mu;&alpha;&#943;&nu;&omicron;&nu;&tau;&alpha;&iota; &mu;&epsilon; &tau;&alpha; &gamma;&rho;&#940;&mu;&mu;&alpha;&tau;&alpha; &Alpha; &#941;&omega;&sigmaf; &Zeta;.
+
+
+
+
+&#902;&tau;&omicron;&mu;&omicron;
+
+&Alpha;
+
+&Beta;
+
+&Gamma;
+
+&Delta;
+
+&Epsilon;
+
+&Zeta;
+
+
+&Alpha;&rho;&iota;&theta;&mu;&#972;&sigmaf; &eta;&lambda;&epsilon;&kappa;&tau;&rho;&omicron;&nu;&#943;&omega;&nu;
+
+6
+
+9
+
+14
+
+16
+
+16
+
+19&Chi;&rho;&eta;&sigma;&iota;&mu;&omicron;&pi;&omicron;&iota;&epsilon;&#943;&sigma;&tau;&epsilon; &tau;&omicron; &gamma;&rho;&#940;&mu;&mu;&alpha; &sigma;&tau;&eta;&nu; &kappa;&omicron;&rho;&upsilon;&phi;&#942; &kappa;&#940;&theta;&epsilon; &sigma;&tau;&#942;&lambda;&eta;&sigmaf; &tau;&omicron;&upsilon; &pi;&#943;&nu;&alpha;&kappa;&alpha; &gamma;&iota;&alpha; &nu;&alpha; &alpha;&nu;&tau;&iota;&pi;&rho;&omicron;&sigma;&omega;&pi;&epsilon;&#973;&sigma;&epsilon;&tau;&epsilon; &tau;&omicron; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&omicron; &#942; &#941;&nu;&alpha; &#940;&tau;&omicron;&mu;&omicron; &tau;&omicron;&upsilon; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&omicron;&upsilon;.&Epsilon;&rho;&#974;&tau;&eta;&sigma;&eta;: &Pi;&omicron;&iota;&alpha; &delta;&#973;&omicron; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&alpha; &alpha;&pi;&#972; &tau;&omicron; &Alpha; &#941;&omega;&sigmaf; &tau;&omicron; &Zeta; &epsilon;&#943;&nu;&alpha;&iota; &iota;&sigma;&#972;&tau;&omicron;&pi;&alpha;; &Gamma;&rho;&#940;&psi;&tau;&epsilon; &tau;&eta;&nu; &alpha;&pi;&#940;&nu;&tau;&eta;&sigma;&eta; &sigma;&alpha;&sigmaf; &sigma;&tau;&omicron; &pi;&alpha;&rho;&alpha;&kappa;&#940;&tau;&omega; &kappa;&omicron;&upsilon;&tau;&#943;, &chi;&omega;&rho;&#943;&zeta;&omicron;&nu;&tau;&alpha;&sigmaf; &tau;&alpha; &sigma;&#973;&mu;&beta;&omicron;&lambda;&alpha; &mu;&epsilon; &tau;&omicron; &kappa;&alpha;&iota;, &gamma;&iota;&alpha; &pi;&alpha;&rho;&#940;&delta;&epsilon;&iota;&gamma;&mu;&alpha; &Alpha; &kappa;&alpha;&iota; &Gamma;.&Alpha;&pi;&#940;&nu;&tau;&eta;&sigma;&eta;:
+<P></P> 8
+09/10/2015 16:25:29 - qNewAnswer : You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+09/10/2015 16:25:29 - AAA a:9:{i:0;N;i:1;s:0:"";i:2;s:0:"";i:3;s:0:"";i:4;s:0:"";i:5;s:0:"";i:6;s:0:"";i:7;s:0:"";i:8;s:0:"";} Topic id 591 1 &Omicron; &pi;&alpha;&rho;&alpha;&kappa;&#940;&tau;&omega; &pi;&#943;&nu;&alpha;&kappa;&alpha;&sigmaf; &delta;&epsilon;&#943;&chi;&nu;&epsilon;&iota; &tau;&omicron;&nu; &alpha;&rho;&iota;&theta;&mu;&#972; &tau;&omega;&nu; &eta;&lambda;&epsilon;&kappa;&tau;&rho;&omicron;&nu;&#943;&omega;&nu; &sigma;&epsilon; &#941;&xi;&iota; &omicron;&upsilon;&delta;&#941;&tau;&epsilon;&rho;&alpha; &#940;&tau;&omicron;&mu;&alpha; &pi;&omicron;&upsilon; &epsilon;&pi;&iota;&sigma;&eta;&mu;&alpha;&#943;&nu;&omicron;&nu;&tau;&alpha;&iota; &mu;&epsilon; &tau;&alpha; &gamma;&rho;&#940;&mu;&mu;&alpha;&tau;&alpha; &Alpha; &#941;&omega;&sigmaf; &Zeta;.
+
+
+
+
+&#902;&tau;&omicron;&mu;&omicron;
+
+&Alpha;
+
+&Beta;
+
+&Gamma;
+
+&Delta;
+
+&Epsilon;
+
+&Zeta;
+
+
+&Alpha;&rho;&iota;&theta;&mu;&#972;&sigmaf; &eta;&lambda;&epsilon;&kappa;&tau;&rho;&omicron;&nu;&#943;&omega;&nu;
+
+6
+
+9
+
+14
+
+16
+
+16
+
+19&Chi;&rho;&eta;&sigma;&iota;&mu;&omicron;&pi;&omicron;&iota;&epsilon;&#943;&sigma;&tau;&epsilon; &tau;&omicron; &gamma;&rho;&#940;&mu;&mu;&alpha; &sigma;&tau;&eta;&nu; &kappa;&omicron;&rho;&upsilon;&phi;&#942; &kappa;&#940;&theta;&epsilon; &sigma;&tau;&#942;&lambda;&eta;&sigmaf; &tau;&omicron;&upsilon; &pi;&#943;&nu;&alpha;&kappa;&alpha; &gamma;&iota;&alpha; &nu;&alpha; &alpha;&nu;&tau;&iota;&pi;&rho;&omicron;&sigma;&omega;&pi;&epsilon;&#973;&sigma;&epsilon;&tau;&epsilon; &tau;&omicron; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&omicron; &#942; &#941;&nu;&alpha; &#940;&tau;&omicron;&mu;&omicron; &tau;&omicron;&upsilon; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&omicron;&upsilon;.&Epsilon;&rho;&#974;&tau;&eta;&sigma;&eta;: &Pi;&omicron;&iota;&alpha; &delta;&#973;&omicron; &sigma;&tau;&omicron;&iota;&chi;&epsilon;&#943;&alpha; &alpha;&pi;&#972; &tau;&omicron; &Alpha; &#941;&omega;&sigmaf; &tau;&omicron; &Zeta; &epsilon;&#943;&nu;&alpha;&iota; &iota;&sigma;&#972;&tau;&omicron;&pi;&alpha;; &Gamma;&rho;&#940;&psi;&tau;&epsilon; &tau;&eta;&nu; &alpha;&pi;&#940;&nu;&tau;&eta;&sigma;&eta; &sigma;&alpha;&sigmaf; &sigma;&tau;&omicron; &pi;&alpha;&rho;&alpha;&kappa;&#940;&tau;&omega; &kappa;&omicron;&upsilon;&tau;&#943;, &chi;&omega;&rho;&#943;&zeta;&omicron;&nu;&tau;&alpha;&sigmaf; &tau;&alpha; &sigma;&#973;&mu;&beta;&omicron;&lambda;&alpha; &mu;&epsilon; &tau;&omicron; &kappa;&alpha;&iota;, &gamma;&iota;&alpha; &pi;&alpha;&rho;&#940;&delta;&epsilon;&iota;&gamma;&mu;&alpha; &Alpha; &kappa;&alpha;&iota; &Gamma;.&Alpha;&pi;&#940;&nu;&tau;&eta;&sigma;&eta;:
+<P></P> 8
+09/10/2015 16:25:31 - qNewTopicV2 : Duplicate entry 'gc2gr0-23' for key 'TopicC'
+09/10/2015 16:25:31 - SELECT * FROM Topics WHERE code = 'gc2gr0' AND fkSubject = 23 
+09/10/2015 16:25:31 - qNewTopicV2 : Duplicate entry 'gc2gr1-23' for key 'TopicC'
+09/10/2015 16:25:31 - SELECT * FROM Topics WHERE code = 'gc2gr1' AND fkSubject = 23 
+09/10/2015 16:25:32 - qNewTopicV2 : Duplicate entry 'gc2gr2-23' for key 'TopicC'
+09/10/2015 16:25:32 - SELECT * FROM Topics WHERE code = 'gc2gr2' AND fkSubject = 23 
+09/10/2015 16:25:32 - qNewTopicV2 : Duplicate entry 'gc2gr3-23' for key 'TopicC'
+09/10/2015 16:25:32 - SELECT * FROM Topics WHERE code = 'gc2gr3' AND fkSubject = 23 
+09/10/2015 16:25:32 - qNewTopicV2 : Duplicate entry 'gc2gr4-23' for key 'TopicC'
+09/10/2015 16:25:32 - SELECT * FROM Topics WHERE code = 'gc2gr4' AND fkSubject = 23 
+09/10/2015 16:25:33 - qNewTopicV2 : Duplicate entry 'gc2gr5-23' for key 'TopicC'
+09/10/2015 16:25:33 - SELECT * FROM Topics WHERE code = 'gc2gr5' AND fkSubject = 23 
+09/10/2015 16:25:33 - qNewTopicV2 : Duplicate entry 'gc2gr6-23' for key 'TopicC'
+09/10/2015 16:25:33 - SELECT * FROM Topics WHERE code = 'gc2gr6' AND fkSubject = 23 
+09/10/2015 16:25:33 - qNewTopicV2 : Duplicate entry 'gc2gr7-23' for key 'TopicC'
+09/10/2015 16:25:33 - SELECT * FROM Topics WHERE code = 'gc2gr7' AND fkSubject = 23 
+09/10/2015 16:25:33 - qNewTopicV2 : Duplicate entry 'gc2gr8-23' for key 'TopicC'
+09/10/2015 16:25:33 - SELECT * FROM Topics WHERE code = 'gc2gr8' AND fkSubject = 23 
+09/10/2015 16:25:33 - qNewTopicV2 : Duplicate entry 'gc2gr9-23' for key 'TopicC'
+09/10/2015 16:25:33 - SELECT * FROM Topics WHERE code = 'gc2gr9' AND fkSubject = 23 
+09/10/2015 16:25:34 - qNewTopicV2 : Duplicate entry 'gc2gr0-23' for key 'TopicC'
+09/10/2015 16:25:34 - SELECT * FROM Topics WHERE code = 'gc2gr0' AND fkSubject = 23 
+09/10/2015 16:25:34 - qNewTopicV2 : Duplicate entry 'gc2gr1-23' for key 'TopicC'
+09/10/2015 16:25:34 - SELECT * FROM Topics WHERE code = 'gc2gr1' AND fkSubject = 23 
+09/10/2015 16:25:35 - qNewTopicV2 : Duplicate entry 'gc2gr2-23' for key 'TopicC'
+09/10/2015 16:25:35 - SELECT * FROM Topics WHERE code = 'gc2gr2' AND fkSubject = 23 
+09/10/2015 16:25:35 - qNewTopicV2 : Duplicate entry 'gc2gr3-23' for key 'TopicC'
+09/10/2015 16:25:35 - SELECT * FROM Topics WHERE code = 'gc2gr3' AND fkSubject = 23 
+09/10/2015 16:25:35 - qNewTopicV2 : Duplicate entry 'gc2gr4-23' for key 'TopicC'
+09/10/2015 16:25:35 - SELECT * FROM Topics WHERE code = 'gc2gr4' AND fkSubject = 23 
+09/10/2015 16:25:36 - qNewTopicV2 : Duplicate entry 'gc2gr5-23' for key 'TopicC'
+09/10/2015 16:25:36 - SELECT * FROM Topics WHERE code = 'gc2gr5' AND fkSubject = 23 
+09/10/2015 16:25:36 - qNewTopicV2 : Duplicate entry 'gc2gr6-23' for key 'TopicC'
+09/10/2015 16:25:36 - SELECT * FROM Topics WHERE code = 'gc2gr6' AND fkSubject = 23 
+09/10/2015 16:25:36 - qNewTopicV2 : Duplicate entry 'gc2gr7-23' for key 'TopicC'
+09/10/2015 16:25:36 - SELECT * FROM Topics WHERE code = 'gc2gr7' AND fkSubject = 23 
+09/10/2015 16:25:36 - qNewTopicV2 : Duplicate entry 'gc2gr8-23' for key 'TopicC'
+09/10/2015 16:25:36 - SELECT * FROM Topics WHERE code = 'gc2gr8' AND fkSubject = 23 
+09/10/2015 16:25:36 - qNewTopicV2 : Duplicate entry 'gc2gr9-23' for key 'TopicC'
+09/10/2015 16:25:36 - SELECT * FROM Topics WHERE code = 'gc2gr9' AND fkSubject = 23 
+09/10/2015 16:25:44 - qNewTopicV2 : Duplicate entry 'gc2si6-25' for key 'TopicC'
+09/10/2015 16:25:44 - SELECT * FROM Topics WHERE code = 'gc2si6' AND fkSubject = 25 
+09/10/2015 16:25:44 - qNewTopicV2 : Duplicate entry 'gc2si9-25' for key 'TopicC'
+09/10/2015 16:25:44 - SELECT * FROM Topics WHERE code = 'gc2si9' AND fkSubject = 25 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enE-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enE' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enF-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enF' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enG-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enG' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enH-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enH' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enI-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enI' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enJ-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enJ' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enK-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enK' AND fkSubject = 26 
+09/10/2015 16:25:45 - qNewTopicV2 : Duplicate entry 'ic3enM-26' for key 'TopicC'
+09/10/2015 16:25:45 - SELECT * FROM Topics WHERE code = 'ic3enM' AND fkSubject = 26 
+09/10/2015 16:25:46 - qNewTopicV2 : Duplicate entry 'ic3enI-26' for key 'TopicC'
+09/10/2015 16:25:46 - SELECT * FROM Topics WHERE code = 'ic3enI' AND fkSubject = 26 
+09/10/2015 16:25:47 - qNewTopicV2 : Duplicate entry 'oc3deb-28' for key 'TopicC'
+09/10/2015 16:25:47 - SELECT * FROM Topics WHERE code = 'oc3deb' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3ded-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3ded' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3deg-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3deg' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3deh-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3deh' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3dei-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3dei' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3dek-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3dek' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3dem-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3dem' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3ded-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3ded' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3deg-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3deg' AND fkSubject = 28 
+09/10/2015 16:25:48 - qNewTopicV2 : Duplicate entry 'oc3der-28' for key 'TopicC'
+09/10/2015 16:25:48 - SELECT * FROM Topics WHERE code = 'oc3der' AND fkSubject = 28 
+09/10/2015 16:25:50 - qNewTopicV2 : Duplicate entry 'oc3enB-29' for key 'TopicC'
+09/10/2015 16:25:50 - SELECT * FROM Topics WHERE code = 'oc3enB' AND fkSubject = 29 
+09/10/2015 16:25:50 - qNewTopicV2 : Duplicate entry 'oc3enD-29' for key 'TopicC'
+09/10/2015 16:25:50 - SELECT * FROM Topics WHERE code = 'oc3enD' AND fkSubject = 29 
+09/10/2015 16:25:50 - qNewTopicV2 : Duplicate entry 'oc3enG-29' for key 'TopicC'
+09/10/2015 16:25:50 - SELECT * FROM Topics WHERE code = 'oc3enG' AND fkSubject = 29 
+09/10/2015 16:25:50 - qNewTopicV2 : Duplicate entry 'oc3enH-29' for key 'TopicC'
+09/10/2015 16:25:50 - SELECT * FROM Topics WHERE code = 'oc3enH' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enI-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enI' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enL-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enL' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enM-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enM' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enD-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enD' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enG-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enG' AND fkSubject = 29 
+09/10/2015 16:25:51 - qNewTopicV2 : Duplicate entry 'oc3enR-29' for key 'TopicC'
+09/10/2015 16:25:51 - SELECT * FROM Topics WHERE code = 'oc3enR' AND fkSubject = 29 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en0-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en0' AND fkSubject = 30 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en1-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en1' AND fkSubject = 30 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en2-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en2' AND fkSubject = 30 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en3-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en3' AND fkSubject = 30 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en4-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en4' AND fkSubject = 30 
+09/10/2015 16:25:53 - qNewTopicV2 : Duplicate entry 'pc3en5-30' for key 'TopicC'
+09/10/2015 16:25:53 - SELECT * FROM Topics WHERE code = 'pc3en5' AND fkSubject = 30 
+09/10/2015 16:25:54 - qNewTopicV2 : Duplicate entry 'pc3en6-30' for key 'TopicC'
+09/10/2015 16:25:54 - SELECT * FROM Topics WHERE code = 'pc3en6' AND fkSubject = 30 
+09/10/2015 16:25:54 - qNewTopicV2 : Duplicate entry 'pc3en7-30' for key 'TopicC'
+09/10/2015 16:25:54 - SELECT * FROM Topics WHERE code = 'pc3en7' AND fkSubject = 30 
+09/10/2015 16:25:54 - qNewTopicV2 : Duplicate entry 'pc3en8-30' for key 'TopicC'
+09/10/2015 16:25:54 - SELECT * FROM Topics WHERE code = 'pc3en8' AND fkSubject = 30 
+09/10/2015 16:25:54 - qNewTopicV2 : Duplicate entry 'pc3en9-30' for key 'TopicC'
+09/10/2015 16:25:54 - SELECT * FROM Topics WHERE code = 'pc3en9' AND fkSubject = 30 
+09/10/2015 16:25:56 - qNewTopicV2 : Duplicate entry 'pc3es0-31' for key 'TopicC'
+09/10/2015 16:25:56 - SELECT * FROM Topics WHERE code = 'pc3es0' AND fkSubject = 31 
+09/10/2015 16:25:56 - qNewTopicV2 : Duplicate entry 'pc3es1-31' for key 'TopicC'
+09/10/2015 16:25:56 - SELECT * FROM Topics WHERE code = 'pc3es1' AND fkSubject = 31 
+09/10/2015 16:25:56 - qNewTopicV2 : Duplicate entry 'pc3es2-31' for key 'TopicC'
+09/10/2015 16:25:56 - SELECT * FROM Topics WHERE code = 'pc3es2' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es3-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es3' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es4-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es4' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es5-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es5' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es6-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es6' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es7-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es7' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es8-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es8' AND fkSubject = 31 
+09/10/2015 16:25:57 - qNewTopicV2 : Duplicate entry 'pc3es9-31' for key 'TopicC'
+09/10/2015 16:25:57 - SELECT * FROM Topics WHERE code = 'pc3es9' AND fkSubject = 31 
+09/10/2015 16:25:59 - qNewTopicV2 : Duplicate entry 'pc3it0-32' for key 'TopicC'
+09/10/2015 16:25:59 - SELECT * FROM Topics WHERE code = 'pc3it0' AND fkSubject = 32 
+09/10/2015 16:25:59 - qNewTopicV2 : Duplicate entry 'pc3it1-32' for key 'TopicC'
+09/10/2015 16:25:59 - SELECT * FROM Topics WHERE code = 'pc3it1' AND fkSubject = 32 
+09/10/2015 16:25:59 - qNewTopicV2 : Duplicate entry 'pc3it2-32' for key 'TopicC'
+09/10/2015 16:25:59 - SELECT * FROM Topics WHERE code = 'pc3it2' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it3-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it3' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it4-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it4' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it5-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it5' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it6-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it6' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it7-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it7' AND fkSubject = 32 
+09/10/2015 16:26:00 - qNewTopicV2 : Duplicate entry 'pc3it8-32' for key 'TopicC'
+09/10/2015 16:26:00 - SELECT * FROM Topics WHERE code = 'pc3it8' AND fkSubject = 32 
+09/10/2015 16:26:01 - qNewTopicV2 : Duplicate entry 'pc3it9-32' for key 'TopicC'
+09/10/2015 16:26:01 - SELECT * FROM Topics WHERE code = 'pc3it9' AND fkSubject = 32 
+09/10/2015 18:18:11 - array (
+  0 => '1',
+  1 => '3',
+)
+09/10/2015 18:45:07 - 16TestSetting130180006030
+09/10/2015 18:51:05 - 10/09/2015 18:45
+09/10/2015 18:53:17 - 10/09/2015 18:53
+09/10/2015 18:55:14 - 10/09/2015 18:55
+09/10/2015 19:06:54 - 10/09/2015 19:06
+09/11/2015 14:15:06 - 11/09/2015 14:14
+09/11/2015 14:39:22 - 9New Settings1000009030
+09/11/2015 14:39:37 - 11/09/2015 14:39

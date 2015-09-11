@@ -198,7 +198,7 @@ class StudentController extends Controller{
                 $questions = json_decode($_POST['questions'], true);
                 $answers = json_decode($_POST['answers'], true);
 
-                if($db->qUpdateTestAnswers($_SESSION['idSet'], $questions, $answers)){
+                if($db->qUpdateTestAnswers($_SESSION['idSet'],$idLang, $questions, $answers)){
 
                     if((isset($_POST['submit'])) && ($_POST['submit'] == "true")){      // Close test
                         if($db->qEndTest($_SESSION['idSet'])){
