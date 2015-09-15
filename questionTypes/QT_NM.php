@@ -273,7 +273,7 @@ class QT_NM extends Question
         //if(count($answerr) > 0){
             $db = new sqlDB();
             $db2 = new sqlDB();
-            if ($pippo=$db->qSelect('answers', 'fkQuestion', $idAns)) {
+            if ($pippo=$db->qSelect('Answers', 'fkQuestion', $idAns)) {
                 //$aaa=$db->getResultAssoc('idAnswer');
                 //$log->append(var_export($aaa, true));
                 //$log->append(var_export('pippo=', true));
@@ -286,7 +286,7 @@ class QT_NM extends Question
                     //$log->append(var_export($result['idAnswer'], true));
                     $id=$result['idAnswer'];
                     //$log->append(var_export($id, true));
-                    if ($db2->qSelect('translationanswers', 'fkAnswer', $id)) {
+                    if ($db2->qSelect('TranslationAnswers', 'fkAnswer', $id)) {
                         //$traslation = $db->nextRowAssoc();
                         //$log->append(var_export($traslation, true));
                         while ($traslation = $db2->nextRowAssoc()) {

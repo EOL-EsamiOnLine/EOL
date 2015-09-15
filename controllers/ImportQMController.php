@@ -7,13 +7,13 @@
  * Desc: Controller for QM import operations
  */
 
-class ImportQMController extends Controller{
+class ImportqmController extends Controller{
 
     /**
      *  @name   ImportQMController
      *  @descr  Create an instance of ImportQMController class
      */
-    public function ImportQMController (){}
+    public function ImportqmController (){}
 
     /**
      * @name    executeAction
@@ -182,7 +182,7 @@ class ImportQMController extends Controller{
 
 
                                 //SETTO IL PATH DELLE IMMAGINI
-                                $xml = str_replace("%SERVER.GRAPHICS%", "../../", $xml);
+                                $xml = str_replace("%SERVER.GRAPHICS%", $config['topicResQM'], $xml);
 
 
 

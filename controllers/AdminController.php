@@ -698,7 +698,7 @@ class AdminController extends Controller{
             array(
                 'allow',
                 'actions' => array('Newstudent'),
-                'roles'   => array('?', 'a', 't','e'),
+                'roles'   => array('?', 'a', 't'),
             ),
             array(
                 'allow',

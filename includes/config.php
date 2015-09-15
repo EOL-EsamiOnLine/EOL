@@ -16,7 +16,7 @@ $config['systemVersion'] = '0.0.3';
 // System title
 $config['systemTitle'] = 'EOL - Esami On Line';
 // System home website (used for emails)
-$config['systemHome'] = 'http://webmake.no-ip.org/eol';
+$config['systemHome'] = 'http://echemtest.eol.unipg.it/';
 // System comunication email
 $config['systemEmail'] = 'no-reply@eol.org';
 // Default system language (watch Languages table in db)
@@ -41,7 +41,7 @@ $config['systemExtraDir'] = 'extra/';
 
 //ImportQM directory
 $config['importQMDir']='../../QUESTIONS';
-$config['topicResQM']='../../topicresources';
+$config['topicResQM']='../../';
 
 // System log files directory
 $config['logDir'] = '../logs/';

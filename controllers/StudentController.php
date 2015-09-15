@@ -181,7 +181,7 @@ class StudentController extends Controller{
 //                if(($testInfo['status'] != 'w') && ($testInfo['status'] != 's')){
 
                 $db2 = new sqlDB();
-                if(($db2->qSelect('users', 'idUser', $testInfo ['fkUser'])) && ($testInfo2 = $db2->nextRowAssoc())) {
+                if(($db2->qSelect('Users', 'idUser', $testInfo ['fkUser'])) && ($testInfo2 = $db2->nextRowAssoc())) {
                     $idLang = $testInfo2['fkLanguage'];    //prendo la lingua dalla tabella users
                 }else{
                     die($db->getError());
@@ -211,6 +211,7 @@ class StudentController extends Controller{
                         echo 'ACK';
                     }
                 }else{
+                    $log->append("cazzo qSelect2");
                     die($db->getError());
                 }
             }else{
