@@ -280,6 +280,8 @@ define('ttQTNM' , 'Numerica');
 define('ttQTNMDescription' , 'In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.');
 define('ttQTTM' , 'Testo');
 define('ttQTTMDescription' , 'In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.');
+define('ttQTHS' , 'Hotspot');
+define('ttQTHSDescription' , 'Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un immagine per indicare la risposta.');
 define('ttRandom' , "Casuali");
 define('ttRefresh' , "Aggiorna");
 define('ttRegister' , "Registrati");
@@ -364,7 +366,7 @@ define('ttStudentAnswer' , 'Risposta data dallo studente:');
 define('ttInsertImage' , 'Inserire immagine');
 
 
-
+define('ttCoord','PIPPO');
 
 
 

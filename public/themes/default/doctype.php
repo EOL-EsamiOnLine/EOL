@@ -38,6 +38,13 @@ global $user, $engine, $config;
     <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>dataTables.jqueryui.js"></script>
     <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.scrollTo.min.js"></script>
 
+
+
+    <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.dragon.js"></script>
+    <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.dragon-slider.js"></script>
+    <script type="text/javascript" src="<?= $config['systemLibsDir'] ?>jquery.Jcrop.js"></script>
+
+
     <script src="ckeditor/ckeditor.js"></script>
 
 
