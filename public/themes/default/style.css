@@ -2260,9 +2260,10 @@ span.extraClose{
 
 #contentContainerCrop{
     /* border: 2px black solid;  */
-    overflow: hidden;
-    width: 420px;
-    height: 450px;
+    overflow: auto;
+    width: auto;
+
+    height: auto;
 
 }
 
