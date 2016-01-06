@@ -62,9 +62,9 @@
     <text id="ttCRegister">Sei sicuro di volerti registrare a questo esame?</text>
     <text id="ttCRegisterStudents">Sei sicuro di voler registrare gli studenti selezionati all'esame?</text>
     <text id="ttCRenewPassword">La password per l'esame verrà aggiornata.\nL'operazione non potrà essere annullata! Continuare?</text>
-    <text id="ttCStartExam">Vuoi far partire questo esame?</text>
+    <text id="ttCStartExam">Vuoi attivare questo esame?</text>
     <text id="ttCStartTest">Vuoi iniziare l'esame ora?\nTi verrà richiesta la password d'accesso all'esame.</text>
-    <text id="ttCStopExam">Vuoi fermare questo esame?</text>
+    <text id="ttCStopExam">Vuoi disattivare questo esame?</text>
     <text id="ttCSubmitTest">Vuoi consegnare il test?\nL'operazione non potrà essere annullata! Continuare?</text>
     <text id="ttCTest">La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!</text>
     <text id="ttCumLaudae">e Lode</text>
@@ -307,6 +307,10 @@
     <text id="ttQTYNDescription">Una domanda Sì/No è una domanda a risposta singola che chiede al partecipante di rispondere con un "Sì" o un "No".</text>
     <text id="ttQTTF">Vera / Falso</text>
     <text id="ttQTTFDescription">Una domanda Vero/Falso è una domanda a risposta singola che chiede al partecipante di rispondere con un "Vero" o un "Falso".</text>
+    <text id="ttQTNM">Numerica</text>
+    <text id="ttQTNMDescription">In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.</text>
+    <text id="ttQTTM">Testo</text>
+    <text id="ttQTTMDescription">In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.</text>
     <!-- ======================== R ======================== -->
     <text id="ttRandom">Casuali</text>
     <text id="ttRefresh">Aggiorna</text>
@@ -357,6 +361,8 @@
     <!-- ======================== T ======================== -->
     <text id="ttTeacher">Docente</text>
     <text id="ttTeachers">Docenti</text>
+    <text id="ttETeachers">Esaminatori</text>
+
     <text id="ttTest">Test</text>
     <text id="ttTests">Test</text>
     <text id="ttTestToCorrect">Tests da correggere</text>

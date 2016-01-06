@@ -45,8 +45,12 @@ $(function(){
 function selectSubject(){
     $("input[name=idSubject]").attr("value", $(".selected").attr("value"));
     var request = $("input[name=request]").attr("value").trim();
-    if((request == "") || (request == "qstn"))
+
+
+    if((request == "1") || (request == "qstn"))
         $("#idSubjectForm").attr("action", "index.php?page=question");
+    else if((request == "2") || (request == "qstn2"))
+        $("#idSubjectForm").attr("action", "index.php?page=question/index2");
     else if(request == "set")
         $("#idSubjectForm").attr("action", "index.php?page=exam/settings");
     $("#idSubjectForm").submit();
@@ -178,14 +182,16 @@ function createNewSubject(){
         showErrorMessage(ttEIncorrectField);
     else{
         var name = $("#infoName").val();
+        var vers = $("#infoVers").val();
         var desc = $("#infoDesc").val();
         var lang = $("#infoLanguage dt span.value").text();
-        if((name != "") && (lang != "")){
+        if((name != "") && (lang != "") && (vers != "") && !isNaN(parseFloat(vers))){
             $.ajax({
                 url     : "index.php?page=subject/newsubject",
                 type    : "post",
                 data    : {
                     subjectName  : name,
+                    subjectVers  : vers,
                     subjectDesc  : desc,
                     subjectLang  : lang
                 },

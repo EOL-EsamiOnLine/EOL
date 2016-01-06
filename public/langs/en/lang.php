@@ -48,9 +48,9 @@ define('ttCDiscardNew' , "The created item will be lost.<br/>Exit?");
 define('ttCRegister' , "Are you sure to register on this exam?");
 define('ttCRegisterStudents' , "Are you sure to register these selected students on the exam?");
 define('ttCRenewPassword' , "The exam's password will be changed.<br/>This operation can not be undone.<br/>Continue?");
-define('ttCStartExam' , "Do you want to start the selected exam?");
+define('ttCStartExam' , "Do you want to activate the selected exam?");
 define('ttCStartTest' , "Do you want to start the exam now?<br/>Exam password will be required.");
-define('ttCStopExam' , "Do you want to stop the selected exam?");
+define('ttCStopExam' , "Do you want to deactivate the selected exam?");
 define('ttCSubmitTest' , "Do you want to submit your test?<br/>This operation can not be undone! Continue?");
 define('ttCTest' , "Password is correct. Your test is ready and will start after your click!");
 define('ttCumLaudae' , "cum Laudae");
@@ -276,6 +276,13 @@ define('ttQTYN' , "Yes / No");
 define('ttQTYNDescription' , "A Yes/No question is a multiple choice question that asks the participant to give a \"Yes\" or \"No\" answer to a question.");
 define('ttQTTF' , "True / False");
 define('ttQTTFDescription' , "A True/False question is a Multiple Choice question that asks the participant to give a \"True\" or \"False\" answer to a question.");
+define('ttQTNM' , 'Numeric');
+define('ttQTNMDescription' , 'In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.');
+define('ttQTTM' , 'Text');
+define('ttQTTMDescription' , 'In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.');
+define('ttQTHS' , 'Hotspot');
+define('ttQTHSDescription' , 'Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un immagine per indicare la risposta.');
+
 define('ttRandom' , "Random");
 define('ttRefresh' , "Refresh");
 define('ttRegister' , "Register");
@@ -322,6 +329,7 @@ define('ttSurname' , "Surname");
 define('ttSystem' , "System");
 define('ttSystemConfiguration' , "System Configuration");
 define('ttTeacher' , "Teacher");
+define('tteTeacher' , "Examiner");
 define('ttTeachers' , "Teachers");
 define('ttTest' , "Test");
 define('ttTests' , "Tests");
@@ -347,3 +355,24 @@ define('ttWelcome' , "Welcome");
 define('ttWaiting' , "Waiting");
 define('ttWarning' , "Warning");
 define('ttYes' , "Yes");
+
+
+define('ttHotspotAnswerInfo' , 'Coordinates area right answer:');
+define('ttSizeWin' , 'Windows size:');
+define('ttWidth' , 'Width:');
+define('ttHeight' , 'Height:');
+define('ttRightArea' , 'Right Area');
+define('ttWrongArea' , 'Wrong Area');
+define('ttStudentAnswer' , 'Answer given by the student:');
+define('ttInsertImage' , 'Insert image');
+
+define('ttCoord','PIPPO');
+
+define('ttPrepareImportQM' , "Preview");
+define('ttImportQM' , "Import");
+define('ttImport' , "Import echemTest");
+
+
+define('ttSbjVers' , "Version");
+
+define('ttETeachers' , "Examinator");

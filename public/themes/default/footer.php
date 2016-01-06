@@ -20,5 +20,6 @@ global $config;
     <p></p>
     <span class="lbmClose" title="<?= ttClose ?>"></span>
 </div>
+
 </body>
 </html>

@@ -14,6 +14,8 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Languages` (
   PRIMARY KEY (`idLanguage`) ,
   UNIQUE INDEX `alias_UNIQUE` (`alias` ASC) )
 ENGINE = InnoDB
+
+ 
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
 COMMENT = 'Availables languages';
@@ -282,6 +284,7 @@ CREATE  TABLE IF NOT EXISTS `eol`.`Sets_Questions` (
   `fkSet` INT(10) UNSIGNED NOT NULL COMMENT 'Set''s ID' ,
   `fkQuestion` INT(10) UNSIGNED NOT NULL COMMENT 'Question''s ID' ,
   `answer` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL COMMENT 'ID or text for answered question in this set' ,
+  `fkIdLanguage` INT(10) UNSIGNED REFERENCES Languages(idLanguage),
   PRIMARY KEY (`fkSet`, `fkQuestion`) ,
   INDEX `fk_Sets_Questions_Set_idx` (`fkSet` ASC) ,
   INDEX `fk_Sets_Questions_Question_idx` (`fkQuestion` ASC) ,
@@ -526,7 +529,33 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
 COMMENT = 'Relation between Teachers and Subjects';
 
+
+
+
+
+-- -----------------------------------------------------
+-- Table `eol`.`Flag_Import`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `eol`.`Flag_Import` ;
+
+CREATE  TABLE IF NOT EXISTS `eol`.`Flag_Import` (
+  `done` TINYINT NULL DEFAULT 0 )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci
+COMMENT = 'Flag to check if import is done';
+
+
+
+
+
 USE `eol` ;
+
+-- ------------------
+-- First time i add flag with 0 to do the import
+-- ------------------
+INSERT INTO `Flag_Import` (`done`)
+VALUES (0);
 
 -- -----------------------------------------------------
 -- Default language (English)
@@ -544,6 +573,22 @@ VALUES (2, 'it', 'Italiano');
 -- Insert syntax for test teacher account (password: testeol)
 -- -----------------------------------------------------
 INSERT INTO `Users` (`name`, `surname`, `email`, `password`, `role`, `fkLanguage`)
-VALUES ('test', 'teacher', 'test@eol.org', 'ba7ad1bf263f90e254524174001e583d8d0df684', 'a', '1');
+VALUES ('admin', 'echemTest', 'admin@eol.org', '99053e95b3e682a0705474bb431f0041ece636b9', 'at', '1'),
+('User01', 'echemTest', 'user01@eol.org', '202884d0ebf976b175565124cefefee738897332', 's', '1'),
+('examiner', 'echemTest', 'examiner@eol.org', '1b7b4b4203b28059f9eaf6f754b137d5e0a3ac8a', 'e', '1');
 
+
+
+ALTER TABLE TestSettings ADD negative BOOLEAN NULL DEFAULT 0 COMMENT 'Negative Scores';
+ALTER TABLE TestSettings ADD editable BOOLEAN NULL DEFAULT 0 COMMENT 'Editable Scores';
+
+
+ALTER TABLE Subjects ADD version REAL NULL DEFAULT -1 COMMENT 'Subjects version';
+ALTER TABLE Topics ADD code VARCHAR(20) NULL DEFAULT NULL COMMENT 'Unique Code Topics Imported';
+
+      ALTER TABLE Subjects
+        ADD UNIQUE sbjC(name,fkLanguage,version);
+
+        ALTER TABLE Topics
+        ADD UNIQUE TopicC(code,fkSubject);
 

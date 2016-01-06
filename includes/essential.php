@@ -39,7 +39,11 @@ function getQuestionTypes(){
         'MR',       # Multiple Response
         'YN',       # Yes/No
         'TF',       # True/False
-        'ES'        # Essay
+        'ES',        # Essay
+        'NM',       # Numeric
+        'TM',       # Text Match
+        'HS',       # Hotspot
+
 
     );
     return $types;
@@ -180,6 +184,8 @@ function printMenu(){
 
     if($user->role == 't')
         teacherMenu();
+    elseif($user->role == 'e')
+        eteacherMenu();
     elseif($user->role == 'a')
         adminMenu();
     elseif($user->role == 's')
@@ -217,6 +223,7 @@ function adminMenu(){
             <li><a href="index.php?page=admin/newstudent"><?= ttNewStudent ?></a></li>
         </ul>
     </li>
+
     <li>
         <a class="trigger"><?= ttSystem ?></a>
         <ul class="subnav">
@@ -225,6 +232,13 @@ function adminMenu(){
             <li><a href="index.php?page=admin/rooms"><?= ttRooms ?></a></li>
         </ul>
     </li>
+    <li>
+        <a class="trigger"><?= ttImportQM ?></a>
+        <ul class="subnav">
+            <li><a href="index.php?page=importqm/importpage"><?= ttImport ?></a></li>
+        </ul>
+    </li>
+
     <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
     <li><a href="index.php?page=admin/exit" style="color: red"><?= ttExit ?></a></li>
 
@@ -259,6 +273,36 @@ function teacherMenu(){
 <?php
 }
 
+
+/**
+ * @name    teacherMenu
+ * @descr   Create the teacher menu on page
+ */
+function eteacherMenu(){
+    global $tt; ?>
+
+    <ul class="topnav">
+    <li><a href="index.php"><?= ttHome ?></a></li>
+    <li>
+        <a class="trigger"><?= ttSubjects ?></a>
+        <ul class="subnav">
+            <li><a href="index.php?page=subject/index2"><?= ttSelectSubject ?></a></li>
+            <li><a href="index.php?page=question/index2"><?= ttTopicsAndQuestions ?></a></li>
+        </ul>
+    </li>
+    <li>
+        <a class="trigger"><?= ttExams ?></a>
+        <ul class="subnav">
+            <li><a href="index.php?page=exam/exams"><?= ttMyExams ?></a></li>
+            <li><a href="index.php?page=exam/settings"><?= ttSettings ?></a></li>
+        </ul>
+    </li>
+    <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
+
+<?php
+}
+
+
 /**
  * @name    adminTeacherMenu
  * @descr   Create the adminTeacher menu on page
@@ -282,11 +326,15 @@ function adminTeacherMenu(){
             <li><a href="index.php?page=exam/settings"><?= ttSettings ?></a></li>
         </ul>
     </li>
+
     <li><a href="index.php?page=admin/profile"><?= ttProfile ?></a></li>
     <li><a href="index.php?page=admin" style="color: red"><?= ttAdministration ?></a></li>
 
 <?php
 }
+
+
+
 
 /**
  * @name    studentMenu

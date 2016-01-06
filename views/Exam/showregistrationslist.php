@@ -74,22 +74,49 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                     while ($registration = $db->nextRowAssoc()) {
                         $start = $end = $time = "";
                         if ($registration['timeStart'] != null) {
-                            $start = new DateTime($registration['timeStart']);
+                            //$start = new DateTime($registration['timeStart']);
+                            $start = strtotime($registration['timeStart']);
+
                             if ($registration['timeEnd'] != null) {
+                                /*
                                 $end = new DateTime($registration['timeEnd']);
                                 $diff = $start->diff($end);
                                 $end = $end->format('H:i:s');
+                                */
+                                $end = strtotime($registration['timeEnd']);
+                                $diff = $end - $start;
+                                $end = date('H:i:s', $end);
+
                             } else {
+                                /*
                                 $end = new DateTime(date('Y-m-d H:i:s'));
                                 $diff = $start->diff($end);
                                 $end = '';
+                                */
+                                $end = strtotime(date('Y-m-d H:i:s'));
+                                $diff = $end - $start;
+                                $end = '';
+
                             }
-                            if ($diff->d > 0) {
+
+                            $arr['days']=floor($diff/(60*60*24));
+                            $diff=$diff-(60*60*24*$arr['days']);
+                            $arr['hours']=floor($diff/(60*60));
+                            $diff=$diff-(60*60*$arr['hours']);
+                            $arr['minutes']=floor($diff/60);
+                            $diff=$diff-(60*$arr['minutes']);
+                            $arr['seconds']=$diff;
+
+                            //if (date('d',$diff)> 0) {
+                            if ($arr['days']> 0) {
                                 $time = '> 24 h';
                             } else {
-                                $time = $diff->format("%H:%I:%S");
+                                //$time = $diff->format("%H:%I:%S");
+                                $time = date("H:i:s",mktime($arr['hours'],$arr['minutes'],$arr['seconds']));
                             }
-                            $start = $start->format('H:i:s');
+                            //$start = $start->format('H:i:s');
+                            $start = date('H:i:s',$start);
+
                         }
                         $status = $statuses[$registration['status']];
                         $manage = '';
@@ -106,8 +133,8 @@ if(!(isset($_POST['action'])) || ($_POST['action'] != 'refresh')){
                             <td><?= $start ?></td>
                             <td><?= $end ?></td>
                             <td><?= $time ?></td>
-                            <td><?= $registration['scoreTest'] ?></td>
-                            <td><?= $scoreFinal ?></td>
+                            <td><?= $registration['scoreTest'] ?>/<?=$testsettingInfo['scoreType']?></td>
+                            <td><?= $scoreFinal ?>/<?=$testsettingInfo['scoreType']?></td>
                             <td>
                                 <?php if (($examInfo['status'] != 'a') || ($registration['status'] == 'a')) { ?>
                                     <span class="manageButton <?= $status['action'] ?>">

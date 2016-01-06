@@ -22,12 +22,15 @@ global $config, $user;
         echo ttAdminWelcome;
 
         $db = new sqlDB();
-        $teachers = $students = $subjects = $questions = $exams = $tests = 0;
+        $teachers = $eteachers = $students = $subjects = $questions = $exams = $tests = 0;
         if($db->qSelect('Users', 'role', 't')){
             $teachers += $db->numResultRows();
         }
         if($db->qSelect('Users', 'role', 'at')){
             $teachers += $db->numResultRows();
+        }
+        if($db->qSelect('Users', 'role', 'e')){
+            $eteachers += $db->numResultRows();
         }
         if($db->qSelect('Users', 'role', 's')){
             $students = $db->numResultRows();
@@ -48,6 +51,7 @@ global $config, $user;
 
         <table id="adminTable">
             <tr><td><?= $teachers ?></td><td><?= ttTeachers ?></td></tr>
+            <tr><td><?= $eteachers ?></td><td><?= ttETeachers ?></td></tr>
             <tr><td><?= $students ?></td><td><?= ttStudents ?></td></tr>
             <tr><td><?= $subjects ?></td><td><?= ttSubjects ?></td></tr>
             <tr><td><?= $questions ?></td><td><?= ttQuestions ?></td></tr>

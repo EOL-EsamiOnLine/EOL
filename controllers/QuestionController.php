@@ -58,6 +58,30 @@ class QuestionController extends Controller{
         }
     }
 
+
+
+    /**
+     *  @name   actionIndex
+     *  @descr  Show index page
+     */
+    private function actionIndex2(){
+        global $config, $engine;
+
+        if(isset($_POST['idSubject'])){
+            $_SESSION['idSubject'] = $_POST['idSubject'];
+            $_SESSION['uploadDir'] = $config['systemUploadDir'].$_POST['idSubject'];
+        }
+        if(isset($_SESSION['idSubject'])){
+            $engine->renderDoctype();
+            $engine->loadLibs();
+            $engine->renderHeader();
+            $engine->renderPage();
+            $engine->renderFooter();
+        }else{
+            header('Location: index.php?page=subject/index2&r=qstn2');
+        }
+
+    }
     /********************************************************************
      *                             Question                             *
      ********************************************************************/
@@ -497,6 +521,14 @@ class QuestionController extends Controller{
                                    'Showanswerinfo', 'Updateanswerdetails',
                                    'Updateanswerinfo', 'Newanswer', 'Deleteanswer'),
                 'roles'   => array('t'),
+            ),
+            array(
+                'allow',
+                'actions' => array('Index2', 'Showtopics', 'Showquestionpreview', 'Showquestioninfo',
+                    'Showquestionlanguages',
+                    'Changestatus',
+                    'Showanswerinfo'),
+                'roles'   => array('e'),
             ),
             array(
                 'deny',

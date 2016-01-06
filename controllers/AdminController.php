@@ -693,7 +693,7 @@ class AdminController extends Controller{
             array(
                 'allow',
                 'actions' => array('Profile', 'Updateprofile'),
-                'roles'   => array('a', 't', 's'),
+                'roles'   => array('a', 't', 's','e'),
             ),
             array(
                 'allow',

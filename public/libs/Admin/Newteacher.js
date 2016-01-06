@@ -12,7 +12,7 @@ $(function(){
      *  @descr  Binded event for role checkbox
      */
     $("input[name=userRole]").on("change", function(event){
-        if($("input[name=userRole]:checked").val() == "t"){
+        if($("input[name=userRole]:checked").val() == "t" ){
             $("#administratorRole").removeAttr("disabled");
         }else{
             $("#administratorRole").attr("disabled", "");
@@ -25,7 +25,7 @@ $(function(){
  *  @descr  Creates user from added informations
  */
 function createTeacher(){
-    var role = "a";
+    var role = "e";
     var name = $("#userName").val().trim();
     var surname = $("#userSurname").val().trim();
     var email = $("#userEmail").val().trim();
@@ -40,6 +40,9 @@ function createTeacher(){
                     }else{
                         role = "t";
                     }
+                }
+                else if($("input[name=userRole]:checked").val() == "e"){
+                    role='e';
                 }
                 $.ajax({
                     url     : "index.php?page=admin/newteacher",

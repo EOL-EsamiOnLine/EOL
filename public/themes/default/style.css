@@ -33,8 +33,11 @@ body.noscroll {
     width	            :	100%;
     margin              :	5px auto auto;
     height              :   122px;
-    background-color    :   #929292;
+    background-color    :   #0d3b7e;
 }
+/*
+ background-color    :   #929292;
+
 #logoContainer {
     float:left;
     margin: 10px 10px 10px 10px;
@@ -51,6 +54,16 @@ body.noscroll {
     margin-left: 20px;
     font-size: 30px;
     color: rgb(137, 202, 57);
+}
+*/
+
+#eolLogo {
+    float       :   left;
+    width       :   400px;
+    height      :	100px;
+    background  :   url("images/eol.png") no-repeat;
+    margin-top  :   12px;
+    margin-left:    20px;
 }
 #welcome {
     font-size   :   12px;
@@ -409,6 +422,8 @@ div.ui-datepicker{
     font-size           :   11px;
     color               :   #000000;
     text-align          :   left;
+    overflow            :   scroll;
+
 }
 .boxLeftS{
     width               :   48%;
@@ -1531,7 +1546,7 @@ div.ellipsis {
 #testSettingsInfo .columnCenter{
     float                       :   left;
     width                       :   33%;
-    height                      :   295px;
+    height                      :   350px;
     padding-left                :   10px;
     padding-right               :   10px;
     position                    :   relative;
@@ -1768,10 +1783,16 @@ div.questionAnswers > div{
 }
 #correct div.questionText{
     cursor: pointer;
+
 }
+
+
+
 #correct div.questionTest.last .questionAnswers{
     border-bottom: none;
     margin-bottom: 0;
+
+
 }
 div.answered{
     background-color    :   #fff581;
@@ -1843,6 +1864,7 @@ div.correctQuestion span.responseQuestion{
 div.questionText span.responseScore{
     float:right;
     margin-right: 20px;
+
 }
 img.showhide{
     margin: 0;
@@ -2079,7 +2101,7 @@ img.showhide{
     left                :   50%;
     margin-left         :   -110px;
     cursor              :   pointer;
-    border              :   5px inset #90ee90;
+    border              :   5px inset #e29e06;
     z-index             :   1000;
 }
 #correct .boxContent,
@@ -2216,4 +2238,42 @@ span.extraClose{
 /* CKEditor mazmimize fix*/
 .maximize_fix{
     position: static !important;
+}
+
+#thing {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    left: 3px;
+    top: 3px;
+    transition: left .5s ease-in, top .5s ease-in;
+}
+
+#myCanvas{
+    border:2px solid #000000;
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:0px;
+    height:0px;
+}
+
+#contentContainerCrop{
+    /* border: 2px black solid;  */
+    overflow: auto;
+    width: auto;
+
+    height: auto;
+
+}
+
+#flagcontainer{
+    position: absolute;
+}
+
+#contentContainerDeD{
+    /*border: 2px black solid;*/
+    overflow: hidden;
+    width: 420px;
+    height: 450px;
 }

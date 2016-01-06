@@ -267,9 +267,9 @@ function showQuestionPreview(idQuestion, idLanguage, selectedLanguage) {
             },
             success : function (data) {
                 if(data == "NACK"){
-//                    alert(data);
+                   //alert(data);
                 }else{
-//                    alert(data);
+                   //alert('ciao'+data);
                     $("#questionPreview .boxContent").html(data)
                         .slideDown({
                             duration : 400
@@ -423,7 +423,7 @@ function destroyAllCKEditorInstances(){
  */
 function createCKEditorInstance(instance){
     destroyAllCKEditorInstances();
-    var roxyFileman = '/fileman/index.html';
+    var roxyFileman = '/php_projects/echemTest-EOL/public/fileman/index.html';
     var onchange = null;
     switch(instance.split("t")[0]){
         case "q" : onchange = function() { this.updateElement(); questionEditing = true; }; break;

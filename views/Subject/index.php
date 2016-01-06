@@ -17,7 +17,7 @@ global $user, $config;
     <div>
         <?php
 
-        $request = '';
+        $request = '1';
 
         if(isset($_GET['r'])){
             $request = $_GET['r'];
