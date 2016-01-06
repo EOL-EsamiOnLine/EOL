@@ -1816,7 +1816,7 @@ class sqlDB {
         	$queries = array();
 
             $data = $this->prepareData(array($name, $desc));
-            $scale = round($scoreType / $questions, 1);
+            $scale = round($scoreType / $questions, 1,PHP_ROUND_HALF_UP);
             $query = "INSERT INTO TestSettings (name, description, questions, scoreType, scoreMin, scale, bonus, negative, editable, duration, numEasy, numMedium, numHard, fkSubject)
                   	  VALUES ('$data[0]', '$data[1]', '$questions', '$scoreType', '$scoreMin', '$scale', '$bonus', '$negative', '$editable', '$duration', '".$questionsD[1]['total']."', '".$questionsD[2]['total']."', '".$questionsD[3]['total']."', '$idSubject')";
 			array_push($queries, $query);

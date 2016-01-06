@@ -308,7 +308,7 @@
     <text id="ttQTTF">Vera / Falso</text>
     <text id="ttQTTFDescription">Una domanda Vero/Falso è una domanda a risposta singola che chiede al partecipante di rispondere con un "Vero" o un "Falso".</text>
     <text id="ttQTNM">Numerica</text>
-    <text id="ttQTNMDescription">In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale. </text>
+    <text id="ttQTNMDescription">In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.</text>
     <text id="ttQTTM">Testo</text>
     <text id="ttQTTMDescription">In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.</text>
     <!-- ======================== R ======================== -->

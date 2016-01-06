@@ -249,5 +249,5 @@ function showCoords(c)
 
 function clearCoords()
 {
-    $('#coords inputss').val('');
+    $('#coords input').val('');
 };

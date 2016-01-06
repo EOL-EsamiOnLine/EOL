@@ -48,8 +48,10 @@ function confirmTest(askConfirmation){
     if((!askConfirmation[0]) || (confirmDialog(ttWarning, ttCConfirmTest, confirmTest, new Array(false)))){
         var correctScores = [];
         $("div.questionTest").each(function(){
-            correctScores[$(this).attr("value")] = $(this).find(".responseScore").text()
+            correctScores[$(this).attr("value")] = $(this).find(".responseScore").text();
+
         });
+
         var maxScore = parseFloat($("#maxScore").val());
         var scoreFinal = $("#scorePost").text();
         if((scoreFinal == maxScore) && ($("#scoreLaudae").prop("checked")))

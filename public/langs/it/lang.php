@@ -50,7 +50,7 @@ define('ttCRegisterStudents' , "Sei sicuro di voler registrare gli studenti sele
 define('ttCRenewPassword' , "La password per l'esame verrà aggiornata.<br/>L'operazione non potrà essere annullata! Continuare?");
 define('ttCStartExam' , "Vuoi attivare questo esame?");
 define('ttCStartTest' , "Vuoi iniziare l'esame ora?<br/>Ti verrà richiesta la password d'accesso all'esame.");
-define('ttCStopExam' , "Vuoi  disattivare questo esame?");
+define('ttCStopExam' , "Vuoi disattivare questo esame?");
 define('ttCSubmitTest' , "Vuoi consegnare il test?<br/>L'operazione non potrà essere annullata! Continuare?");
 define('ttCTest' , "La password è corretta. Il tuo test è pronto e inizierà dopo il tuo click!");
 define('ttCumLaudae' , "e Lode");
@@ -276,12 +276,10 @@ define('ttQTYN' , "Si / No");
 define('ttQTYNDescription' , "Una domanda Sì/No è una domanda a risposta singola che chiede al partecipante di rispondere con un \"Sì\" o un \"No\".");
 define('ttQTTF' , "Vera / Falso");
 define('ttQTTFDescription' , "Una domanda Vero/Falso è una domanda a risposta singola che chiede al partecipante di rispondere con un \"Vero\" o un \"Falso\".");
-define('ttQTNM' , 'Numerica');
-define('ttQTNMDescription' , 'In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.');
-define('ttQTTM' , 'Testo');
-define('ttQTTMDescription' , 'In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.');
-define('ttQTHS' , 'Hotspot');
-define('ttQTHSDescription' , 'Una domanda Hotspot è una domanda drag and drop con una sola zona giusta. Il partecipante pone un singolo marcatore su un immagine per indicare la risposta.');
+define('ttQTNM' , "Numerica");
+define('ttQTNMDescription' , "In una domanda Numeric, i partecipanti rispondono digitando un numero intero o reale.");
+define('ttQTTM' , "Testo");
+define('ttQTTMDescription' , "In una domanda Testo, i partecipanti scelgono una sola parola, o poche parole per indicare la loro risposta. Si definiscono parole o frasi, giuste o sbagliate precedentemente inserendo un elenco di risposte accettabili.");
 define('ttRandom' , "Casuali");
 define('ttRefresh' , "Aggiorna");
 define('ttRegister' , "Registrati");
@@ -328,8 +326,8 @@ define('ttSurname' , "Cognome");
 define('ttSystem' , "Sistema");
 define('ttSystemConfiguration' , "Configurazione di Sistema");
 define('ttTeacher' , "Docente");
-define('tteTeacher' , "Esaminatore");
 define('ttTeachers' , "Docenti");
+define('ttETeachers' , "Esaminatori");
 define('ttTest' , "Test");
 define('ttTests' , "Test");
 define('ttTestToCorrect' , "Tests da correggere");
@@ -354,25 +352,3 @@ define('ttWelcome' , "Benvenuto");
 define('ttWaiting' , "Attesa");
 define('ttWarning' , "Attenzione");
 define('ttYes' , "Sì");
-
-
-define('ttHotspotAnswerInfo' , 'Coordinate area risposta giusta:');
-define('ttSizeWin' , 'Dimensioni finestra:');
-define('ttWidth' , 'Larghezza:');
-define('ttHeight' , 'Altezza:');
-define('ttRightArea' , 'Area Corretta');
-define('ttWrongArea' , 'Area Sbagliata');
-define('ttStudentAnswer' , 'Risposta data dallo studente:');
-define('ttInsertImage' , 'Inserire immagine');
-
-
-define('ttCoord','PIPPO');
-
-
-
-define('ttPrepareImportQM' , "Dettagli");
-define('ttImportQM' , "Import");
-define('ttImport' , "Import echemTest");
-
-define('ttSbjVers' , "Versione");
-define('ttETeachers' , "Esaminatori");

@@ -45,20 +45,25 @@ var atci = {
 
 // Sposta il puntatore in durante il test
 function getClickPosition(event) {
+
     var container = $( "#contentContainer" );
+    container.css('position','relative');
     var theThing = $("#thing");
+    theThing.css('position','absolute');
     //var x = event.pageX;
     //var y = event.pageY; //clientY
     var parentOffset = container.parent().offset();
     var x = (event.pageX - parentOffset.left - 20 - 13);
     var y = (event.pageY - parentOffset.top - 20 - 13);
-    //alert("pageX&Y  x="+ x + ", y=" + y);
-    var posContainer = container.position();
+    alert("pageX&Y  x="+ x + ", y=" + y);
 
+    /*
+    var posContainer = container.position();
     var positionn = theThing.position();
     var posx = positionn.left - 20;
     var posy = positionn.top - posContainer.top - 20;
-    //alert("pageX&Y  x="+ x + ", y=" + y + "position x=" + posx + "y=" + posy);
+    alert("pageX&Y  x="+ x + ", y=" + y + "position x=" + posx + "y=" + posy);
+    */
 
     var xPositionPX = x + "px";
     var yPositionPX = y + "px";
@@ -171,13 +176,19 @@ function getGivenAnswer_HS(questionDiv){
 
     var container = $( "#contentContainer" );
     var theThing = $("#thing");
-
     var posContainer = container.position();
     var positionn = theThing.position();
-
+    alert(positionn.left+" "+positionn.top);
+    /*
     var posx = positionn.left - 20;
     var posy = positionn.top - posContainer.top - 20;
-    var mod = posx + "," + posy;
+    */
+
+    var posx = positionn.left;
+    var posy = positionn.top;
+
+
+    //var mod = posx + "," + posy;
     //var ris = new Array(mod);
     var ris = new Array(posx , posy);
     //alert (ris);

@@ -423,7 +423,7 @@ function destroyAllCKEditorInstances(){
  */
 function createCKEditorInstance(instance){
     destroyAllCKEditorInstances();
-    var roxyFileman = '/fileman/index.html';
+    var roxyFileman = '/php_projects/echemTest-EOL/public/fileman/index.html';
     var onchange = null;
     switch(instance.split("t")[0]){
         case "q" : onchange = function() { this.updateElement(); questionEditing = true; }; break;

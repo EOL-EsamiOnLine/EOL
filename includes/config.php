@@ -48,7 +48,7 @@ $config['logDir'] = '../logs/';
 // System log files
 $config['systemLog'] = $config['logDir'].'system.log';
 // Main upload directory
-$config['systemUploadDir'] = '/uploads/';
+$config['systemUploadDir'] = '/php_projects/echemTest-EOL/public/fileman/Uploads/Images';
 // Datatable text column length
 $config['datatablesTextLength'] = 100;
 // Ellipsis

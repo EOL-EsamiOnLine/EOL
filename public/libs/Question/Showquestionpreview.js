@@ -23,15 +23,18 @@ $(function(){
 
 // Sposta il puntatore durante la visualizzazione della preview della domanda
 function getClickPosition(event) {
+
     var container = $( "#contentContainer" );
     var theThing = $("#thing");
     var parentOffset = container.parent().offset();
     var x = (event.pageX - parentOffset.left - 20 - 13);
-    var y = (event.pageY - parentOffset.top - 20 - 13);
+    var y = (event.pageY - parentOffset.top);
+    y=-(container.height()-y);
     var xPositionPX = x + "px";
     var yPositionPX = y + "px";
     theThing.css("left",xPositionPX);
     theThing.css("top",yPositionPX);
+    //alert("pageX&Y  x="+ xPositionPX + ", y=" + yPositionPX);
 
 
 }
